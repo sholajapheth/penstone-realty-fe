@@ -4,7 +4,7 @@ import { IoChevronDownOutline } from "react-icons/io5";
 
 const Header = () => {
   return (
-    <div className=" w-full flex items-center justify-center  py-6 bg-white">
+    <div className=" w-full flex items-center justify-center  py-4 bg-white">
       <div className="w-[90%] justify-between flex items-center ">
         <Image src={"/logo.png"} alt="penstone-logo" height={90} width={150} />
 

@@ -16,6 +16,15 @@
   }
 }
 
+
+@layer utilities {
+  .custom-200-ease-out {
+    transition-property: all;
+    transition-timing-function: ease-out;
+    transition-duration: 200ms;
+  }
+}
+
 body {
   /* color: rgb(var(--foreground-rgb));
   background: linear-gradient(
