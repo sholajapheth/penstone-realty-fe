@@ -16,6 +16,39 @@
   }
 }
 
+.trapez{
+ height: 50px;
+ background-color: white;
+ transform: perspective(30px) rotateX(10deg);
+
+}
+
+/* Hide scroll indicators for Microsoft Edge */
+.hide-scroll-indicators {
+  -ms-overflow-style: none; /* Edge Legacy */
+  scrollbar-width: none; /* Edge Chromium */
+}
+
+
+/* Hide scroll indicators for Internet Explorer */
+.hide-scroll-indicators {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+
+/* Hide scroll indicators for Firefox */
+.hide-scroll-indicators {
+  scrollbar-width: none; /* Firefox 64+ */
+}
+
+
+/* Hide scroll indicators for Webkit-based browsers */
+.hide-scroll-indicators::-webkit-scrollbar {
+  display: none;
+}
+
+/* :root {
+
 
 @layer utilities {
   .custom-200-ease-out {
@@ -33,7 +66,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
-}
+/* } */
 
 @layer utilities {
   .text-balance {
