@@ -6,16 +6,29 @@ import {
   Services,
   Showcase,
 } from "@/components/home";
+import { HeroSection, Search } from "@/components/properties";
+import PropertyDetails from "@/components/properties/PropertyDetails";
+import TopDetails from "@/components/properties/TopDetails";
 
 export default function Home() {
   return (
     <main>
-      <Landing />
+      {/* home */}
+      {/* <Landing />
       <Showcase />
       <HotListings />
       <Services />
       <Offers />
-      <NewsLetter />
+      <NewsLetter /> */}
+
+      {/* search */}
+      {/* <Search />
+      <HeroSection />
+      <NewsLetter /> */}
+
+      {/* property details */}
+      <TopDetails />
+      <PropertyDetails />
     </main>
   );
 }
