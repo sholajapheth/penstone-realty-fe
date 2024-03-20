@@ -1,12 +1,13 @@
+"use client";
 import Image from "next/image";
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { CgChevronRight } from "react-icons/cg";
-import { FaRegCircleCheck } from "react-icons/fa6";
+import { FaRegCircleCheck, FaWhatsapp } from "react-icons/fa6";
 import { LuBedSingle } from "react-icons/lu";
 import { TbBath } from "react-icons/tb";
 import ListingCard from "../home/ListingCard";
 import { NewsLetter } from "../common";
-import { BiChevronUp } from "react-icons/bi";
+import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 
 function Feature({
   icon,
@@ -51,20 +52,72 @@ const propertyAttributes = [
 ];
 
 const PropertyDetails = () => {
+  const showcaseRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const dum_pic = [
+    "/img/property-detail-img.png",
+    "/img/home-landing-bg.png",
+    "/img/property-detail-img.png",
+    "/img/home-landing-bg.png",
+  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      const { current } = showcaseRef;
+      if (current) {
+        const scrollOffset = current.scrollLeft;
+        const totalWidth = current.scrollWidth - current.clientWidth;
+        const newIndex = Math.round(
+          (scrollOffset / totalWidth) * (dum_pic.length - 1)
+        ); // Calculate the index based on scroll position
+        setCurrentIndex(newIndex);
+      }
+    };
+
+    const showcaseElement = showcaseRef.current;
+    if (showcaseElement) {
+      showcaseElement.addEventListener("scroll", handleScroll);
+      console.log(currentIndex);
+    }
+
+    return () => {
+      if (showcaseElement) {
+        showcaseElement.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, [dum_pic]); // Add dum_pic to dependencies since its length might change
+
   return (
     <div className=" px-[1em] md:px-[3em] lg:px-[4em] xl:px-[6em] py-[2em]">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-8">
         <div className="col-span-2">
           <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4  ">
-            <div>
-              <div className="relative  h-full">
-                <Image
-                  src={"/img/property-detail-img.png"}
-                  alt="property picture"
-                  width={200}
-                  height={200}
-                  className="w-full h-full "
-                />
+            <div className="relative h-full">
+              <div
+                className=" flex h-full overflow-scroll hide-scroll-indicators"
+                ref={showcaseRef}
+              >
+                {dum_pic.map((src, index) => (
+                  <Image
+                    key={index}
+                    src={src}
+                    alt="property picture"
+                    width={200}
+                    height={200}
+                    className="w-full h-full mr-4"
+                  />
+                ))}
+              </div>
+              <div className="absolute bottom-6 w-full flex gap-2  justify-center ">
+                {dum_pic.map((_, index) => (
+                  <div
+                    className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
+                      currentIndex === index
+                        ? "bg-white"
+                        : "backdrop-blur bg-white/25"
+                    }`}
+                  />
+                ))}
               </div>
             </div>
             <div className="flex flex-row md:flex-col  gap-2 md:gap-4">
@@ -249,22 +302,123 @@ const PropertyDetails = () => {
             </p>
           </div>
         </div>
-        <div className="rounded-2xl p-4 border-secondary border ">
-          <div className="flex items-center justify-between ">
-            <p className="font-semibold text-[20px] md:text-[26px] ">
-              Price Summary
-            </p>
-            <BiChevronUp size={25} />
-          </div>
+        {/* Right side (Price Summary) */}
 
-          <div className="mt-4">
-            <p className="text-gray-300 font-medium text-[14px] ">Rent</p>
-            <p className="text-[20px] md:text-[24px] font-bold">
-              NGN 248,933.57
-              <span className="text-[14px] md:text-[18px] font-medium">
-                /Month
-              </span>
-            </p>
+        <div>
+          <div className="rounded-2xl p-4 border-secondary border ">
+            <div className="flex items-center justify-between ">
+              <p className="font-semibold text-[20px] md:text-[26px] ">
+                Price Summary
+              </p>
+              <BiChevronUp size={25} />
+            </div>
+
+            <div className="mt-4">
+              <p className="text-gray-300 font-medium text-[14px] ">Rent</p>
+              <p className="text-[20px] md:text-[24px] font-bold">
+                NGN 248,933.57
+                <span className="text-[14px] md:text-[18px] font-medium">
+                  /Month
+                </span>
+              </p>
+            </div>
+
+            <div className="text-secondary mt-6">
+              <p className="text-[12px] md:text-[16px] font-semibold">
+                DURATION
+              </p>
+
+              <div className="border-secondary border text-secondary rounded-xl  flex items-center mt-2 ">
+                <select
+                  name="duration"
+                  className="w-full px-5 py-4 rounded-xl flex-1 focus:outline-none "
+                >
+                  <option value="Monthly">Monthly</option>
+                  <option value="Monthly">Monthly</option>
+                  <option value="Monthly">Monthly</option>
+                </select>
+                <BiChevronDown className="mr-2" size={30} />
+              </div>
+            </div>
+
+            <div className="my-6 flex items-center justify-between">
+              <p className="text-gray-400 text-[12px] md:text-[16px] font-medium">
+                Service Charge
+              </p>
+              <p className="text-[14px] md:text-[18px] font-medium">
+                NGN 186,420
+              </p>
+            </div>
+            <div className="my-6 flex items-center justify-between">
+              <p className="text-gray-400 text-[12px] md:text-[16px] font-medium">
+                Refundable security deposit
+              </p>
+              <p className="text-[14px] md:text-[18px] font-medium">
+                NGN 186,420
+              </p>
+            </div>
+            <div className="my-6 flex items-center justify-between">
+              <p className="text-gray-400 text-[12px] md:text-[16px] font-medium">
+                One-time booking fee
+              </p>
+              <p className="text-[14px] md:text-[18px] font-medium">
+                NGN 186,420
+              </p>
+            </div>
+            <div className="my-6 flex items-start justify-between border-t border-gray-400 border-b border-b-gray-400 py-4">
+              <div>
+                {" "}
+                <p className="text-gray-400 text-[12px] md:text-[16px] font-medium">
+                  Total
+                </p>
+                <p className="text-gray-400 text-[10px] md:text-[14px] font-medium">
+                  (incl. of all taxes)
+                </p>
+              </div>
+              <p className="text-[18px] md:text-[24px] font-bold">
+                NGN 186,420
+              </p>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <Image
+                src={"/img/sample-avatar.png"}
+                height={70}
+                width={70}
+                alt="realtor"
+                className="rounded-full "
+              />
+
+              <div>
+                <p className="text-[18px] md:text-[24px] font-bold">
+                  Abayomi Temitope
+                </p>
+                <p className=" text-[12px] md:text-[16px] ">
+                  Real Estate Broker
+                </p>
+              </div>
+            </div>
+
+            <div className="text-secondary mt-6">
+              <p className="text-[12px] md:text-[16px] font-semibold">
+                Your Whatsapp number
+              </p>
+
+              <div className="border-secondary border text-secondary rounded-xl pl-4 flex items-center mt-2 ">
+                <p>+234 </p>
+                <input
+                  placeholder="xx xx xx"
+                  className="w-full px-3 py-4 rounded-xl flex-1 focus:outline-none "
+                />
+              </div>
+            </div>
+
+            <button className="w-full rounded-xl bg-primary py-4 flex justify-center text-white mt-6">
+              <div className="flex items-center gap-4">
+                <FaWhatsapp size={25} />
+                <p>Start a Conversation</p>
+              </div>
+            </button>
           </div>
         </div>
       </div>
