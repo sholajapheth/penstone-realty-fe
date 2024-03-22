@@ -111,6 +111,7 @@ const PropertyDetails = () => {
               <div className="absolute bottom-6 w-full flex gap-2  justify-center ">
                 {dum_pic.map((_, index) => (
                   <div
+                    key={index}
                     className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
                       currentIndex === index
                         ? "bg-white"
@@ -264,8 +265,8 @@ const PropertyDetails = () => {
           <div className="mt-8 border-b border-gray-300 pb-8">
             <p className="text-[24px] font-bold mb-4">Property Features </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {propertyFeatures.map((item) => (
-                <div className="flex items-center gap-2">
+              {propertyFeatures.map((item, index) => (
+                <div key={index} className="flex items-center gap-2">
                   <FaRegCircleCheck size={22} />
                   <p>{item}</p>
                 </div>
@@ -275,8 +276,8 @@ const PropertyDetails = () => {
           <div className="mt-8 border-b border-gray-300 pb-8">
             <p className="text-[24px] font-bold mb-4">Property Attributes </p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {propertyAttributes.map((item) => (
-                <div className="flex items-center gap-2">
+              {propertyAttributes.map((item, index) => (
+                <div key={index} className="flex items-center gap-2">
                   <FaRegCircleCheck size={22} />
                   <p>{item}</p>
                 </div>
@@ -434,8 +435,8 @@ const PropertyDetails = () => {
         </div>
 
         <div className="flex items-center justify-between ">
-          {[1, 2, 3].map(() => (
-            <ListingCard />
+          {[1, 2, 3].map((item) => (
+            <ListingCard key={item} />
           ))}
         </div>
       </div>

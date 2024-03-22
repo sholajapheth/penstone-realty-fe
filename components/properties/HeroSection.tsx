@@ -11,9 +11,9 @@ const HeroSection = () => {
           </p>
 
           <p className="text-[18px] mt-10 ">
-            Sell your property with us. We'll expertly showcase it on leading
-            property listing platforms to attract potential buyers, ensuring a
-            seamless and efficient sales process for you.
+            Sell your property with us. We&apos;ll expertly showcase it on
+            leading property listing platforms to attract potential buyers,
+            ensuring a seamless and efficient sales process for you.
           </p>
 
           <div className="mt-[1em] md:mt-[2em] flex items-center gap-8">
