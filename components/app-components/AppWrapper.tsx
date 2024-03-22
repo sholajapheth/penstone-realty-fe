@@ -4,11 +4,11 @@ import Footer from "./Footer";
 
 const AppWrapper = ({ children }: { children: ReactNode }) => {
   return (
-    <>
+    <div className="relative">
       <Header />
       {children}
       <Footer />
-    </>
+    </div>
   );
 };
 

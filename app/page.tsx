@@ -1,3 +1,4 @@
+import { BlogTop } from "@/components/blog";
 import { NewsLetter } from "@/components/common";
 import {
   HotListings,
@@ -14,12 +15,12 @@ export default function Home() {
   return (
     <main>
       {/* home */}
-      {/* <Landing />
+      <Landing />
       <Showcase />
       <HotListings />
       <Services />
       <Offers />
-      <NewsLetter /> */}
+      <NewsLetter />
 
       {/* search */}
       {/* <Search />
@@ -27,8 +28,11 @@ export default function Home() {
       <NewsLetter /> */}
 
       {/* property details */}
-      <TopDetails />
-      <PropertyDetails />
+      {/* <TopDetails />
+      <PropertyDetails /> */}
+
+      {/* blog */}
+      {/* <BlogTop /> */}
     </main>
   );
 }
