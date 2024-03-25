@@ -5,7 +5,7 @@ import ListingCard from "./ListingCard";
 
 const HotListings = () => {
   return (
-    <div className="bg-white min-h-screen flex  justify-center py-[4em] ">
+    <div className="bg-white max-h-screen flex  justify-center py-[4em] ">
       <div className="w-[90%] ">
         <div className="flex items-start justify-between  ">
           <p className="text-[#212226] font-semibold text-[40px] ">

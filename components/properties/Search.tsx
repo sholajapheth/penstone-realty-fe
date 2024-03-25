@@ -3,6 +3,7 @@ import { CgChevronDown } from "react-icons/cg";
 import { IoChevronDownOutline } from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { PaginationNav } from "../common";
 
 const Search = () => {
   return (
@@ -81,26 +82,7 @@ const Search = () => {
           <ListingCard />
           <ListingCard />
         </div>
-        <div className="flex items-center justify-center mt-[1em] md:mt-[4em]">
-          <div className="font-bold flex items-center gap-4 ">
-            <BiChevronLeft size={28} />
-
-            <div className="p-4 py-[0.55rem] bg-primary rounded-full text-white shadow-sm ">
-              1
-            </div>
-            <div className="p-4 py-[0.55rem] bg-white rounded-full text-secondary shadow-sm ">
-              2
-            </div>
-            <div className="p-4 py-[0.55rem] bg-white rounded-full text-secondary shadow-sm ">
-              3
-            </div>
-            <span>...</span>
-            <div className="p-4 py-[0.55rem] bg-white rounded-full text-secondary shadow-sm ">
-              3
-            </div>
-            <BiChevronRight size={28} />
-          </div>
-        </div>
+        <PaginationNav />
       </div>
     </div>
   );

@@ -1,6 +1,18 @@
 import { BlogTop } from "@/components/blog";
 import { NewsLetter } from "@/components/common";
 import {
+  ContactPageBanner,
+  FreqAskedQues,
+  GetIntouch,
+} from "@/components/contact-us";
+import OurAgents from "@/components/contact-us/OurAgents";
+import {
+  FrequentlyPicked,
+  HelpFullArticles,
+  ServicesPageBanner,
+  TakeFirstStep,
+} from "@/components/find-services";
+import {
   HotListings,
   Landing,
   Offers,
@@ -15,12 +27,12 @@ export default function Home() {
   return (
     <main>
       {/* home */}
-      <Landing />
+      {/* <Landing />
       <Showcase />
       <HotListings />
       <Services />
       <Offers />
-      <NewsLetter />
+      <NewsLetter /> */}
 
       {/* search */}
       {/* <Search />
@@ -33,6 +45,20 @@ export default function Home() {
 
       {/* blog */}
       {/* <BlogTop /> */}
+
+      {/* find services */}
+      {/* <ServicesPageBanner />
+      <FrequentlyPicked />
+      <TakeFirstStep />
+      <HelpFullArticles />
+      <NewsLetter /> */}
+
+      {/* contact us  */}
+      <ContactPageBanner />
+      <OurAgents />
+      <FreqAskedQues />
+      <GetIntouch />
+      <NewsLetter />
     </main>
   );
 }

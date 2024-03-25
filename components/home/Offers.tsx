@@ -3,7 +3,7 @@ import React from "react";
 
 const Offers = () => {
   return (
-    <div className="min-h-screen bg-secondary  text-white text-center   py-16">
+    <div className="max-h-screen bg-secondary  text-white text-center   py-16">
       <div className="w-full flex  items-center justify-center">
         <div className="w-[90%] ">
           <p className="text-[40px] font-semibold ">

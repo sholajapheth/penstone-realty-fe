@@ -23,7 +23,7 @@ const ServiceCard = ({ imgSource, title, tagline }: Info3Card) => (
 const Services = () => {
   const [activeNav, setActiveNav] = useState("1");
   return (
-    <div className=" py-[4em] min-h-screen flex  justify-center text-secondary">
+    <div className=" py-[4em] max-h-screen flex  justify-center text-secondary">
       <div className="grid grid-cols-2 w-[90%]">
         <div className="relative ">
           <div className="bg-[url('/img/services-bg.png')]  ml-[5em] rounded-md h-full bg-no-repeat w-[80%]">
