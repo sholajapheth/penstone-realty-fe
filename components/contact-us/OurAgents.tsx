@@ -113,6 +113,7 @@ const OurAgents = () => {
 
       <div className="flex flex-wrap gap-8 mt-8 justify-center items-center">
         {agents.map((item) => (
+          // eslint-disable-next-line react/jsx-key
           <AgentCard
             imgSrc={item.imgSrc}
             email={item.email}

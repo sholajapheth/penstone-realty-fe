@@ -1,3 +1,4 @@
+import { AgentPageBanner } from "@/components/agent-listing";
 import { BlogTop } from "@/components/blog";
 import { NewsLetter } from "@/components/common";
 import {
@@ -54,11 +55,14 @@ export default function Home() {
       <NewsLetter /> */}
 
       {/* contact us  */}
-      <ContactPageBanner />
+      {/* <ContactPageBanner />
       <OurAgents />
       <FreqAskedQues />
       <GetIntouch />
-      <NewsLetter />
+      <NewsLetter /> */}
+
+      {/* agent listing */}
+      <AgentPageBanner />
     </main>
   );
 }
