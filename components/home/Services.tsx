@@ -26,7 +26,7 @@ const Services = () => {
     <div className=" py-[4em] max-h-screen flex  justify-center text-secondary">
       <div className="grid grid-cols-2 w-[90%]">
         <div className="relative ">
-          <div className="bg-[url('/img/services-bg.png')]  ml-[5em] rounded-md h-full bg-no-repeat w-[80%]">
+          <div className="bg-[url('/img/services.png')]  ml-[5em] rounded-md h-full bg-no-repeat w-[80%]">
             <div className=" w-[80%]  absolute -bottom-10 flex items-center justify-center">
               <div className="rounded-2xl shadow-md px-6 p-4  bg-white ">
                 <div className="relative">

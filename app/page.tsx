@@ -1,10 +1,20 @@
-import { AgentPageBanner } from "@/components/agent-listing";
+import {
+  AboutMission,
+  AboutPageBanner,
+  AboutServices,
+} from "@/components/about";
+import {
+  AgentPageBanner,
+  AgentPortfolio,
+  FindPage,
+} from "@/components/agent-listing";
+import { ArchitecturePageBanner, Gallery, Packages, Partners, Projects } from "@/components/architectural-services";
 import { BlogTop } from "@/components/blog";
-import { NewsLetter } from "@/components/common";
+import { NewsLetter, GetIntouch
+ } from "@/components/common";
 import {
   ContactPageBanner,
   FreqAskedQues,
-  GetIntouch,
 } from "@/components/contact-us";
 import OurAgents from "@/components/contact-us/OurAgents";
 import {
@@ -62,7 +72,24 @@ export default function Home() {
       <NewsLetter /> */}
 
       {/* agent listing */}
-      <AgentPageBanner />
+      {/* <AgentPageBanner />
+      <AgentPortfolio/>
+      <FindPage />
+      <NewsLetter />  */}
+
+      {/* about */}
+      {/* <AboutPageBanner />
+      <AboutServices />
+      <AboutMission />
+      <NewsLetter /> */}
+
+      {/* architectural service */}
+      <ArchitecturePageBanner />
+      <Packages />
+      <Projects />
+      <Gallery />
+      <Partners />
+      <GetIntouch />
     </main>
   );
 }
