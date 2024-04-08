@@ -35,7 +35,9 @@ import {
 import { HeroSection, Search } from "@/components/properties";
 import PropertyDetails from "@/components/properties/PropertyDetails";
 import TopDetails from "@/components/properties/TopDetails";
+import { Form } from "@/components/request";
 import { ConcludedListings } from "@/components/sell";
+import { SellPropertyForm } from "@/components/sell-property";
 import LeadingWebsites from "@/components/sell/LeadingWebsites";
 import SellBannerPage from "@/components/sell/SellBannerPage";
 import SellOffers from "@/components/sell/SellOffers";
@@ -118,10 +120,18 @@ export default function Home() {
       <NewsLetter /> */}
 
       {/* specialized service */}
-      <SpecializedPageBanner />
+      {/* <SpecializedPageBanner />
       <SpecializedServices />
       <Partners />
       <GetIntouch />
+      <NewsLetter /> */}
+
+      {/* request form */}
+      {/* <Form />
+      <NewsLetter /> */}
+
+      {/* sell property form */}
+      <SellPropertyForm />
       <NewsLetter />
     </main>
   );
