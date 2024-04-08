@@ -9,7 +9,7 @@ const SpecializedPageBanner = () => {
                   Top Rated
                 </p>
               </button>
-              <p className="text-[30px] md:text-[68px] font-bold">
+              <p className="text-[30px] md:text-[68px] font-bold pb-2 lg:pb-0">
                 Specialized property
                 <br className="hidden md:inline-block" />
                 services you can trust
@@ -22,13 +22,13 @@ const SpecializedPageBanner = () => {
                 regulations approval.
               </p>
 
-              <div className="flex justify-center items-center gap-[15px]">
+              <div className="flex justify-center flex-col lg:flex-row items-center lg:gap-[15px]">
                 <button className="bg-primary px-8  font-semibold py-3 rounded-xl text-white mt-8">
                   Get Started
                 </button>
-                <button className="border border-white px-8  font-semibold py-3 rounded-xl text-white mt-8 flex justify-center items-center gap-[8px]">
+                <button className="border border-white px-8  font-semibold py-3 rounded-xl text-white mt-3 lg:mt-8 flex justify-center items-center gap-[8px]">
                   Frequently Asked Questions
-                  <img src="/img/arw.png" alt="" />
+                  <img src="/img/arw.png" className="hidden lg:block" alt="" />
                 </button>
               </div>
             </div>

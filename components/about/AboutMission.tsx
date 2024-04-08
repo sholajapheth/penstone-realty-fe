@@ -3,10 +3,10 @@ import Image from "next/image";
 const ABoutMission = () => {
     return (
       <>
-        <div className="bg-[#E6ECEE] px-[1em] md:p-[5em]">
+        <div className="bg-[#E6ECEE] px-[1em] p-[4em] lg:p-[5em]">
           <div className="pb-[80px]">
             <p className="text-[18px] text-[#737373] pb-[16px]">Our Mission</p>
-            <p className="text-[48px] font-semibold text-[#A3A3A3]">
+            <p className="text-[36px] lg:text-[48px] font-semibold text-[#A3A3A3]">
               <span className="text-[#0A0A0A]">
                 Pentstone is your trusted strategic partner for all your
                 property requirements, delivering well-planned and executed
@@ -18,8 +18,8 @@ const ABoutMission = () => {
             </p>
           </div>
 
-          <div className="flex justify-between items-end gap-[40px] h-full">
-            <div className="w-[50%] flex flex-col justify-between h-full">
+          <div className="flex flex-col lg:flex-row lg:justify-between items-end gap-[40px] h-full">
+            <div className="lg:w-[50%] flex flex-col justify-between h-full">
               <div className="rounded-[14px] p-[24px] flex flex-col gap-[24px]">
                 <div>
                   <Image
@@ -62,7 +62,7 @@ const ABoutMission = () => {
                 </div>
               </div>
             </div>
-            <div className="w-[50%]">
+            <div className="lg:w-[50%]">
               <img
                 src="/img/about1.png"
                 alt="agent-img"
@@ -72,9 +72,9 @@ const ABoutMission = () => {
           </div>
         </div>
 
-        <div className="px-[1em] md:p-[5em]">
-          <div className="bg-primary py-[15px] px-[15px] relative rounded-[40px] flex justify-between items-center">
-            <div className="w-[55%] text-center px-[58px]">
+        <div className="px-[1em] p-[5em]">
+          <div className="bg-primary py-[15px] px-[15px] relative rounded-[40px] flex flex-col lg:flex-row justify-between items-center gap-[20px] lg:gap-0">
+            <div className="lg:w-[55%] text-center lg:px-[58px]">
               <p className="font-bold text-[40px] text-white">
                 A remote-first company
               </p>
@@ -93,10 +93,10 @@ const ABoutMission = () => {
                 </a>
               </p>
             </div>
-            <div className="w-[45%]">
+            <div className="lg:w-[45%]">
               <img src="/img/about2.png" alt="" />
             </div>
-            <div className="absolute top-[59%] right-[20%]">
+            <div className="absolute hidden lg:block lg:top-[59%] lg:right-[20%]">
               <img src="/img/laptop.png" alt="" />
             </div>
           </div>

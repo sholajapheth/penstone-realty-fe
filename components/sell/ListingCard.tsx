@@ -3,7 +3,7 @@ import React from "react";
 
 const ListingCard = () => {
   return (
-    <div className="items-center justify-center w-full flex">
+    <div className="items-center justify-center flex">
       {" "}
       <div className="rounded-2xl relative overflow-hidden w-[324px] bg-white shadow-md  hover:shadow-secondary group ease-linear duration-300 transition-all">
         <div className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[312px]"></div>

@@ -6,8 +6,8 @@ const FindPage = () => {
       <div className=" px-[1em] md:px-[5em]">
         <div className="bg-white flex  justify-center py-[5em] ">
           <div className="w-full">
-            <div className="flex items-start justify-between  ">
-              <p className="text-[#212226] font-semibold text-[40px] ">
+            <div className="flex items-center gap-[10px] lg:items-start justify-center lg:justify-between flex-col lg:flex-row ">
+              <p className="text-[#212226] text-center lg:text-left font-semibold text-[40px] ">
                 Your Nigerian real estate go-to partner
               </p>
 
@@ -21,7 +21,7 @@ const FindPage = () => {
               </div>
             </div>
 
-            <div className="mt-[5em] flex items-center gap-[32px] justify-between flex-wrap">
+            <div className="mt-[5em] flex items-center gap-[20px] justify-between flex-wrap">
               <AgentCard />
               <AgentCard />
               <AgentCard />

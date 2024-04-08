@@ -5,10 +5,10 @@ const Packages = () => {
     return (
       <>
         <div className=" px-[1em] md:px-[5em]">
-          <div className="bg-white flex  justify-center py-[5em] ">
+          <div className="bg-white flex justify-center py-[5em] ">
             <div className="w-full">
-              <div className="flex items-start justify-between  ">
-                <p className="text-[#212226] font-semibold text-[40px] ">
+              <div className="flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row gap-[20px]">
+                <p className="text-[#212226] text-center lg:text-left font-semibold text-[40px] ">
                   Featured Craftsmanship{" "}
                 </p>
 

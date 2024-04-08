@@ -5,16 +5,16 @@ import Image from "next/image";
 const AgentPageBanner = () => {
   return (
     <div className="text-secondary">
-      <div className="flex justify-start gap-2 items-center bg-[#F5FCFF] w-full px-[1em] md:px-[5em] py-[36px] mb-[40px]">
+      <div className="flex justify-start gap-2 items-center bg-[#F5FCFF] w-full px-[1em] md:px-[5em] py-[20px] lg:py-[36px] mb-[40px]">
         <Image src="/img/icons/Icon.svg" width={20} height={20} alt="" />
         <p className="font-semibold text-[18px]  text-secondary">
           Back to Agent
         </p>
       </div>
       <div className="px-[1em] md:px-[5em]">
-        <div className="flex justify-between items-start gap-[18px] pb-[60px]">
-          <div className="flex flex-col gap-[40px] w-[60%] py-[24px]">
-            <div className="flex justify-start items-center gap-[24px]">
+        <div className="flex justify-between flex-col lg:flex-row items-start gap-[18px] pb-[60px]">
+          <div className="flex flex-col gap-[40px] lg:w-[60%] py-[24px]">
+            <div className="flex justify-between w-full lg:justify-start items-center gap-[24px]">
               <div className="relative">
                 <Image
                   src="/img/agent_1.png"
@@ -32,7 +32,7 @@ const AgentPageBanner = () => {
                 />
               </div>
               <div className="flex flex-col items-start gap-[8px]">
-                <h2 className="text-[36px] text-[#2A2A2A] font-semibold">
+                <h2 className="text-[20px] lg:text-[36px] text-[#2A2A2A] font-semibold">
                   Tosin Ogundipo{" "}
                 </h2>
                 <p className="text-[18px] text-[#414141] ">
@@ -64,7 +64,7 @@ const AgentPageBanner = () => {
             </div>
           </div>
 
-          <div className="border-[1px] border-[#D9E2E6] rounded-[14px] w-[40%] py-[24px] px-[20px]">
+          <div className="border-[1px] border-[#D9E2E6] rounded-[14px] lg:w-[40%] py-[24px] px-[20px]">
             <div className="flex justify-center items-center pb-[40px]">
               <Image src="/img/icons/quote.svg" width={25} height={25} alt="" />
             </div>

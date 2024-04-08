@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 const RequestForm = () => {
   const validInput: React.MutableRefObject<HTMLInputElement | null> =
@@ -14,14 +14,14 @@ const RequestForm = () => {
   };
   return (
     <>
-      <div className="flex justify-between w-full items-start">
-        <div className="w-1/2 flex flex-col pt-[85px] px-[100px] text-secondary">
-          <h2 className="text-[54px] font-semibold pb-[24px]">
+      <div className="flex justify-between flex-col lg:flex-row w-full items-start">
+        <div className="w-full lg:w-1/2 flex flex-col pt-[40px] lg:pt-[85px] px-[20px] lg:px-[100px] text-secondary pb-[60px] lg:pb-0">
+          <h2 className="text-[30px] lg:text-[54px] font-semibold pb-[24px]">
             Start a Request
           </h2>
-          <p className="text-[18px] pb-[68px]">
+          <p className="text-[18px] pb-[30px] lg:pb-[68px]">
             Describe your request using the self-served form below.
-            <span className="font-bold">{" "}Urgent? Call +2348023237589</span>
+            <span className="font-bold"> Urgent? Call +2348023237589</span>
           </p>
 
           <form className="text-[16px] flex flex-col gap-[24px]">
@@ -31,7 +31,7 @@ const RequestForm = () => {
               </label>
               <select
                 required
-                className="border-[2px] outline-none rounded-[10px] h-[35px] lg:h-[52px] px-[16px] w-full"
+                className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
               >
                 <option value="" disabled>
                   Ask a question / get help
@@ -44,7 +44,7 @@ const RequestForm = () => {
               <label className="font-bold">I am a...?</label>
               <select
                 required
-                className="border-[2px] outline-none rounded-[10px] h-[35px] lg:h-[52px] px-[16px] w-full"
+                className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
               >
                 <option value="" disabled>
                   ..
@@ -59,7 +59,7 @@ const RequestForm = () => {
                 <input
                   type="text"
                   required
-                  className="border-[2px] rounded-[10px] h-[35px] lg:h-[52px] px-[16px] w-full"
+                  className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                   placeholder="First name"
                 />
               </div>
@@ -69,7 +69,7 @@ const RequestForm = () => {
                 <input
                   type="text"
                   required
-                  className="border-[2px] rounded-[10px] h-[35px] lg:h-[52px] px-[16px] w-full"
+                  className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                   placeholder="Last name"
                 />
               </div>
@@ -80,7 +80,7 @@ const RequestForm = () => {
               <input
                 type="email"
                 required
-                className="border-[2px] rounded-[10px] h-[35px] lg:h-[52px] px-[16px] w-full"
+                className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="example@gmail.com"
               />
             </div>
@@ -90,7 +90,7 @@ const RequestForm = () => {
               <input
                 type="tel"
                 required
-                className="border-[2px] rounded-[10px] h-[35px] lg:h-[52px] px-[16px] w-full"
+                className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Phone number"
               />
             </div>
@@ -155,21 +155,21 @@ const RequestForm = () => {
           </form>
         </div>
 
-        <div className="w-1/2 bg-primary text-white pb-[100px] ">
+        <div className="w-full lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
           <img src="/img/telephone.png" alt="" />
-          <div className="pt-[150px] px-[64px] flex flex-col gap-[32px]">
+          <div className="pt-[50px] lg:pt-[150px] px-[20px] lg:px-[64px] flex flex-col gap-[32px]">
             <div>
-              <p className="font-bold text-[60px] text-white pb-20px">
+              <p className="font-bold lg:text-left text-center text-[35px] lg:text-[60px] text-white pb-20px">
                 Bring your property goals to life Now!
               </p>
-              <p className="font-medium text-[18px]">
+              <p className="font-medium lg:text-left text-center text-[18px]">
                 Reach out and get started in just 3 minutes.
               </p>
             </div>
 
-            <div className="flex justify-start items-center gap-[16px]">
+            <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-[16px]">
               <img src="/img/avatar.png" alt="" />
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-center lg:items-start">
                 <div className="flex justify-start items-center gap-[4px]">
                   <img src="/img/star.png" alt="" />
                   <img src="/img/star.png" alt="" />
@@ -179,7 +179,9 @@ const RequestForm = () => {
                   <img src="/img/star.png" alt="" />
                   <p className="text-[18px] font-medium">5.0</p>
                 </div>
-                <p className="text-[18px] font-medium">200+ reviews</p>
+                <p className="text-[18px] text-center lg:text-left font-medium">
+                  200+ reviews
+                </p>
               </div>
             </div>
           </div>

@@ -7,8 +7,8 @@ const Packages = () => {
         <div className=" px-[1em] md:px-[5em]">
           <div className="bg-white flex  justify-center py-[5em] ">
             <div className="w-full">
-              <div className="flex items-start justify-between  ">
-                <p className="text-[#212226] font-semibold text-[40px] ">
+              <div className="flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row gap-3 ">
+                <p className="text-[#212226] font-semibold text-center lg:text-left text-[40px] ">
                   Featured Packages for building approval{" "}
                 </p>
 

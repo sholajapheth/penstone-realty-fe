@@ -4,12 +4,12 @@ const ArchitecturePageBanner = () => {
         <div className="text-white">
           <div className="bg-secondary relative p-4 py-[3em] md:py-[6em] col-span-2 flex items-center justify-center text-center">
             <div>
-              <button className="bg-secondary px-8   py-2 rounded-full text-white ">
+              <button className="bg-secondary px-8 py-2 rounded-full text-white ">
                 <p className="bg-opac px-4 py-1 rounded-full text-[14px] font-medium">
                   Top Rated
                 </p>
               </button>
-              <p className="text-[30px] md:text-[68px] font-bold">
+              <p className="text-[30px] md:text-[68px] font-bold pb-2  lg:pb-0">
                 Affordable expert
                 <br className="hidden md:inline-block" />
                 architectural services
@@ -23,10 +23,10 @@ const ArchitecturePageBanner = () => {
               </p>
 
               <div className="flex justify-center items-center gap-[15px]">
-                <button className="bg-primary px-8  font-semibold py-3 rounded-xl text-white mt-8">
+                <button className="bg-primary px-3 lg:px-8  font-semibold py-3 rounded-xl text-white mt-8">
                   Get Started
                 </button>
-                <button className="border border-white px-8  font-semibold py-3 rounded-xl text-white mt-8 flex justify-center items-center gap-[8px]">
+                <button className="border border-white px-3 lg:px-8  font-semibold py-3 rounded-xl text-white mt-8 flex justify-center items-center gap-[8px]">
                   Download Service Guide
                   <img src="/img/arw.png" alt="" />
                 </button>

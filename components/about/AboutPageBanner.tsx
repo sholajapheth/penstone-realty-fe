@@ -12,17 +12,17 @@ const AboutPageBanner = () => {
               </p>
             </div>
             <div className=" pb-[3em] md:pb-[6em]">
-              <p className=" text-white text-[30px] md:text-[68px] leading-[80px] font-bold px-[280px]">
+              <p className=" text-white text-[30px] md:text-[68px] lg:leading-[80px] font-bold lg:px-[280px]">
                 Leading gateway to facilitating property transactions in Africa
               </p>
-              <p className="text-white  px-[350px]">
+              <p className="text-white px-[1em] lg:px-[350px] pt-[10px]">
                 More than just a real estate company, we're committed to
                 creating lasting value, improving living experiences, and
                 reshaping the traditional real estate scene.
               </p>
-              <div className="flex justify-center items-center pt-[60px] relative">
+              <div className="flex px-[1em] justify-center items-center pt-[60px] relative">
                 <img src="/img/about-hero.png" alt="" />
-                <div className="absolute"><img src="/img/play.png" alt="" /></div>
+                <div className="absolute left-[45%]"><img src="/img/play.png" alt="" className='w-1/2 lg:w-full' /></div>
               </div>
             </div>
           </div>

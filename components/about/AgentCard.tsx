@@ -3,7 +3,7 @@ import Image from "next/image";
 const AgentCard = () => {
   return (
     <div>
-      <div className="w-[378px] border-[1px] shadow-[#809FAB] shadow-sm border-[#D9E2E6] rounded-[14px] p-[24px] flex flex-col gap-[24px]">
+      <div className="w-[100%] lg:w-[370px] border-[1px] shadow-[#809FAB] shadow-sm border-[#D9E2E6] rounded-[14px] p-[20px] flex flex-col gap-[18px]">
         <div>
           <Image src="/img/icons/svgg.svg" width={40} height={40} alt="" />
         </div>
