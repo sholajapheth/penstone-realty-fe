@@ -8,14 +8,16 @@ import {
   AgentPortfolio,
   FindPage,
 } from "@/components/agent-listing";
-import { ArchitecturePageBanner, Gallery, Packages, Partners, Projects } from "@/components/architectural-services";
-import { BlogTop } from "@/components/blog";
-import { NewsLetter, GetIntouch
- } from "@/components/common";
 import {
-  ContactPageBanner,
-  FreqAskedQues,
-} from "@/components/contact-us";
+  ArchitecturePageBanner,
+  Gallery,
+  Packages,
+  Projects,
+} from "@/components/architectural-services";
+import { BlogTop } from "@/components/blog";
+import { NewsLetter, Partners, GetIntouch } from "@/components/common";
+import { ConstGallery, ConstProjects, ConstructionBannerPage, Craftmanship } from "@/components/construction";
+import { ContactPageBanner, FreqAskedQues } from "@/components/contact-us";
 import OurAgents from "@/components/contact-us/OurAgents";
 import {
   FrequentlyPicked,
@@ -33,6 +35,11 @@ import {
 import { HeroSection, Search } from "@/components/properties";
 import PropertyDetails from "@/components/properties/PropertyDetails";
 import TopDetails from "@/components/properties/TopDetails";
+import { ConcludedListings } from "@/components/sell";
+import LeadingWebsites from "@/components/sell/LeadingWebsites";
+import SellBannerPage from "@/components/sell/SellBannerPage";
+import SellOffers from "@/components/sell/SellOffers";
+import { SpecializedPageBanner, SpecializedServices } from "@/components/specialized-services";
 
 export default function Home() {
   return (
@@ -84,12 +91,38 @@ export default function Home() {
       <NewsLetter /> */}
 
       {/* architectural service */}
-      <ArchitecturePageBanner />
+      {/* <ArchitecturePageBanner />
       <Packages />
       <Projects />
       <Gallery />
       <Partners />
       <GetIntouch />
+      <NewsLetter /> */}
+
+      {/* sell */}
+      {/* <SellBannerPage />
+      <SellOffers />
+      <LeadingWebsites />
+      <ConcludedListings />
+      <Partners />
+      <GetIntouch />
+      <NewsLetter /> */}
+
+      {/* construction */}
+      {/* <ConstructionBannerPage />
+      <Craftmanship />
+      <ConstProjects />
+      <ConstGallery />
+      <Partners />
+      <GetIntouch />
+      <NewsLetter /> */}
+
+      {/* specialized service */}
+      <SpecializedPageBanner />
+      <SpecializedServices />
+      <Partners />
+      <GetIntouch />
+      <NewsLetter />
     </main>
   );
 }
