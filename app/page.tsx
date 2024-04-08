@@ -47,12 +47,12 @@ export default function Home() {
   return (
     <main>
       {/* home */}
-      {/* <Landing />
+      <Landing />
       <Showcase />
       <HotListings />
       <Services />
       <Offers />
-      <NewsLetter /> */}
+      <NewsLetter />
 
       {/* search */}
       {/* <Search />
@@ -131,8 +131,8 @@ export default function Home() {
       <NewsLetter /> */}
 
       {/* sell property form */}
-      <SellPropertyForm />
-      <NewsLetter />
+      {/* <SellPropertyForm />
+      <NewsLetter /> */}
     </main>
   );
 }

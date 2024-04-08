@@ -7,8 +7,8 @@ import { PaginationNav } from "../common";
 
 const Search = () => {
   return (
-    <div className="text-secondary  flex  justify-center">
-      <div className=" w-[96%] md:w-[90%]  ">
+    <div className="text-secondary  flex justify-center">
+      <div className=" w-[96%] md:w-[90%]">
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between mt-[1em] md:mt-[4em] w-full ">
           <p className="font-semibold text-[20px] md:text-[40px] ">
             Explore our properties in Nigeria
