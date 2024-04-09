@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,11 +18,10 @@
   }
 }
 
-.trapez{
- height: 50px;
- background-color: white;
- transform: perspective(30px) rotateX(10deg);
-
+.trapez {
+  height: 50px;
+  background-color: white;
+  transform: perspective(30px) rotateX(10deg);
 }
 
 /* Hide scroll indicators for Microsoft Edge */
@@ -29,26 +30,22 @@
   scrollbar-width: none; /* Edge Chromium */
 }
 
-
 /* Hide scroll indicators for Internet Explorer */
 .hide-scroll-indicators {
   -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
-
 
 /* Hide scroll indicators for Firefox */
 .hide-scroll-indicators {
   scrollbar-width: none; /* Firefox 64+ */
 }
 
-
 /* Hide scroll indicators for Webkit-based browsers */
 .hide-scroll-indicators::-webkit-scrollbar {
   display: none;
 }
 
-
-select{
+select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

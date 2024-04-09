@@ -16,6 +16,10 @@ const config: Config = {
       colors: {
         primary: "#D0103A",
         secondary: "#003F57",
+        opac: "rgba(255, 255, 255, 0.08)",
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
       },
     },
   },
