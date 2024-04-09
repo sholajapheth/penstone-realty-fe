@@ -1,7 +1,7 @@
 "use client";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
-
+import { useRouter } from "next/navigation";
 import { TbVaccine } from "react-icons/tb";
 import { FaGripLines } from "react-icons/fa6";
 import {
@@ -27,6 +27,7 @@ function classNames(...classes: any) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <header className="bg-white">
@@ -158,8 +159,9 @@ export default function Example() {
             Agent Log in
           </a>
           <a
-            href="#"
-            className="text-sm  leading-6 px-4 py-2 text-white font-bold hover:scale-95 ease-in-out transition-all duration-300 rounded-md bg-primary"
+            // href="#"
+            onClick={() => router.push("/contact_us")}
+            className="text-sm  leading-6 px-4 py-2 text-white font-bold hover:scale-95 ease-in-out transition-all duration-300 rounded-md bg-primary cursor-pointer"
           >
             Get in touch <span aria-hidden="true">&rarr;</span>
           </a>
@@ -272,7 +274,8 @@ export default function Example() {
                   Agent Log in
                 </a>
                 <a
-                  href="#"
+                  // href="#"
+                  onClick={() => router.push("/contact_us")}
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 mt-2 bg-primary text-white hover:text-primary hover:bg-gray-50 transition-all duration-300 ease-out"
                 >
                   Get in touch

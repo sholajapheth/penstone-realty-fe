@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 const ServiceCard = ({ imgSource, title, tagline }: Info3Card) => (
-  <div className="text-secondary w-[60%] mt-8">
+  <div className="text-secondary lg:w-[60%] mt-8">
     <div className="flex items-start gap-6">
       <Image
         src={imgSource}
@@ -23,9 +23,9 @@ const ServiceCard = ({ imgSource, title, tagline }: Info3Card) => (
 const Services = () => {
   const [activeNav, setActiveNav] = useState("1");
   return (
-    <div className=" py-[4em] max-h-screen flex  justify-center text-secondary">
-      <div className="grid grid-cols-2 w-[90%]">
-        <div className="relative ">
+    <div className=" py-[4em] flex  justify-center text-secondary">
+      <div className="grid grid-col-1 lg:grid-cols-2 w-[90%]">
+        <div className="relative hidden lg:block">
           <div className="bg-[url('/img/services.png')]  ml-[5em] rounded-md h-full bg-no-repeat w-[80%]">
             <div className=" w-[80%]  absolute -bottom-10 flex items-center justify-center">
               <div className="rounded-2xl shadow-md px-6 p-4  bg-white ">
