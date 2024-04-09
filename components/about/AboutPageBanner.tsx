@@ -16,7 +16,7 @@ const AboutPageBanner = () => {
                 Leading gateway to facilitating property transactions in Africa
               </p>
               <p className="text-white px-[1em] lg:px-[350px] pt-[10px]">
-                More than just a real estate company, we're committed to
+                More than just a real estate company, we&apos;re committed to
                 creating lasting value, improving living experiences, and
                 reshaping the traditional real estate scene.
               </p>

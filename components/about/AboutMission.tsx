@@ -12,8 +12,8 @@ const ABoutMission = () => {
                 property requirements, delivering well-planned and executed
                 projects.
               </span>{" "}
-              More than just a real estate company, we're committed to creating
-              unparalleled solutions to maximize your property's potential and
+              More than just a real estate company, we&apos;re committed to creating
+              unparalleled solutions to maximize your property&apos;s potential and
               ensure your success in the Nigerian market.
             </p>
           </div>
