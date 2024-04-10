@@ -75,7 +75,7 @@ ChartJS.register(BarController, LinearScale, CategoryScale, BarElement);
     };
   return (
     <>
-      <Box
+      {/* <Box
         width={"80%"}
         background={"#2A2C3E"}
         borderRadius="18.6348px"
@@ -139,7 +139,7 @@ ChartJS.register(BarController, LinearScale, CategoryScale, BarElement);
           <Box w="10px" h="10px" bgColor="#FD7F0B" rounded="50%" mr="7px"></Box>
           <Text color={"#6B6D7F"}>Process</Text>
         </Flex>
-      </Box>
+      </Box> */}
     </>
   );
 };
