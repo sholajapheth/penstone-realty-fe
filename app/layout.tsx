@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AppWrapper from "@/components/app-components/AppWrapper";
+import { Providers } from "./providers";
 
 
 export const metadata: Metadata = {
@@ -15,8 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className='font-inter'>
-        <AppWrapper>{children}</AppWrapper>
+      <body className="font-inter">
+        <Providers>
+          <AppWrapper>{children}</AppWrapper>
+        </Providers>
       </body>
     </html>
   );

@@ -3,17 +3,17 @@ import React from "react";
 
 const Offers = () => {
   return (
-    <div className="max-h-screen bg-secondary  text-white text-center   py-16">
+    <div className=" bg-secondary  text-white text-center   py-16">
       <div className="w-full flex  items-center justify-center">
         <div className="w-[90%] ">
-          <p className="text-[40px] font-semibold ">
+          <p className="text-[30px] lg:text-[40px] font-semibold ">
             Simplifying real estate <br /> journey for{" "}
             <span className="text-[#0D90C4]">Developers</span>, <br />
             <span className="text-[#0D90C4]">Investors</span> and{" "}
             <span className="text-[#0D90C4]">Occupants</span>.
           </p>
 
-          <div className="flex items-center gap-6 mt-10 ">
+          <div className="flex flex-col lg:flex-row items-center gap-6 mt-10 ">
             <div className="rounded-md  bg-white/50 p-6 flex items-start text-start gap-4">
               <Image
                 src={"/img/icons/lines-outline-bag.png"}
@@ -71,12 +71,12 @@ const Offers = () => {
       </div>
       <hr className="bg-white  my-14 w-full " />
       <div className="flex items-center justify-center mt-4">
-        <div className="flex items-center gap-10">
+        <div className="flex  flex-col lg:flex-row items-center gap-10">
           <div className="flex flex-col gap-3 items-center">
             <p className="font-bold text-[40px]">7.4%</p>
             <p className="text-white font-medium">Property Return Rate</p>
           </div>
-          <div className="flex flex-col gap-3 items-center border-l-2  border-r-2 px-[4em] border-spacing-2 border-white">
+          <div className="flex flex-col gap-3 items-center lg:border-l-2  lg:border-r-2 px-[4em] lg:border-spacing-2 lg:border-white">
             <p className="font-bold text-[40px]">356</p>
             <p className="text-white font-medium">Property in Sell & Rent</p>
           </div>

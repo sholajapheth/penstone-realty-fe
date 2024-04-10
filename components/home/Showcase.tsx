@@ -5,7 +5,7 @@ import { IoChevronForward } from "react-icons/io5";
 const ShowcardCard = ({ imgSource, title, tagline }: Info3Card) => (
   <div className="bg-[#E6E6E6] relative rounded-[3em] p-8 flex flex-col  justify-between">
     <div className="flex ">
-      <div className="p-4 px-[1.18rem] rounded-full bg-white  shadow-sm">
+      <div className="p-4 px-[1.18rem] rounded-full bg-white shadow-sm">
         <Image src={imgSource} height={40} width={40} alt="home-check-icon" />
       </div>
     </div>
@@ -19,15 +19,15 @@ const ShowcardCard = ({ imgSource, title, tagline }: Info3Card) => (
 
 const Showcase = () => {
   return (
-    <div className="min-h-screen py-[8em] bg-secondary flex items-center justify-center">
-      <div className="grid grid-cols-3 w-[80%] text-secondary gap-8">
-        <div className="bg-[#E6E6E6] relative rounded-[3em] p-8 col-span-2">
+    <div className="lg:min-h-screen py-[8em] bg-secondary flex flex-col lg:flex-row items-center justify-center">
+      <div className="grid grid-cols-1 lg:grid-cols-3 w-[80%] text-secondary gap-8">
+        <div className="bg-[#E6E6E6] relative rounded-[3em] p-8 lg:col-span-2">
           <div className="bg-[url('/img/showcase-card-bg.png')] absolute w-full inset-0 " />
 
           <div className="text-secondary ">
             <p className=" ">OUR OFFERINGS</p>
-            <p className="text-[36px] font-semibold my-4">
-              Pentstone offering comprehensive support for seamless property
+            <p className="text-[25px] lg:text-[36px] font-semibold my-4">
+              Penstone offering comprehensive support for seamless property
               transactions and investments.
             </p>
             <button className="bg-primary text-white pl-4 p-2  rounded-2xl flex  items-center gap-4 ">

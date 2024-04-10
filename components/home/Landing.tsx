@@ -9,9 +9,9 @@ import { IoChevronDownOutline, IoSearch } from "react-icons/io5";
 const Landing = () => {
   const [activeNav, setActiveNav] = useState("1");
   return (
-    <div className="min-h-screen bg-[url('/img/home-landing-bg.png')] bg-no-repeat bg-cover bg-position-y-[-100px] bg-position-x-[50px] flex flex-col items-center justify-center">
+    <div className="min-h-screen px-[1em] pt-[50px] bg-[url('/img/home-landing-bg.png')] bg-no-repeat bg-cover lg:bg-position-y-[-100px] lg:bg-position-x-[50px] flex flex-col items-center justify-center">
       <div className="text-white text-center">
-        <p className="font-semibold text-[70px] ">
+        <p className="font-semibold text-[40px] lg:text-[70px] ">
           Turn your property <br /> goals{" "}
           <span className="text-[#FFF9D3]">into reality</span>
         </p>
@@ -25,7 +25,7 @@ const Landing = () => {
         </p>
       </div>
 
-      <div className="mt-[5em] w-[70%]">
+      <div className="mt-[5em] w-[80%] lg:w-[70%]">
         <div className="font-bold">
           <button
             onClick={() => setActiveNav("1")}
@@ -60,8 +60,8 @@ const Landing = () => {
         </div>
 
         <div className="w-full rounded-bl-md rounded-br-md rounded-tr-md bg-white p-4 px-10 py-8">
-          <div className="flex items-end w-full">
-            <div className="flex-[0.4] mr-[3em]">
+          <div className="flex gap-5 flex-col lg:flex-row justify-between lg:items-end w-full">
+            <div className="lg:flex-[0.4] lg:mr-[3em]">
               <p className="font-bold">Select Area</p>
               <div className="flex items-center justify-between mt-2">
                 <p className="text-gray-300 text-[18px] ">Ikeja Long Bridge</p>
@@ -71,7 +71,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]  mr-[3em]">
+            <div className=" lg:flex-[0.3] lg:border-l-2 lg:border-l-gray-300  lg:pl-[3em]  lg:mr-[3em]">
               <p className="font-bold">Choose Type</p>
               <div className="flex items-center justify-between mt-2">
                 <p className="text-gray-300 text-[18px] ">Residential</p>
@@ -81,7 +81,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]">
+            <div className=" lg:flex-[0.3] lg:border-l-2 lg:border-l-gray-300  lg:pl-[3em]">
               <p className="font-bold">I am a ... </p>
               <div className="flex items-center justify-between mt-2">
                 <p className="text-gray-300 text-[18px] ">Occupant</p>
@@ -92,9 +92,11 @@ const Landing = () => {
               </div>
             </div>
 
-            <button className="p-3  h-full bg-primary rounded-md ml-8 hover:scale-90 ">
-              <IoSearch color="white" size={20} />
-            </button>
+            <div className='flex items-center justify-center'>
+              <button className="p-3  lg:h-full bg-primary rounded-md lg:ml-8 hover:scale-90 ">
+                <IoSearch color="white" size={20} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
