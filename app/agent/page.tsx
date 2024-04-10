@@ -1,13 +1,17 @@
-import LoginPage from "@/components/agent_component/login/LoginPage";
+import { Dashboard, ChartAnalysis } from "@/components/agent_component/dashboard";
+import { LoginPage } from "@/components/agent_component/login";
 
 export default function Agent() {
-  return( <>
-  <main>
-    {/* login page */}
-    <LoginPage/>
-
-    {/* reset password */}
-    
-  </main>
-  </>);
+  return (
+    <>
+      <main>
+        {/* dashboard */}
+        <Dashboard />
+        <ChartAnalysis />
+        
+        {/* login */}
+        {/* <LoginPage /> */}
+      </main>
+    </>
+  );
 }

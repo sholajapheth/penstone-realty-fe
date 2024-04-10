@@ -19,9 +19,7 @@ const AppWrapper = ({ children }: { children: ReactNode }) => {
       )}
       {pathname.includes("agent") && (
         <>
-          {/* <Header /> */}
           {children}
-          {/* <Footer /> */}
         </>
       )}
     </div>

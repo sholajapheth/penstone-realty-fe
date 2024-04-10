@@ -49,7 +49,7 @@ const Showcase = () => {
         <ShowcardCard
           imgSource="/img/icons/construction.png"
           title="Construction services"
-          tagline="Boost your property's value with our construction management and renovation expertise."
+          tagline="Boost your property&apos;s value with our construction management and renovation expertise."
         />
         <ShowcardCard
           imgSource="/img/icons/marketing.png"
