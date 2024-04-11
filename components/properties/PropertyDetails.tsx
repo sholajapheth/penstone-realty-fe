@@ -77,7 +77,6 @@ const PropertyDetails = () => {
     const showcaseElement = showcaseRef.current;
     if (showcaseElement) {
       showcaseElement.addEventListener("scroll", handleScroll);
-      console.log(currentIndex);
     }
 
     return () => {
@@ -85,7 +84,7 @@ const PropertyDetails = () => {
         showcaseElement.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [dum_pic]); // Add dum_pic to dependencies since its length might change
+  }, [dum_pic, currentIndex]); // Add dum_pic to dependencies since its length might change
 
   return (
     <div className=" px-[1em] md:px-[3em] lg:px-[4em] xl:px-[6em] py-[2em]">
