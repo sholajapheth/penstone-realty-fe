@@ -1,9 +1,16 @@
+"use client";
 import Image from "next/image";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const ListingCard = () => {
+  const router = useRouter();
+
   return (
-    <div className="items-center justify-center flex">
+    <div
+      className="items-center justify-center flex"
+      onClick={() => router.push("/search")}
+    >
       {" "}
       <div className="rounded-2xl relative overflow-hidden w-[324px] bg-white shadow-md  hover:shadow-secondary group ease-linear duration-300 transition-all">
         <div className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[312px]"></div>

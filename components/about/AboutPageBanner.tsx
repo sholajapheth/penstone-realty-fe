@@ -15,14 +15,19 @@ const AboutPageBanner = () => {
             </div>
             <div className=" pb-[3em] md:pb-[6em]">
               <p className=" text-white text-[30px] md:text-[68px] lg:leading-[80px] font-bold lg:px-[280px]">
-                Leading gateway to facilitating property transactions in Africa
+                Leading gateway to <br />{" "}
+                <span className="text-[#FFF9D3]">
+                  facilitating property <br /> transactions in Africa
+                </span>
               </p>
-              <p className="text-white px-[1em] lg:px-[350px] pt-[10px]">
+              <p className="text-white/70 px-[1em] lg:px-[350px] pt-[10px]">
                 More than just a real estate company, we&apos;re committed to
-                creating lasting value, improving living experiences, and
-                reshaping the traditional real estate scene.
+                creating lasting value, <br className="hidden lg:block" />{" "}
+                improving living experiences, and reshaping the
+                <br className="lg:hidden" /> traditional real estate
+                scene.
               </p>
-              <div className="flex  px-[1em] lg:px-[5em] justify-center items-center pt-[60px] relative">
+              <div className="flex  px-[1em] lg:px-[5em] justify-center items-center pt-[30px] lg:pt-[60px] relative">
                 <Image
                   width={300}
                   height={300}

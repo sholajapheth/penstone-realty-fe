@@ -5,7 +5,7 @@ const PackageCard = () => {
   return (
     <>
       <div>
-        <div className="w-[375px] border-[1px] shadow-[#809FAB] shadow-sm border-[#D9E2E6] rounded-[14px] p-[24px] flex flex-col gap-[24px]">
+        <div className="w-[100%] lg:w-[370px] border-[1px] shadow-shad shadow-sm border-[#E5E5E5] rounded-[14px] p-[20px] flex flex-col gap-[18px]">
           <div>
             <h2 className="text-[24px] font-semibold text-[#0A0A0A] pb-[12px]">
               Structural Drawings
@@ -17,7 +17,13 @@ const PackageCard = () => {
             </p>
           </div>
           <div>
-            <Image width={200} height={200} className='h-full w-full ' src="/img/package.png" alt="" />
+            <Image
+              width={200}
+              height={200}
+              className="h-full w-full "
+              src="/img/package.png"
+              alt=""
+            />
           </div>
         </div>
       </div>
