@@ -24,20 +24,23 @@ const Verification = () => {
   const [overlay, setOverlay] = useState(<OverlayTwo />);
   const [otp, setOtp] = useState(new Array(5).fill(""));
 
-    const handleChange = (element: EventTarget & HTMLInputElement, index: number) => {
-      if (isNaN(Number(element.value))) return false;
+  const handleChange = (
+    element: EventTarget & HTMLInputElement,
+    index: number
+  ) => {
+    if (isNaN(Number(element.value))) return false;
 
-      setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
+    setOtp([...otp.map((d, idx) => (idx === index ? element.value : d))]);
 
-  if (element.nextSibling) {
-    (element.nextSibling as HTMLElement).focus();
-  }
-    };
-
-    const handleOtp = async () => {
-    const enteredOTP = otp.join('');
-    console.log(JSON.stringify({ otp: enteredOTP }))
+    if (element.nextSibling) {
+      (element.nextSibling as HTMLElement).focus();
     }
+  };
+
+  const handleOtp = async () => {
+    const enteredOTP = otp.join("");
+    console.log(JSON.stringify({ otp: enteredOTP }));
+  };
 
   return (
     <>
@@ -54,7 +57,7 @@ const Verification = () => {
         isCentered
         isOpen={isOpen}
         size="lg"
-        rounded="40px"
+        // rounded="40px"
         onClose={onClose}
       >
         {overlay}

@@ -37,7 +37,7 @@ const CreateNew = () => {
         isCentered
         isOpen={isOpen}
         size="lg"
-        rounded="40px"
+        // rounded="40px"
         onClose={onClose}
       >
         {overlay}
@@ -45,7 +45,13 @@ const CreateNew = () => {
         <ModalContent py="30px" px="6px">
           <ModalHeader>
             {" "}
-            <Image width={50} height={45} src="/logo.png" className="w-[30%]" alt="" />
+            <Image
+              width={50}
+              height={45}
+              src="/logo.png"
+              className="w-[30%]"
+              alt=""
+            />
           </ModalHeader>
           <ModalCloseButton mt="30px" />
           <ModalBody>
@@ -92,9 +98,7 @@ const CreateNew = () => {
                 </p>
               </div>
               <div className="w-full">
-                <button
-                  className="bg-primary text-white py-3 w-full rounded-[4px]"
-                >
+                <button className="bg-primary text-white py-3 w-full rounded-[4px]">
                   Reset Password
                 </button>{" "}
               </div>

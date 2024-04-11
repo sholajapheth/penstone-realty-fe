@@ -38,7 +38,7 @@ const RecoverPassword = () => {
         isCentered
         isOpen={isOpen}
         size="lg"
-        rounded="40px"
+        // rounded="40px"
         onClose={onClose}
       >
         {overlay}
