@@ -37,7 +37,7 @@ const ResetPassword = () => {
         isCentered
         isOpen={isOpen}
         size="lg"
-        rounded="40px"
+        // rounded="40px"
         onClose={onClose}
       >
         {overlay}
@@ -60,11 +60,12 @@ const ResetPassword = () => {
                 <h2 className="text-[24px] font-semibold text-[#111827] pb-[12px]">
                   Reset Password
                 </h2>
-
+                <p>
                   Enter the email address associated with your account and
                   we&apos;ll send you a link to reset your password.
                 </p>
               </div>
+
               <div>
                 <div className="flex flex-col items-start gap-2">
                   <label className="text-[14px] text-secondary">
