@@ -35,7 +35,7 @@ const ActivitySection = () => {
               </p>
             </div>
             <div>
-              <img src="/img/details.png" alt="" />
+              <Image width={20} height={20} className='h-full w-full' src="/img/details.png" alt="" />
             </div>
           </div>
 

@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { ResetPassword } from "../Forgot-password";
+import Image from "next/image";
 
 const LoginPage = () => {
       const router = useRouter();
@@ -19,14 +20,26 @@ const LoginPage = () => {
             </p>
           </div>
           <div>
-            <img src="/img/homeCard.png" alt="" />
+            <Image
+              width={300}
+              height={500}
+              className="h-full w-full"
+              src="/img/homeCard.png"
+              alt=""
+            />
           </div>
           <div>
-            <img src="/img/Companies.png" alt="" />
+            <Image
+              width={500}
+              height={50}
+              className="h-full w-full"
+              src="/img/Companies.png"
+              alt=""
+            />
           </div>
         </div>
         <div className="w-[50%] flex items-center flex-col pt-[90px] px-[120px] text-secondary">
-          <img src="/logo.png" alt="" />
+          <Image width={150} height={35} src="/logo.png" alt="" />
           <div className="text-center py-[36px]">
             <h2 className="text-[32px] font-medium pb-[8px]">Welcome back!</h2>
             <p className="text-[#414141] text-[16px]">
@@ -65,14 +78,14 @@ const LoginPage = () => {
                 </label>
               </div>
               <div>
-              <ResetPassword />
+                <ResetPassword />
               </div>
             </div>
             <button className="bg-primary text-white font-semibold py-3 rounded-[4px]">
               Sign In
             </button>
             <button className="border-secondary border-[1px] text-secondary font-semibold py-3 rounded-[4px] flex items-center justify-center gap-3">
-              <img src="/img/google.png" alt="" />
+              <Image width={20} height={20} src="/img/google.png" alt="" />
               Sign In with Google
             </button>
 

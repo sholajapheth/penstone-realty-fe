@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import Image from "next/image";
 
 interface SideNavProps {
   open: boolean;
@@ -22,13 +23,17 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                 !open ? "justify-center" : "justify-start"
               }`}
             >
-              <img
+              <Image
+                width={45}
+                height={45}
                 src="/img/Landscape.png"
                 alt=""
-                className={` ${open ? "hidden" : "block"}
+                className={`${open ? "hidden" : "block"}
                     }`}
               />
-              <img
+              <Image
+                width={120}
+                height={120}
                 src="/img/LandscapeLg.png"
                 alt=""
                 className={`${open ? "block" : "hidden"}`}
@@ -50,7 +55,13 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     !open ? "justify-center" : "justify-start"
                   } `}
                 >
-                  <img src="/img/Dashboard.png" alt="" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src="/img/Dashboard.png"
+                    alt=""
+                    // className="w-full h-full"
+                  />
                   <p
                     className={`${
                       open ? "block" : "hidden"
@@ -66,7 +77,9 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     !open ? "justify-center" : "justify-start"
                   } `}
                 >
-                  <img
+                  <Image
+                    width={40}
+                    height={40}
                     src="/img/Insight.png"
                     alt=""
                     className="w-[30px] h-[30px] object-fill"
@@ -86,7 +99,13 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     !open ? "justify-center" : "justify-start"
                   } `}
                 >
-                  <img src="/img/My Listings.png" alt="" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src="/img/My Listings.png"
+                    alt=""
+                    // className="w-full h-full"
+                  />
                   <p
                     className={`${
                       open ? "block" : "hidden"
@@ -102,7 +121,13 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     !open ? "justify-center" : "justify-start"
                   } `}
                 >
-                  <img src="/img/Tenants.png" alt="" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src="/img/Tenants.png"
+                    alt=""
+                    // className="w-full h-full"
+                  />
                   <p
                     className={`${
                       open ? "block" : "hidden"
@@ -118,7 +143,13 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     !open ? "justify-center" : "justify-start"
                   } `}
                 >
-                  <img src="/img/Rent Payment.png" alt="" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src="/img/Rent Payment.png"
+                    alt=""
+                    // className="w-full h-full"
+                  />
                   <p
                     className={`${
                       open ? "block" : "hidden"
@@ -134,7 +165,13 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     !open ? "justify-center" : "justify-start"
                   } `}
                 >
-                  <img src="/img/Message.png" alt="" />
+                  <Image
+                    width={40}
+                    height={40}
+                    src="/img/Message.png"
+                    alt=""
+                    // className="w-full h-full"
+                  />
                   <p
                     className={`${
                       open ? "block" : "hidden"
@@ -159,10 +196,12 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     !open ? "justify-center" : "justify-start"
                   } `}
                 >
-                  <img
+                  <Image
+                    width={40}
+                    height={40}
                     src="/img/Help.png"
                     alt=""
-                    className="w-[30px] h-[30px] object-fill"
+                    className="w-[40px] h-[40px] object-fill"
                   />
                   <p
                     className={`${
@@ -179,10 +218,12 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     !open ? "justify-center" : "justify-start"
                   } `}
                 >
-                  <img
+                  <Image
+                    width={40}
+                    height={40}
                     src="/img/Settings.png"
                     alt=""
-                    className="w-[30px] h-[30px] object-fill"
+                    className="w-[40px] h-[40px] object-fill"
                   />
                   <p
                     className={`${
@@ -196,7 +237,13 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
             </div>
           </div>
           <button onClick={handleOpen} className="absolute top-4 right-[-18px]">
-            <img src="/img/slider.png" alt="" />
+            <Image
+              width={40}
+              height={40}
+              className="w-full h-full"
+              src="/img/slider.png"
+              alt=""
+            />
           </button>
         </div>
       </div>

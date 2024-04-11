@@ -1,5 +1,7 @@
 "use client";
 import { useRef } from "react";
+import Image from "next/image";
+import { Avatar, AvatarGroup } from "@chakra-ui/react";
 
 const RequestForm = () => {
   const validInput: React.MutableRefObject<HTMLInputElement | null> =
@@ -124,7 +126,7 @@ const RequestForm = () => {
                   }
                 }}
               >
-                <img src="/img/upload.png" alt="" />
+                <Image width={30} height={30} src="/img/upload.png" alt="" />
                 <p>Select or drop file</p>
               </div>
               <div
@@ -136,7 +138,7 @@ const RequestForm = () => {
                   }
                 }}
               >
-                <img src="/img/clip.png" alt="" />
+                <Image width={15} height={15} src="/img/clip.png" alt="" />
                 <p>Select files</p>
               </div>
             </div>
@@ -156,7 +158,7 @@ const RequestForm = () => {
         </div>
 
         <div className="w-full lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
-          <img src="/img/telephone.png" alt="" />
+          <Image width={400} height={600} className="w-full h-full" src="/img/telephone.png" alt="" />
           <div className="pt-[50px] lg:pt-[150px] px-[20px] lg:px-[64px] flex flex-col gap-[32px]">
             <div>
               <p className="font-bold lg:text-left text-center text-[35px] lg:text-[60px] text-white pb-20px">
@@ -168,15 +170,32 @@ const RequestForm = () => {
             </div>
 
             <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-[16px]">
-              <img src="/img/avatar.png" alt="" />
+              <AvatarGroup size="md" max={4}>
+                <Avatar
+                  name="Ryan Florence"
+                  src="https://bit.ly/ryan-florence"
+                />
+                <Avatar
+                  name="Segun Adebayo"
+                  src="https://bit.ly/sage-adebayo"
+                />
+                <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
+                <Avatar
+                  name="Prosper Otemuyiwa"
+                  src="https://bit.ly/prosper-baba"
+                />
+                <Avatar
+                  name="Christian Nwamba"
+                  src="https://bit.ly/code-beast"
+                />
+              </AvatarGroup>
               <div className="flex flex-col items-center lg:items-start">
                 <div className="flex justify-start items-center gap-[4px]">
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
                   <p className="text-[18px] font-medium">5.0</p>
                 </div>
                 <p className="text-[18px] text-center lg:text-left font-medium">

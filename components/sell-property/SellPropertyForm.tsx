@@ -1,6 +1,7 @@
 "use client";
-import { useState, useRef } from "react";
-
+import { useRef } from "react";
+import Image from "next/image";
+import { Avatar, AvatarGroup } from "@chakra-ui/react";
 const Form = () => {
   const validInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
@@ -97,7 +98,7 @@ const Form = () => {
                   }
                 }}
               >
-                <img src="/img/upload.png" alt="" />
+                <Image width={30} height={30} src="/img/upload.png" alt="" />{" "}
                 <p>Select or drop file</p>
               </div>
               <div
@@ -109,7 +110,7 @@ const Form = () => {
                   }
                 }}
               >
-                <img src="/img/clip.png" alt="" />
+                <Image width={15} height={15} src="/img/clip.png" alt="" />{" "}
                 <p>Select files</p>
               </div>
             </div>
@@ -171,7 +172,13 @@ const Form = () => {
         </div>
 
         <div className="w-full lg:w-1/2 bg-primary text-white pb-[50px] lg:pb-[120px] h-full pt-[100px] lg:pt-[235px]">
-          <img src="/img/house.png" alt="" />
+          <Image
+            width={400}
+            height={600}
+            className="w-full h-full"
+            src="/img/house.png"
+            alt=""
+          />
           <div className="pt-[50px] lg:pt-[150px] px-[20px] lg:px-[64px] flex flex-col gap-[32px]">
             {" "}
             <div>
@@ -184,16 +191,32 @@ const Form = () => {
               </p>
             </div>
             <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-[16px]">
-              {" "}
-              <img src="/img/avatar.png" alt="" />
+              <AvatarGroup size="md" max={4}>
+                <Avatar
+                  name="Ryan Florence"
+                  src="https://bit.ly/ryan-florence"
+                />
+                <Avatar
+                  name="Segun Adebayo"
+                  src="https://bit.ly/sage-adebayo"
+                />
+                <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
+                <Avatar
+                  name="Prosper Otemuyiwa"
+                  src="https://bit.ly/prosper-baba"
+                />
+                <Avatar
+                  name="Christian Nwamba"
+                  src="https://bit.ly/code-beast"
+                />
+              </AvatarGroup>
               <div className="flex flex-col items-center lg:items-start">
                 <div className="flex justify-start items-center gap-[4px]">
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image width={15} height={15} src="/img/star.png" alt="" />
                   <p className="text-[18px] font-medium">5.0</p>
                 </div>
                 <p className="text-[18px] text-center lg:text-left font-medium">

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const LeadingWebsites = () => {
   return (
     <>
@@ -11,10 +13,26 @@ const LeadingWebsites = () => {
             </div>
 
             <div className="mt-[2em] lg:mt-[4em] flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
-              <img src="/img/leading1.png" className="w-[35%] lg:w-[20%]" alt="" />
-              <img src="/img/leading2.png" className="w-[35%] lg:w-[20%]" alt="" />
-              <img src="/img/leading3.png" className="w-[35%] lg:w-[20%]" alt="" />
-              <img src="/img/leading4.png" className="w-[35%] lg:w-[20%]" alt="" />
+              <Image height={100} width={250} 
+                src="/img/leading1.png"
+                className="w-[35%] lg:w-[20%]"
+                alt=""
+              />
+              <Image width={250} height={100} 
+                src="/img/leading2.png"
+                className="w-[35%] lg:w-[20%]"
+                alt=""
+              />
+              <Image width={250} height={100} 
+                src="/img/leading3.png"
+                className="w-[35%] lg:w-[20%]"
+                alt=""
+              />
+              <Image width={250} height={100} 
+                src="/img/leading4.png"
+                className="w-[35%] lg:w-[20%]"
+                alt=""
+              />
             </div>
 
             <div className="flex justify-center items-center pt-[25px] lg:pt-[50px]">

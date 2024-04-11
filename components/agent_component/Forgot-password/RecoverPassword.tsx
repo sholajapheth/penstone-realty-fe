@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import Verification from "./VerificationCode";
+import Image from "next/image";
 
 const RecoverPassword = () => {
   const OverlayTwo = () => (
@@ -45,7 +46,13 @@ const RecoverPassword = () => {
         <ModalContent py="30px" px="6px">
           <ModalHeader>
             {" "}
-            <img src="/logo.png" className="w-[30%]" alt="" />
+            <Image
+              width={50}
+              height={45}
+              src="/logo.png"
+              className="w-[30%]"
+              alt=""
+            />
           </ModalHeader>
           <ModalCloseButton mt="30px" />
           <ModalBody>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 const PackageCard = () => {
   return (
@@ -15,14 +16,14 @@ const PackageCard = () => {
             </p>
           </div>
           <div>
-            <img src="/img/craft.png" alt="" />
+            <Image width={300} height={200} className='w-full h-full' src="/img/craft.png" alt="" />
           </div>
 
           <div className="flex justify-start items-center gap-[10px]">
             <button className="text-primary font-semibold py-3 rounded-xl">
               Start a request
             </button>
-            <img src="/img/arrow-right.png" alt="" />
+            <Image width={20} height={20} src="/img/arrow-right.png" alt="" />
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 
 const PackageCard = () => {
   return (
@@ -15,7 +16,7 @@ const PackageCard = () => {
             </p>
           </div>
           <div>
-            <img src="/img/craft.png" alt="" />
+            <Image width={20} height={20} className='h-full w-full' src="/img/craft.png" alt="" />
           </div>
         </div>
       </div>

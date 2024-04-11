@@ -12,9 +12,9 @@ const ABoutMission = () => {
                 property requirements, delivering well-planned and executed
                 projects.
               </span>{" "}
-              More than just a real estate company, we&apos;re committed to creating
-              unparalleled solutions to maximize your property&apos;s potential and
-              ensure your success in the Nigerian market.
+              More than just a real estate company, we&apos;re committed to
+              creating unparalleled solutions to maximize your property&apos;s
+              potential and ensure your success in the Nigerian market.
             </p>
           </div>
 
@@ -63,10 +63,12 @@ const ABoutMission = () => {
               </div>
             </div>
             <div className="lg:w-[50%]">
-              <img
+              <Image
                 src="/img/about1.png"
                 alt="agent-img"
-                className="group-hover:scale-110 pri-anim"
+                width={400}
+                height={400}
+                className="group-hover:scale-110 pri-anim w-full h-full"
               />
             </div>
           </div>
@@ -94,10 +96,22 @@ const ABoutMission = () => {
               </p>
             </div>
             <div className="lg:w-[45%]">
-              <img src="/img/about2.png" alt="" />
+              <Image
+                src="/img/about2.png"
+                className="w-full h-full"
+                height={420}
+                width={420}
+                alt=""
+              />
             </div>
             <div className="absolute hidden lg:block lg:top-[59%] lg:right-[20%]">
-              <img src="/img/laptop.png" alt="" />
+              <Image
+                src="/img/laptop.png"
+                className="w-[430px] h-full"
+                width={700}
+                height={700}
+                alt=""
+              />
             </div>
           </div>
         </div>
