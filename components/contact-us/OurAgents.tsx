@@ -19,16 +19,16 @@ const AgentCard = ({
     const router = useRouter();
 
   return (
-    <div className="text-center flex flex-col gap-4 items-center justify-center rounded-xl shadow-md p-6 group">
+    <div className="w-[100%] lg:w-[330px] text-center flex flex-col gap-4 items-center justify-center rounded-xl shadow-md p-6 group">
       <div
-        className="text-center flex flex-col gap-1 items-center justify-center"
+        className="text-center flex flex-col gap-1 items-center justify-center cursor-pointer"
         onClick={() => router.push("/listing")}
       >
         <Image
           src={imgSrc}
           alt={name}
-          height={200}
-          width={200}
+          height={250}
+          width={250}
           className="group-hover:scale-110 pri-anim"
         />
         <p className="text-[28px] font-semibold ">{name}</p>
@@ -101,12 +101,6 @@ const agents = [
     jobDesc: "Real Estate Broker",
     imgSrc: "/img/agent_1.png",
   },
-  {
-    name: "Yomife Ade",
-    email: "egbemodeyomi@gmail.com",
-    jobDesc: "Real Estate Broker",
-    imgSrc: "/img/agent_1.png",
-  },
 ];
 
 const OurAgents = () => {
@@ -124,14 +118,15 @@ const OurAgents = () => {
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-8 mt-8 justify-center items-center">
-        {agents.map((item) => (
+      <div className="flex flex-wrap gap-8 mt-8 justify-center items-center lg:justify-between">
+        {agents.map((item,i) => (
           // eslint-disable-next-line react/jsx-key
           <AgentCard
             imgSrc={item.imgSrc}
             email={item.email}
             jobDesc={item.jobDesc}
             name={item.name}
+            key={i}
           />
         ))}
       </div>

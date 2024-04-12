@@ -6,7 +6,7 @@ const GetIntouch = () => {
     <div className=" p-[1em] md:p-[5em] flex items-center justify-center pb-0 md:pb-[25em]">
       <div className="w-[95%] lg:w-[80%] relative flex items-center justify-center  ">
         <Image
-          src={"/img/getintouch.png"}
+          src={"/img/getIntouch.png"}
           alt="getintouch"
           height={200}
           width={200}

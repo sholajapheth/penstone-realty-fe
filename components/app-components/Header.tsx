@@ -162,7 +162,10 @@ export default function Example() {
           </Link>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
-          <Link href="#" className="text-sm font-semibold leading-6 text-gray-900">
+          <Link
+            href="#"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Agent Log in
           </Link>
           <Link
@@ -223,6 +226,7 @@ export default function Example() {
                             as="a"
                             href={item.href}
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            onClick={() => setMobileMenuOpen(false)}
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -251,6 +255,7 @@ export default function Example() {
                             as="a"
                             href={item.href}
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            onClick={() => setMobileMenuOpen(false)}
                           >
                             {item.name}
                           </Disclosure.Button>
@@ -262,12 +267,14 @@ export default function Example() {
                 <Link
                   href="/search"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Find Property
                 </Link>
                 <Link
                   href="/blog"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Blog
                 </Link>
@@ -276,12 +283,14 @@ export default function Example() {
                 <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Agent Log in
                 </Link>
                 <Link
                   href="/contact_us"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 mt-2 bg-primary text-white hover:text-primary hover:bg-gray-50 transition-all duration-300 ease-out"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Get in touch
                 </Link>
