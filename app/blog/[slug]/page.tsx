@@ -14,13 +14,13 @@ import {
 const Page = () => {
   return (
     <div>
-      <div className="bg-[#F5FCFF80] p-[6em]">
+      <div className="bg-[#F5FCFF80] px-[1em] lg:px-[14em] py-[2em] lg:py-[6em]">
         <p className="text-secondary text-[30px] lg:text-[70px] font-bold">
           How to attract buyers and close deals
         </p>
       </div>
 
-      <div className="px-[1em] lg:px-[6em]">
+      <div className="px-[1em] py-[1em] lg:px-[14em]">
         <div className="flex items-center justify-between ">
           <div className="flex items-center gap-4">
             <Image
@@ -47,15 +47,14 @@ const Page = () => {
             className="w-full h-full"
           />
 
-          <div className="mt-10 md:flex items-center  ">
-            <div className="flex md:iniline items-center justify-center md:justify-normal">
+          <div className="mt-10 md:flex justify-start items-start gap-[20px]  ">
               <Image
-                src={"/img/blog-author.png"}
-                width={200}
-                height={200}
+                src={"/img/sample-avatar.png"}
+                width={300}
+                height={300}
                 alt="author"
+                className="h-[100px] w-[100px] lg:w-[200px] lg:h-[200px]"
               />
-            </div>
 
             <div className="flex flex-col justify-between">
               <div className="inline md:flex gap-4 items-center">
@@ -108,12 +107,13 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="mb-4 md:mb-8 mt-[5em] p-4 ">
+      </div>
+        <div className="mb-4 md:mb-8 mt-[5em] p-[1em] lg:p-[4em]">
           <div className="flex items-center justify-between my-8">
             <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
               Related Posts
             </p>
-            <div className="flex gap-4">
+            <div className="lg:flex gap-4 hidden">
               <button className="rounded-md bg-primary p-2  ">
                 <BiChevronLeft color="white" size={30} />
               </button>
@@ -123,13 +123,12 @@ const Page = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center md:justify-between  flex-wrap ">
+          <div className="flex items-center justify-center md:justify-between flex-wrap w-full gap-[32px]">
             {[1, 2, 3].map((item) => (
               <BlogCard key={item} />
             ))}
           </div>
         </div>
-      </div>
 
       <NewsLetter />
     </div>

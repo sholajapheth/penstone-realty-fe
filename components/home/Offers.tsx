@@ -1,9 +1,13 @@
+"use client"
 import Image from "next/image";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const Offers = () => {
+      const router = useRouter();
+
   return (
-    <div className=" bg-secondary  text-white text-center   py-16">
+    <div className=" bg-secondary  text-white text-center py-16">
       <div className="w-full flex  items-center justify-center">
         <div className="w-[90%] ">
           <p className="text-[30px] lg:text-[40px] font-semibold ">
@@ -14,7 +18,7 @@ const Offers = () => {
           </p>
 
           <div className="flex flex-col lg:flex-row items-center gap-6 mt-10 ">
-            <div className="rounded-md  bg-white/50 p-6 flex items-start text-start gap-4">
+            <div className="rounded-md  bg-white/50 p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/lines-outline-bag.png"}
                 height={50}
@@ -31,7 +35,7 @@ const Offers = () => {
                 </p>
               </div>
             </div>
-            <div className="rounded-md  bg-white p-6 flex items-start text-start gap-4">
+            <div className="rounded-md  bg-white p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/team-light.png"}
                 height={50}
@@ -42,13 +46,13 @@ const Offers = () => {
                 <p className="font-bold text-[24px] text-secondary mb-3 ">
                   Extend your team{" "}
                 </p>
-                <p className="text-gray-300">
+                <p className="text-[#414141]">
                   Think of us as an extension of your own team, aligning with
                   your vision and achieving your goals, every step of the way.
                 </p>
               </div>
             </div>
-            <div className="rounded-md  bg-[#0D90C4] p-6 flex items-start text-start gap-4">
+            <div className="rounded-md  bg-[#0D90C4] p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/lines-outline-bag.png"}
                 height={50}
@@ -76,10 +80,12 @@ const Offers = () => {
             <p className="font-bold text-[40px]">7.4%</p>
             <p className="text-white font-medium">Property Return Rate</p>
           </div>
+          <div className="w-[64px] h-[1px] bg-white lg:hidden"></div>
           <div className="flex flex-col gap-3 items-center lg:border-l-2  lg:border-r-2 px-[4em] lg:border-spacing-2 lg:border-white">
             <p className="font-bold text-[40px]">356</p>
             <p className="text-white font-medium">Property in Sell & Rent</p>
           </div>
+          <div className="w-[64px] h-[1px] bg-white lg:hidden"></div>
           <div className="flex flex-col gap-3 items-center">
             <p className="font-bold text-[40px]">₦125M</p>
             <p className="text-white font-medium">Median Property price</p>

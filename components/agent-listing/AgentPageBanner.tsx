@@ -68,8 +68,8 @@ const AgentPageBanner = () => {
             <div className="flex justify-center items-center pb-[40px]">
               <Image src="/img/icons/quote.svg" width={25} height={25} alt="" />
             </div>
-            <p className="text-[20px] text-center px-[50px] pb-[24px] text-black font-medium">
-              Don&apos;t wait to buy real estate. Buy real estate and wait.
+            <p className="text-[20px] text-center px-[10px] lg:px-[50px] pb-[24px] text-black font-medium">
+              Don&apos;t wait to buy real estate. <br /> Buy real estate and wait.
             </p>
 
             <div className="w-full h-[1px] bg-black opacity-10 mb-[30px]"></div>

@@ -1,18 +1,25 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import { useRouter } from "next/navigation";
 
 const FrequentlyPickedCard = ({
   dark = false,
   imgSrc,
   dets,
   title,
+  route
 }: {
   dark: boolean;
   imgSrc: string;
   dets: string;
   title: string;
+  route: string;
 }) => {
+  const router = useRouter();
+
   return (
     <div
       className={`rounded-xl p-8 flex flex-col text-center gap-4 items-center justify-center py-14  group ${
@@ -20,6 +27,7 @@ const FrequentlyPickedCard = ({
           ? "bg-secondary text-white"
           : "bg-white text-secondary border border-secondary"
       }`}
+      onClick={() => router.push(`${route}`)}
     >
       <Image
         src={imgSrc}
@@ -41,18 +49,21 @@ const freqPicked = [
     title: "Construction Managment",
     dets: "Whatever the type and wherever the property, Pentstone experts can help to manage it.",
     dark: false,
+    route: "/construction",
   },
   {
     imgSrc: "/img/sellProp.png",
     title: "Sell your Property",
     dets: "Our team of experts provide commercial, residential and rural property valuations to banks and building societies",
     dark: true,
+    route: "/sell",
   },
   {
     imgSrc: "/img/spaceMan.png",
     title: "Space Management",
     dets: "With an 800-strong network of development experts we are able to tailor our services to each and every client.",
     dark: false,
+    route: "/request_form",
   },
 ];
 
@@ -63,7 +74,7 @@ const FrequentlyPicked = () => {
         <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
           Frequently picked
         </p>
-        <div className="flex gap-4">
+        <div className="hidden lg:flex gap-4">
           <button className="rounded-md bg-primary p-2  ">
             <BiChevronLeft color="white" size={30} />
           </button>
@@ -80,6 +91,7 @@ const FrequentlyPicked = () => {
             imgSrc={item.imgSrc}
             dets={item.dets}
             dark={item.dark}
+            route={item.route}
             key={index}
           />
         ))}

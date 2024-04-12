@@ -1,22 +1,30 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
 const TakeFirstStep = () => {
+    const router = useRouter();
+
   return (
     <div className="bg-[#E8F9F733] p-[1em] md:p-[6em] ">
       <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
         Take the first step
       </p>
 
-      <div className="mt-[4em] text-secondary grid grid-cols-1 md:grid-cols-3 gap-[5em]">
+      <div className="mt-[2em] lg:mt-[4em] text-secondary grid grid-cols-1 md:grid-cols-3 gap-[5em]">
         <div className="col-span-2">
-          <div className="grid grid-cols-2 border-b py-[2em]">
+          <div
+            className="grid grid-cols-2 border-b py-[2em] cursor-pointer"
+            onClick={() => router.push("/architecture")}
+          >
             <div>
               <p className="text-primary text-[18px] font-semibold">
                 Consultancy
               </p>
-              <p className="text-secondary  text-[28px] font-semibold">
+              <p className="text-secondary text-[22px] lg:text-[28px] font-semibold">
                 Architectural Design
               </p>
             </div>
@@ -31,12 +39,15 @@ const TakeFirstStep = () => {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-2 border-b py-[2em]">
+          <div
+            className="grid grid-cols-2 border-b py-[2em] cursor-pointer"
+            onClick={() => router.push("/construction")}
+          >
             <div>
               <p className="text-primary text-[18px] font-semibold">
                 Construction
               </p>
-              <p className="text-secondary  text-[28px] font-semibold">
+              <p className="text-secondary text-[22px] lg:text-[28px] font-semibold">
                 Design, Renovation & Remodelling
               </p>
             </div>
@@ -52,12 +63,15 @@ const TakeFirstStep = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 border-b py-[2em]">
+          <div
+            className="grid grid-cols-2 border-b py-[2em] cursor-pointer"
+            onClick={() => router.push("/sell_property_form")}
+          >
             <div>
               <p className="text-primary text-[18px] font-semibold">
                 Managament
               </p>
-              <p className="text-secondary  text-[28px] font-semibold">
+              <p className="text-secondary text-[22px] lg:text-[28px] font-semibold">
                 Apartment Space Management
               </p>
             </div>

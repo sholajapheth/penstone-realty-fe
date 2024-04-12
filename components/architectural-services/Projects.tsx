@@ -1,9 +1,14 @@
+"use client"
+
 import ProjectCard from "./ProjectCard";
+import { useRouter } from "next/navigation";
 
 const AgentPortfolio = () => {
+        const router = useRouter();
+
     return (
       <div className=" px-[1em] md:px-[5em]">
-        <div className="bg-white  flex justify-center py-[2em] lg:py-[4em] ">
+        <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
           <div className="w-full">
             <div className="flex items-start justify-between  ">
               <p className="text-[#212226] font-semibold text-[40px] ">
@@ -11,7 +16,7 @@ const AgentPortfolio = () => {
               </p>
             </div>
 
-            <div className="mt-[4em] w-full flex items-center gap-[32px] justify-between flex-wrap">
+            <div className="mt-[4em] flex items-center gap-[32px] justify-center lg:justify-between flex-wrap ">
               <ProjectCard />
               <ProjectCard />
               <ProjectCard />
@@ -21,8 +26,11 @@ const AgentPortfolio = () => {
             </div>
 
             <div className="flex justify-center items-center pt-[50px]">
-              <button className="bg-primary px-8  font-semibold py-3 rounded-xl text-white mt-8">
-               Click to get started
+              <button
+                className="bg-primary px-8  font-semibold py-3 rounded-xl text-white mt-8"
+                onClick={() => router.push("/request_form")}
+              >
+                Click to get started
               </button>
             </div>
           </div>

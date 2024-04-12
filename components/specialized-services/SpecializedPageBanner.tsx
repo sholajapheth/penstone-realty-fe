@@ -1,36 +1,51 @@
+"use client";
+
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const SpecializedPageBanner = () => {
+            const router = useRouter();
+
   return (
     <>
-      <div className="text-white">
-        <div className="bg-secondary relative p-4 py-[3em] md:py-[6em] col-span-2 flex items-center justify-center text-center">
+      <div className="text-white ">
+        <div className="bg-secondary relative p-4 py-[3em] md:pt-[6em] md:pb-[8em] col-span-2 flex items-center justify-center text-center">
           <div>
-            <button className="bg-secondary px-8   py-2 rounded-full text-white ">
+            <button className="bg-secondary px-8 rounded-full text-white ">
               <p className="bg-opac px-4 py-1 rounded-full text-[14px] font-medium">
                 Top Rated
               </p>
             </button>
-            <p className="text-[30px] md:text-[68px] font-bold pb-2 lg:pb-0">
-              Specialized property
+            <p className="text-[30px] md:text-[68px] font-bold pb-2  lg:pb-0 leading-[120%]">
+              Specialized property { " " }
               <br className="hidden md:inline-block" />
               services you can trust
             </p>
-            <p>
-              We provide developers and homeowners with smart, buildable, and
-              cost-effective
-              <br className="hidden md:inline-block" /> enduring value
-              architectural design for planning permission and building
-              regulations approval.
+            <p className="text-[16px] lg:text-[18px] pt-[10px]">
+              Outsource tasks, reduce workload and increase efficiency, allowing
+              you focus on your core <br className="hidden md:inline-block" />
+              projects.
             </p>
 
-            <div className="flex justify-center flex-col lg:flex-row items-center lg:gap-[15px]">
-              <button className="bg-primary px-8  font-semibold py-3 rounded-xl text-white mt-8">
-                Get Started
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-[15px]">
+              <button
+                className="bg-primary px-3 lg:px-8  font-semibold py-3 rounded-xl text-white mt-8"
+                onClick={() => router.push("/search")}
+              >
+                Find a Property
               </button>
-              <button className="border border-white px-8  font-semibold py-3 rounded-xl text-white mt-3 lg:mt-8 flex justify-center items-center gap-[8px]">
+              <button
+                className="border border-white px-3 lg:px-8  font-semibold py-3 rounded-xl text-white lg:mt-8 flex justify-center items-center gap-[8px]"
+                onClick={() => router.push("/contact_us")}
+              >
                 Frequently Asked Questions
-                <Image width={20} height={20} src="/img/arw.png" className="hidden lg:block" alt="" />
+                <Image
+                  width={20}
+                  height={20}
+                  src="/img/arw.png"
+                  className="hidden lg:block"
+                  alt=""
+                />
               </button>
             </div>
           </div>

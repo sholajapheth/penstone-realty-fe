@@ -3,10 +3,10 @@ import Image from "next/image";
 const ABoutMission = () => {
     return (
       <>
-        <div className="bg-[#E6ECEE] px-[1em] p-[4em] lg:p-[5em]">
-          <div className="pb-[80px]">
+        <div className="bg-[#FAFAFA] px-[1em] p-[4em] lg:px-[5em] lg:pt-[5em] lg:pb-[6em] -mb-[30px]">
+          <div className="pb-[70px]">
             <p className="text-[18px] text-[#737373] pb-[16px]">Our Mission</p>
-            <p className="text-[36px] lg:text-[48px] font-semibold text-[#A3A3A3]">
+            <p className="text-[32px] lg:text-[46px] font-semibold text-[#A3A3A3]">
               <span className="text-[#0A0A0A]">
                 Pentstone is your trusted strategic partner for all your
                 property requirements, delivering well-planned and executed
@@ -33,7 +33,7 @@ const ABoutMission = () => {
                   <h2 className="text-[24px] font-bold text-[#0A0A0A] pb-[12px]">
                     Our Promise
                   </h2>
-                  <p className="text-[18px] text-[#737373]">
+                  <p className="text-[18px] text-[#737373] pb-[40px]">
                     To help you navigate the complexities of the local real
                     estate market, enabling you focus on key aspects of their
                     businesses and lives.
@@ -51,7 +51,7 @@ const ABoutMission = () => {
                 </div>
                 <div>
                   <h2 className="text-[24px] font-bold text-[#0A0A0A] pb-[12px]">
-                    COre Values
+                    Core Values
                   </h2>
                   <p className="text-[18px] text-[#737373]">
                     Find your perfect property hassle-free with our vetted
@@ -62,7 +62,7 @@ const ABoutMission = () => {
                 </div>
               </div>
             </div>
-            <div className="lg:w-[50%]">
+            <div className="w-full lg:w-[50%]">
               <Image
                 src="/img/about1.png"
                 alt="agent-img"
@@ -74,18 +74,18 @@ const ABoutMission = () => {
           </div>
         </div>
 
-        <div className="px-[1em] p-[5em]">
+        <div className="px-[1em] lg:px-[5em] pb-[5em]">
           <div className="bg-primary py-[15px] px-[15px] relative rounded-[40px] flex flex-col lg:flex-row justify-between items-center gap-[20px] lg:gap-0">
             <div className="lg:w-[55%] text-center lg:px-[58px]">
               <p className="font-bold text-[40px] text-white">
                 A remote-first company
               </p>
-              <p className="text-[20px] text-white pt-[18px]">
+              <p className="lg:text-[20px] text-white pt-[18px]">
                 Our people are our greatest asset in shaping the future of real
                 estate! We welcome talent from anywhere, empowering individuals
                 to join our dynamic team and leverage their unique strengths.
               </p>
-              <p className="text-white text-[20px] pt-[25px]">
+              <p className="text-white lg:text-[20px] pt-[25px]">
                 Send your CV to{" "}
                 <a
                   href="mailto:apply@pentstonerealty.com"
@@ -95,7 +95,7 @@ const ABoutMission = () => {
                 </a>
               </p>
             </div>
-            <div className="lg:w-[45%]">
+            <div className="w-[100%] lg:w-[45%]">
               <Image
                 src="/img/about2.png"
                 className="w-full h-full"
@@ -107,7 +107,7 @@ const ABoutMission = () => {
             <div className="absolute hidden lg:block lg:top-[59%] lg:right-[20%]">
               <Image
                 src="/img/laptop.png"
-                className="w-[430px] h-full"
+                className="w-[350px] h-full"
                 width={700}
                 height={700}
                 alt=""

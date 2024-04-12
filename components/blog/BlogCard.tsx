@@ -1,9 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const BlogCard = () => {
+      const router = useRouter();
+
   return (
-    <div className="p-4 group hover:shadow-md rounded-xl transition-all ease-in duration-300">
+    <div
+      className="p-3 group hover:shadow-md rounded-xl transition-all ease-in duration-300 cursor-pointer"
+      onClick={() => router.push("/blog/1")}
+    >
       <div>
         <div className="overflow-hidden rounded-xl ">
           <Image

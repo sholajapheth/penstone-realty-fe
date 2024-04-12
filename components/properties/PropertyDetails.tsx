@@ -433,7 +433,7 @@ const PropertyDetails = () => {
           </button>
         </div>
 
-        <div className="flex items-center justify-between ">
+        <div className="flex items-center justify-between flex-wrap flex-col lg:flex-row gap-[32px] ">
           {[1, 2, 3].map((item) => (
             <ListingCard key={item} />
           ))}

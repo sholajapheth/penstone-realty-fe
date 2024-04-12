@@ -2,7 +2,7 @@ import React from "react";
 
 const NewsLetter = () => {
   return (
-    <div className="py-[5em] px-[1em] flex items-center justify-center bg-[#E8F9F733]">
+    <div className="py-[4em] lg:py-[5em] px-[1em] flex items-center justify-center bg-[#E8F9F733]">
       <div className="text-center text-secondary">
         <p className=" font-semibold text-[24px]">Subscribe to join</p>
         <p className="font-semibold text-[40px] my-3">

@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 import { PaginationNav } from "../common";
+import { useRouter } from "next/navigation";
 
 const AgentCard = ({
   imgSrc,
@@ -13,20 +16,30 @@ const AgentCard = ({
   jobDesc: string;
   email: string;
 }) => {
+    const router = useRouter();
+
   return (
     <div className="text-center flex flex-col gap-4 items-center justify-center rounded-xl shadow-md p-6 group">
-      <Image
-        src={imgSrc}
-        alt={name}
-        height={200}
-        width={200}
-        className="group-hover:scale-110 pri-anim"
-      />
-      <p className="text-[28px] font-semibold ">{name}</p>
-      <p>{jobDesc}</p>
-      <p className="text-sm">{email}</p>
-      <hr />
-      <button className="border border-primary rounded-md text-secondary px-4 py-2 font-semibold text-sm">
+      <div
+        className="text-center flex flex-col gap-1 items-center justify-center"
+        onClick={() => router.push("/listing")}
+      >
+        <Image
+          src={imgSrc}
+          alt={name}
+          height={200}
+          width={200}
+          className="group-hover:scale-110 pri-anim"
+        />
+        <p className="text-[28px] font-semibold ">{name}</p>
+        <p>{jobDesc}</p>
+        <p className="text-sm">{email}</p>
+      </div>
+      <div className="bg-[#F4F4F4] h-[1px] w-full"></div>
+      <button
+        className="border border-primary rounded-md text-secondary px-4 py-2 font-semibold text-sm"
+        onClick={() => router.push("/search")}
+      >
         See Listings
       </button>
     </div>

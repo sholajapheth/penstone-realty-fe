@@ -5,14 +5,14 @@ const Packages = () => {
     return (
       <>
         <div className=" px-[1em] md:px-[5em]">
-          <div className="bg-white flex justify-center py-[5em] ">
+          <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
             <div className="w-full">
-              <div className="flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row gap-[20px]">
-                <p className="text-[#212226] text-center lg:text-left font-semibold text-[40px] ">
+              <div className="flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row gap-3 ">
+                <p className="text-[#212226] font-semibold text-center lg:text-left text-[32px] lg:text-[40px] ">
                   Featured Craftsmanship{" "}
                 </p>
 
-                <div className="flex gap-4">
+                <div className="hidden lg:flex gap-4">
                   <button className="rounded-md bg-primary p-2  ">
                     <BiChevronLeft color="white" size={30} />
                   </button>
@@ -22,7 +22,7 @@ const Packages = () => {
                 </div>
               </div>
 
-              <div className="mt-[5em] flex items-center gap-[32px] justify-between flex-wrap ">
+              <div className="mt-[4em] flex items-center gap-[32px] justify-center lg:justify-between flex-wrap ">
                 <CraftCard />
                 <CraftCard />
                 <CraftCard />

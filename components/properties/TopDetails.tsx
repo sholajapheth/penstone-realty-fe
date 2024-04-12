@@ -1,14 +1,22 @@
+"use client";
+
 import React from "react";
 import { BiChevronLeft } from "react-icons/bi";
 import { BsCheck, BsSave } from "react-icons/bs";
 import { FcDocument } from "react-icons/fc";
 import { GrDocumentPdf } from "react-icons/gr";
+import { useRouter } from "next/navigation";
 
 const TopDetails = () => {
+              const router = useRouter();
+
   return (
     <div className="bg-[#F5FCFF80] px-[1em] md:px-[3em] lg:px-[4em] xl:px-[6em] py-[2em] flex items-center ">
       <div className=" flex-1 flex flex-col gap-y-4">
-        <button className="text-secondary font-bold flex items-center ">
+        <button
+          className="text-secondary font-bold flex items-center "
+          onClick={() => router.push("/search")}
+        >
           <BiChevronLeft size={30} />
           <p>Back to Search</p>
         </button>
@@ -28,7 +36,10 @@ const TopDetails = () => {
         </div>
       </div>
 
-      <button className="px-[3em] py-3 text-white font-medium bg-secondary rounded-md md:flex items-center gap-x-4 hidden ">
+      <button
+        className="px-[3em] py-3 text-white font-medium bg-secondary rounded-md md:flex items-center gap-x-4 hidden "
+        onClick={() => router.push("/apply")}
+      >
         <BsSave />
         <p>Apply</p>
       </button>
