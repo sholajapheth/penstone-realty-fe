@@ -8,6 +8,7 @@ import {
   AgentPortfolio,
   FindPage,
 } from "@/components/agent-listing";
+import { ApplicationForm, TopDetail } from "@/components/apply";
 import {
   ArchitecturePageBanner,
   Gallery,
@@ -47,12 +48,12 @@ export default function Home() {
   return (
     <main>
       {/* home */}
-      <Landing />
+      {/* <Landing />
       <Showcase />
       <HotListings />
       <Services />
       <Offers />
-      <NewsLetter />
+      <NewsLetter /> */}
 
       {/* search */}
       {/* <Search />
@@ -132,6 +133,11 @@ export default function Home() {
 
       {/* sell property form */}
       {/* <SellPropertyForm />
+      <NewsLetter /> */}
+
+      {/* apply */}
+      {/* <TopDetail />
+      <ApplicationForm />
       <NewsLetter /> */}
     </main>
   );

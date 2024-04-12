@@ -17,7 +17,7 @@ const ConstProjects
               </p>
             </div>
 
-            <div className="mt-[4em] w-full flex items-center gap-[32px] justify-between flex-wrap">
+            <div className="mt-[4em] w-full flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
               <ProjectCard />
               <ProjectCard />
               <ProjectCard />

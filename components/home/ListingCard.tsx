@@ -9,7 +9,7 @@ const ListingCard = () => {
   return (
     <div
       className="items-center justify-center flex"
-      onClick={() => router.push("/search")}
+      onClick={() => router.push("/property_details")}
     >
       {" "}
       <div className="rounded-2xl relative overflow-hidden w-[324px] bg-white shadow-md  hover:shadow-secondary group ease-linear duration-300 transition-all">

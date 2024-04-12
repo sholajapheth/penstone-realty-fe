@@ -62,7 +62,7 @@ const FreqAskedQues = () => {
         </p>
       </div>
 
-      <div className="mt-[1em] md:mt-[4em] flex flex-col md:grid grid-cols-3 gap-[8em]">
+      <div className="mt-[1em] md:mt-[4em] flex flex-col md:grid grid-cols-3 gap-[4em] lg:gap-[8em]">
         <div className="flex flex-col items-start text-start">
           {freqQuesNav.map((item, index) => (
             <button

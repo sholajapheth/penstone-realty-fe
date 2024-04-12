@@ -1,7 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const BlogTop = () => {
+      const router = useRouter();
+
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-6 p-[1em] md:p-[4em] lg:p-[6em] pt-[1em] md:pt-[4em]">
@@ -21,19 +26,22 @@ const BlogTop = () => {
             Explore three essential steps to help you navigate the real estate
             market with confidence and achieve your selling objectives.
           </p>
-          <button className="p-4 py-3 mt-4 border border-primary rounded-xl font-medium text-primary w-full md:w-auto">
+          <button
+            className="p-4 py-3 mt-4 border border-primary rounded-xl font-medium text-primary w-full md:w-auto"
+            onClick={() => router.push("/blog/1")}
+          >
             Read More
           </button>
         </div>
-        <div className="hidden md:inline-block"></div>
+        {/* <div className="hidden md:inline-block"></div> */}
 
-        <div className="col-span-2">
+        <div className="col-span-3 cursor-pointer w-full h-full" onClick={() => router.push("/blog/1")}>
           <Image
             src={"/img/blog-top.png"}
             objectFit="cover"
             width={200}
             height={200}
-            className="w-full "
+            className="w-full h-full"
             alt="blog-top-img"
           />
         </div>

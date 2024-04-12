@@ -1,7 +1,11 @@
+"use client";
+
 import React from "react";
-import { IoChevronForward } from "react-icons/io5";
+import { useRouter } from "next/navigation";
 
 const ContactPageBanner = () => {
+    const router = useRouter();
+
   return (
     <div className="text-secondary">
       <div className="bg-[#E6E6E6] relative p-4 py-[3em] md:py-[6em] col-span-2 flex items-center justify-center text-center">
@@ -22,7 +26,10 @@ const ContactPageBanner = () => {
             change.
           </p>
 
-          <button className="bg-primary px-8  font-bold py-3 rounded-xl text-white mt-8">
+          <button
+            className="bg-primary px-8  font-bold py-3 rounded-xl text-white mt-8"
+            onClick={() => router.push("/request_form")}
+          >
             Request a call back
           </button>
         </div>

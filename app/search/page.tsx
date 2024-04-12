@@ -5,8 +5,13 @@ import React from "react";
 const Page = () => {
   return (
     <div>
+      <div className="lg:hidden">
+        <HeroSection />
+      </div>
       <Search />
-      <HeroSection />
+      <div className="hidden lg:block">
+        <HeroSection />
+      </div>
       <NewsLetter />
     </div>
   );

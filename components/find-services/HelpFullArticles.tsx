@@ -9,7 +9,7 @@ const HelpFullArticles = () => {
         <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
           Helpful Articles
         </p>
-        <div className="flex gap-4">
+        <div className="hidden lg:flex gap-4">
           <button className="rounded-md bg-primary p-2  ">
             <BiChevronLeft color="white" size={30} />
           </button>
