@@ -48,12 +48,12 @@ export default function Home() {
   return (
     <main>
       {/* home */}
-      {/* <Landing />
+      <Landing />
       <Showcase />
       <HotListings />
       <Services />
       <Offers />
-      <NewsLetter /> */}
+      <NewsLetter />
 
       {/* search */}
       {/* <Search />
