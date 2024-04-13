@@ -30,7 +30,7 @@ const ContactPageBanner = () => {
             className="bg-primary px-8  font-bold py-3 rounded-xl text-white mt-8"
             onClick={() => router.push("/request_form")}
           >
-            Request a call back
+            Make a Request
           </button>
         </div>
       </div>
