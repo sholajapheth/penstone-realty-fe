@@ -27,10 +27,10 @@ const Services = () => {
 
   return (
     <div className=" pb-[5em] lg:pb-[8em] mt-[4em] lg:mt-0 flex justify-center text-secondary">
-      <div className="grid grid-col-1 lg:grid-cols-2 w-[90%]">
+      <div className="grid grid-col-1 lg:grid-cols-2 w-[85%]">
         <div className="relative flex justify-center gap-10">
           <div className="bg-[url('/img/services.png')]  lg:ml-[5em] rounded-md lg:h-full bg-no-repeat h-[500px] w-[100%] lg:w-[90%]">
-            <div className="w-[100%] lg:w-[80%]  absolute -bottom-10 flex items-center justify-center">
+            <div className="w-[100%] lg:w-[85%]  absolute -bottom-[2%] flex items-center justify-center">
               <div className="rounded-2xl shadow-md  px-3 lg:px-6 p-4  bg-white ">
                 <div className="relative">
                   <Image

@@ -16,7 +16,7 @@ const ServicesPageBanner = () => {
           <button className="bg-[#13718A] px-8   py-2 rounded-full text-white ">
             Find a service
           </button>
-          <p className="text-[30px] md:text-[68px] leading-[120%] font-inter font-bold">
+          <p className="text-[30px] md:text-[68px] leading-[120%] font-inter font-semibold">
             Start your property <br /> success story
           </p>
           <p>

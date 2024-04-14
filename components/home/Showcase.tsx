@@ -13,7 +13,7 @@ const ShowcardCard = ({ imgSource, title, tagline, route }: Info3Card) => {
       onClick={() => router.push(`${route}`)}
     >
       <div className="flex ">
-        <div className="py-4">
+        <div className="py-2 lg:py-4">
           <Image src={imgSource} height={80} width={80} alt="home-check-icon" />
         </div>
       </div>
@@ -35,18 +35,18 @@ const Showcase = () => {
       id="offering"
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 text-secondary w-[80%] lg:w-full gap-8">
-        <div className="bg-[#ffffff] relative rounded-[3em] p-8 lg:col-span-2">
-          <div className="bg-[url('/img/showcase-card-bg.png')]  lg:bg-position-r-[50px] right-0 absolute w-full inset-0 " />
+        <div className="bg-[#ffffff] relative rounded-[3em] p-8 lg:col-span-2 z-10">
+          <div className="bg-[url('/img/showcase-card-bg.png')]  lg:bg-position-r-[50px] right-0 absolute w-full inset-0 z-40" />
 
-          <div className="text-secondary ">
+          <div className="text-secondary z-40 relative">
             <p className=" ">OUR OFFERINGS</p>
             <p className="text-[25px] lg:text-[36px] font-semibold my-4">
               Pentstone offering comprehensive support for seamless property
               transactions and investments.
             </p>
             <button
-              className="bg-primary text-white pl-4 p-2  rounded-2xl flex  items-center gap-4 cursor-pointer"
-              onClick={() => router.push("/find_service")}
+              className="bg-primary text-white pl-4 p-2 rounded-2xl flex  items-center gap-4" 
+              onClick={() => router.push("/find_services")}
             >
               <p>See all services</p>
 

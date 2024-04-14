@@ -8,7 +8,7 @@ const ListingCard = () => {
 
   return (
     <div
-      className="items-center justify-center flex"
+      className="items-center justify-center flex cursor-pointer"
       onClick={() => router.push("/property_details")}
     >
       {" "}

@@ -7,6 +7,7 @@ const Page = () => {
     <div>
       <TopDetails />
       <PropertyDetails />
+      <NewsLetter />
     </div>
   );
 };
