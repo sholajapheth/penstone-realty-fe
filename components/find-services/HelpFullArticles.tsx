@@ -4,7 +4,7 @@ import { BlogCard } from "../blog";
 
 const HelpFullArticles = () => {
   return (
-    <div className="mb-4 md:mb-8 mt-[5em] p-[0.5em] md:p-[6em] ">
+    <div className="mb-4 md:mb-8 mt-[2em] p-[0.5em] md:p-[6em] ">
       <div className="flex items-center justify-between my-8 ">
         <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
           Helpful Articles

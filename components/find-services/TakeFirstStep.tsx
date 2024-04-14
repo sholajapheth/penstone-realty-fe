@@ -17,7 +17,7 @@ const TakeFirstStep = () => {
       <div className="mt-[2em] lg:mt-[4em] text-secondary grid grid-cols-1 md:grid-cols-3 gap-[5em]">
         <div className="col-span-2">
           <div
-            className="grid grid-cols-2 border-b py-[2em] cursor-pointer"
+            className="grid grid-cols-2 border-b py-[2em] gap-[30px] cursor-pointer"
             onClick={() => router.push("/architecture")}
           >
             <div>
@@ -40,7 +40,7 @@ const TakeFirstStep = () => {
             </div>
           </div>
           <div
-            className="grid grid-cols-2 border-b py-[2em] cursor-pointer"
+            className="grid grid-cols-2 border-b py-[2em]  gap-[30px] cursor-pointer"
             onClick={() => router.push("/construction")}
           >
             <div>
@@ -64,7 +64,7 @@ const TakeFirstStep = () => {
           </div>
 
           <div
-            className="grid grid-cols-2 border-b py-[2em] cursor-pointer"
+            className="grid grid-cols-2 border-b py-[2em]  gap-[30px] cursor-pointer"
             onClick={() => router.push("/sell_property_form")}
           >
             <div>

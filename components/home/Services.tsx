@@ -14,8 +14,8 @@ const ServiceCard = ({ imgSource, title, tagline }: Info3Card) => (
       />
 
       <div className="text-center lg:text-left">
-        <p className="text-[24px] mb-2">{title}</p>
-        <p>{tagline}</p>
+        <p className="text-[24px] font-semibold text-[#00080B] mb-2">{title}</p>
+        <p className="text-[#414141]">{tagline}</p>
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@ const Services = () => {
         const router = useRouter();
 
   return (
-    <div className=" pt-[3em] pb-[8em] flex  justify-center text-secondary">
+    <div className=" pb-[5em] lg:pb-[8em] mt-[4em] lg:mt-0 flex justify-center text-secondary">
       <div className="grid grid-col-1 lg:grid-cols-2 w-[90%]">
         <div className="relative flex justify-center gap-10">
           <div className="bg-[url('/img/services.png')]  lg:ml-[5em] rounded-md lg:h-full bg-no-repeat h-[500px] w-[100%] lg:w-[90%]">
@@ -41,10 +41,10 @@ const Services = () => {
                     className="absolute right-4 -top-9"
                   />
                   <div>
-                    <p className="lg:text-[20px] font-semibold">
+                    <p className="lg:text-[20px] text-[#00080B] font-semibold">
                       Construction Management
                     </p>
-                    <p className="text-[14px] lg:text-[16px]">
+                    <p className="text-[14px] lg:text-[16px] text-[#414141]">
                       We manage your project with commitment
                     </p>
                   </div>
@@ -61,10 +61,10 @@ const Services = () => {
               alt="bg-circle"
             />
             <div>
-              <p className="lg:text-[20px] font-semibold">
+              <p className="lg:text-[20px] text-[#00080B] font-semibold">
                 Pre-sale property valuations
               </p>
-              <p className="text-[14px] lg:text-[16px]">
+              <p className="text-[14px] lg:text-[16px] text-[#414141]">
                 We showcase verified properties
               </p>
             </div>
@@ -134,10 +134,10 @@ const Services = () => {
           )}
 
           <button
-            className="px-6 py-3 rounded-md  w-full lg:w-fit bg-primary text-white font-bold mt-10"
+            className="px-6 py-3 rounded-md lg:ml-6 w-full lg:w-fit bg-primary text-white font-bold mt-10"
             onClick={() => router.push("/about")}
           >
-            See more
+            Learn more
           </button>
         </div>
       </div>

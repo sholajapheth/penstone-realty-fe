@@ -9,7 +9,7 @@ const BlogTop = () => {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-6 p-[1em] md:p-[4em] lg:p-[6em] pt-[1em] md:pt-[4em]">
+      <div className="grid grid-cols-1 md:grid-cols-6 p-[1em] md:p-[4em] lg:p-[6em] pt-[1em] md:pt-[4em] lg:gap-[80px]">
         <div className="col-span-3 mb-8">
           <div className="flex items-center gap-2">
             <div className="rounded-2xl p-2 bg-[#D5F3FF] text-secondary text-xs font-semibold">
@@ -18,7 +18,7 @@ const BlogTop = () => {
             <p className="text-gray-400 text-sm">January 29, 2023</p>
           </div>
 
-          <p className="text-[25px] md:text-[50px] font-semibold mt-2 ">
+          <p className="text-[25px] lg:leading-[120%] md:text-[50px] font-semibold mt-2 ">
             Closing Deals: A Customer-Centric Guide to Real Estate Success
           </p>
 

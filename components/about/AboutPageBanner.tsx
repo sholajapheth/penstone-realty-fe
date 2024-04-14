@@ -8,7 +8,7 @@ const AboutPageBanner = () => {
           <div className="z-0 bg-[url('/img/about-bg.png')] absolute w-full h-full bottom-0 inset-0  bg-no-repeat bg-cover bg-right" />
 
           <div className="z-40 flex justify-center flex-col items-center">
-            <div className=" rounded-full text-white flex justify-center pb-[20px] items-center">
+            <div className=" rounded-full text-white/90 flex justify-center pb-[20px] items-center">
               <p className="bg-opac px-4 py-1 rounded-full text-[14px] font-medium">
                 About Us
               </p>
