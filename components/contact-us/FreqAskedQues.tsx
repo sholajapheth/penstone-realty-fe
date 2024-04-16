@@ -55,7 +55,9 @@ const FreqAskedQues = () => {
   const [activeQue, setActiveQue] = useState<null | number>(null);
 
   return (
-    <div className="px-[1em] md:px-[5em]">
+        <div className="bg-white flex pt-[3em] justify-center">
+
+    <div className="w-[85%]">
       <div className="flex items-center justify-between">
         <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
           Frequently Asked Questions
@@ -114,6 +116,7 @@ const FreqAskedQues = () => {
           })}
         </div>
       </div>
+    </div>
     </div>
   );
 };

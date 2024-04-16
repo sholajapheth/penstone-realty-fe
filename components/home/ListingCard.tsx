@@ -8,12 +8,12 @@ const ListingCard = () => {
 
   return (
     <div
-      className="items-center justify-center flex"
+      className="items-center justify-center flex cursor-pointer"
       onClick={() => router.push("/property_details")}
     >
       {" "}
-      <div className="rounded-2xl relative overflow-hidden w-[324px] bg-white shadow-md  hover:shadow-secondary group ease-linear duration-300 transition-all">
-        <div className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[312px]"></div>
+      <div className="rounded-2xl relative overflow-hidden w-[354px] bg-white shadow-md hover:shadow-md backdrop-blur  hover:shadow-gray-400 group ease-linear duration-300 transition-all">
+        <div className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[328px]"></div>
 
         <div className="backdrop-blur bg-white/20 rounded-2xl absolute top-4 left-4 flex items-center p-2 px-3 border-white gap-3">
           <div className="h-2 w-2 rounded-full bg-[#FFBF00] " />
@@ -34,8 +34,8 @@ const ListingCard = () => {
             </div>
           </div>
         </div>
-        <div className=" text-center mt-[3em]">
-          <p className="text-[20px]  font-semibold">
+        <div className=" text-center mt-[3.2em]">
+          <p className="text-[20px]  font-semibold pb-3">
             Lekki Phase 1, Lagos State
           </p>
           <div className="bg-[#F6F6F6] rounded-lg p-4  flex items-center justify-center m-4 group-hover:bg-gray-300 ease-linear duration-300 transition-all">

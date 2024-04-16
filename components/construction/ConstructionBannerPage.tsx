@@ -11,7 +11,7 @@ const ConstructionBannerPage = () => {
         <div className="bg-secondary relative p-4 py-[3em] md:pt-[6em] md:pb-[8em] col-span-2 flex items-center justify-center text-center">
           <div>
             <button className="bg-secondary px-8 rounded-full text-white ">
-              <p className="bg-opac px-4 py-1 rounded-full text-[14px] font-medium">
+              <p className="bg-[#13718A] px-4 py-1 rounded-full text-[14px] font-medium">
                 Top Rated
               </p>
             </button>

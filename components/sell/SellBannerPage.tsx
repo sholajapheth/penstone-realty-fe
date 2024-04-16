@@ -12,7 +12,7 @@ const SellBannerPage = () => {
         <div className="bg-secondary relative p-4 py-[3em] md:pt-[6em] md:pb-[8em] col-span-2 flex items-center justify-center text-center">
           <div>
             <button className="bg-secondary px-8 rounded-full text-white ">
-              <p className="bg-opac px-4 py-1 rounded-full text-[14px] font-medium">
+              <p className="bg-[#13718A] px-4 py-1 rounded-full text-[14px] font-medium">
                 Top Rated
               </p>
             </button>
@@ -32,7 +32,7 @@ const SellBannerPage = () => {
             <div className="flex flex-col lg:flex-row justify-center items-center gap-[15px]">
               <button
                 className="bg-primary px-3 lg:px-8  font-semibold py-3 rounded-xl text-white mt-8"
-                onClick={() => router.push("/request_form")}
+                onClick={() => router.push("/sell_property_form")}
               >
                 Get Started
               </button>

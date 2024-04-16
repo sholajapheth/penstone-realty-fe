@@ -17,7 +17,7 @@ const Form = () => {
     <>
       <div className="flex justify-between flex-col lg:flex-row w-full items-start">
         <div className="w-full lg:w-1/2 flex flex-col pt-[40px] lg:pt-[85px] px-[20px] lg:px-[100px] text-secondary pb-[60px] lg:pb-[30px]">
-          <h2 className="text-[30px] lg:text-[54px] font-semibold pb-[24px]">
+          <h2 className="text-[30px] lg:text-[54px] font-semibold pb-[24px] lg:leading-[63px]">
             {" "}
             Your home for professional help
           </h2>

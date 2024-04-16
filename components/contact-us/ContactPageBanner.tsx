@@ -12,10 +12,10 @@ const ContactPageBanner = () => {
         <div className="bg-[url('/img/showcase-card-bg.png')] absolute w-full inset-0  bg-no-repeat bg-contain bg-right" />
 
         <div>
-          <button className="bg-secondary px-8   py-2 rounded-full text-white ">
+         <button className="bg-[#13718A] px-8 py-2 rounded-full text-white">
             Find a service
           </button>
-          <p className="text-[30px] md:text-[68px] font-bold">
+          <p className="text-[30px] md:text-[68px] leading-[120%] font-inter font-semibold">
             Connect directly with
             <br className="hidden md:inline-block" /> happy, friendly experts
           </p>

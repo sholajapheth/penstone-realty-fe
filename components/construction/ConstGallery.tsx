@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const Gallery = () => {
   return (
@@ -6,14 +7,25 @@ const Gallery = () => {
       <div className=" px-[1em] md:px-[5em]">
         <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
           <div className="w-full">
-            <div className="flex flex-col lg:flex-row items-start justify-start pga-[30px] lg:gap-[65px] ">
-              <p className="text-[#212226] font-semibold text-[40px] ">
-                Recently Completed
-              </p>
-              <p className="text-[20px] text-[#5A5A5A] pt-[10px] lg:pt-0">
-                Every project and every client&apos;s circumstances are unique.
-                <br /> We take the time to understand needs and requirements.
-              </p>
+            <div className="flex flex-col lg:flex-row gap-[20px] items-center justify-between ">
+              <div className="flex flex-col lg:flex-row items-start justify-start pga-[30px] lg:gap-[65px] ">
+                <p className="text-[#212226] font-semibold text-[40px] ">
+                  Recently Completed
+                </p>
+                <p className="text-[20px] text-[#5A5A5A] pt-[10px] lg:pt-0">
+                  Every project and every client&apos;s circumstances are
+                  unique.
+                  <br /> We take the time to understand needs and requirements.
+                </p>
+              </div>
+              <div className="hidden lg:flex gap-4">
+                <button className="rounded-md bg-primary p-2  ">
+                  <BiChevronLeft color="white" size={30} />
+                </button>
+                <button className="rounded-md bg-gray-300 p-2 text-primary  ">
+                  <BiChevronRight size={30} />
+                </button>
+              </div>
             </div>
 
             <div className="mt-[4em] w-full flex items-center gap-[10px] lg:gap-[20px] justify-between flex-wrap">

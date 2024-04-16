@@ -1,8 +1,9 @@
 const ApplicationForm = () => {
   return (
     <>
-      <div className=" px-[1em] md:px-[5em]">
-        <div className="bg-white flex justify-start flex-col py-[2em] lg:py-[4em]text-secondary text-secondary w-full">
+        <div className="bg-white flex  justify-center">
+      <div className="w-[85%] lg:w-[85%]">
+        <div className="bg-white flex justify-start flex-col py-[2em] lg:py-[4em] text-secondary w-full">
           <div className="flex flex-col items-start gap-[24px] w-full">
             <h1 className="text-[36px] font-semibold">Residential</h1>
             <div className="w-full h-[1px] bg-secondary"></div>
@@ -263,6 +264,7 @@ const ApplicationForm = () => {
               </button>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

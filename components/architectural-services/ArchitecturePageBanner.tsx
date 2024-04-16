@@ -11,14 +11,13 @@ const ArchitecturePageBanner = () => {
         <div className="text-white ">
           <div className="bg-secondary relative p-4 py-[3em] md:pt-[6em] md:pb-[8em] col-span-2 flex items-center justify-center text-center">
             <div>
-              <button className="bg-secondary px-8 rounded-full text-white ">
-                <p className="bg-opac px-4 py-1 rounded-full text-[14px] font-medium">
+              <button className=" px-8 rounded-full text-white ">
+                <p className="bg-[#13718A]  px-4 py-1 rounded-full text-[14px] font-medium">
                   Top Rated
                 </p>
               </button>
               <p className="text-[30px] md:text-[68px] font-bold pb-2  lg:pb-0 leading-[120%]">
-                Affordable expert {" "}
-                <br className="hidden md:inline-block" />
+                Affordable expert <br className="hidden md:inline-block" />
                 architectural services
               </p>
               <p className="text-[16px] lg:text-[18px] pt-[10px]">
