@@ -1,8 +1,9 @@
 import ListingCard from "./ListingCard";
 
 const AgentPortfolio = () => {
-    return (
-      <div className=" px-[1em] md:px-[5em]">
+  return (
+    <div className="flex justify-center">
+      <div className="w-[85%]">
         <div className="bg-white  flex justify-center py-[2em] lg:py-[4em] ">
           <div className="w-full">
             <div className="flex items-center lg:items-start justify-center  lg:justify-between ">
@@ -11,7 +12,7 @@ const AgentPortfolio = () => {
               </p>
             </div>
 
-            <div className="mt-[4em] w-full flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
+            <div className="mt-[3em] w-full flex items-center gap-[20px] justify-center lg:justify-between flex-wrap">
               <ListingCard />
               <ListingCard />
               <ListingCard />
@@ -25,7 +26,8 @@ const AgentPortfolio = () => {
           </div>
         </div>
       </div>
-    );
-}
- 
+    </div>
+  );
+};
+
 export default AgentPortfolio;

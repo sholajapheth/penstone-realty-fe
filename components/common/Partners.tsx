@@ -2,16 +2,18 @@
 import Image from "next/image";
 
 const Partners = () => {
-    return (
-      <>
-        <div className=" px-[1em] md:px-[5em]">
+  return (
+    <>
+      <div className="flex justify-center">
+        <div className="w-[85%]">
+          {" "}
           <div className="bg-white flex  justify-center py-[4em] ">
             <div className="w-full">
-                <p className="text-[#212226] font-semibold text-[36px] lg:text-[40px] text-center w-full">
-                  Your trusted real estate go-to partner
-                </p>
+              <p className="text-[#212226] font-semibold text-[36px] lg:text-[48px] text-center w-full">
+                Your trusted real estate go-to partner
+              </p>
 
-              <div className="mt-[4em] flex items-center gap-[32px] justify-between flex-wrap ">
+              <div className="mt-[4em] flex items-center gap-[20px] justify-between flex-wrap ">
                 <PartnerCard />
                 <PartnerCard />
                 <PartnerCard />
@@ -19,10 +21,11 @@ const Partners = () => {
             </div>
           </div>
         </div>
-      </>
-    );
-}
- 
+      </div>
+    </>
+  );
+};
+
 export default Partners;
 
 export const PartnerCard = () => {

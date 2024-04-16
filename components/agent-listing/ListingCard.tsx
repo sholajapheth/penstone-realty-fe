@@ -9,11 +9,11 @@ const ListingCard = () => {
 
   return (
     <div
-      className="items-center justify-center w-[324px] flex cursor-pointer"
+      className="items-center mt-[1em] justify-center w-[364px] flex cursor-pointer"
       onClick={() => router.push("/property_details")}
     >
       {" "}
-      <div className="rounded-2xl relative overflow-hidden w-[324px] bg-white shadow-md  hover:shadow-secondary group ease-linear duration-300 transition-all">
+      <div className="rounded-2xl relative overflow-hidden w-full bg-white shadow-md  hover:shadow-secondary group ease-linear duration-300 transition-all">
         <div className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[312px]"></div>
 
         <div className="backdrop-blur bg-white/20 rounded-2xl absolute top-4 left-4 flex items-center p-2 px-3 border-white gap-3">

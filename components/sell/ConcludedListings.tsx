@@ -9,8 +9,9 @@ const ConcludedListings = () => {
           const router = useRouter();
 
   return (
-    <div className=" px-[1em] md:px-[5em]">
-      <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
+      <div className="flex justify-center">
+        <div className="w-[85%]">
+                <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
         {" "}
         <div className="w-full">
           <div className="flex flex-col lg:flex-row gap-[20px] items-center justify-between ">
@@ -33,7 +34,7 @@ const ConcludedListings = () => {
             </div>
           </div>
 
-          <div className="mt-[4em] flex items-center gap-[32px] justify-center lg:justify-between flex-wrap ">
+          <div className="mt-[4em] flex items-center gap-[20px] justify-center lg:justify-between flex-wrap ">
             <ListingCard />
             <ListingCard />
             <ListingCard />
@@ -46,6 +47,7 @@ const ConcludedListings = () => {
               View active listings
             </button>
           </div>
+        </div>
         </div>
       </div>
     </div>
