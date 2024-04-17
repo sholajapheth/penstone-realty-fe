@@ -33,7 +33,7 @@ export default function Example() {
   return (
     <header className="bg-white">
       <nav
-        className="mx-auto lg:px-[100px] flex items-center justify-between p-6 lg:py-8"
+        className="mx-auto flex items-center justify-between p-6 lg:py-8 md:w-[85%] w-[90%]"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">

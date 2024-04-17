@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import React from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -6,7 +6,7 @@ import ListingCard from "./ListingCard";
 import { useRouter } from "next/navigation";
 
 const HotListings = () => {
-      const router = useRouter();
+  const router = useRouter();
 
   return (
     <div className="bg-white flex  justify-center py-[1em] lg:py-[8em] ">
@@ -36,7 +36,7 @@ const HotListings = () => {
           </div>
         </div>
 
-        <div className="mt-[4em] flex-wrap flex items-center gap-10 justify-center lg:justify-between ">
+        <div className="mt-[4em] flex-wrap flex items-center gap-10 justify-center ">
           <ListingCard />
           <ListingCard />
           <ListingCard />
