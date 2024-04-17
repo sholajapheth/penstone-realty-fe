@@ -16,7 +16,7 @@ const Form = () => {
   return (
     <>
       <div className="flex justify-between flex-col lg:flex-row w-full items-start">
-        <div className="w-full lg:w-1/2 flex flex-col pt-[40px] lg:pt-[85px] px-[20px] lg:px-[100px] text-secondary pb-[60px] lg:pb-[30px]">
+        <div className="w-full lg:h-screen lg:overflow-y-auto lg:w-1/2 flex flex-col pt-[40px] lg:pt-[85px] px-[20px] lg:px-[100px] text-secondary pb-[60px] lg:pb-[30px]">
           <h2 className="text-[30px] lg:text-[54px] font-semibold pb-[24px] lg:leading-[63px]">
             {" "}
             Your home for professional help
@@ -180,18 +180,20 @@ const Form = () => {
           </form>
         </div>
 
-        <div className="w-full lg:w-1/2 bg-primary text-white pb-[50px] lg:pb-[120px] h-full pt-[100px] lg:pt-[235px]">
-          <Image
-            width={400}
-            height={600}
-            className="w-full h-full"
-            src="/img/house.png"
-            alt=""
-          />
-          <div className="pt-[50px] lg:pt-[150px] px-[20px] lg:px-[64px] flex flex-col gap-[32px]">
+        <div className="w-full lg:h-screen lg:overflow-y-hidden lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
+          <div className="flex justify-center items-center">
+            <Image
+              width={550}
+              height={600}
+              // className="w-full h-full"
+              src="/img/house.png"
+              alt=""
+            />
+          </div>
+          <div className="pt-[50px] lg:pt-[20px] px-[20px] lg:px-[64px] flex flex-col gap-[32px]">
             {" "}
             <div>
-              <p className="font-bold lg:text-left text-center text-[35px] lg:text-[60px] text-white pb-20px">
+              <p className="font-bold lg:text-left text-center text-[35px] lg:text-[60px] text-white pb-20px leading-[40px] lg:leading-[72px]">
                 {" "}
                 Bring your property goals to life Now!{" "}
               </p>

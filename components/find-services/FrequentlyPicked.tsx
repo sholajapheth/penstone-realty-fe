@@ -32,8 +32,8 @@ const FrequentlyPickedCard = ({
       <Image
         src={imgSrc}
         alt={title}
-        height={100}
-        width={100}
+        height={200}
+        width={200}
         className="w-[80%] aspect-auto group-hover:scale-110 pri-anim"
       />
 

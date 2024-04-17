@@ -16,8 +16,8 @@ const RequestForm = () => {
   };
   return (
     <>
-      <div className="flex justify-between flex-col lg:flex-row w-full items-start">
-        <div className="w-full lg:w-1/2 flex flex-col pt-[40px] lg:pt-[85px] px-[20px] lg:px-[100px] text-secondary pb-[60px] lg:pb-0">
+      <div className="flex justify-between flex-col lg:flex-row w-full items-start ">
+        <div className="w-full lg:h-screen lg:overflow-y-auto lg:w-1/2 flex flex-col pt-[40px] lg:pt-[85px] px-[20px] lg:px-[100px] text-secondary pb-[60px] lg:pb-[30px]">
           <h2 className="text-[30px] lg:text-[54px] font-semibold pb-[24px] lg:leading-[63px]">
             Start a Request
           </h2>
@@ -160,17 +160,19 @@ const RequestForm = () => {
           </form>
         </div>
 
-        <div className="w-full lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
-          <Image
-            width={400}
-            height={600}
-            className="w-full h-full"
-            src="/img/telephone.png"
-            alt=""
-          />
-          <div className="pt-[50px] lg:pt-[150px] px-[20px] lg:px-[64px] flex flex-col gap-[32px]">
+        <div className="w-full lg:h-screen lg:overflow-y-hidden lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
+          <div className="flex justify-center items-center">
+            <Image
+              width={300}
+              height={600}
+              // className="w-full h-full"
+              src="/img/telephone.png"
+              alt=""
+            />
+          </div>
+          <div className="pt-[50px] lg:pt-[80px] px-[20px] lg:px-[64px] flex flex-col gap-[32px]">
             <div>
-              <p className="font-bold lg:text-left text-center text-[35px] lg:text-[60px] text-white pb-20px">
+              <p className="font-bold lg:text-left text-center text-[35px] lg:text-[60px] text-white pb-20px leading-[40px] lg:leading-[72px]">
                 Bring your property goals to life Now!
               </p>
               <p className="font-medium lg:text-left text-center text-[18px]">

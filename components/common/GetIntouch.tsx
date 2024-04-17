@@ -3,14 +3,15 @@ import React from "react";
 
 const GetIntouch = () => {
   return (
-    <div className=" p-[1em] md:p-[5em] flex items-center justify-center pb-0 md:pb-[25em]">
+    <div className=" p-[1em] md:p-[5em] flex items-center justify-center pb-0 md:pb-[30em] lg:pb-[20em]">
       <div className="w-[95%] lg:w-[80%] relative flex items-center justify-center  ">
         <Image
           src={"/img/getIntouch.png"}
           alt="getintouch"
-          height={200}
-          width={200}
-          className="w-[80%] aspect-auto hidden md:inline-block"
+          height={400}
+          width={400}
+          quality={100}
+          className="w-[80%] hidden md:inline-block"
         />
 
         <div className=" md:absolute top-[40%] flex flex-col items-center justify-center w-full ">
