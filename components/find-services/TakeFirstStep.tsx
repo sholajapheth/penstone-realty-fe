@@ -10,7 +10,7 @@ const TakeFirstStep = () => {
 
   return (
     <div className="bg-[#F5FCFF] flex  justify-center">
-      <div className="w-[85%]">
+      <div className="w-[90%] lg:w-[85%]">
         <div className="pt-[6em] pb-[6em]">
           <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
             Take the first step

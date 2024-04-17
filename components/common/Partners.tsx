@@ -5,7 +5,7 @@ const Partners = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="w-[85%]">
+        <div className="w-[90%] lg:w-[85%]">
           {" "}
           <div className="bg-white flex  justify-center py-[4em] ">
             <div className="w-full">
@@ -13,7 +13,7 @@ const Partners = () => {
                 Your trusted real estate go-to partner
               </p>
 
-              <div className="mt-[4em] flex items-center gap-[20px] justify-between flex-wrap ">
+              <div className="mt-[4em] flex items-center gap-[32px] justify-center flex-wrap ">
                 <PartnerCard />
                 <PartnerCard />
                 <PartnerCard />

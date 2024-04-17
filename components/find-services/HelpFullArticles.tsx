@@ -5,7 +5,7 @@ import { BlogCard } from "../blog";
 const HelpFullArticles = () => {
   return (
     <div className="bg-white flex  justify-center mb-10">
-      <div className="w-[85%]">
+      <div className="w-[90%] lg:w-[85%]">
         <div className="flex items-center justify-between mb-8 ">
           <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
             Helpful Articles
@@ -19,7 +19,7 @@ const HelpFullArticles = () => {
             </button>
           </div>
         </div>
-        <div className="flex items-center gap-[32px] justify-center md:justify-between  flex-wrap">
+        <div className="flex items-center gap-10 justify-center flex-wrap">
           {[1, 2, 3].map((item) => (
             <BlogCard key={item} />
           ))}

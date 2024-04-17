@@ -19,6 +19,7 @@ const config: Config = {
         opac: "rgba(255, 255, 255, 0.08)",
         transparent: "rgba(255, 255, 255, 0.15)",
         shad: "rgba(128, 159, 171, 0.2)",
+        aboutBg: "rgba(22, 51, 0, 0.12)",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

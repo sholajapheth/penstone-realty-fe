@@ -10,7 +10,7 @@ const HotListings = () => {
 
   return (
     <div className="bg-white flex  justify-center py-[1em] lg:py-[8em] ">
-      <div className="w-[85%]">
+      <div className="w-[90%] lg:w-[85%]">
         <div className="flex gap-3 flex-col lg:flex-row items-start justify-center lg:justify-between">
           <div className="flex justify-center w-full lg:justify-start flex-col lg:flex-row items-start gap-[25px]">
             <p className="text-[#212226] text-center lg:text-left font-semibold text-[32px] w-full lg:w-fit lg:text-[40px] ">

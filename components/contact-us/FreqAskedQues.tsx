@@ -57,7 +57,7 @@ const FreqAskedQues = () => {
   return (
         <div className="bg-white flex pt-[3em] justify-center">
 
-    <div className="w-[85%]">
+    <div className="w-[90%] lg:w-[85%]">
       <div className="flex items-center justify-between">
         <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
           Frequently Asked Questions

@@ -4,7 +4,7 @@ const ABoutMission = () => {
     return (
       <>
         <div className="flex justify-center bg-[#FAFAFA]  -mb-[30px]">
-          <div className="w-[85%]">
+          <div className="w-[90%] lg:w-[85%]">
             <div className="py-[4em] lg:pt-[8em] lg:pb-[8em]">
               <div className="pb-[70px]">
                 <p className="text-[18px] text-[#737373] pb-[16px]">

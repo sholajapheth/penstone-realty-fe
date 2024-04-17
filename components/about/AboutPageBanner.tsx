@@ -4,7 +4,7 @@ const AboutPageBanner = () => {
   return (
     <>
       <div className="text-secondary ">
-        <div className="bg-secondary relative col-span-2 flex items-center justify-center text-center">
+        <div className="bg-[#0B293F] relative col-span-2 flex items-center justify-center text-center">
           <div className="z-0 bg-[url('/img/about-bg.png')] absolute w-full h-full bottom-0 inset-0  bg-no-repeat bg-cover bg-right" />
 
           <div className="z-40 flex justify-center flex-col items-center">
@@ -24,8 +24,7 @@ const AboutPageBanner = () => {
                 More than just a real estate company, we&apos;re committed to
                 creating lasting value, <br className="hidden lg:block" />{" "}
                 improving living experiences, and reshaping the
-                <br className="lg:hidden" /> traditional real estate
-                scene.
+                <br className="lg:hidden" /> traditional real estate scene.
               </p>
               <div className="flex  px-[1em] lg:px-[5em] justify-center items-center pt-[30px] lg:pt-[60px] relative">
                 <Image

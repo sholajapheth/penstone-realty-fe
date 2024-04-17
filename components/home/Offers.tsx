@@ -9,7 +9,7 @@ const Offers = () => {
   return (
     <div className=" bg-secondary  text-white text-center py-16">
       <div className="w-full flex  items-center justify-center">
-        <div className="w-[85%] ">
+        <div className="w-[90%] lg:w-[85%]">
           <p className="text-[30px] lg:text-[40px] leading-[140%] font-semibold ">
             Simplifying real estate <br className='hidden lg:block' /> journey for{" "}
             <span className="text-[#0D90C4]">Developers</span>, <br className='hidden lg:block' />

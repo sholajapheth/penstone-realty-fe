@@ -70,7 +70,7 @@ const freqPicked = [
 const FrequentlyPicked = () => {
   return (
     <div className="bg-white flex  justify-center mb-8 pt-[4em] lg:pt-[6em]">
-      <div className="w-[85%] lg:w-[85%]">
+      <div className="w-[90%] lg:w-[85%]">
         <div className="flex items-center justify-between mb-8">
           <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
             Frequently picked
