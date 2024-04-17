@@ -13,7 +13,7 @@ const Partners = () => {
                 Your trusted real estate go-to partner
               </p>
 
-              <div className="mt-[4em] flex items-center gap-[32px] justify-center flex-wrap ">
+              <div className="mt-[4em] flex items-center gap-10 justify-center flex-wrap ">
                 <PartnerCard />
                 <PartnerCard />
                 <PartnerCard />

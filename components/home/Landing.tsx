@@ -123,7 +123,7 @@ const Landing = () => {
               onClick={() => setActiveNav("1")}
               className={`${
                 activeNav === "1"
-                  ? "border-b-[2px] border-primary font-semibold text-[16px] text-secondary"
+                  ? "border-b-[3px] border-primary font-semibold text-[16px] text-secondary"
                   : "text-[#414141] font-normal"
               } py-3 `}
             >
@@ -133,9 +133,9 @@ const Landing = () => {
               onClick={() => setActiveNav("2")}
               className={`${
                 activeNav === "2"
-                  ? "border-b-[2px] border-primary font-semibold text-[16px] text-secondary"
+                  ? "border-b-[3px] border-primary font-semibold text-[16px] text-secondary"
                   : "text-[#414141] font-normal"
-              } `}
+              } py-3 `}
             >
               Rent a Home
             </button>
@@ -146,9 +146,9 @@ const Landing = () => {
               }}
               className={`${
                 activeNav === "3"
-                  ? "border-b-[2px] border-primary font-semibold text-[16px] text-secondary"
+                  ? "border-b-[3px] border-primary font-semibold text-[16px] text-secondary"
                   : "text-[#414141] font-normal"
-              }`}
+              } py-3 `}
             >
               Sell Property
             </button>

@@ -7,13 +7,17 @@ const Offers = () => {
       const router = useRouter();
 
   return (
-    <div className=" bg-secondary  text-white text-center py-16">
+    <div className=" bg-secondary  text-white text-center py-12 lg:py-16">
       <div className="w-full flex  items-center justify-center">
         <div className="w-[90%] lg:w-[85%]">
           <p className="text-[30px] lg:text-[40px] leading-[140%] font-semibold ">
-            Simplifying real estate <br className='hidden lg:block' /> journey for{" "}
-            <span className="text-[#0D90C4]">Developers</span>, <br className='hidden lg:block' />
+            Simplifying real <br className="lg:hidden" /> estate{" "}
+            <br className="hidden lg:block" /> journey for{" "}
+            <br className="lg:hidden" />
+            <span className="text-[#0D90C4]">Developers</span>,{" "}
+            <br className="" />
             <span className="text-[#0D90C4]">Investors</span> and{" "}
+            <br className="lg:hidden" />
             <span className="text-[#0D90C4]">Occupants</span>.
           </p>
 

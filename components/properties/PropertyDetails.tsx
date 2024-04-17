@@ -92,7 +92,7 @@ const PropertyDetails = () => {
 
   return (
     <div className="bg-white flex  justify-center">
-      <div className="w-[85%]">
+      <div className="w-[90%] lg:w-[85%]">
         <div className="py-[2em]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-8">
             <div className="col-span-2">
@@ -444,7 +444,7 @@ const PropertyDetails = () => {
               </button>
             </div>
 
-            <div className="flex items-center justify-between flex-wrap flex-col lg:flex-row gap-[32px] ">
+            <div className="flex items-center justify-center flex-wrap flex-col lg:flex-row gap-10">
               {[1, 2, 3].map((item) => (
                 <ListingCard key={item} />
               ))}

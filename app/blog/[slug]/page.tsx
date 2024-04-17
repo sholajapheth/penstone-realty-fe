@@ -19,8 +19,8 @@ const Page = () => {
 
   return (
     <div>
-      <div className="bg-[#F5FCFF80] px-[1em] lg:px-[14em] py-[2em] lg:py-[6em]">
-        <p className="text-secondary lg:leading-[120%] text-[30px] lg:text-[70px] font-semibold w-full lg:w-[70%]">
+      <div className="bg-[#F5FCFF80] px-[1em] lg:px-[18em] py-[2em] lg:py-[6em]">
+        <p className="text-secondary lg:leading-[120%] text-[30px] lg:text-[70px] font-semibold w-full lg:w-[90%]">
           How to attract buyers and close deals
         </p>
       </div>

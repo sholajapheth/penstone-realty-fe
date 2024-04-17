@@ -8,7 +8,7 @@ import { PaginationNav } from "../common";
 const Search = () => {
   return (
     <div className="text-secondary  flex justify-center">
-      <div className=" w-[85%] md:w-[85%]">
+      <div className=" w-[90%] md:w-[85%]">
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between mt-[1em] md:mt-[4em] w-full ">
           <p className="font-semibold text-[20px] md:text-[40px] hidden lg:block">
             Explore our properties in Nigeria
@@ -17,7 +17,7 @@ const Search = () => {
             Search Properties
           </p>
 
-          <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-4">
+          <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-4 w-full lg:w-[22%]">
             <select
               className="focus:outline-none flex-1 p-4"
             >
@@ -29,7 +29,7 @@ const Search = () => {
             </div>
           </div>
 
-          <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-2 lg:hidden">
+          <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-2 lg:hidden w-full">
             <input
               placeholder="Search location"
               type="search"
