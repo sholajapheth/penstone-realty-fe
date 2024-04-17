@@ -24,12 +24,13 @@ const Form = () => {
           <p className="text-[18px] pb-[30px] lg:pb-[68px]">
             Selling your property shouldn&apos;t be a hassle with a partner you
             can trust.
+            <br />
             <span className="font-bold"> Urgent? Call +2348023237589</span>
           </p>
 
           <form className="text-[16px] flex flex-col gap-[24px]">
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Intention</label>
+              <label className="text-black font-semibold">Intention</label>
               <select
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
@@ -40,7 +41,9 @@ const Form = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Type of property</label>
+              <label className="text-black font-semibold">
+                Type of property
+              </label>
               <select
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
@@ -51,7 +54,9 @@ const Form = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Reason for selling / renting</label>
+              <label className="text-black font-semibold">
+                Reason for selling / renting
+              </label>
               <input
                 type="text"
                 required
@@ -61,7 +66,9 @@ const Form = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Property address</label>
+              <label className="text-black font-semibold">
+                Property address
+              </label>
               <input
                 type="text"
                 required
@@ -71,7 +78,7 @@ const Form = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">City</label>
+              <label className="text-black font-semibold">City</label>
               <input
                 type="text"
                 required
@@ -81,7 +88,9 @@ const Form = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Upload property picture</label>
+              <label className="text-black font-semibold">
+                Upload property picture
+              </label>
               <input
                 type="file"
                 required
@@ -90,7 +99,7 @@ const Form = () => {
                 onChange={handleValidChange}
               />
               <div
-                className="border-[2px] border-dashed  rounded-[10px] px-8 w-full flex flex-col justify-center items-center cursor-pointer py-[26px]"
+                className="border-[2px] border-dashed border-secondary rounded-[10px] px-8 w-full flex flex-col justify-center items-center cursor-pointer py-[26px]"
                 onClick={() => {
                   if (validInput.current) {
                     // @ts-ignore
@@ -111,13 +120,13 @@ const Form = () => {
                 }}
               >
                 <Image width={15} height={15} src="/img/clip.png" alt="" />{" "}
-                <p>Select files</p>
+                <p className="text-[#000929]">Select files</p>
               </div>
             </div>
 
             <div className="flex justify-between items-center gap-[32px]">
               <div className="flex flex-col items-start gap-2">
-                <label className="font-bold">First name</label>
+                <label className="text-black font-semibold">First name</label>
                 <input
                   type="text"
                   required
@@ -127,7 +136,7 @@ const Form = () => {
               </div>
 
               <div className="flex flex-col items-start gap-2">
-                <label className="font-bold">Last name</label>
+                <label className="text-black font-semibold">Last name</label>
                 <input
                   type="text"
                   required
@@ -138,7 +147,7 @@ const Form = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Email</label>
+              <label className="text-black font-semibold">Email</label>
               <input
                 type="email"
                 required
@@ -148,7 +157,7 @@ const Form = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Phone number</label>
+              <label className="text-black font-semibold">Phone number</label>
               <input
                 type="tel"
                 required

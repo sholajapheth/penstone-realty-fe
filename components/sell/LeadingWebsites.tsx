@@ -8,8 +8,9 @@ const LeadingWebsites = () => {
 
   return (
     <>
-      <div className=" px-[1em] md:px-[5em]">
-        <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
+      <div className="flex justify-center">
+        <div className="w-[85%]">
+                  <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
           <div className="w-full">
             <div className="flex justify-center items-center  ">
               <p className="text-[#212226] font-semibold text-[32px] text-center">
@@ -17,7 +18,7 @@ const LeadingWebsites = () => {
               </p>
             </div>
 
-            <div className="mt-[2em] lg:mt-[4em] flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
+            <div className="mt-[2em] lg:mt-[4em] flex items-center gap-[20px] justify-center lg:justify-between flex-wrap px-[4em]">
               <Image
                 height={100}
                 width={250}
@@ -55,6 +56,7 @@ const LeadingWebsites = () => {
               >
                 Click to get started
               </button>
+            </div>
             </div>
           </div>
         </div>

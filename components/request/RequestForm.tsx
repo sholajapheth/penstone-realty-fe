@@ -23,12 +23,13 @@ const RequestForm = () => {
           </h2>
           <p className="text-[18px] pb-[30px] lg:pb-[68px]">
             Describe your request using the self-served form below.
+            <br />
             <span className="font-bold"> Urgent? Call +2348023237589</span>
           </p>
 
           <form className="text-[16px] flex flex-col gap-[24px]">
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">
+              <label className="text-black font-semibold">
                 What can we help you with today?
               </label>
               <select
@@ -43,7 +44,7 @@ const RequestForm = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">I am a...?</label>
+              <label className="text-black font-semibold">I am a...?</label>
               <select
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
@@ -57,7 +58,7 @@ const RequestForm = () => {
 
             <div className="flex justify-between items-center gap-[32px]">
               <div className="flex flex-col items-start gap-2">
-                <label className="font-bold">First Name</label>
+                <label className="text-black font-semibold">First Name</label>
                 <input
                   type="text"
                   required
@@ -67,7 +68,7 @@ const RequestForm = () => {
               </div>
 
               <div className="flex flex-col items-start gap-2">
-                <label className="font-bold">Last name</label>
+                <label className="text-black font-semibold">Last name</label>
                 <input
                   type="text"
                   required
@@ -78,7 +79,7 @@ const RequestForm = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Email</label>
+              <label className="text-black font-semibold">Email</label>
               <input
                 type="email"
                 required
@@ -88,7 +89,7 @@ const RequestForm = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Phone number</label>
+              <label className="text-black font-semibold">Phone number</label>
               <input
                 type="tel"
                 required
@@ -98,7 +99,9 @@ const RequestForm = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">Describe Request</label>
+              <label className="text-black font-semibold">
+                Describe Request
+              </label>
               <textarea
                 required
                 className="border-[2px] rounded-[10px] h-[90px] lg:h-[180px] p-[16px] w-full"
@@ -107,7 +110,7 @@ const RequestForm = () => {
             </div>
 
             <div className="flex flex-col items-start gap-2">
-              <label className="font-bold">
+              <label className="text-black font-semibold">
                 What can we help you with today?
               </label>
               <input
@@ -118,7 +121,7 @@ const RequestForm = () => {
                 onChange={handleValidChange}
               />
               <div
-                className="border-[2px] border-dashed  rounded-[10px] px-8 w-full flex flex-col justify-center items-center cursor-pointer py-[26px]"
+                className="border-[2px] border-dashed border-secondary rounded-[10px] px-8 w-full flex flex-col justify-center items-center cursor-pointer py-[26px]"
                 onClick={() => {
                   if (validInput.current) {
                     // @ts-ignore
@@ -139,7 +142,7 @@ const RequestForm = () => {
                 }}
               >
                 <Image width={15} height={15} src="/img/clip.png" alt="" />
-                <p>Select files</p>
+                <p className="text-[#000929]">Select files</p>
               </div>
             </div>
 
@@ -158,7 +161,13 @@ const RequestForm = () => {
         </div>
 
         <div className="w-full lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
-          <Image width={400} height={600} className="w-full h-full" src="/img/telephone.png" alt="" />
+          <Image
+            width={400}
+            height={600}
+            className="w-full h-full"
+            src="/img/telephone.png"
+            alt=""
+          />
           <div className="pt-[50px] lg:pt-[150px] px-[20px] lg:px-[64px] flex flex-col gap-[32px]">
             <div>
               <p className="font-bold lg:text-left text-center text-[35px] lg:text-[60px] text-white pb-20px">
