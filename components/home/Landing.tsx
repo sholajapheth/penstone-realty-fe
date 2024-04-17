@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const Landing = () => {
   const [activeNav, setActiveNav] = useState("1");
-    const router = useRouter();
+  const router = useRouter();
 
   return (
     <div className="bg-[url('/img/home-landing-bg.png')] bg-no-repeat bg-cover lg:bg-position-y-[-80px] bg-center lg:bg-position-x-[50px]">
@@ -19,7 +19,7 @@ const Landing = () => {
           className="text-white text-center cursor-pointer"
           onClick={() => router.push("/about")}
         >
-          <p className="font-semibold text-[40px] lg:leading-[72px] lg:text-[70px]">
+          <p className="font-semibold text-[40px] leading-[3rem] lg:leading-[72px] lg:text-[70px]">
             Turn your <br className="lg:hidden" /> property{" "}
             <br className="hidden lg:block" /> goals{" "}
             <span className="text-[#FFF9D3]">
@@ -28,7 +28,7 @@ const Landing = () => {
               into reality
             </span>
           </p>
-          <p className=" text-[18px] mt-4 leading-[26px] lg:leading-[1.8em]">
+          <p className=" text-[20px] mt-5 leading-[29px] lg:leading-[1.8em]">
             Pentstone provides{" "}
             <span className="font-bold">
               end-to-end
