@@ -36,7 +36,7 @@ const Showcase = () => {
     >
       <div className="grid grid-cols-1 lg:grid-cols-3 text-secondary w-[80%] lg:w-full gap-8">
         <div className="bg-[#ffffff] relative rounded-[3em] p-8 lg:col-span-2 z-10">
-          <div className="bg-[url('/img/showcase-card-bg.png')]  lg:bg-position-r-[50px] right-0 absolute w-full inset-0 z-40" />
+          <div className="bg-[url('/img/showcase-card-bg.png')] bg-no-repeat  lg:bg-position-r-[50px] right-0 absolute w-full inset-0 z-40" />
 
           <div className="text-secondary z-40 relative">
             <p className=" ">OUR OFFERINGS</p>

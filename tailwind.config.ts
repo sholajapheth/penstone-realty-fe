@@ -20,6 +20,7 @@ const config: Config = {
         transparent: "rgba(255, 255, 255, 0.15)",
         shad: "rgba(128, 159, 171, 0.2)",
         aboutBg: "rgba(22, 51, 0, 0.12)",
+        offerLine: "rgba(255, 255, 255, 0.3)",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

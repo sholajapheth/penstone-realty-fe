@@ -22,9 +22,9 @@ const ABoutMission = () => {
                   Nigerian market.
                 </p>
               </div>
-              <div className="flex flex-col lg:flex-row lg:justify-between items-end gap-[40px] h-full">
-                <div className="lg:w-[50%] flex flex-col justify-between h-full">
-                  <div className="rounded-[14px] p-[24px] flex flex-col gap-[24px]">
+              <div className="grid grid-cols-1 md:grid-cols-6 pt-[1em] md:pt-[4em] lg:gap-[80px]">
+                <div className="col-span-3 items-start flex flex-col h-full ">
+                  <div className="mt-3 rounded-[14px] flex flex-col p-[32px] gap-[24px]">
                     <div>
                       <Image
                         src="/img/icons/svgg.svg"
@@ -34,17 +34,17 @@ const ABoutMission = () => {
                       />
                     </div>
                     <div>
-                      <h2 className="text-[24px] font-bold text-[#0A0A0A] pb-[12px]">
+                      <h2 className="text-[24px] font-bold text-[#0A0A0A] pb-[16px]">
                         Our Promise
                       </h2>
-                      <p className="text-[18px] text-[#737373] pb-[40px]">
+                      <p className="text-[18px] text-[#737373] pb-[20px]">
                         To help you navigate the complexities of the local real
                         estate market, enabling you focus on key aspects of
                         their businesses and lives.
                       </p>
                     </div>
                   </div>
-                  <div className="bg-white border-[1px] border-[#D9E2E6] rounded-[14px] p-[24px] flex flex-col gap-[24px]">
+                  <div className="bg-white border-[1px] border-[#D9E2E6] rounded-[14px] p-[32px] flex flex-col gap-[24px]">
                     <div>
                       <Image
                         src="/img/icons/svgg.svg"
@@ -54,7 +54,7 @@ const ABoutMission = () => {
                       />
                     </div>
                     <div>
-                      <h2 className="text-[24px] font-bold text-[#0A0A0A] pb-[12px]">
+                      <h2 className="text-[24px] font-bold text-[#0A0A0A] pb-[16px]">
                         Core Values
                       </h2>
                       <p className="text-[18px] text-[#737373]">
@@ -69,12 +69,12 @@ const ABoutMission = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-full lg:w-[50%]">
+                <div className="w-full h-full col-span-3">
                   <Image
                     src="/img/about1.png"
                     alt="agent-img"
-                    width={400}
-                    height={400}
+                    width={200}
+                    height={200}
                     className="group-hover:scale-110 pri-anim w-full h-full"
                   />
                 </div>

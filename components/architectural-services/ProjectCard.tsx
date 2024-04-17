@@ -3,7 +3,7 @@ import Image from "next/image";
 const ProjectCard = () => {
   return (
     <div>
-      <div className="w-[100%] lg:w-[370px] border-[1px] mt-[2em] shadow-shad shadow-sm border-[#E5E5E5] rounded-[14px] p-[20px] flex flex-col gap-[18px]">
+      <div className="w-[100%] lg:w-[378px] border-[1px] shadow-shad shadow-sm border-[#E5E5E5] rounded-[14px] p-[24px] flex flex-col gap-[18px]">
         <div>
           <Image src="/img/icons/svgg.svg" width={40} height={40} alt="" />
         </div>

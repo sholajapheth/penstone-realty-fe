@@ -22,7 +22,7 @@ const Offers = () => {
           </p>
 
           <div className="flex flex-col lg:flex-row items-center gap-6 mt-10 ">
-            <div className="rounded-md  bg-white/50 p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
+            <div className="rounded-md  bg-white/50 p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/lines-outline-bag.png"}
                 height={50}
@@ -39,7 +39,7 @@ const Offers = () => {
                 </p>
               </div>
             </div>
-            <div className="rounded-md  bg-white p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
+            <div className="rounded-md  bg-white p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/team-light.png"}
                 height={50}
@@ -56,7 +56,7 @@ const Offers = () => {
                 </p>
               </div>
             </div>
-            <div className="rounded-md  bg-[#0D90C4] p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
+            <div className="rounded-md  bg-[#0D90C4] p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/lines-outline-bag.png"}
                 height={50}
@@ -77,7 +77,7 @@ const Offers = () => {
           </div>
         </div>
       </div>
-      <hr className="bg-white  my-14 w-full " />
+      <div className="bg-offerLine my-14 w-full h-[1px]"></div>
       <div className="flex items-center justify-center mt-4">
         <div className="flex  flex-col lg:flex-row items-center gap-10">
           <div className="flex flex-col gap-3 items-center">
