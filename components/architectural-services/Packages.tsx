@@ -5,7 +5,7 @@ const Packages = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="w-[85%]">
+        <div className="w-[90%] lg:w-[85%]">
           <div className="bg-white flex justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
             <div className="w-full">
               <div className="flex items-center lg:items-start justify-center lg:justify-between flex-col lg:flex-row gap-3 ">
@@ -24,7 +24,7 @@ const Packages = () => {
                 </div>
               </div>
 
-              <div className="mt-[4em] flex items-center gap-[20px] justify-center lg:justify-between flex-wrap ">
+              <div className="mt-[4em] flex items-center gap-10 justify-center flex-wrap ">
                 <PackageCard />
                 <PackageCard />
                 <PackageCard />

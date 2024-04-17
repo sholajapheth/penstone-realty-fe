@@ -106,7 +106,7 @@ const agents = [
 const OurAgents = () => {
   return (
     <div className="bg-white flex  justify-center">
-      <div className="w-[85%] py-[1em] md:py-[5em]">
+      <div className="w-[90%] lg:w-[85%] py-[1em] md:py-[5em]">
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
             Our Agents
@@ -119,7 +119,7 @@ const OurAgents = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap gap-8 mt-8 justify-center items-center lg:justify-between">
+        <div className="flex flex-wrap mt-8 justify-center items-center gap-10">
           {agents.map((item, i) => (
             // eslint-disable-next-line react/jsx-key
             <AgentCard

@@ -32,150 +32,148 @@ export default function Example() {
 
   return (
     <header className="bg-white">
-      <nav
-        className="mx-auto flex items-center justify-between p-6 lg:py-8 md:w-[85%] w-[90%]"
-        aria-label="Global"
-      >
-        <div className="flex lg:flex-1">
-          <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Pentstone</span>
-            <Image
-              src={"/logo.png"}
-              alt="penstone-logo"
-              height={90}
-              width={150}
-            />
-          </Link>
-        </div>
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <FaGripLines className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              For Developers
-              <IoChevronDownOutline
-                className="h-5 w-5 flex-none text-gray-400"
-                aria-hidden="true"
+      <div className="flex justify-center">
+        <nav
+          className="flex items-center justify-between py-6 lg:py-8 md:w-[85%] w-[90%]"
+          aria-label="Global"
+        >
+          <div className="flex lg:flex-1">
+            <Link href="/" className="-m-1.5 p-1.5">
+              <span className="sr-only">Pentstone</span>
+              <Image
+                src={"/logo.png"}
+                alt="penstone-logo"
+                height={90}
+                width={150}
               />
-            </Popover.Button>
-
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
+            </Link>
+          </div>
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(true)}
             >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
-                  {products.map((item) => (
-                    <div
-                      key={item.name}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                    >
-                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <TbVaccine />
+              <span className="sr-only">Open main menu</span>
+              <FaGripLines className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <Popover.Group className="hidden lg:flex lg:gap-x-12">
+            <Popover className="relative">
+              <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                For Developers
+                <IoChevronDownOutline
+                  className="h-5 w-5 flex-none text-gray-400"
+                  aria-hidden="true"
+                />
+              </Popover.Button>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="p-4">
+                    {products.map((item) => (
+                      <div
+                        key={item.name}
+                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                      >
+                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <TbVaccine />
+                        </div>
+                        <div className="flex-auto">
+                          <Link
+                            href={item.href}
+                            className="block font-semibold text-gray-900"
+                          >
+                            {item.name}
+                            <span className="absolute inset-0" />
+                          </Link>
+                          <p className="mt-1 text-gray-600">{item.description}</p>
+                        </div>
                       </div>
-                      <div className="flex-auto">
-                        <Link
-                          href={item.href}
-                          className="block font-semibold text-gray-900"
-                        >
-                          {item.name}
-                          <span className="absolute inset-0" />
-                        </Link>
-                        <p className="mt-1 text-gray-600">{item.description}</p>
+                    ))}
+                  </div>
+                </Popover.Panel>
+              </Transition>
+            </Popover>
+            <Popover className="relative">
+              <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                For Investors
+                <IoChevronDownOutline
+                  className="h-5 w-5 flex-none text-gray-400"
+                  aria-hidden="true"
+                />
+              </Popover.Button>
+              <Transition
+                as={Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0 translate-y-1"
+                enterTo="opacity-100 translate-y-0"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100 translate-y-0"
+                leaveTo="opacity-0 translate-y-1"
+              >
+                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="p-4">
+                    {products.map((item) => (
+                      <div
+                        key={item.name}
+                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                      >
+                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <TbVaccine />
+                        </div>
+                        <div className="flex-auto">
+                          <Link
+                            href={item.href}
+                            className="block font-semibold text-gray-900"
+                          >
+                            {item.name}
+                            <span className="absolute inset-0" />
+                          </Link>
+                          <p className="mt-1 text-gray-600">{item.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </Popover>
-
-          <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              For Investors
-              <IoChevronDownOutline
-                className="h-5 w-5 flex-none text-gray-400"
-                aria-hidden="true"
-              />
-            </Popover.Button>
-
-            <Transition
-              as={Fragment}
-              enter="transition ease-out duration-200"
-              enterFrom="opacity-0 translate-y-1"
-              enterTo="opacity-100 translate-y-0"
-              leave="transition ease-in duration-150"
-              leaveFrom="opacity-100 translate-y-0"
-              leaveTo="opacity-0 translate-y-1"
+                    ))}
+                  </div>
+                </Popover.Panel>
+              </Transition>
+            </Popover>
+            <Link
+              href="/search"
+              className="text-sm font-semibold leading-6 text-gray-900"
             >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
-                  {products.map((item) => (
-                    <div
-                      key={item.name}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
-                    >
-                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <TbVaccine />
-                      </div>
-                      <div className="flex-auto">
-                        <Link
-                          href={item.href}
-                          className="block font-semibold text-gray-900"
-                        >
-                          {item.name}
-                          <span className="absolute inset-0" />
-                        </Link>
-                        <p className="mt-1 text-gray-600">{item.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Popover.Panel>
-            </Transition>
-          </Popover>
-
-          <Link
-            href="/search"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Find Property
-          </Link>
-          <Link
-            href="/blog"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Blog
-          </Link>
-        </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
-          <Link
-            href="#"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Agent Log in
-          </Link>
-          <Link
-            href="/contact_us"
-            className="text-sm  leading-6 px-4 py-2 text-white font-bold hover:scale-95 ease-in-out transition-all duration-300 rounded-md bg-primary cursor-pointer"
-          >
-            Get in touch <span aria-hidden="true">&rarr;</span>
-          </Link>
-        </div>
-      </nav>
+              Find Property
+            </Link>
+            <Link
+              href="/blog"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Blog
+            </Link>
+          </Popover.Group>
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-4">
+            <Link
+              href="#"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Agent Log in
+            </Link>
+            <Link
+              href="/contact_us"
+              className="text-sm  leading-6 px-4 py-2 text-white font-bold hover:scale-95 ease-in-out transition-all duration-300 rounded-md bg-primary cursor-pointer"
+            >
+              Get in touch <span aria-hidden="true">&rarr;</span>
+            </Link>
+          </div>
+        </nav>
+      </div>
       <Dialog
         as="div"
         className="lg:hidden"

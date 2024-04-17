@@ -4,7 +4,7 @@ import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 const FindPage = () => {
   return (
     <div className="flex justify-center">
-      <div className="w-[85%]">
+      <div className="w-[90%] lg:w-[85%]">
         <div className="bg-white flex  justify-center py-[2em] lg:py-[4em]">
           <div className="w-full">
             <div className="flex items-center gap-[10px] lg:items-start justify-center lg:justify-between flex-col lg:flex-row ">
@@ -22,7 +22,7 @@ const FindPage = () => {
               </div>
             </div>
 
-            <div className="mt-[5em] flex items-center gap-[20px] justify-between flex-wrap">
+            <div className="mt-[5em] flex items-center gap-10 justify-center flex-wrap">
               <AgentCard />
               <AgentCard />
               <AgentCard />

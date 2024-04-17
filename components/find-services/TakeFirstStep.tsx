@@ -10,7 +10,7 @@ const TakeFirstStep = () => {
 
   return (
     <div className="bg-[#F5FCFF] flex  justify-center">
-      <div className="w-[85%]">
+      <div className="w-[90%] lg:w-[85%]">
         <div className="pt-[6em] pb-[6em]">
           <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
             Take the first step
@@ -32,7 +32,7 @@ const TakeFirstStep = () => {
                 </div>
 
                 <div>
-                  <p className="text-[20px]">
+                  <p className="text-[16px] lg:text-[20px]">
                     We specialize in creating unique architectural designs that
                     cater to your specific requirements and aspirations.
                   </p>
@@ -55,7 +55,7 @@ const TakeFirstStep = () => {
                 </div>
 
                 <div>
-                  <p className="text-[20px]">
+                  <p className="text-[16px] lg:text-[20px]">
                     We provide exceptional design, renovation, and remodelling
                     services for homes and offices, which increase property
                     yield.
@@ -80,7 +80,7 @@ const TakeFirstStep = () => {
                 </div>
 
                 <div>
-                  <p className="text-[20px]">
+                  <p className="text-[16px] lg:text-[20px]">
                     Maximize the full potential of your property and apartment
                     spaces with our transparent and efficient management
                     services to maximize functionality and tenant satisfaction.

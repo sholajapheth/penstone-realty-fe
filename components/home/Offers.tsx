@@ -7,18 +7,22 @@ const Offers = () => {
       const router = useRouter();
 
   return (
-    <div className=" bg-secondary  text-white text-center py-16">
+    <div className=" bg-secondary  text-white text-center py-12 lg:py-16">
       <div className="w-full flex  items-center justify-center">
-        <div className="w-[85%] ">
+        <div className="w-[90%] lg:w-[85%]">
           <p className="text-[30px] lg:text-[40px] leading-[140%] font-semibold ">
-            Simplifying real estate <br className='hidden lg:block' /> journey for{" "}
-            <span className="text-[#0D90C4]">Developers</span>, <br className='hidden lg:block' />
+            Simplifying real <br className="lg:hidden" /> estate{" "}
+            <br className="hidden lg:block" /> journey for{" "}
+            <br className="lg:hidden" />
+            <span className="text-[#0D90C4]">Developers</span>,{" "}
+            <br className="" />
             <span className="text-[#0D90C4]">Investors</span> and{" "}
+            <br className="lg:hidden" />
             <span className="text-[#0D90C4]">Occupants</span>.
           </p>
 
           <div className="flex flex-col lg:flex-row items-center gap-6 mt-10 ">
-            <div className="rounded-md  bg-white/50 p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
+            <div className="rounded-md  bg-white/50 p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/lines-outline-bag.png"}
                 height={50}
@@ -35,7 +39,7 @@ const Offers = () => {
                 </p>
               </div>
             </div>
-            <div className="rounded-md  bg-white p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
+            <div className="rounded-md  bg-white p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/team-light.png"}
                 height={50}
@@ -52,7 +56,7 @@ const Offers = () => {
                 </p>
               </div>
             </div>
-            <div className="rounded-md  bg-[#0D90C4] p-6 lg:p-3 flex items-start text-start gap-4 flex-col lg:flex-row">
+            <div className="rounded-md  bg-[#0D90C4] p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
                 src={"/img/icons/lines-outline-bag.png"}
                 height={50}
@@ -73,7 +77,7 @@ const Offers = () => {
           </div>
         </div>
       </div>
-      <hr className="bg-white  my-14 w-full " />
+      <div className="bg-offerLine my-14 w-full h-[1px]"></div>
       <div className="flex items-center justify-center mt-4">
         <div className="flex  flex-col lg:flex-row items-center gap-10">
           <div className="flex flex-col gap-3 items-center">

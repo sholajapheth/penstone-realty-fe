@@ -38,7 +38,7 @@ const ListingCard = () => {
           <p className="text-[20px]  font-semibold pb-3">
             Lekki Phase 1, Lagos State
           </p>
-          <div className="bg-[#F6F6F6] rounded-lg p-4  flex items-center justify-center m-4 group-hover:bg-gray-300 ease-linear duration-300 transition-all">
+          <div className=" lg:bg-[#F6F6F6] rounded-lg p-4  flex items-center justify-center m-4 group-hover:bg-gray-300 ease-linear duration-300 transition-all">
             <div className=" gap-2 flex items-center w-full justify-between">
               {" "}
               <div className="flex items-end gap-1">

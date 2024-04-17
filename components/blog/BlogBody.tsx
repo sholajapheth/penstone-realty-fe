@@ -4,7 +4,7 @@ import BlogCard from "./BlogCard";
 const BlogBody = () => {
   return (
     <div className="bg-white flex  justify-center">
-      <div className="w-[85%] mb-[4em]">
+      <div className="w-[90%] lg:w-[85%] mb-[4em]">
         <div className="flex items-center justify-center my-4">
           <div className="flex gap-4 items-center flex-wrap text-xs font-semibold">
             <button className="px-3 py-2 rounded-xl text-primary bg-[#FFD7E0]">
