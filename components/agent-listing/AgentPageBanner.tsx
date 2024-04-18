@@ -18,7 +18,7 @@ const AgentPageBanner = () => {
       <div className="flex justify-center">
         <div className="w-[90%] lg:w-[85%]">
           <div className="flex justify-between flex-col lg:flex-row items-start gap-[25px] pb-[20px]">
-            <div className="flex flex-col gap-[40px] lg:w-[60%] py-[24px]">
+            <div className="flex flex-col gap-[40px] lg:w-[50%] py-[24px]">
               <div className="flex justify-between w-full lg:justify-start items-center gap-[24px]">
                 <div className="relative">
                   <Image
@@ -51,10 +51,10 @@ const AgentPageBanner = () => {
               </div>
 
               <div>
-                <h2 className="text-[24px] text-[#2A2A2A] font-semibold pb-[16px]">
+                <h2 className="text-[24px] text-[#2A2A2A] font-semibold">
                   About Tosin{" "}
                 </h2>
-                <p className="text-black">
+                <p className="text-black font-medium leading-[150%]">
                   Seyi is a dedicated and experienced real estate agent in
                   California. With a deep understanding of the local market and
                   a commitment to providing exceptional service, she is the
@@ -67,6 +67,7 @@ const AgentPageBanner = () => {
                   Retail leasing, Apartment brokerage
                 </p>
               </div>
+              <Image src="/img/linkedInn.svg" width={20} height={20} alt="" />
             </div>
 
             <div className="border-[1px] border-[#D9E2E6] rounded-[14px] lg:w-[40%] py-[24px] px-[20px]">

@@ -9,7 +9,7 @@ const ServicesPageBanner = () => {
 
   return (
     <div className="text-secondary">
-      <div className="bg-[#E6E6E6] relative p-4 py-[3em] md:py-[6em] col-span-2 flex items-center justify-center text-center">
+      <div className="bg-[#E6E6E6] relative p-4 py-[3em]  md:pt-[6em] md:pb-[7em] col-span-2 flex items-center justify-center text-center">
         <div className="bg-[url('/img/showcase-card-bg.png')] absolute w-full inset-0  bg-no-repeat bg-contain bg-right" />
 
         <div>

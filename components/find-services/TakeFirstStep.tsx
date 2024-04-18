@@ -16,8 +16,8 @@ const TakeFirstStep = () => {
             Take the first step
           </p>
 
-          <div className="mt-[2em] lg:mt-[3em] text-secondary grid grid-cols-1 md:grid-cols-3 gap-[5em]">
-            <div className="col-span-2">
+          <div className="mt-[2em] lg:mt-[3em] text-secondary grid grid-cols-1 md:grid-cols-6 gap-[5em]">
+            <div className="col-span-4 flex flex-col justify-between">
               <div
                 className="grid grid-cols-2 border-b py-[2em] gap-[30px] cursor-pointer"
                 onClick={() => router.push("/architecture")}
@@ -92,13 +92,13 @@ const TakeFirstStep = () => {
               </div>
             </div>
 
-            <div className="hidden md:inline-block">
+            <div className="hidden md:inline-block col-span-2 h-full w-full">
               <Image
                 src={"/img/firststep.png"}
                 height={200}
                 width={100}
                 alt="firststep"
-                className="w-full aspect-auto"
+                className="w-full h-full aspect-auto"
               />
             </div>
           </div>
