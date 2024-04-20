@@ -35,7 +35,13 @@ const ActivitySection = () => {
               </p>
             </div>
             <div>
-              <Image width={20} height={20} className='h-full w-full' src="/img/details.png" alt="" />
+              <Image
+                width={20}
+                height={20}
+                className="h-full w-full"
+                src="/img/details.png"
+                alt=""
+              />
             </div>
           </div>
 
@@ -145,6 +151,7 @@ const ActivitySection = () => {
                               fontSize={"15px"}
                               fontWeight={"600"}
                               color="#27AE60"
+                              w={"100%"}
                               bg="rgba(111, 207, 151, 0.1)"
                             >
                               Task
@@ -226,6 +233,7 @@ const ActivitySection = () => {
                               fontSize={"15px"}
                               fontWeight={"600"}
                               color="#F06565"
+                              w={"100%"}
                               bg="#FDF7F7"
                             >
                               Recurring
@@ -307,6 +315,7 @@ const ActivitySection = () => {
                               fontSize={"15px"}
                               fontWeight={"600"}
                               color="#F06565"
+                              w={"100%"}
                               bg="#FDF7F7"
                             >
                               Recurring
@@ -388,6 +397,7 @@ const ActivitySection = () => {
                               fontSize={"15px"}
                               fontWeight={"600"}
                               color="#F06565"
+                              w={"100%"}
                               bg="#FDF7F7"
                             >
                               Recurring
@@ -501,7 +511,6 @@ const ActivitySection = () => {
                 <Image src="/img/crumb.png" width={20} height={20} alt="" />
               </div>
             </div>
-
           </div>
         </div>
       </div>

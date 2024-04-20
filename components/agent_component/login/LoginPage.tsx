@@ -38,10 +38,12 @@ const LoginPage = () => {
             />
           </div>
         </div>
-        <div className="w-[50%] flex items-center flex-col pt-[90px] px-[120px] text-secondary">
+        <div className="w-[50%] flex items-center flex-col pt-[90px] px-[140px] text-secondary">
           <Image width={150} height={35} src="/logo.png" alt="" />
           <div className="text-center py-[36px]">
-            <h2 className="text-[32px] font-medium pb-[8px]">Welcome back!</h2>
+            <h2 className="text-[32px] font-medium pb-[8px] leading-[120%]">
+              Welcome back!
+            </h2>
             <p className="text-[#414141] text-[16px]">
               Please Login to Continue
             </p>
@@ -72,8 +74,8 @@ const LoginPage = () => {
 
             <div className="flex items-center justify-between gap-3 mt-2">
               <div className="flex items-center justify-start gap-3">
-                <input type="checkbox" required className="" />
-                <label className="text-[14px] text-[#AFAFAF]">
+                <input type="checkbox" id='html' required className="" />
+                <label className="text-[14px] text-[#AFAFAF]" htmlFor="html">
                   Remember Me
                 </label>
               </div>
@@ -81,11 +83,14 @@ const LoginPage = () => {
                 <ResetPassword />
               </div>
             </div>
-            <button className="bg-primary text-white font-semibold py-3 rounded-[4px]">
+            <button
+              className="bg-primary text-white font-semibold py-3 rounded-[4px]"
+              onClick={() => router.push("/agent")}
+            >
               Sign In
             </button>
             <button className="border-secondary border-[1px] text-secondary font-semibold py-3 rounded-[4px] flex items-center justify-center gap-3">
-              <Image width={20} height={20} src="/img/google.png" alt="" />
+              <Image src="/img/google.png" width={20} height={20} alt="" />
               Sign In with Google
             </button>
 

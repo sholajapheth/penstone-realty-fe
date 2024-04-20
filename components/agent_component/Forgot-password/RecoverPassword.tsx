@@ -82,7 +82,7 @@ const RecoverPassword = () => {
               <div>
                 <p
                   className="text-secondary cursor-pointer text-[14px] font-semibold"
-                  onClick={onClose}
+                  onClick={() => {onClose(); onClose()}}
                 >
                   Return to login
                 </p>

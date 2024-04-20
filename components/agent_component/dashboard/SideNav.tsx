@@ -1,5 +1,8 @@
+"use client";
+
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface SideNavProps {
   open: boolean;
@@ -49,7 +52,10 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                 open ? "justify-start gap-[15px]" : "justify-center gap-[10px]"
               } px-[15px]`}
             >
-              <div className="hover:bg-transparent rounded-[4px] w-full py-1 hover:rounded-[4px]">
+              <Link
+                href="/agent"
+                className="hover:bg-white/10 rounded-[4px] w-full py-1 mt-[20px] hover:rounded-[4px]"
+              >
                 <div
                   className={`flex items-center gap-1 ${
                     !open ? "justify-center" : "justify-start"
@@ -70,8 +76,11 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     Dashboard
                   </p>
                 </div>
-              </div>
-              <div className="hover:bg-transparent rounded-[4px] pl-1 w-full py-3 hover:rounded-[4px]">
+              </Link>
+              <Link
+                href="/agent/rental"
+                className="hover:bg-white/10  rounded-[4px] pl-1 w-full py-3 hover:rounded-[4px]"
+              >
                 <div
                   className={`flex items-center gap-1 ${
                     !open ? "justify-center" : "justify-start"
@@ -92,8 +101,11 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     Rental Portfolio
                   </p>
                 </div>
-              </div>
-              <div className="hover:bg-transparent rounded-[4px] w-full py-1 hover:rounded-[4px]">
+              </Link>
+              <Link
+                href="/agent/new-listing"
+                className="hover:bg-white/10  rounded-[4px] w-full py-1 hover:rounded-[4px]"
+              >
                 <div
                   className={`flex items-center gap-1 ${
                     !open ? "justify-center" : "justify-start"
@@ -114,8 +126,11 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     New Listing
                   </p>
                 </div>
-              </div>
-              <div className="hover:bg-transparent rounded-[4px] w-full py-1 hover:rounded-[4px]">
+              </Link>
+              <Link
+                href="/agent/tenants"
+                className="hover:bg-white/10  rounded-[4px] w-full py-1 hover:rounded-[4px]"
+              >
                 <div
                   className={`flex items-center gap-1 ${
                     !open ? "justify-center" : "justify-start"
@@ -136,8 +151,11 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     Tenants
                   </p>
                 </div>
-              </div>
-              <div className="hover:bg-transparent rounded-[4px] w-full py-1 hover:rounded-[4px]">
+              </Link>
+              <Link
+                href="/agent/rent"
+                className="hover:bg-white/10  rounded-[4px] w-full py-1 hover:rounded-[4px]"
+              >
                 <div
                   className={`flex items-center gap-1 ${
                     !open ? "justify-center" : "justify-start"
@@ -158,8 +176,8 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                     Rent Payment
                   </p>
                 </div>
-              </div>
-              <div className="hover:bg-transparent rounded-[4px] w-full py-1 hover:rounded-[4px]">
+              </Link>
+              <div className="hover:bg-white/10  rounded-[4px] w-full py-1 hover:rounded-[4px]">
                 <div
                   className={`flex items-center gap-1 ${
                     !open ? "justify-center" : "justify-start"
@@ -190,7 +208,7 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                 open ? "justify-start gap-[15px]" : "justify-center gap-[10px]"
               }  px-[15px]`}
             >
-              <div className="hover:bg-transparent rounded-[4px] pl-1 w-full py-3 hover:rounded-[4px]">
+              <div className="hover:bg-white/10  rounded-[4px] pl-1 w-full py-3 hover:rounded-[4px]">
                 <div
                   className={`flex items-center gap-1 ${
                     !open ? "justify-center" : "justify-start"
@@ -212,7 +230,7 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
                   </p>
                 </div>
               </div>
-              <div className="hover:bg-transparent rounded-[4px] pl-1 w-full py-3 hover:rounded-[4px]">
+              <div className="hover:bg-white/10  rounded-[4px] pl-1 w-full py-3 hover:rounded-[4px]">
                 <div
                   className={`flex items-center gap-1 ${
                     !open ? "justify-center" : "justify-start"
@@ -241,7 +259,7 @@ const SideNav = ({ open, handleOpen }: SideNavProps) => {
               width={40}
               height={40}
               className="w-full h-full"
-              src="/img/slider.png"
+              src="/img/Slider.png"
               alt=""
             />
           </button>

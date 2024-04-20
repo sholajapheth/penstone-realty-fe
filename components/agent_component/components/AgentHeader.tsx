@@ -9,7 +9,7 @@ const AgentHeader = ({ title }: AdminHeader) => {
     <>
       <div className="flex justify-between py-[20px] px-[32px] items-center">
         <div>
-          <h1 className="text-[24px] font-medium text-black">{title}</h1>
+          <h1 className="text-[24px] leading-[120%] font-medium text-black">{title}</h1>
         </div>
         <div className="flex justify-center items-center gap-[32px]">
           <div className="flex justify-center items-center gap-[12px]">

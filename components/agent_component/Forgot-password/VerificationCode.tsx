@@ -92,11 +92,11 @@ const Verification = () => {
                       key={index}
                       type="text"
                       value={digit}
-                      className="w-[56px] h-[56px] bg-[#FAFAFA] rounded-[12px] text-center"
+                      className="w-[56px] h-[56px] bg-[#F1F0F0] rounded-[12px] text-center"
                       onChange={(e) => handleChange(e.target, index)}
                       onFocus={(e) => e.target.select()}
                       maxLength={1}
-                      autoFocus={index === 1}
+                      autoFocus={index === 0}
                     />
                   ))}
                 </div>
