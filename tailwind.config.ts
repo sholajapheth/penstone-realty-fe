@@ -21,6 +21,8 @@ const config: Config = {
         shad: "rgba(128, 159, 171, 0.2)",
         aboutBg: "rgba(22, 51, 0, 0.12)",
         offerLine: "rgba(255, 255, 255, 0.3)",
+        detailBg: "rgba(217, 226, 230, 0.2)",
+        btnBg: "rgba(217, 226, 230, 0.3)",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
