@@ -16,7 +16,7 @@ const handleShowSSN = () => {
   return (
     <>
       <div className="flex justify-between items-start gap-[24px] p-[24px] mb-10">
-        {showDetails ? (
+        {!showDetails ? (
           <div className="w-[70%]">
             <div className="flex justify-between w-full items-center mb-4">
               <div className="relative pl-5">
@@ -357,7 +357,7 @@ const handleShowSSN = () => {
           </div>
         )}
 
-        {showDetails ? (
+        {!showDetails ? (
           <div className="w-[30%]">
             <h2 className="mb-[24px] text-[#000929] text-[20px] font-semibold">
               Tenant detail view

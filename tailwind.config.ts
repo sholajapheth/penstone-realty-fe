@@ -23,6 +23,7 @@ const config: Config = {
         offerLine: "rgba(255, 255, 255, 0.3)",
         detailBg: "rgba(217, 226, 230, 0.2)",
         btnBg: "rgba(217, 226, 230, 0.3)",
+        greenBg: "rgba(111, 207, 151, 0.1)",
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
