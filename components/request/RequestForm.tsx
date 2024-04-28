@@ -2,6 +2,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { Avatar, AvatarGroup } from "@chakra-ui/react";
+import { useState } from "react";
 
 const RequestForm = () => {
   const validInput: React.MutableRefObject<HTMLInputElement | null> =

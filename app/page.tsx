@@ -45,6 +45,8 @@ import SellOffers from "@/components/sell/SellOffers";
 import { SpecializedPageBanner, SpecializedServices } from "@/components/specialized-services";
 
 export default function Home() {
+  console.log(process.env.NEXT_APP_PUBLIC_API_KEY, "hellooo");
+
   return (
     <main>
       {/* home */}
