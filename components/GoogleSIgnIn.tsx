@@ -7,22 +7,16 @@ const GoogleSIgnIn = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    // const hasShownModal = localStorage.getItem("modalShown");
-
-    // if (!hasShownModal) {
-    setShowModal(true); // Show the modal directly
+    setShowModal(true);
     const timeoutId = setTimeout(() => setShowModal(false), 8000);
 
-    // Cleanup function to clear timeout on unmount
     return () => clearTimeout(timeoutId);
-    // }
   }, []);
 
   const handleCloseModal = () => {
     handleSignInAndStoreData();
 
     setShowModal(false);
-    // localStorage.setItem("modalShown", "true"); // Set flag in local storage
   };
   const user = Cookies.get("user");
 
@@ -31,10 +25,11 @@ const GoogleSIgnIn = () => {
   useEffect(() => {
     const timerId = setTimeout(() => {
       setProgress(100);
-    }, 8 * 1000); // Convert duration to milliseconds
+    }, 8 * 1000);
 
     return () => clearTimeout(timerId);
   }, []);
+
   return (
     <>
       {!user && showModal && (

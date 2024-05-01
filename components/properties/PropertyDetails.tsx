@@ -51,9 +51,15 @@ const propertyAttributes = [
   "Middle-class neighbourhood",
 ];
 
-const PropertyDetails = () => {
+type PropertyProp = {
+  property: string[];
+};
+
+const PropertyDetails = ({property} : PropertyProp) => {
   const showcaseRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+    console.log(property);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const dum_pic = [
@@ -87,8 +93,7 @@ const PropertyDetails = () => {
     };
   }, [dum_pic, currentIndex]); // Add dum_pic to dependencies since its length might change
 
-        const router = useRouter();
-
+  const router = useRouter();
 
   return (
     <div className="bg-white flex  justify-center">
@@ -446,7 +451,13 @@ const PropertyDetails = () => {
 
             <div className="flex items-center justify-center flex-wrap flex-col lg:flex-row gap-10">
               {[1, 2, 3].map((item) => (
-                <ListingCard key={item} />
+                <ListingCard key={item} lists={{
+                  id: "",
+                  imgSrc: "",
+                  title: "",
+                  address: "",
+                  price: ""
+                }} />
               ))}
             </div>
           </div>

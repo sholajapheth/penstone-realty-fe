@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GoogleSIgnIn from "../GoogleSIgnIn";
 import { userApply } from "@/app/api/UseUser";
 import { useAPI } from "@/app/lib/useApi";
@@ -7,7 +7,7 @@ import { useAppToast } from "@/app/lib/useAppToast";
 import Cookies from "js-cookie";
 
 const ApplicationForm = () => {
-  const { useQuery, useAPIMutation, queryClient } = useAPI();
+  const { useAPIMutation } = useAPI();
   const toast = useAppToast();
 
   const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ const ApplicationForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [countryCode, setCountryCode] = useState("");
+  const [countryCode, setCountryCode] = useState("+234");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
 
@@ -31,12 +31,16 @@ const ApplicationForm = () => {
   const [numberOfOccupants, setNumberOfOccupants] = useState("");
 
   const [userEmail, setUserEmail] = useState("");
-  const [propertyId, setPropertyId] = useState("");
+  const [propertyId, setPropertyId] = useState<string | null>(" ");
   const [intensionOfUse, setIntensionOfUse] = useState("");
   const [moveInDate, setMoveInDate] = useState("");
 
   const token = Cookies.get("token");
   const user = Cookies.get("user");
+
+  useEffect(()=> {
+    setPropertyId(localStorage.getItem("id"))
+  }, [])
 
   const update = useAPIMutation({
     mutationFunction: (x: any) => userApply(x.data, token ? token : "token"),
@@ -62,25 +66,29 @@ const ApplicationForm = () => {
     setLoading(true);
     update.mutate({
       data: {
-        firstName,
-        lastName,
-        phoneNumber,
-        countryCode,
-        email,
-        address,
-        dateOfBirth,
-        monthlyRentBudget,
-        employerName,
-        employerAddress,
-        employmentDuration,
-        annualIncome,
-        emergencyContact,
-        emergencyContactName,
-        numberOfOccupants,
-        userEmail,
         propertyId,
         intensionOfUse,
         moveInDate,
+        ContactInformation: {
+          firstName,
+          lastName,
+          phoneNumber,
+          email,
+          address,
+        },
+        PersonalInformation: {
+          countryCode,
+          dateOfBirth,
+          monthlyRentBudget,
+          employerName,
+          employerAddress,
+          employmentDuration,
+          annualIncome,
+          emergencyContact,
+          emergencyContactName,
+          numberOfOccupants,
+          userEmail,
+        },
       },
     });
     // setLoading(false)
@@ -108,7 +116,7 @@ const ApplicationForm = () => {
                   required
                   className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
                   onChange={(e) => setPropertyId(e.target.value)}
-                  value={propertyId}
+                  value={''}
                 >
                   <option value="" disabled>
                     Ask a question / get help

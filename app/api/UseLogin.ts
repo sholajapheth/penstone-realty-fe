@@ -31,12 +31,12 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
 
     if (user.metadata.creationTime !== user.metadata.lastSignInTime) {
       userLogin({ email: user.email }, token);
-      Cookies.set("user", JSON.stringify(user), { expires: 1 });
+      Cookies.set("user", JSON.stringify(user), { expires: 5 });
     } else {
       userRegister({ image: user.photoURL, name: user.displayName, email: user.email }, token).then(response => {
         Cookies.set("jwtToken", response.token)
       })
-      Cookies.set("user", JSON.stringify(user), { expires: 1 });
+      Cookies.set("user", JSON.stringify(user), { expires: 5 });
     }
     console.log("User is signed in:", user);
   } catch (error: any) {
@@ -49,6 +49,7 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("User state change: User is signed in", user);
+     Cookies.set("user", JSON.stringify(user), { expires: 5 });
   } else {
     console.log("User state change: User is not signed in");
   }

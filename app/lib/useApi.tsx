@@ -6,7 +6,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import { useAppToast } from "./useAppToast";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 
 interface ApiMutationOptions<TData, TVariables> {
   mutationFunction?: (variables: TVariables) => Promise<TData>;
@@ -19,7 +19,7 @@ export function useAPI() {
   const toast = useAppToast();
   const queryClient = useQueryClient();
 
-function useAPIMutation<TData, TVariables>({
+function useAPIMutation<TData, TVariables extends ((error: AxiosError<unknown, any>, variables: TVariables, context: unknown) => unknown) | undefined>({
   mutationFunction,
   onSuccessFn,
 }: ApiMutationOptions<TData, TVariables>): UseMutationResult<
@@ -57,11 +57,11 @@ function useAPIMutation<TData, TVariables>({
   });
 }
 
-  function useAPIQuery<TData, AxiosError>({
+  function useAPIQuery<TData, TError>({
     queryFn,
     queryKey,
-  }: any): UseQueryResult<TData, AxiosError> {
-    return useQuery<TData, AxiosError>({
+  }: any): UseQueryResult<TData, TError> {
+    return useQuery<TData, TError>({
       queryKey,
       queryFn,
     });

@@ -1,20 +1,95 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { Avatar, AvatarGroup } from "@chakra-ui/react";
+import Cookies from "js-cookie";
+import GoogleSIgnIn from "../GoogleSIgnIn";
+import { useAPI } from "@/app/lib/useApi";
+import { useAppToast } from "@/app/lib/useAppToast";
+import { sellForm } from "@/app/api/UseUser";
+import { useStorage } from "@/app/lib/firebase/storage";
+
 const Form = () => {
+  const { useAPIMutation } = useAPI();
+  const { upload } = useStorage();
+  const toast = useAppToast();
+
+  const [loading, setLoading] = useState(false);
+  const [auth, setAuth] = useState(false);
+
+  const [propertyType, setPropertyType] = useState("");
+  const [intension, setIntension] = useState("");
+  const [reasonForSelling, setReasonForSelling] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState<string[]>([]);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const token = Cookies.get("token");
+  const user = Cookies.get("user");
+
   const validInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
 
   const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files.item(0);
-
-      if (!file) return;
+      if (file instanceof File) {
+        try {
+          const downloadURL = await upload(file);
+          console.log("File uploaded successfully:", downloadURL);
+          setImage([downloadURL]);
+        } catch (error) {
+          console.error("Error uploading file:", error);
+        }
+        if (!file) return;
+      }
     }
   };
+
+  const update = useAPIMutation({
+    mutationFunction: (x: any) => sellForm(x.data, token ? token : "token"),
+    onSuccessFn: (data) => {
+      setLoading(false);
+      if (data?.statusCode === 200 || data?.statusCode === 201) {
+        toast({
+          status: "success",
+          description: data.message || "Application Successful",
+        });
+      }
+    },
+  });
+
+  function onSubmit(e: { preventDefault: () => void }) {
+    if (!user) {
+      setAuth(true);
+    }
+    e.preventDefault();
+    setLoading(true);
+    update.mutate({
+      data: {
+        propertyType,
+        intension,
+        reasonForSelling,
+        address,
+        city,
+        price,
+        image,
+        firstName,
+        lastName,
+        email,
+        phoneNumber,
+      },
+    });
+  }
+
   return (
     <>
+      {auth && <GoogleSIgnIn />}
       <div className="flex justify-between flex-col lg:flex-row w-full items-start">
         <div className="w-full lg:h-screen lg:overflow-y-auto lg:w-1/2 flex flex-col pt-[40px] lg:pt-[85px] px-[20px] lg:px-[100px] text-secondary pb-[60px] lg:pb-[30px]">
           <h2 className="text-[30px] lg:text-[54px] font-semibold pb-[24px] lg:leading-[63px]">
@@ -34,9 +109,14 @@ const Form = () => {
               <select
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
+                value={intension}
+                onChange={(e) => setIntension(e.target.value)}
               >
-                <option value="">Rent</option>
-                <option value="">Select a property</option>
+                <option value="" disabled selected>
+                  Select a property
+                </option>
+                <option value="RENT">Rent</option>
+                <option value="SELL">Sell</option>
               </select>
             </div>
 
@@ -47,9 +127,69 @@ const Form = () => {
               <select
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
+                value={propertyType}
+                onChange={(e) => setPropertyType(e.target.value)}
               >
-                <option value="">Residential</option>
-                <option value="">Select a property</option>
+                <option className=" text-[18px] font-bold" disabled selected>
+                  Select property type
+                </option>{" "}
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"FULLY_DETACHED_COMPLEX"}
+                >
+                  Fully Detached Duplex
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"SEMI_DETACHED_COMPLEX"}
+                >
+                  Semi Detached House
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"ACCOMMODATION_BLOCK"}
+                >
+                  Accommodation Block
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"FLATS_AND_APARTMENT"}
+                >
+                  Flats and Apartment
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"STUDIO_APARTMENT"}
+                >
+                  Studio Apartment
+                </option>
+                <option className=" text-[18px] font-bold" value={"MINI_FLATS"}>
+                  Mini Flats
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"RENTAL_SPACES"}
+                >
+                  Rental Spaces
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"WAREHOUSE_AND_INDUSTRIAL"}
+                >
+                  Warehouse and Industrial
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"OFFICE_COMPLEX"}
+                >
+                  Office Complex
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"SPECIALIZED"}
+                >
+                  Specialized
+                </option>
               </select>
             </div>
 
@@ -62,6 +202,8 @@ const Form = () => {
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Enter reason"
+                value={reasonForSelling}
+                onChange={(e) => setReasonForSelling(e.target.value)}
               />
             </div>
 
@@ -74,6 +216,8 @@ const Form = () => {
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Input property address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
 
@@ -83,7 +227,21 @@ const Form = () => {
                 type="text"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
-                placeholder="Input property address"
+                placeholder="Input city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </div>
+
+            <div className="flex flex-col items-start gap-2">
+              <label className="text-black font-semibold">Property Price</label>
+              <input
+                type="text"
+                required
+                className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
+                placeholder="NGN"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
 
@@ -107,8 +265,19 @@ const Form = () => {
                   }
                 }}
               >
-                <Image width={30} height={30} src="/img/upload.png" alt="" />{" "}
-                <p>Select or drop file</p>
+                {image.length < 1 ? (
+                  <>
+                    <Image
+                      width={30}
+                      height={30}
+                      src="/img/upload.png"
+                      alt=""
+                    />{" "}
+                    <p>Select or drop file</p>
+                  </>
+                ) : (
+                  <p className="text-green-400">File uploaded successfully!</p>
+                )}
               </div>
               <div
                 className="rounded-[10px] px-4 gap-[5px] bg-[#eeeeee] flex justify-center items-center cursor-pointer py-[5px]"
@@ -120,7 +289,7 @@ const Form = () => {
                 }}
               >
                 <Image width={15} height={15} src="/img/clip.png" alt="" />{" "}
-                <p className="text-[#000929]">Select files</p>
+                <p className="text-[#000929]">Select file</p>
               </div>
             </div>
 
@@ -132,6 +301,8 @@ const Form = () => {
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                   placeholder="First name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
 
@@ -142,6 +313,8 @@ const Form = () => {
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                   placeholder="Last name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </div>
             </div>
@@ -153,6 +326,8 @@ const Form = () => {
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="example@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -163,6 +338,8 @@ const Form = () => {
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Phone number"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </div>
 
@@ -174,7 +351,136 @@ const Form = () => {
               </label>
             </div>
 
-            <button className="bg-primary text-white font-semibold py-3 rounded-xl">
+            <button
+              className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
+              onClick={(e) => onSubmit(e)}
+              disabled={loading}
+            >
+              {loading && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="2.8" height="12" x="1" y="6" fill="currentColor">
+                    <animate
+                      id="svgSpinnersBarsScale0"
+                      attributeName="y"
+                      begin="0;svgSpinnersBarsScale1.end-0.1s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="6;1;6"
+                    />
+                    <animate
+                      attributeName="height"
+                      begin="0;svgSpinnersBarsScale1.end-0.1s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="12;22;12"
+                    />
+                  </rect>
+                  <rect
+                    width="2.8"
+                    height="12"
+                    x="5.8"
+                    y="6"
+                    fill="currentColor"
+                  >
+                    <animate
+                      attributeName="y"
+                      begin="svgSpinnersBarsScale0.begin+0.1s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="6;1;6"
+                    />
+                    <animate
+                      attributeName="height"
+                      begin="svgSpinnersBarsScale0.begin+0.1s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="12;22;12"
+                    />
+                  </rect>
+                  <rect
+                    width="2.8"
+                    height="12"
+                    x="10.6"
+                    y="6"
+                    fill="currentColor"
+                  >
+                    <animate
+                      attributeName="y"
+                      begin="svgSpinnersBarsScale0.begin+0.2s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="6;1;6"
+                    />
+                    <animate
+                      attributeName="height"
+                      begin="svgSpinnersBarsScale0.begin+0.2s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="12;22;12"
+                    />
+                  </rect>
+                  <rect
+                    width="2.8"
+                    height="12"
+                    x="15.4"
+                    y="6"
+                    fill="currentColor"
+                  >
+                    <animate
+                      attributeName="y"
+                      begin="svgSpinnersBarsScale0.begin+0.3s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="6;1;6"
+                    />
+                    <animate
+                      attributeName="height"
+                      begin="svgSpinnersBarsScale0.begin+0.3s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="12;22;12"
+                    />
+                  </rect>
+                  <rect
+                    width="2.8"
+                    height="12"
+                    x="20.2"
+                    y="6"
+                    fill="currentColor"
+                  >
+                    <animate
+                      id="svgSpinnersBarsScale1"
+                      attributeName="y"
+                      begin="svgSpinnersBarsScale0.begin+0.4s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="6;1;6"
+                    />
+                    <animate
+                      attributeName="height"
+                      begin="svgSpinnersBarsScale0.begin+0.4s"
+                      calcMode="spline"
+                      dur="0.6s"
+                      keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                      values="12;22;12"
+                    />
+                  </rect>
+                </svg>
+              )}
               Submit
             </button>
           </form>

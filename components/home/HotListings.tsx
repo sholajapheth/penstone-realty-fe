@@ -4,9 +4,26 @@ import React from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import ListingCard from "./ListingCard";
 import { useRouter } from "next/navigation";
+import { useAPI } from "@/app/lib/useApi";
+import { listings } from "@/app/api/UseUser";
 
 const HotListings = () => {
   const router = useRouter();
+  const { useQuery } = useAPI();
+
+    const { data: lists } = useQuery({
+      queryKey: ["lists"],
+      queryFn: () =>
+        listings(
+          "rank",
+          "asc",
+          {
+            filters: [],
+          },
+        ),
+    });
+
+    console.log(lists);
 
   return (
     <div className="bg-white flex  justify-center py-[1em] lg:py-[8em] ">
@@ -37,9 +54,9 @@ const HotListings = () => {
         </div>
 
         <div className="mt-[3em] lg:mt-[4em] flex-wrap flex items-center gap-10 justify-center ">
-          <ListingCard />
-          <ListingCard />
-          <ListingCard />
+          <ListingCard lists={lists} />
+          <ListingCard lists={lists} />
+          <ListingCard lists={lists} />
         </div>
         <div className="flex items-center justify-center mt-12">
           <button

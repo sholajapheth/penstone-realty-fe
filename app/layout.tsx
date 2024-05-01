@@ -28,9 +28,9 @@ export default function RootLayout({
             })
           }
         > */}
-          <Providers>
-            <AppWrapper>{children}</AppWrapper>
-          </Providers>
+        <Providers>
+          <AppWrapper>{children}</AppWrapper>
+        </Providers>
         {/* </QueryClientProvider> */}
       </body>
     </html>

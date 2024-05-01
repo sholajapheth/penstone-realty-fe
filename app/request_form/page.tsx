@@ -1,12 +1,12 @@
 import { NewsLetter } from "@/components/common";
-import { Form } from "@/components/request"
+import { Form } from "@/components/request";
 const page = () => {
-    return (
-      <>
-        <Form />
-        <NewsLetter />
-      </>
-    );
-}
- 
+  return (
+    <>
+      <Form />
+      <NewsLetter />
+    </>
+  );
+};
+
 export default page;

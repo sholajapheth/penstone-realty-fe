@@ -7,9 +7,13 @@ import { FcDocument } from "react-icons/fc";
 import { GrDocumentPdf } from "react-icons/gr";
 import { useRouter } from "next/navigation";
 
-const TopDetails = () => {
-              const router = useRouter();
-
+type PropertyProp = {
+  property: string[];
+}
+const TopDetails = ({property} : PropertyProp) => {
+  const router = useRouter();
+  // const { id } = router.query;
+  console.log(property)
   return (
     <div className="w-full flex bg-[#F5FCFF] items-center justify-center">
       <div className="w-[85%] ">
@@ -40,7 +44,9 @@ const TopDetails = () => {
 
           <button
             className="px-[3em] py-3 text-white font-medium bg-secondary rounded-md md:flex items-center gap-x-4 hidden "
-            onClick={() => router.push("/apply")}
+            onClick={() => {
+              localStorage.setItem('id', JSON.stringify('ijebu'))
+              router.push("/apply")}}
           >
             <BsSave />
             <p>Apply</p>

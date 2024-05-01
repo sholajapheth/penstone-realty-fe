@@ -3,15 +3,26 @@ import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const ListingCard = () => {
-  const router = useRouter();
+type List = {
+  id: string,
+  imgSrc: string,
+  title: string,
+  address: string,
+  price: string,
+}
+ 
+type ListProp = {
+  lists: List,
 
+}
+const ListingCard = ({lists} : ListProp) => {
+  const router = useRouter();
+ console.log(lists)
   return (
     <div
       className="items-center justify-center flex cursor-pointer"
-      onClick={() => router.push("/property_details")}
+      onClick={() =>  router.push(`/property_details/${ 'ere' || lists.id }`)}
     >
-      {" "}
       <div className="rounded-2xl relative overflow-hidden w-[354px] bg-white shadow-md hover:shadow-md backdrop-blur  hover:shadow-gray-400 group ease-linear duration-300 transition-all">
         <div className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[328px]"></div>
 
