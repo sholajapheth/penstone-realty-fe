@@ -15,10 +15,12 @@ const Page = ({ params }: { params: { slug: string } }) => {
       singleList(params.slug),
   });
 
+  console.log(property)
+
   return (
     <div>
-      <TopDetails property={property} />
-      <PropertyDetails property={property} />
+      <TopDetails property={property && property} />
+      <PropertyDetails property={property && property} />
       <NewsLetter />
     </div>
   );

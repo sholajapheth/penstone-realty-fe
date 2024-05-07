@@ -20,73 +20,91 @@ const ApplicationForm = () => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
 
-  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState<string | undefined>('');
   const [monthlyRentBudget, setMonthlyRentBudget] = useState("");
   const [employerName, setEmployerName] = useState("");
   const [employerAddress, setEmployerAddress] = useState("");
   const [employmentDuration, setEmploymentDuration] = useState("");
   const [annualIncome, setAnnualIncome] = useState("");
-  const [emergencyContact, setEmergencyContact] = useState("");
+  const [emergencyContactAddress, setEmergencyContactAddress] = useState("");
   const [emergencyContactName, setEmergencyContactName] = useState("");
   const [numberOfOccupants, setNumberOfOccupants] = useState("");
 
-  const [userEmail, setUserEmail] = useState("");
-  const [propertyId, setPropertyId] = useState<string | null>(" ");
-  const [intensionOfUse, setIntensionOfUse] = useState("");
-  const [moveInDate, setMoveInDate] = useState("");
+  // const [propertyId, setPropertyId] = useState<string | null>(" ");
+  const [intentionOfUse, setIntentionOfUse] = useState("");
+  const [moveInDate, setMoveInDate] = useState<string | undefined>('');
 
-  const token = Cookies.get("token");
+  const token = Cookies.get("jwtToken");
   const user = Cookies.get("user");
 
-  useEffect(()=> {
-    setPropertyId(localStorage.getItem("id"))
-  }, [])
+  // useEffect(()=> {
+  //   setPropertyId(localStorage.getItem("id"))
+  // }, [])
 
   const update = useAPIMutation({
     mutationFunction: (x: any) => userApply(x.data, token ? token : "token"),
     onSuccessFn: (data) => {
       setLoading(false);
-      if (data?.statusCode === 200 || data?.statusCode === 201) {
+      // console.log(data)
+      // if (data?.statusCode === 200 || data?.statusCode === 201) {
         toast({
           status: "success",
           description: data.message || "Application Successful",
         });
-      }
+        setFirstName('')
+        setLastName('')
+        setPhoneNumber('')
+        setEmail('')
+        setAddress('')
+        setDateOfBirth('')
+        setMonthlyRentBudget('')
+        setEmployerName('')
+        setEmployerAddress('')
+        setEmploymentDuration('')
+        setAnnualIncome('')
+        setEmergencyContactAddress('')
+        setEmergencyContactName('')
+        setNumberOfOccupants('')
+        setIntentionOfUse('')
+        setMoveInDate('')
+      // }
     },
   });
-
+ const propertyId = JSON.parse(localStorage.getItem('id') as string)
+ const title = localStorage.getItem('title')
   function onSubmit(e: { preventDefault: () => void }) {
     if (!user) {
       setAuth(true);
     }
     const individual = JSON.parse(user as string);
-    const mail = user ? individual?.email : "";
-    setUserEmail(mail);
+    console.log(individual)
+    const userEmail = user ? individual?.email : "";
+    // setUserEmail(mail);
     e.preventDefault();
     setLoading(true);
     update.mutate({
       data: {
-        propertyId,
-        intensionOfUse,
-        moveInDate,
-        ContactInformation: {
+      propertyId,
+        intentionOfUse,
+        moveInDate: moveInDate,
+        contactInformation: {
           firstName,
           lastName,
           phoneNumber,
           email,
           address,
+          countryCode
         },
-        PersonalInformation: {
-          countryCode,
-          dateOfBirth,
+        personalInformation: {
+          dateOfBirth: dateOfBirth,
           monthlyRentBudget,
           employerName,
           employerAddress,
           employmentDuration,
           annualIncome,
-          emergencyContact,
+          emergencyContactAddress,
           emergencyContactName,
-          numberOfOccupants,
+          numberOfOccupants: parseInt(numberOfOccupants),
           userEmail,
         },
       },
@@ -112,17 +130,12 @@ const ApplicationForm = () => {
                   Select a Property{" "}
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
-                <select
+                <input
+                  type="text"
                   required
-                  className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
-                  onChange={(e) => setPropertyId(e.target.value)}
-                  value={''}
-                >
-                  <option value="" disabled>
-                    Ask a question / get help
-                  </option>
-                  <option value="">Select a property</option>
-                </select>
+                  className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={title ? (title as string) : "Name"}
+                />
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -133,13 +146,14 @@ const ApplicationForm = () => {
                 <select
                   required
                   className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
-                  value={intensionOfUse}
-                  onChange={(e) => setIntensionOfUse(e.target.value)}
+                  value={intentionOfUse}
+                  onChange={(e) => setIntentionOfUse(e.target.value)}
                 >
-                  <option value="" disabled>
-                    Ask a question / get help
+                  <option value="" disabled selected>
+                    Select intention
                   </option>
-                  <option value="">Select a property</option>
+                  <option value="RENT">Rent</option>
+                  <option value="SELL">Sell</option>
                 </select>
               </div>
 
@@ -149,8 +163,9 @@ const ApplicationForm = () => {
                   type="date"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-[200px]"
-                  value={moveInDate}
-                  onChange={(e) => setMoveInDate(e.target.value)}
+                  onChange={(e) => {
+                    setMoveInDate(e.target.valueAsDate?.toISOString());
+                  }}
                 />
               </div>
             </form>
@@ -238,8 +253,7 @@ const ApplicationForm = () => {
                   type="date"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-[200px]"
-                  value={dateOfBirth}
-                  onChange={(e) => setDateOfBirth(e.target.value)}
+                  onChange={(e) => setDateOfBirth(e.target.valueAsDate?.toISOString())}
                 />
               </div>
 
@@ -249,7 +263,7 @@ const ApplicationForm = () => {
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
                   value={monthlyRentBudget}
@@ -303,7 +317,7 @@ const ApplicationForm = () => {
                   Annual Income <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
                   value={annualIncome}
@@ -320,8 +334,8 @@ const ApplicationForm = () => {
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
-                  value={emergencyContact}
-                  onChange={(e) => setEmergencyContact(e.target.value)}
+                  value={emergencyContactName}
+                  onChange={(e) => setEmergencyContactName(e.target.value)}
                 />
               </div>
 
@@ -334,8 +348,8 @@ const ApplicationForm = () => {
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
-                  value={emergencyContactName}
-                  onChange={(e) => setEmergencyContactName(e.target.value)}
+                  value={emergencyContactAddress}
+                  onChange={(e) => setEmergencyContactAddress(e.target.value)}
                 />
               </div>
 

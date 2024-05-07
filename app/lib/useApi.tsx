@@ -41,12 +41,14 @@ function useAPIMutation<TData, TVariables extends ((error: AxiosError<unknown, a
           });
         } else if (status === 401) {
           toast({
-            description: error.response.data as string,
+            // @ts-ignore
+            description: error.response.data.message as string,
             status: "error",
           });
         } else {
           toast({
-            description: "An error occurred" + error.response.data,
+            // @ts-ignore
+            description: "An error occurred" + error.response.data.message,
             status: "error",
           });
         }

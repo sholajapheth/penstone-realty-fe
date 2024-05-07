@@ -27,7 +27,7 @@ const RequestForm = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const token = Cookies.get("token");
+  const token = Cookies.get("jwtToken");
   const user = Cookies.get("user");
 
   const validInput: React.MutableRefObject<HTMLInputElement | null> =
@@ -53,12 +53,20 @@ const RequestForm = () => {
       mutationFunction: (x: any) => sendRequest(x.data, token ? token : "token"),
       onSuccessFn: (data) => {
         setLoading(false);
-        if (data?.statusCode === 200 || data?.statusCode === 201) {
+        // if (data?.statusCode === 200 || data?.statusCode === 201) {
           toast({
             status: "success",
             description: data.message || "Request Successful",
           });
-        }
+          setTopic('')
+          setDescription('')
+          setAttachments([])
+          setProfession('')
+          setFirstName('')
+          setLastName('')
+          setEmail('')
+          setPhone('')
+        // }
       },
     });
 
@@ -77,7 +85,7 @@ const RequestForm = () => {
            firstName,
            lastName,
            email,
-           phone
+           phoneNumber:phone
           },
         });
       }
@@ -107,10 +115,8 @@ const RequestForm = () => {
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
               >
-                <option value="" disabled>
-                  Ask a question / get help
-                </option>
-                <option value="">Select a property</option>
+                <option value="Select a">Select a </option>
+                <option value="Select a property">Select a property</option>
               </select>
             </div>
 
@@ -122,10 +128,8 @@ const RequestForm = () => {
                 value={profession}
                 onChange={(e) => setProfession(e.target.value)}
               >
-                <option value="" disabled>
-                  ..
-                </option>
-                <option value="">Select a property</option>
+                <option value="Select a property">Select a property</option>
+                <option value="Select a">Select a </option>
               </select>
             </div>
 
@@ -212,8 +216,19 @@ const RequestForm = () => {
                   }
                 }}
               >
-                <Image width={30} height={30} src="/img/upload.png" alt="" />
-                <p>Select or drop file</p>
+                {attachments.length < 1 ? (
+                  <>
+                    <Image
+                      width={30}
+                      height={30}
+                      src="/img/upload.png"
+                      alt=""
+                    />{" "}
+                    <p>Select or drop file</p>
+                  </>
+                ) : (
+                  <p className="text-green-400">File uploaded successfully!</p>
+                )}
               </div>
               <div
                 className="rounded-[10px] px-4 gap-[5px] bg-[#eeeeee] flex justify-center items-center cursor-pointer py-[5px]"

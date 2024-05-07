@@ -4,15 +4,19 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 type List = {
-  id: string,
-  imgSrc: string,
-  title: string,
-  address: string,
-  price: string,
+  propertyId: string,
+  // imgSrc: string,
+  // title: string,
+  streetAddress: string,
+  // price: string,
+  unitNumber: string;
+  city: string;
+  state: string;
+  zipcode:string;
 }
  
 type ListProp = {
-  lists: List,
+  lists: List | any,
 
 }
 const ListingCard = ({lists} : ListProp) => {
@@ -21,10 +25,15 @@ const ListingCard = ({lists} : ListProp) => {
   return (
     <div
       className="items-center justify-center flex cursor-pointer"
-      onClick={() =>  router.push(`/property_details/${ 'ere' || lists.id }`)}
+      onClick={() => router.push(`/property_details/${lists.id}`)}
     >
       <div className="rounded-2xl relative overflow-hidden w-[354px] bg-white shadow-md hover:shadow-md backdrop-blur  hover:shadow-gray-400 group ease-linear duration-300 transition-all">
-        <div className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[328px]"></div>
+        <div
+          className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[328px]"
+          style={{
+            backgroundImage: `url(${lists.images && lists.images[0]} || '/img/hl-3.png')`,
+          }}
+        ></div>
 
         <div className="backdrop-blur bg-white/20 rounded-2xl absolute top-4 left-4 flex items-center p-2 px-3 border-white gap-3">
           <div className="h-2 w-2 rounded-full bg-[#FFBF00] " />
@@ -37,17 +46,21 @@ const ListingCard = ({lists} : ListProp) => {
           </div>
 
           <div className="absolute -top-6  flex items-center justify-center w-full">
-            {" "}
             <div>
-              {" "}
-              <p className="font-bold text-[28px] ">₦ 95,900</p>
+              <p className="font-bold text-[28px] ">
+                ₦{" "}
+                {lists.listingInformation &&
+                  lists.listingInformation.monthlyRent}
+              </p>
               <p className="text-[14px]">PER MONTH</p>
             </div>
           </div>
         </div>
         <div className=" text-center mt-[3.2em]">
           <p className="text-[20px]  font-semibold pb-3">
-            Lekki Phase 1, Lagos State
+            {lists.address && lists.address.streetAddress},{" "}
+            {lists.address && lists.address.city}{" "}
+            {lists.address && lists.address.state} State
           </p>
           <div className=" lg:bg-[#F6F6F6] rounded-lg p-4  flex items-center justify-center m-4 group-hover:bg-gray-300 ease-linear duration-300 transition-all">
             <div className=" gap-2 flex items-center w-full justify-between">
@@ -59,7 +72,11 @@ const ListingCard = ({lists} : ListProp) => {
                   width={20}
                   alt="bed"
                 />
-                <p className="text-[12px]">3 beds</p>
+                <p className="text-[12px]">
+                  {lists.listingInformation &&
+                    lists.listingInformation.noOfBedrooms}{" "}
+                  beds
+                </p>
               </div>
               <div className="flex items-end gap-1">
                 <Image
@@ -68,7 +85,11 @@ const ListingCard = ({lists} : ListProp) => {
                   width={20}
                   alt="bed"
                 />
-                <p className="text-[12px]">2 baths</p>
+                <p className="text-[12px]">
+                  {lists.listingInformation &&
+                    lists.listingInformation.noOfBaths}{" "}
+                  baths
+                </p>
               </div>
               <div className="flex items-end gap-1">
                 <Image
@@ -77,7 +98,11 @@ const ListingCard = ({lists} : ListProp) => {
                   width={20}
                   alt="bed"
                 />
-                <p className="text-[12px]">1500 sqft</p>
+                <p className="text-[12px]">
+                  {lists.listingInformation &&
+                    lists.listingInformation.squareFeet}{" "}
+                  sqft
+                </p>
               </div>
             </div>
           </div>

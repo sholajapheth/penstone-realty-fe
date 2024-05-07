@@ -18,7 +18,7 @@ const Form = () => {
   const [auth, setAuth] = useState(false);
 
   const [propertyType, setPropertyType] = useState("");
-  const [intension, setIntension] = useState("");
+  const [intention, setIntention] = useState("");
   const [reasonForSelling, setReasonForSelling] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -29,10 +29,10 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const token = Cookies.get("token");
+  const token = Cookies.get("jwtToken");
   const user = Cookies.get("user");
 
-  const validInput: React.MutableRefObject<HTMLInputElement | null> =
+  const photoInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
 
   const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,12 +55,23 @@ const Form = () => {
     mutationFunction: (x: any) => sellForm(x.data, token ? token : "token"),
     onSuccessFn: (data) => {
       setLoading(false);
-      if (data?.statusCode === 200 || data?.statusCode === 201) {
+      // if (data?.statusCode === 200 || data?.statusCode === 201) {
         toast({
           status: "success",
           description: data.message || "Application Successful",
         });
-      }
+      // }
+      setPropertyType('')
+      setIntention('')
+      setReasonForSelling('')
+      setAddress('')
+      setCity('')
+      setPrice('')
+      setImage([])
+      setFirstName('')
+      setLastName('')
+      setEmail('')
+      setPhoneNumber('')
     },
   });
 
@@ -73,12 +84,12 @@ const Form = () => {
     update.mutate({
       data: {
         propertyType,
-        intension,
+        intention,
         reasonForSelling,
         address,
         city,
         price,
-        image,
+        images: image,
         firstName,
         lastName,
         email,
@@ -109,11 +120,11 @@ const Form = () => {
               <select
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
-                value={intension}
-                onChange={(e) => setIntension(e.target.value)}
+                value={intention}
+                onChange={(e) => setIntention(e.target.value)}
               >
                 <option value="" disabled selected>
-                  Select a property
+                  Select intention
                 </option>
                 <option value="RENT">Rent</option>
                 <option value="SELL">Sell</option>
@@ -130,63 +141,60 @@ const Form = () => {
                 value={propertyType}
                 onChange={(e) => setPropertyType(e.target.value)}
               >
-                <option className=" text-[18px] font-bold" disabled selected>
-                  Select property type
-                </option>{" "}
                 <option
                   className=" text-[18px] font-bold"
-                  value={"FULLY_DETACHED_COMPLEX"}
+                  value={"FULLY_DETACHED_DUPLEX"}
                 >
                   Fully Detached Duplex
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"SEMI_DETACHED_COMPLEX"}
+                  value="SEMI_DETACHED_HOUSE"
                 >
                   Semi Detached House
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"ACCOMMODATION_BLOCK"}
+                  value="ACCOMMODATION_BLOCK"
                 >
                   Accommodation Block
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"FLATS_AND_APARTMENT"}
+                  value="FLATS_AND_APARTMENT"
                 >
                   Flats and Apartment
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"STUDIO_APARTMENT"}
+                  value="STUDIO_APARTMENT"
                 >
                   Studio Apartment
                 </option>
-                <option className=" text-[18px] font-bold" value={"MINI_FLATS"}>
+                <option className=" text-[18px] font-bold" value="MINI_FLATS">
                   Mini Flats
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"RENTAL_SPACES"}
+                  value="RENTAL_SPACES"
                 >
                   Rental Spaces
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"WAREHOUSE_AND_INDUSTRIAL"}
+                  value="WAREHOUSE_AND_INDUSTRIAL"
                 >
                   Warehouse and Industrial
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"OFFICE_COMPLEX"}
+                  value="OFFICE_COMPLEX"
                 >
                   Office Complex
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"SPECIALIZED"}
+                  value="SPECIALIZED"
                 >
                   Specialized
                 </option>
@@ -236,7 +244,7 @@ const Form = () => {
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">Property Price</label>
               <input
-                type="text"
+                type="number"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="NGN"
@@ -253,15 +261,15 @@ const Form = () => {
                 type="file"
                 required
                 className="hidden"
-                ref={validInput}
+                ref={photoInput}
                 onChange={handleValidChange}
               />
               <div
                 className="border-[2px] border-dashed border-secondary rounded-[10px] px-8 w-full flex flex-col justify-center items-center cursor-pointer py-[26px]"
                 onClick={() => {
-                  if (validInput.current) {
+                  if (photoInput.current) {
                     // @ts-ignore
-                    validInput.current.click();
+                    photoInput.current.click();
                   }
                 }}
               >
@@ -282,9 +290,9 @@ const Form = () => {
               <div
                 className="rounded-[10px] px-4 gap-[5px] bg-[#eeeeee] flex justify-center items-center cursor-pointer py-[5px]"
                 onClick={() => {
-                  if (validInput.current) {
+                  if (photoInput.current) {
                     // @ts-ignore
-                    validInput.current.click();
+                    photoInput.current.click();
                   }
                 }}
               >

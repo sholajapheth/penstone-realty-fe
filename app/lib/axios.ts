@@ -12,7 +12,7 @@ export const axiosWithToken = (token: string) =>
     baseURL:process.env.NEXT_PUBLIC_BASE_URL,
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token,
+      Authorization: token,
     },
   });
 

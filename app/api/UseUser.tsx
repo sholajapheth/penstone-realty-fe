@@ -4,7 +4,7 @@ import { Listings } from "./dtos/Listing";
 import { SellProperty } from "./dtos/SellProperty";
 
 export async function userApply(data: Apply, token: string) {
-  const response = await axiosWithToken(token).post("/user/apply", { data });
+  const response = await axiosWithToken(token).post("/user/property/apply", { data });
 
   return response.data;
 }

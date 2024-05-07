@@ -21,7 +21,7 @@ export type PersonalInformation = {
 
 export interface Apply {
   propertyId: string;
-  intensionOfUse: string;
+  intentionOfUse: string;
   moveInDate: string;
   ContactInformation: ContactInformation;
   PersonalInformation: PersonalInformation;

@@ -54,9 +54,24 @@ const HotListings = () => {
         </div>
 
         <div className="mt-[3em] lg:mt-[4em] flex-wrap flex items-center gap-10 justify-center ">
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
+          {lists &&
+            lists.properties &&
+            lists.properties.slice(0, 3).map((list: any, i: any) => {
+              return (
+                <ListingCard
+                  // propertyId={list.propertyId}
+                  // streetAddress={list.streetAddress}
+                  // unitNumber={list.unitNumber}
+                  // city={list.city}
+                  // state={list.state}
+                  // zipcode={list.zipcode}
+                  lists={list}
+                  key={i}
+                />
+              );
+            })}
+          {/* <ListingCard lists={lists} /> */}
+          {/* <ListingCard lists={lists} /> */}
         </div>
         <div className="flex items-center justify-center mt-12">
           <button

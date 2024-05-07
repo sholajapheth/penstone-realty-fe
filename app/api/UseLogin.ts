@@ -30,11 +30,15 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
     Cookies.set("token", token, { expires: 1 });
 
     if (user.metadata.creationTime !== user.metadata.lastSignInTime) {
-      userLogin({ email: user.email }, token);
-      Cookies.set("user", JSON.stringify(user), { expires: 5 });
+      userLogin({ email: user.email }, token).then((response) => {
+        console.log(response);
+        Cookies.set("jwtToken", response.token);
+        Cookies.set("user", JSON.stringify(user), { expires: 5 });
+      });
     } else {
       userRegister({ image: user.photoURL, name: user.displayName, email: user.email }, token).then(response => {
-        Cookies.set("jwtToken", response.token)
+        console.log(response.data)
+        Cookies.set("jwtToken", response.data.token)
       })
       Cookies.set("user", JSON.stringify(user), { expires: 5 });
     }
