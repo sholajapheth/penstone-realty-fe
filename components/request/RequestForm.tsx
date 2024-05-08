@@ -251,7 +251,11 @@ const RequestForm = () => {
                 <span className="underline">Privacy Policy</span>.
               </label>
             </div>
-
+            {auth && (
+              <p className="text-center text-[14px] text-red-500">
+                Please sign up before submitting
+              </p>
+            )}
             <button
               className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
               onClick={(e) => onSubmit(e)}

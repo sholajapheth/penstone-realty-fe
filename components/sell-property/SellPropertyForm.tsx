@@ -56,22 +56,22 @@ const Form = () => {
     onSuccessFn: (data) => {
       setLoading(false);
       // if (data?.statusCode === 200 || data?.statusCode === 201) {
-        toast({
-          status: "success",
-          description: data.message || "Application Successful",
-        });
+      toast({
+        status: "success",
+        description: data.message || "Application Successful",
+      });
       // }
-      setPropertyType('')
-      setIntention('')
-      setReasonForSelling('')
-      setAddress('')
-      setCity('')
-      setPrice('')
-      setImage([])
-      setFirstName('')
-      setLastName('')
-      setEmail('')
-      setPhoneNumber('')
+      setPropertyType("");
+      setIntention("");
+      setReasonForSelling("");
+      setAddress("");
+      setCity("");
+      setPrice("");
+      setImage([]);
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhoneNumber("");
     },
   });
 
@@ -192,10 +192,7 @@ const Form = () => {
                 >
                   Office Complex
                 </option>
-                <option
-                  className=" text-[18px] font-bold"
-                  value="SPECIALIZED"
-                >
+                <option className=" text-[18px] font-bold" value="SPECIALIZED">
                   Specialized
                 </option>
               </select>
@@ -358,7 +355,11 @@ const Form = () => {
                 <span className="underline">Privacy Policy</span>.
               </label>
             </div>
-
+            {auth && (
+              <p className="text-center text-[14px] text-red-500">
+                Please sign up before submitting
+              </p>
+            )}
             <button
               className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
               onClick={(e) => onSubmit(e)}

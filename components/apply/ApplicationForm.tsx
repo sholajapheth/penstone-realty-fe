@@ -253,7 +253,9 @@ const ApplicationForm = () => {
                   type="date"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-[200px]"
-                  onChange={(e) => setDateOfBirth(e.target.valueAsDate?.toISOString())}
+                  onChange={(e) =>
+                    setDateOfBirth(e.target.valueAsDate?.toISOString())
+                  }
                 />
               </div>
 
@@ -393,7 +395,11 @@ const ApplicationForm = () => {
                 EVICTION CHECKS
               </p>
             </div>
-
+            {auth && (
+              <p className="text-center text-[14px] text-red-500">
+                Please sign up before submitting
+              </p>
+            )}
             <div className="flex justify-center lg:justify-start">
               <button
                 className={` disabled:bg-primary/40 disabled:cursor-not-allowed bg-primary text-white font-semibold flex justify-center items-center gap-2 py-3 rounded-xl px-8 w-full lg:w-[20%]`}
