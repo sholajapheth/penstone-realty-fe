@@ -5,6 +5,7 @@ import { userApply } from "@/app/api/UseUser";
 import { useAPI } from "@/app/lib/useApi";
 import { useAppToast } from "@/app/lib/useAppToast";
 import Cookies from "js-cookie";
+import useLocalStorage from "@/app/api/dtos/useLocalStorage";
 
 const ApplicationForm = () => {
   const { useAPIMutation } = useAPI();
@@ -12,6 +13,9 @@ const ApplicationForm = () => {
 
   const [loading, setLoading] = useState(false);
   const [auth, setAuth] = useState(false);
+
+    const { getItem } = useLocalStorage();
+
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -37,9 +41,6 @@ const ApplicationForm = () => {
   const token = Cookies.get("jwtToken");
   const user = Cookies.get("user");
 
-  // useEffect(()=> {
-  //   setPropertyId(localStorage.getItem("id"))
-  // }, [])
 
   const update = useAPIMutation({
     mutationFunction: (x: any) => userApply(x.data, token ? token : "token"),
@@ -70,8 +71,9 @@ const ApplicationForm = () => {
       // }
     },
   });
- const propertyId = JSON.parse(localStorage.getItem('id') as string)
- const title = localStorage.getItem('title')
+ const propertyId = getItem('id')
+ const title = getItem('title')
+
   function onSubmit(e: { preventDefault: () => void }) {
     if (!user) {
       setAuth(true);
@@ -79,12 +81,11 @@ const ApplicationForm = () => {
     const individual = JSON.parse(user as string);
     console.log(individual)
     const userEmail = user ? individual?.email : "";
-    // setUserEmail(mail);
     e.preventDefault();
     setLoading(true);
     update.mutate({
       data: {
-      propertyId,
+      propertyId: JSON.parse(propertyId as string),
         intentionOfUse,
         moveInDate: moveInDate,
         contactInformation: {
@@ -109,7 +110,6 @@ const ApplicationForm = () => {
         },
       },
     });
-    // setLoading(false)
   }
 
   return (

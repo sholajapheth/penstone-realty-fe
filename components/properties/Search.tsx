@@ -9,6 +9,7 @@ import { PaginationNav } from "../common";
 import { useAPI } from "@/app/lib/useApi";
 import { listings } from "@/app/api/UseUser";
 import NaijaStates from "naija-state-local-government";
+import { list } from "firebase/storage";
 
 const Search = () => {
   const { useQuery, queryClient } = useAPI();
@@ -216,6 +217,10 @@ const [price, setPrice] = useState('')
           </button>
         </div>{" "}
         <div className="mt-[4em] w-full flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
+          {lists && lists.map((list: any) => {
+            return <ListingCard key={list.id} lists={list} />;
+          })}
+          {/* <ListingCard lists={lists} />
           <ListingCard lists={lists} />
           <ListingCard lists={lists} />
           <ListingCard lists={lists} />
@@ -223,8 +228,7 @@ const [price, setPrice] = useState('')
           <ListingCard lists={lists} />
           <ListingCard lists={lists} />
           <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
+          <ListingCard lists={lists} /> */}
         </div>
         <PaginationNav />
       </div>
