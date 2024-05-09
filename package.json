@@ -19,7 +19,7 @@
     "@types/js-cookie": "^3.0.6",
     "axios": "^1.6.8",
     "firebase": "^10.11.0",
-    "formik": "^2.4.5",
+    "formik": "^2.4.6",
     "framer-motion": "^11.1.7",
     "js-cookie": "^3.0.5",
     "naija-state-local-government": "^1.1.2",
@@ -27,7 +27,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",

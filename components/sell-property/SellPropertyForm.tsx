@@ -8,29 +8,84 @@ import { useAPI } from "@/app/lib/useApi";
 import { useAppToast } from "@/app/lib/useAppToast";
 import { sellForm } from "@/app/api/UseUser";
 import { useStorage } from "@/app/lib/firebase/storage";
+import { useFormik } from "formik";
+import { sellFormValidator } from "@/app/api/dtos/useYup";
 
 const Form = () => {
   const { useAPIMutation } = useAPI();
   const { upload } = useStorage();
   const toast = useAppToast();
-
+  const initialValues = {
+    propertyType: "",
+    intention: "",
+    reasonForSelling: "",
+    address: "",
+    city: "",
+    price: "",
+    images: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+  };
   const [loading, setLoading] = useState(false);
   const [auth, setAuth] = useState(false);
 
-  const [propertyType, setPropertyType] = useState("");
-  const [intention, setIntention] = useState("");
-  const [reasonForSelling, setReasonForSelling] = useState("");
-  const [address, setAddress] = useState("");
-  const [city, setCity] = useState("");
-  const [price, setPrice] = useState("");
+  // const [propertyType, setPropertyType] = useState("");
+  // const [intention, setIntention] = useState("");
+  // const [reasonForSelling, setReasonForSelling] = useState("");
+  // const [address, setAddress] = useState("");
+  // const [city, setCity] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
   const [image, setImage] = useState<string[]>([]);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
+  const [imgName, setImgName] = useState<any>("");
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+  };
 
   const token = Cookies.get("jwtToken");
   const user = Cookies.get("user");
+
+  const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
+    initialValues: initialValues,
+    validationSchema: sellFormValidator,
+    onSubmit: (values) => {
+      if (!user) {
+        setAuth(true);
+        return;
+      }
+      if (!isChecked) {
+        alert("User agreement not agreed to.");
+        return;
+      }
+      if (image.length < 1) {
+        alert("Please upload an image.");
+        return;
+      }
+      setLoading(true);
+      update.mutate({
+        data: {
+          propertyType: values.propertyType,
+          intention: values.intention,
+          reasonForSelling: values.reasonForSelling,
+          address: values.address,
+          city: values.city,
+          price: values.price,
+          images: image,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          phoneNumber: values.phoneNumber,
+        },
+      });
+    },
+  });
 
   const photoInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
@@ -38,6 +93,7 @@ const Form = () => {
   const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files.item(0);
+      setImgName(file && (file.name as string));
       if (file instanceof File) {
         try {
           const downloadURL = await upload(file);
@@ -61,42 +117,42 @@ const Form = () => {
         description: data.message || "Application Successful",
       });
       // }
-      setPropertyType("");
-      setIntention("");
-      setReasonForSelling("");
-      setAddress("");
-      setCity("");
-      setPrice("");
-      setImage([]);
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhoneNumber("");
+      // setPropertyType("");
+      // setIntention("");
+      // setReasonForSelling("");
+      // setAddress("");
+      // setCity("");
+      // setPrice("");
+      // setImage([]);
+      // setFirstName("");
+      // setLastName("");
+      // setEmail("");
+      // setPhoneNumber("");
     },
   });
 
-  function onSubmit(e: { preventDefault: () => void }) {
-    if (!user) {
-      setAuth(true);
-    }
-    e.preventDefault();
-    setLoading(true);
-    update.mutate({
-      data: {
-        propertyType,
-        intention,
-        reasonForSelling,
-        address,
-        city,
-        price,
-        images: image,
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-      },
-    });
-  }
+  // function onSubmit(e: { preventDefault: () => void }) {
+  //   if (!user) {
+  //     setAuth(true);
+  //   }
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   update.mutate({
+  //     data: {
+  //       propertyType,
+  //       intention,
+  //       reasonForSelling,
+  //       address,
+  //       city,
+  //       price,
+  //       images: image,
+  //       firstName,
+  //       lastName,
+  //       email,
+  //       phoneNumber,
+  //     },
+  //   });
+  // }
 
   return (
     <>
@@ -118,10 +174,12 @@ const Form = () => {
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">Intention</label>
               <select
+                name="intention"
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
-                value={intention}
-                onChange={(e) => setIntention(e.target.value)}
+                value={values.intention}
+                onChange={handleChange}
+                onBlur={handleBlur}
               >
                 <option value="" disabled selected>
                   Select intention
@@ -129,6 +187,9 @@ const Form = () => {
                 <option value="RENT">Rent</option>
                 <option value="SELL">Sell</option>
               </select>
+              {errors.intention && (
+                <p className="text-red-500 text-[14px]">{errors.intention}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
@@ -136,10 +197,11 @@ const Form = () => {
                 Type of property
               </label>
               <select
+                name="propertyType"
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
-                value={propertyType}
-                onChange={(e) => setPropertyType(e.target.value)}
+                value={values.propertyType}
+                onChange={handleChange}
               >
                 <option
                   className=" text-[18px] font-bold"
@@ -196,6 +258,11 @@ const Form = () => {
                   Specialized
                 </option>
               </select>
+              {errors.propertyType && (
+                <p className="text-red-500 text-[14px]">
+                  {errors.propertyType}
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
@@ -203,13 +270,19 @@ const Form = () => {
                 Reason for selling / renting
               </label>
               <input
+                name="reasonForSelling"
                 type="text"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Enter reason"
-                value={reasonForSelling}
-                onChange={(e) => setReasonForSelling(e.target.value)}
+                value={values.reasonForSelling}
+                onChange={handleChange}
               />
+              {errors.reasonForSelling && (
+                <p className="text-red-500 text-[14px]">
+                  {errors.reasonForSelling}
+                </p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
@@ -217,37 +290,49 @@ const Form = () => {
                 Property address
               </label>
               <input
+                name="address"
                 type="text"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Input property address"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={values.address}
+                onChange={handleChange}
               />
+              {errors.address && (
+                <p className="text-red-500 text-[14px]">{errors.address}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">City</label>
               <input
+                name="city"
                 type="text"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Input city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
+                value={values.city}
+                onChange={handleChange}
               />
+              {errors.city && (
+                <p className="text-red-500 text-[14px]">{errors.city}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">Property Price</label>
               <input
+                name="price"
                 type="number"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="NGN"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
+                value={values.price}
+                onChange={handleChange}
               />
+              {errors.price && (
+                <p className="text-red-500 text-[14px]">{errors.price}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
@@ -281,7 +366,7 @@ const Form = () => {
                     <p>Select or drop file</p>
                   </>
                 ) : (
-                  <p className="text-green-400">File uploaded successfully!</p>
+                  <p className="text-black">{imgName} uploaded successfully!</p>
                 )}
               </div>
               <div
@@ -296,60 +381,85 @@ const Form = () => {
                 <Image width={15} height={15} src="/img/clip.png" alt="" />{" "}
                 <p className="text-[#000929]">Select file</p>
               </div>
+              {/* {errors.images && (
+                <p className="text-red-500 text-[14px]">{errors.images}</p>
+              )} */}
             </div>
 
             <div className="flex justify-between items-center gap-[32px]">
               <div className="flex flex-col items-start gap-2">
                 <label className="text-black font-semibold">First name</label>
                 <input
+                  name="firstName"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                   placeholder="First name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={values.firstName}
+                  onChange={handleChange}
                 />
+                {errors.firstName && (
+                  <p className="text-red-500 text-[14px]">{errors.firstName}</p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
                 <label className="text-black font-semibold">Last name</label>
                 <input
+                  name="lastName"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                   placeholder="Last name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={values.lastName}
+                  onChange={handleChange}
                 />
+                {errors.lastName && (
+                  <p className="text-red-500 text-[14px]">{errors.lastName}</p>
+                )}
               </div>
             </div>
 
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">Email</label>
               <input
+                name="email"
                 type="email"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="example@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={values.email}
+                onChange={handleChange}
               />
+              {errors.email && (
+                <p className="text-red-500 text-[14px]">{errors.email}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">Phone number</label>
               <input
+                name="phoneNumber"
                 type="tel"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Phone number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={values.phoneNumber}
+                onChange={handleChange}
               />
+              {errors.phoneNumber && (
+                <p className="text-red-500 text-[14px]">{errors.phoneNumber}</p>
+              )}
             </div>
 
             <div className="flex items-center gap-3 mt-2">
-              <input type="checkbox" required className="" />
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                required
+                className=""
+              />
               <label className="text-[18px]">
                 Click Here to accept the terms of our{" "}
                 <span className="underline">Privacy Policy</span>.
@@ -362,8 +472,10 @@ const Form = () => {
             )}
             <button
               className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
-              onClick={(e) => onSubmit(e)}
+              //@ts-ignore
+              onClick={handleSubmit}
               disabled={loading}
+              type="button"
             >
               {loading && (
                 <svg

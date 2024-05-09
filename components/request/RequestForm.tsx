@@ -9,26 +9,81 @@ import { useAppToast } from "@/app/lib/useAppToast";
 import { sendRequest } from "@/app/api/UseUser";
 import { useStorage } from "@/app/lib/firebase/storage";
 import Cookies from "js-cookie";
+import { useFormik } from "formik";
+import { requestValidation } from "@/app/api/dtos/useYup";
 
 const RequestForm = () => {
     const { useAPIMutation } = useAPI();
     const { upload } = useStorage();
     const toast = useAppToast();
 
+    const initialValues = {
+      topic: "",
+      description: "",
+      attachments: "",
+      profession: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phoneNumber: "",
+    };
+
     const [loading, setLoading] = useState(false);
     const [auth, setAuth] = useState(false);
 
-  const [topic, setTopic] = useState("");
-  const [description, setDescription] = useState("");
+  // const [topic, setTopic] = useState("");
+  // const [description, setDescription] = useState("");
   const [attachments, setAttachments] = useState<string[]>([]);
-  const [profession, setProfession] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  // const [profession, setProfession] = useState("");
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phone, setPhone] = useState("");
+  const [imageName, setImageName] = useState<any>("");
+  const [isChecked, setIsChecked] = useState(false);
 
   const token = Cookies.get("jwtToken");
   const user = Cookies.get("user");
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+  };
+
+
+    const { values, handleBlur, handleChange, handleSubmit, errors } =
+      useFormik({
+        initialValues: initialValues,
+        validationSchema: requestValidation,
+        onSubmit: (values) => {
+          console.log('yoo')
+          if (!user) {
+            setAuth(true);
+            return;
+          }
+          if (!isChecked) {
+            alert("User agreement not agreed to.");
+            return;
+          }
+           if (attachments.length < 1) {
+             alert("Please upload an image.");
+             return;
+           }
+          setLoading(true);
+          update.mutate({
+            data: {
+              topic: values.topic,
+              description: values.description,
+              attachments: attachments,
+              profession: values.profession,
+              firstName: values.firstName,
+              lastName: values.lastName,
+              email: values.email,
+              phoneNumber: values.phoneNumber,
+            },
+          });
+        },
+      });
+
 
   const validInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
@@ -36,6 +91,7 @@ const RequestForm = () => {
   const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files.item(0);
+      setImageName(file && (file.name as string))
       if (file instanceof File) {
         try {
           const downloadURL = await upload(file);
@@ -58,37 +114,37 @@ const RequestForm = () => {
             status: "success",
             description: data.message || "Request Successful",
           });
-          setTopic('')
-          setDescription('')
-          setAttachments([])
-          setProfession('')
-          setFirstName('')
-          setLastName('')
-          setEmail('')
-          setPhone('')
+          // setTopic('')
+          // setDescription('')
+          // setAttachments([])
+          // setProfession('')
+          // setFirstName('')
+          // setLastName('')
+          // setEmail('')
+          // setPhone('')
         // }
       },
     });
 
-      function onSubmit(e: { preventDefault: () => void }) {
-        if (!user) {
-          setAuth(true);
-        }
-        e.preventDefault();
-        setLoading(true);
-        update.mutate({
-          data: {
-           topic,
-           description,
-           attachments,
-           profession,
-           firstName,
-           lastName,
-           email,
-           phoneNumber:phone
-          },
-        });
-      }
+      // function onSubmit(e: { preventDefault: () => void }) {
+      //   if (!user) {
+      //     setAuth(true);
+      //   }
+      //   e.preventDefault();
+      //   setLoading(true);
+      //   update.mutate({
+      //     // data: {
+      //     //  topic,
+      //     //  description,
+      //     //  attachments,
+      //     //  profession,
+      //     //  firstName,
+      //     //  lastName,
+      //     //  email,
+      //     //  phoneNumber:phone
+      //     // },
+      //   });
+      // }
 
   return (
     <>
@@ -110,77 +166,107 @@ const RequestForm = () => {
                 What can we help you with today?
               </label>
               <select
+                name="topic"
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
+                value={values.topic}
+                onBlur={handleBlur}
+                onChange={handleChange}
               >
                 <option value="Select a">Select a </option>
                 <option value="Select a property">Select a property</option>
               </select>
+              {errors.topic && (
+                <p className="text-red-500 text-[14px]">{errors.topic}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">I am a...?</label>
               <select
+                name="profession"
                 required
                 className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
-                value={profession}
-                onChange={(e) => setProfession(e.target.value)}
+                value={values.profession}
+                onBlur={handleBlur}
+                onChange={handleChange}
               >
                 <option value="Select a property">Select a property</option>
                 <option value="Select a">Select a </option>
               </select>
+              {errors.profession && (
+                <p className="text-red-500 text-[14px]">{errors.profession}</p>
+              )}
             </div>
 
             <div className="flex justify-between items-center gap-[32px]">
               <div className="flex flex-col items-start gap-2">
                 <label className="text-black font-semibold">First Name</label>
                 <input
+                  name="firstName"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                   placeholder="First name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  value={values.firstName}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
                 />
+                {errors.firstName && (
+                  <p className="text-red-500 text-[14px]">{errors.firstName}</p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
                 <label className="text-black font-semibold">Last name</label>
                 <input
+                  name="lastName"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                   placeholder="Last name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={values.lastName}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
                 />
+                {errors.lastName && (
+                  <p className="text-red-500 text-[14px]">{errors.lastName}</p>
+                )}
               </div>
             </div>
 
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">Email</label>
               <input
+                name="email"
                 type="email"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="example@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={values.email}
+                onBlur={handleBlur}
+                onChange={handleChange}
               />
+              {errors.email && (
+                <p className="text-red-500 text-[14px]">{errors.email}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
               <label className="text-black font-semibold">Phone number</label>
               <input
+                name="phoneNumber"
                 type="tel"
                 required
                 className="border-[2px] rounded-[10px] h-[45px] lg:h-[52px] px-[16px] w-full"
                 placeholder="Phone number"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                value={values.phoneNumber}
+                onBlur={handleBlur}
+                onChange={handleChange}
               />
+              {errors.phoneNumber && (
+                <p className="text-red-500 text-[14px]">{errors.phoneNumber}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
@@ -188,12 +274,17 @@ const RequestForm = () => {
                 Describe Request
               </label>
               <textarea
+                name="description"
                 required
                 className="border-[2px] rounded-[10px] h-[90px] lg:h-[180px] p-[16px] w-full"
                 placeholder="Leave us a message"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                value={values.description}
+                onBlur={handleBlur}
+                onChange={handleChange}
               />
+              {errors.description && (
+                <p className="text-red-500 text-[14px]">{errors.description}</p>
+              )}
             </div>
 
             <div className="flex flex-col items-start gap-2">
@@ -201,6 +292,7 @@ const RequestForm = () => {
                 What can we help you with today?
               </label>
               <input
+                name="attachment"
                 type="file"
                 required
                 className="hidden"
@@ -227,7 +319,7 @@ const RequestForm = () => {
                     <p>Select or drop file</p>
                   </>
                 ) : (
-                  <p className="text-green-400">File uploaded successfully!</p>
+                  <p className="text-black">{imageName}</p>
                 )}
               </div>
               <div
@@ -245,7 +337,13 @@ const RequestForm = () => {
             </div>
 
             <div className="flex items-center gap-3 mt-2">
-              <input type="checkbox" required className="" />
+              <input
+                type="checkbox"
+                checked={isChecked}
+                onChange={handleCheckboxChange}
+                required
+                className=""
+              />
               <label className="text-[18px]">
                 Click Here to accept the terms of our{" "}
                 <span className="underline">Privacy Policy</span>.
@@ -258,8 +356,10 @@ const RequestForm = () => {
             )}
             <button
               className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
-              onClick={(e) => onSubmit(e)}
+              //@ts-ignore
+              onClick={(e) => handleSubmit(e)}
               disabled={loading}
+              type="button"
             >
               {loading && (
                 <svg
