@@ -21,7 +21,7 @@ const ApplicationForm = () => {
     phoneNumber: "",
     email: "",
     address: "",
-    countryCode: "",
+    countryCode: "+234",
     dateOfBirth: "",
     monthlyRentBudget: "",
     employerName: "",
