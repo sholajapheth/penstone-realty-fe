@@ -217,7 +217,7 @@ const [price, setPrice] = useState('')
           </button>
         </div>{" "}
         <div className="mt-[4em] w-full flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
-          {lists && lists.map((list: any) => {
+          {lists && lists.properties.map((list: any) => {
             return <ListingCard key={list.id} lists={list} />;
           })}
           {/* <ListingCard lists={lists} />

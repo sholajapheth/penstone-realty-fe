@@ -4,10 +4,20 @@ import React from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import ListingCard from "./ListingCard";
 import { useRouter } from "next/navigation";
+import { useAPI } from "@/app/lib/useApi";
+import { listings } from "@/app/api/UseUser";
 
 const ConcludedListings = () => {
           const router = useRouter();
+ const { useQuery } = useAPI();
 
+ const { data: lists } = useQuery({
+   queryKey: ["lists"],
+   queryFn: () =>
+     listings("rank", "asc", {
+       filters: [],
+     }),
+ });
   return (
     <div className="flex justify-center">
       <div className="w-[90%] lg:w-[85%]">
@@ -35,9 +45,22 @@ const ConcludedListings = () => {
             </div>
 
             <div className="mt-[4em] flex items-center gap-10 justify-center flex-wrap ">
-              <ListingCard />
-              <ListingCard />
-              <ListingCard />
+              {lists &&
+                lists.properties &&
+                lists.properties.slice(0, 3).map((list: any, i: any) => {
+                  return (
+                    <ListingCard
+                      // propertyId={list.propertyId}
+                      // streetAddress={list.streetAddress}
+                      // unitNumber={list.unitNumber}
+                      // city={list.city}
+                      // state={list.state}
+                      // zipcode={list.zipcode}
+                      lists={list}
+                      key={i}
+                    />
+                  );
+                })}
             </div>
             <div className="flex items-center justify-center mt-12">
               <button
