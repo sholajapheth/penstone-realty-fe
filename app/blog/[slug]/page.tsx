@@ -15,7 +15,7 @@ import {
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-            const router = useRouter();
+  const router = useRouter();
 
   return (
     <div>

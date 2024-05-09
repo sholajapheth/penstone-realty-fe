@@ -1,16 +1,19 @@
 import { Partners, GetIntouch, NewsLetter } from "@/components/common";
-import { SpecializedPageBanner, SpecializedServices } from "@/components/specialized-services";
+import {
+  SpecializedPageBanner,
+  SpecializedServices,
+} from "@/components/specialized-services";
 
 const page = () => {
-    return (
-      <>
-        <SpecializedPageBanner />
-        <SpecializedServices />
-        <Partners />
-        <GetIntouch />
-        <NewsLetter />
-      </>
-    );
-}
- 
+  return (
+    <>
+      <SpecializedPageBanner />
+      <SpecializedServices />
+      <Partners />
+      <GetIntouch />
+      <NewsLetter />
+    </>
+  );
+};
+
 export default page;

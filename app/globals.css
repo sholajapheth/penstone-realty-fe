@@ -81,3 +81,31 @@ body {
     text-wrap: balance;
   }
 }
+
+#sign-in-suggestion {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#sign-in-button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #4285f4;
+  color: white;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.imitation-progress-bar {
+  height: 10px; /* Adjust height as needed */
+  background-color: #f00; /* Customize background color */
+transition: width 8s ease-in-out;
+}

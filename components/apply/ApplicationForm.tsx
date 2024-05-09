@@ -1,6 +1,201 @@
+"use client";
+import { useEffect, useState } from "react";
+import GoogleSIgnIn from "../GoogleSIgnIn";
+import { userApply } from "@/app/api/UseUser";
+import { useAPI } from "@/app/lib/useApi";
+import { useAppToast } from "@/app/lib/useAppToast";
+import Cookies from "js-cookie";
+import useLocalStorage from "@/app/api/dtos/useLocalStorage";
+import { useFormik } from "formik";
+import { applyValidation } from "@/app/api/dtos/useYup";
+
 const ApplicationForm = () => {
+  const { useAPIMutation } = useAPI();
+  const toast = useAppToast();
+
+  const initialValues = {
+    intentionOfUse: "",
+    moveInDate: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    address: "",
+    countryCode: "+234",
+    dateOfBirth: "",
+    monthlyRentBudget: "",
+    employerName: "",
+    employerAddress: "",
+    employmentDuration: "",
+    annualIncome: "",
+    emergencyContactAddress: "",
+    emergencyContactName: "",
+    numberOfOccupants: "",
+    userEmail: "",
+  };
+
+  const [loading, setLoading] = useState(false);
+  const [auth, setAuth] = useState(false);
+
+  const { getItem } = useLocalStorage();
+
+  // const [firstName, setFirstName] = useState("");
+  // const [lastName, setLastName] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
+  // const [countryCode, setCountryCode] = useState("+234");
+  // const [email, setEmail] = useState("");
+  // const [address, setAddress] = useState("");
+
+  const [dateOfBirth, setDateOfBirth] = useState<string | undefined>("");
+  // const [monthlyRentBudget, setMonthlyRentBudget] = useState("");
+  // const [employerName, setEmployerName] = useState("");
+  // const [employerAddress, setEmployerAddress] = useState("");
+  // const [employmentDuration, setEmploymentDuration] = useState("");
+  // const [annualIncome, setAnnualIncome] = useState("");
+  // const [emergencyContactAddress, setEmergencyContactAddress] = useState("");
+  // const [emergencyContactName, setEmergencyContactName] = useState("");
+  // const [numberOfOccupants, setNumberOfOccupants] = useState("");
+
+  // const [propertyId, setPropertyId] = useState<string | null>(" ");
+  // const [intentionOfUse, setIntentionOfUse] = useState("");
+  const [moveInDate, setMoveInDate] = useState<string | undefined>("");
+
+  const token = Cookies.get("jwtToken");
+  const user = Cookies.get("user");
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+  };
+
+  const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
+    initialValues: initialValues,
+    validationSchema: applyValidation,
+    onSubmit: (values) => {
+      if (!user) {
+        setAuth(true);
+        return;
+      }
+      if (!isChecked) {
+        alert("User agreement not agreed to.");
+        return;
+      }
+      if (moveInDate && moveInDate?.length < 1) {
+        alert("Move in date is required");
+        return;
+      }
+      if (dateOfBirth && dateOfBirth?.length < 1) {
+        alert("Date of birth is required");
+        return;
+      }
+      const individual = JSON.parse(user as string);
+      console.log(individual);
+      const userEmail = user ? individual?.email : "";
+      setLoading(true);
+      setLoading(true);
+      update.mutate({
+        data: {
+          propertyId: JSON.parse(propertyId as string),
+          intentionOfUse: values.intentionOfUse,
+          moveInDate,
+          contactInformation: {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            phoneNumber: values.phoneNumber,
+            email: values.email,
+            address: values.address,
+            countryCode: values.countryCode,
+          },
+          personalInformation: {
+            dateOfBirth,
+            monthlyRentBudget: values.monthlyRentBudget,
+            employerName: values.employerName,
+            employerAddress: values.employerAddress,
+            employmentDuration: values.employmentDuration,
+            annualIncome: values.annualIncome,
+            emergencyContactAddress: values.emergencyContactAddress,
+            emergencyContactName: values.emergencyContactName,
+            numberOfOccupants: parseInt(values.numberOfOccupants),
+            userEmail,
+          },
+        },
+      });
+    },
+  });
+
+  const update = useAPIMutation({
+    mutationFunction: (x: any) => userApply(x.data, token ? token : "token"),
+    onSuccessFn: (data) => {
+      setLoading(false);
+      // console.log(data)
+      // if (data?.statusCode === 200 || data?.statusCode === 201) {
+      toast({
+        status: "success",
+        description: data.message || "Application Successful",
+      });
+      // setFirstName('')
+      // setLastName('')
+      // setPhoneNumber('')
+      // setEmail('')
+      // setAddress('')
+      // setDateOfBirth('')
+      // setMonthlyRentBudget('')
+      // setEmployerName('')
+      // setEmployerAddress('')
+      // setEmploymentDuration('')
+      // setAnnualIncome('')
+      // setEmergencyContactAddress('')
+      // setEmergencyContactName('')
+      // setNumberOfOccupants('')
+      // setIntentionOfUse('')
+      // setMoveInDate('')
+      // }
+    },
+  });
+  const propertyId = getItem("id");
+  const title = getItem("title");
+
+  // function onSubmit(e: { preventDefault: () => void }) {
+  //   if (!user) {
+  //     setAuth(true);
+  //   }
+  //   const individual = JSON.parse(user as string);
+  //   console.log(individual)
+  //   const userEmail = user ? individual?.email : "";
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   update.mutate({
+  //     data: {
+  //     propertyId: JSON.parse(propertyId as string),
+  //       intentionOfUse,
+  //       moveInDate: moveInDate,
+  //       contactInformation: {
+  //         firstName,
+  //         lastName,
+  //         phoneNumber,
+  //         email,
+  //         address,
+  //         countryCode
+  //       },
+  //       personalInformation: {
+  //         dateOfBirth: dateOfBirth,
+  //         monthlyRentBudget,
+  //         employerName,
+  //         employerAddress,
+  //         employmentDuration,
+  //         annualIncome,
+  //         emergencyContactAddress,
+  //         emergencyContactName,
+  //         numberOfOccupants: parseInt(numberOfOccupants),
+  //         userEmail,
+  //       },
+  //     },
+  //   });
+  // }
+
   return (
     <>
+      {auth && <GoogleSIgnIn />}
       <div className="bg-white flex  justify-center">
         <div className="w-[90%] lg:w-[85%]">
           <div className="bg-white flex justify-start flex-col py-[2em] lg:py-[4em] text-secondary w-full">
@@ -16,15 +211,12 @@ const ApplicationForm = () => {
                   Select a Property{" "}
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
-                <select
+                <input
+                  type="text"
                   required
-                  className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
-                >
-                  <option value="" disabled>
-                    Ask a question / get help
-                  </option>
-                  <option value="">Select a property</option>
-                </select>
+                  className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={title ? (title as string) : "Name"}
+                />
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -33,14 +225,24 @@ const ApplicationForm = () => {
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <select
+                  name="intentionOfUse"
                   required
                   className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.intentionOfUse}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 >
-                  <option value="" disabled>
-                    Ask a question / get help
+                  <option value="" disabled selected>
+                    Select intention
                   </option>
-                  <option value="">Select a property</option>
+                  <option value="RENT">Rent</option>
+                  <option value="SELL">Sell</option>
                 </select>
+                {errors.intentionOfUse && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.intentionOfUse}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -49,6 +251,9 @@ const ApplicationForm = () => {
                   type="date"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-[200px]"
+                  onChange={(e) => {
+                    setMoveInDate(e.target.valueAsDate?.toISOString());
+                  }}
                 />
               </div>
             </form>
@@ -64,20 +269,38 @@ const ApplicationForm = () => {
                     First Name <span className="text-[14px]">(Required)</span>{" "}
                   </label>
                   <input
+                    name="firstName"
                     type="text"
                     required
                     className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                    value={values.firstName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
+                  {errors.firstName && (
+                    <p className="text-red-500 text-[14px]">
+                      {errors.firstName}
+                    </p>
+                  )}
                 </div>
                 <div className="flex flex-col items-start gap-2 w-[50%]">
                   <label className="font-medium">
                     Last Name <span className="text-[14px]">(Required)</span>{" "}
                   </label>
                   <input
+                    name="lastName"
                     type="text"
                     required
                     className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                    value={values.lastName}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
+                  {errors.lastName && (
+                    <p className="text-red-500 text-[14px]">
+                      {errors.lastName}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -86,10 +309,19 @@ const ApplicationForm = () => {
                   Phone Number <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
+                  name="phoneNumber"
                   type="tel"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.phoneNumber}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.phoneNumber && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.phoneNumber}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -97,10 +329,17 @@ const ApplicationForm = () => {
                   Email <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
+                  name="email"
                   type="email"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-[14px]">{errors.email}</p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -108,11 +347,18 @@ const ApplicationForm = () => {
                   Address <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
+                  name="address"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.address}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
               </div>
+              {errors.address && (
+                <p className="text-red-500 text-[14px]">{errors.address}</p>
+              )}
             </form>
 
             <div className="flex flex-col items-start gap-[24px] w-full">
@@ -126,6 +372,9 @@ const ApplicationForm = () => {
                   type="date"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-[200px]"
+                  onChange={(e) =>
+                    setDateOfBirth(e.target.valueAsDate?.toISOString())
+                  }
                 />
               </div>
 
@@ -135,10 +384,19 @@ const ApplicationForm = () => {
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
-                  type="text"
+                  name="monthlyRentBudget"
+                  type="number"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.monthlyRentBudget}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.monthlyRentBudget && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.monthlyRentBudget}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -146,10 +404,19 @@ const ApplicationForm = () => {
                   Employer Name <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
+                  name="employerName"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.employerName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.employerName && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.employerName}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -158,10 +425,19 @@ const ApplicationForm = () => {
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
+                  name="employerAddress"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.employerAddress}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.employerAddress && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.employerAddress}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -170,10 +446,19 @@ const ApplicationForm = () => {
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
+                  name="employmentDuration"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.employmentDuration}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.employmentDuration && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.employmentDuration}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -181,10 +466,19 @@ const ApplicationForm = () => {
                   Annual Income <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
-                  type="text"
+                  name="annualIncome"
+                  type="number"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.annualIncome}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.annualIncome && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.annualIncome}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -193,10 +487,19 @@ const ApplicationForm = () => {
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
+                  name="emergencyContactName"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.emergencyContactName}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.emergencyContactName && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.emergencyContactName}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -205,10 +508,19 @@ const ApplicationForm = () => {
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
+                  name="emergencyContactAddress"
                   type="text"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.emergencyContactAddress}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                {errors.emergencyContactAddress && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.emergencyContactAddress}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col items-start gap-2">
@@ -217,21 +529,19 @@ const ApplicationForm = () => {
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
                 <input
-                  type="text"
+                  name="numberOfOccupants"
+                  type="number"
                   required
                   className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  value={values.numberOfOccupants}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
-              </div>
-
-              <div className="flex flex-col items-start gap-2">
-                <label className="font-medium">
-                  Address <span className="text-[14px]">(Required)</span>{" "}
-                </label>
-                <input
-                  type="text"
-                  required
-                  className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
-                />
+                {errors.numberOfOccupants && (
+                  <p className="text-red-500 text-[14px]">
+                    {errors.numberOfOccupants}
+                  </p>
+                )}
               </div>
             </form>
 
@@ -250,7 +560,14 @@ const ApplicationForm = () => {
                 my application is non-refundable.
               </p>
               <div className="flex justify-start items-center gap-[10px]">
-                <input type="checkbox" name="" id="check" />
+                <input
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
+                  required
+                  name=""
+                  id="check"
+                />
                 <label htmlFor="check">Yes</label>
               </div>
               <p className="font-medium">
@@ -260,9 +577,150 @@ const ApplicationForm = () => {
                 EVICTION CHECKS
               </p>
             </div>
-
+            {auth && (
+              <p className="text-center text-[14px] text-red-500">
+                Please sign up before submitting
+              </p>
+            )}
             <div className="flex justify-center lg:justify-start">
-              <button className="bg-primary text-white font-semibold py-3 rounded-xl px-8 w-full lg:w-[20%]">
+              <button
+                className={` disabled:bg-primary/40 disabled:cursor-not-allowed bg-primary text-white font-semibold flex justify-center items-center gap-2 py-3 rounded-xl px-8 w-full lg:w-[20%]`}
+                //@ts-ignore
+                onClick={handleSubmit}
+                disabled={loading}
+                type="button"
+              >
+                {loading && (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 24 24"
+                  >
+                    <rect
+                      width="2.8"
+                      height="12"
+                      x="1"
+                      y="6"
+                      fill="currentColor"
+                    >
+                      <animate
+                        id="svgSpinnersBarsScale0"
+                        attributeName="y"
+                        begin="0;svgSpinnersBarsScale1.end-0.1s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="6;1;6"
+                      />
+                      <animate
+                        attributeName="height"
+                        begin="0;svgSpinnersBarsScale1.end-0.1s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="12;22;12"
+                      />
+                    </rect>
+                    <rect
+                      width="2.8"
+                      height="12"
+                      x="5.8"
+                      y="6"
+                      fill="currentColor"
+                    >
+                      <animate
+                        attributeName="y"
+                        begin="svgSpinnersBarsScale0.begin+0.1s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="6;1;6"
+                      />
+                      <animate
+                        attributeName="height"
+                        begin="svgSpinnersBarsScale0.begin+0.1s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="12;22;12"
+                      />
+                    </rect>
+                    <rect
+                      width="2.8"
+                      height="12"
+                      x="10.6"
+                      y="6"
+                      fill="currentColor"
+                    >
+                      <animate
+                        attributeName="y"
+                        begin="svgSpinnersBarsScale0.begin+0.2s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="6;1;6"
+                      />
+                      <animate
+                        attributeName="height"
+                        begin="svgSpinnersBarsScale0.begin+0.2s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="12;22;12"
+                      />
+                    </rect>
+                    <rect
+                      width="2.8"
+                      height="12"
+                      x="15.4"
+                      y="6"
+                      fill="currentColor"
+                    >
+                      <animate
+                        attributeName="y"
+                        begin="svgSpinnersBarsScale0.begin+0.3s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="6;1;6"
+                      />
+                      <animate
+                        attributeName="height"
+                        begin="svgSpinnersBarsScale0.begin+0.3s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="12;22;12"
+                      />
+                    </rect>
+                    <rect
+                      width="2.8"
+                      height="12"
+                      x="20.2"
+                      y="6"
+                      fill="currentColor"
+                    >
+                      <animate
+                        id="svgSpinnersBarsScale1"
+                        attributeName="y"
+                        begin="svgSpinnersBarsScale0.begin+0.4s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="6;1;6"
+                      />
+                      <animate
+                        attributeName="height"
+                        begin="svgSpinnersBarsScale0.begin+0.4s"
+                        calcMode="spline"
+                        dur="0.6s"
+                        keySplines=".36,.61,.3,.98;.36,.61,.3,.98"
+                        values="12;22;12"
+                      />
+                    </rect>
+                  </svg>
+                )}
                 Submit
               </button>
             </div>

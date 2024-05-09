@@ -51,10 +51,20 @@ const propertyAttributes = [
   "Middle-class neighbourhood",
 ];
 
-const PropertyDetails = () => {
+type PropertyProp = {
+  property: string[] | any;
+};
+
+type DateFormatOptions = {
+  monthNames?: string[]; // Optional array of month names to use
+};
+
+const PropertyDetails = ({property} : PropertyProp) => {
   const showcaseRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+    console.log(property);
+const prop = property && property.property
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const dum_pic = [
     "/img/property-detail-img.png",
@@ -75,6 +85,7 @@ const PropertyDetails = () => {
       }
     };
 
+   
     const showcaseElement = showcaseRef.current;
     if (showcaseElement) {
       showcaseElement.addEventListener("scroll", handleScroll);
@@ -87,7 +98,61 @@ const PropertyDetails = () => {
     };
   }, [dum_pic, currentIndex]); // Add dum_pic to dependencies since its length might change
 
-        const router = useRouter();
+  const router = useRouter();
+
+   function formatDate(
+     dateString: string,
+     options?: DateFormatOptions
+   ): string {
+     const date = new Date(dateString); // Parse the date string into a Date object
+
+     // Handle potential errors during parsing (optional)
+     if (isNaN(date.getTime())) {
+       console.error("Invalid date string:", dateString);
+       return "Invalid Date"; // Or return a default value
+     }
+
+     const dayOfMonth = date.getDate(); // Get the day of the month (1-31)
+     const monthIndex = date.getMonth(); // Get the month index (0-11)
+     const year = date.getFullYear(); // Get the full year
+
+     // Use appropriate ordinal suffix for the day (st, nd, rd, th)
+    //  const suffixes = ["st", "nd", "rd", "th"];
+    //  const ordinalSuffix =
+    //    suffixes[
+    //      dayOfMonth % 10 === 1
+    //        ? 0
+    //        : dayOfMonth % 10 === 2
+    //        ? 1
+    //        : dayOfMonth % 10 < 5
+    //        ? 2
+    //        : 3
+    //    ];
+       const suffixes = ["st", "nd", "rd", "th"];
+       const lastDigit = dayOfMonth % 10;
+       const suffixIndex =
+         lastDigit === 1 ? 0 : lastDigit === 2 ? 1 : lastDigit === 3 ? 2 : 3;
+
+     // Create the formatted date string (adjust month names as needed)
+     const monthNames = options?.monthNames || [
+       "Jan",
+       "Feb",
+       "Mar",
+       "Apr",
+       "May",
+       "Jun",
+       "Jul",
+       "Aug",
+       "Sep",
+       "Oct",
+       "Nov",
+       "Dec",
+     ];
+
+     const formattedDate = `${dayOfMonth}${suffixes[suffixIndex]} ${monthNames[monthIndex]}, ${year}`;
+
+     return formattedDate;
+   }
 
 
   return (
@@ -154,12 +219,12 @@ const PropertyDetails = () => {
                 <Feature
                   icon={<LuBedSingle size={25} />}
                   feature="Bedrooms"
-                  tagline="4"
+                  tagline={prop && prop.listingInformation.noOfBedrooms}
                 />
                 <Feature
                   icon={<TbBath size={25} />}
                   feature="Bathrooms"
-                  tagline="4"
+                  tagline={prop && prop.listingInformation.noOfBaths}
                 />
                 <Feature
                   icon={
@@ -201,7 +266,9 @@ const PropertyDetails = () => {
                     </svg>
                   }
                   feature="Square Area"
-                  tagline="6x8 m²"
+                  tagline={
+                    prop && prop.listingInformation.squareFeet + "m²"
+                  }
                 />
                 <Feature
                   icon={<FaRegCircleCheck size={22} />}
@@ -248,29 +315,21 @@ const PropertyDetails = () => {
                     </svg>
                   }
                   feature="Available From"
-                  tagline="21st Feb, 2024"
+                  tagline={formatDate(prop && prop.listingInformation.availableDate) || "12 Feb, 2024"}
                 />
               </div>
 
               <div className="mt-8 border-b border-gray-300 pb-8">
                 <p className="text-[24px] font-bold mb-4">About Property</p>
                 <p>
-                  Check out that Custom Backyard Entertaining space! 3237sqft, 4
-                  Bedrooms, 2 Bathrooms house on a Lake Villa street in the Palm
-                  Harbor neighborhood of Lagos, Nigeria. Well cared for with
-                  tons of upgrades! Newer stainless steel appliances will stay
-                  with the unit, including dishwasher, fridge, stove, microwave,
-                  and washer and dryer. Tenant pays electricity and gas bills.
-                  Water, Sewer, and Trash are covered by Landlord. Tenant is
-                  responsible for lawncare and snow removal. Landlord provides
-                  lawn mower. Minimum one year lease.
+                 {prop && prop.listingInformation.description}
                 </p>
               </div>
 
               <div className="mt-8 border-b border-gray-300 pb-8">
                 <p className="text-[24px] font-bold mb-4">Property Features </p>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {propertyFeatures.map((item, index) => (
+                  {prop && prop.listingInformation.amenities.map((item: string, index: any) => (
                     <div key={index} className="flex items-center gap-2">
                       <FaRegCircleCheck size={22} />
                       <p>{item}</p>
@@ -324,9 +383,9 @@ const PropertyDetails = () => {
                 <div className="mt-4">
                   <p className="text-gray-300 font-medium text-[14px] ">Rent</p>
                   <p className="text-[20px] md:text-[24px] font-bold">
-                    NGN 248,933.57
+                    NGN {prop && prop.listingInformation.monthlyRent}
                     <span className="text-[14px] md:text-[18px] font-medium">
-                      /Month
+                      /Month 
                     </span>
                   </p>
                 </div>
@@ -446,7 +505,16 @@ const PropertyDetails = () => {
 
             <div className="flex items-center justify-center flex-wrap flex-col lg:flex-row gap-10">
               {[1, 2, 3].map((item) => (
-                <ListingCard key={item} />
+                <ListingCard
+                  key={item}
+                  lists={{
+                    id: "",
+                    imgSrc: "",
+                    title: "",
+                    address: "",
+                    price: "",
+                  }}
+                />
               ))}
             </div>
           </div>

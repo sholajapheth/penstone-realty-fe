@@ -1,28 +1,42 @@
-"use client"
+"use client";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import { usePathname } from "next/navigation";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Cookies from "js-cookie";
+import GoogleSIgnIn from "../GoogleSIgnIn";
+import { Providers } from "@/app/providers";
 
 const AppWrapper = ({ children }: { children: ReactNode }) => {
-    const pathname = usePathname();
-// const path = pathname.includes 
+
+  // useEffect(() => {
+  //   Cookies.remove('user')
+  //    Cookies.remove("token");
+  // },[])
   return (
-    <div className="relative">
-      {!pathname.includes("agent") && (
-        <>
-          <Header />
-          {children}
-          <Footer />
-        </>
-      )}
-      {pathname.includes("agent") && (
-        <>
-          {children}
-        </>
-      )}
-    </div>
+    <QueryClientProvider
+      client={
+        new QueryClient({
+          defaultOptions: {
+            mutations: {
+              retry: 0,
+            },
+          },
+        })
+      }
+    >
+      {/* <Providers> */}
+        <div className="relative">
+          <>
+            <Header />
+            <GoogleSIgnIn />
+            {children}
+            <Footer />
+          </>
+        </div>
+      {/* </Providers> */}
+    </QueryClientProvider>
   );
 };
 
