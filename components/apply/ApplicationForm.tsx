@@ -5,9 +5,9 @@ import { userApply } from "@/app/api/UseUser";
 import { useAPI } from "@/app/lib/useApi";
 import { useAppToast } from "@/app/lib/useAppToast";
 import Cookies from "js-cookie";
-import useLocalStorage from "@/app/api/dtos/useLocalStorage";
+import useLocalStorage from "@/app/api/useLocalStorage";
 import { useFormik } from "formik";
-import { applyValidation } from "@/app/api/dtos/useYup";
+import { applyValidation } from "@/app/api/useYup";
 
 const ApplicationForm = () => {
   const { useAPIMutation } = useAPI();

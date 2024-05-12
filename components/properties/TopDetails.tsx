@@ -6,7 +6,7 @@ import { BsCheck, BsSave } from "react-icons/bs";
 import { FcDocument } from "react-icons/fc";
 import { GrDocumentPdf } from "react-icons/gr";
 import { useRouter } from "next/navigation";
-import useLocalStorage from "@/app/api/dtos/useLocalStorage";
+import useLocalStorage from "@/app/api/useLocalStorage";
 
 type PropertyProp = {
   property: string[] | any;
