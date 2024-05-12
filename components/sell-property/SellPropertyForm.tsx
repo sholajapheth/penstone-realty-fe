@@ -9,7 +9,7 @@ import { useAppToast } from "@/app/lib/useAppToast";
 import { sellForm } from "@/app/api/UseUser";
 import { useStorage } from "@/app/lib/firebase/storage";
 import { useFormik } from "formik";
-import { sellFormValidator } from "@/app/api/dtos/useYup";
+import { sellFormValidator } from "@/app/api/useYup";
 
 const Form = () => {
   const { useAPIMutation } = useAPI();
@@ -31,16 +31,6 @@ const Form = () => {
   const [loading, setLoading] = useState(false);
   const [auth, setAuth] = useState(false);
 
-  // const [propertyType, setPropertyType] = useState("");
-  // const [intention, setIntention] = useState("");
-  // const [reasonForSelling, setReasonForSelling] = useState("");
-  // const [address, setAddress] = useState("");
-  // const [city, setCity] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
   const [image, setImage] = useState<string[]>([]);
   const [isChecked, setIsChecked] = useState(false);
   const [imgName, setImgName] = useState<any>("");
@@ -52,7 +42,7 @@ const Form = () => {
   const token = Cookies.get("jwtToken");
   const user = Cookies.get("user");
 
-  const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
+  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } = useFormik({
     initialValues: initialValues,
     validationSchema: sellFormValidator,
     onSubmit: (values) => {
@@ -76,7 +66,7 @@ const Form = () => {
           reasonForSelling: values.reasonForSelling,
           address: values.address,
           city: values.city,
-          price: values.price,
+          price: values.price.toString(),
           images: image,
           firstName: values.firstName,
           lastName: values.lastName,
@@ -116,43 +106,11 @@ const Form = () => {
         status: "success",
         description: data.message || "Application Successful",
       });
-      // }
-      // setPropertyType("");
-      // setIntention("");
-      // setReasonForSelling("");
-      // setAddress("");
-      // setCity("");
-      // setPrice("");
-      // setImage([]);
-      // setFirstName("");
-      // setLastName("");
-      // setEmail("");
-      // setPhoneNumber("");
+      resetForm()
+
     },
   });
 
-  // function onSubmit(e: { preventDefault: () => void }) {
-  //   if (!user) {
-  //     setAuth(true);
-  //   }
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   update.mutate({
-  //     data: {
-  //       propertyType,
-  //       intention,
-  //       reasonForSelling,
-  //       address,
-  //       city,
-  //       price,
-  //       images: image,
-  //       firstName,
-  //       lastName,
-  //       email,
-  //       phoneNumber,
-  //     },
-  //   });
-  // }
 
   return (
     <>
@@ -204,57 +162,57 @@ const Form = () => {
                 onChange={handleChange}
               >
                 <option
-                  className=" text-[18px] font-bold"
+                  className=" text-[16px]"
                   value={"FULLY_DETACHED_DUPLEX"}
                 >
                   Fully Detached Duplex
                 </option>
                 <option
-                  className=" text-[18px] font-bold"
+                  className=" text-[16px]"
                   value="SEMI_DETACHED_HOUSE"
                 >
                   Semi Detached House
                 </option>
                 <option
-                  className=" text-[18px] font-bold"
+                  className=" text-[16px]"
                   value="ACCOMMODATION_BLOCK"
                 >
                   Accommodation Block
                 </option>
                 <option
-                  className=" text-[18px] font-bold"
+                  className=" text-[16px]"
                   value="FLATS_AND_APARTMENT"
                 >
                   Flats and Apartment
                 </option>
                 <option
-                  className=" text-[18px] font-bold"
+                  className=" text-[16px]"
                   value="STUDIO_APARTMENT"
                 >
                   Studio Apartment
                 </option>
-                <option className=" text-[18px] font-bold" value="MINI_FLATS">
+                <option className=" text-[16px]" value="MINI_FLATS">
                   Mini Flats
                 </option>
                 <option
-                  className=" text-[18px] font-bold"
+                  className=" text-[16px]"
                   value="RENTAL_SPACES"
                 >
                   Rental Spaces
                 </option>
                 <option
-                  className=" text-[18px] font-bold"
+                  className=" text-[16px]"
                   value="WAREHOUSE_AND_INDUSTRIAL"
                 >
                   Warehouse and Industrial
                 </option>
                 <option
-                  className=" text-[18px] font-bold"
+                  className=" text-[16px]"
                   value="OFFICE_COMPLEX"
                 >
                   Office Complex
                 </option>
-                <option className=" text-[18px] font-bold" value="SPECIALIZED">
+                <option className=" text-[16px]" value="SPECIALIZED">
                   Specialized
                 </option>
               </select>
@@ -459,8 +417,9 @@ const Form = () => {
                 onChange={handleCheckboxChange}
                 required
                 className=""
+                id="check"
               />
-              <label className="text-[18px]">
+              <label className="text-[18px]" htmlFor="check">
                 Click Here to accept the terms of our{" "}
                 <span className="underline">Privacy Policy</span>.
               </label>
@@ -607,7 +566,7 @@ const Form = () => {
           </form>
         </div>
 
-        <div className="w-full lg:h-screen lg:overflow-y-hidden lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
+        <div className="w-full lg:h-screen lg:overflow-y-auto lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
           <div className="flex justify-center items-center">
             <Image
               width={550}

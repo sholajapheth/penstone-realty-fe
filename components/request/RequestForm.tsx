@@ -10,35 +10,28 @@ import { sendRequest } from "@/app/api/UseUser";
 import { useStorage } from "@/app/lib/firebase/storage";
 import Cookies from "js-cookie";
 import { useFormik } from "formik";
-import { requestValidation } from "@/app/api/dtos/useYup";
+import { requestValidation } from "@/app/api/useYup";
 
 const RequestForm = () => {
-    const { useAPIMutation } = useAPI();
-    const { upload } = useStorage();
-    const toast = useAppToast();
+  const { useAPIMutation } = useAPI();
+  const { upload } = useStorage();
+  const toast = useAppToast();
 
-    const initialValues = {
-      topic: "",
-      description: "",
-      attachments: "",
-      profession: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      phoneNumber: "",
-    };
+  const initialValues = {
+    topic: "",
+    description: "",
+    attachments: "",
+    profession: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+  };
 
-    const [loading, setLoading] = useState(false);
-    const [auth, setAuth] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [auth, setAuth] = useState(false);
 
-  // const [topic, setTopic] = useState("");
-  // const [description, setDescription] = useState("");
   const [attachments, setAttachments] = useState<string[]>([]);
-  // const [profession, setProfession] = useState("");
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phone, setPhone] = useState("");
   const [imageName, setImageName] = useState<any>("");
   const [isChecked, setIsChecked] = useState(false);
 
@@ -49,41 +42,38 @@ const RequestForm = () => {
     setIsChecked(e.target.checked);
   };
 
-
-    const { values, handleBlur, handleChange, handleSubmit, errors } =
-      useFormik({
-        initialValues: initialValues,
-        validationSchema: requestValidation,
-        onSubmit: (values) => {
-          console.log('yoo')
-          if (!user) {
-            setAuth(true);
-            return;
-          }
-          if (!isChecked) {
-            alert("User agreement not agreed to.");
-            return;
-          }
-           if (attachments.length < 1) {
-             alert("Please upload an image.");
-             return;
-           }
-          setLoading(true);
-          update.mutate({
-            data: {
-              topic: values.topic,
-              description: values.description,
-              attachments: attachments,
-              profession: values.profession,
-              firstName: values.firstName,
-              lastName: values.lastName,
-              email: values.email,
-              phoneNumber: values.phoneNumber,
-            },
-          });
+  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } = useFormik({
+    initialValues: initialValues,
+    validationSchema: requestValidation,
+    onSubmit: (values) => {
+      console.log("yoo");
+      if (!user) {
+        setAuth(true);
+        return;
+      }
+      if (!isChecked) {
+        alert("User agreement not agreed to.");
+        return;
+      }
+      if (attachments.length < 1) {
+        alert("Please upload an image.");
+        return;
+      }
+      setLoading(true);
+      update.mutate({
+        data: {
+          topic: values.topic,
+          description: values.description,
+          attachments: attachments,
+          profession: values.profession,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          email: values.email,
+          phoneNumber: values.phoneNumber,
         },
       });
-
+    },
+  });
 
   const validInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
@@ -91,7 +81,7 @@ const RequestForm = () => {
   const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const file = e.target.files.item(0);
-      setImageName(file && (file.name as string))
+      setImageName(file && (file.name as string));
       if (file instanceof File) {
         try {
           const downloadURL = await upload(file);
@@ -105,46 +95,19 @@ const RequestForm = () => {
     }
   };
 
-    const update = useAPIMutation({
-      mutationFunction: (x: any) => sendRequest(x.data, token ? token : "token"),
-      onSuccessFn: (data) => {
-        setLoading(false);
-        // if (data?.statusCode === 200 || data?.statusCode === 201) {
-          toast({
-            status: "success",
-            description: data.message || "Request Successful",
-          });
-          // setTopic('')
-          // setDescription('')
-          // setAttachments([])
-          // setProfession('')
-          // setFirstName('')
-          // setLastName('')
-          // setEmail('')
-          // setPhone('')
-        // }
-      },
-    });
+  const update = useAPIMutation({
+    mutationFunction: (x: any) => sendRequest(x.data, token ? token : "token"),
+    onSuccessFn: (data) => {
+      setLoading(false);
+      // if (data?.statusCode === 200 || data?.statusCode === 201) {
+      toast({
+        status: "success",
+        description: data.message || "Request Successful",
+      });
+      resetForm()
+    },
+  });
 
-      // function onSubmit(e: { preventDefault: () => void }) {
-      //   if (!user) {
-      //     setAuth(true);
-      //   }
-      //   e.preventDefault();
-      //   setLoading(true);
-      //   update.mutate({
-      //     // data: {
-      //     //  topic,
-      //     //  description,
-      //     //  attachments,
-      //     //  profession,
-      //     //  firstName,
-      //     //  lastName,
-      //     //  email,
-      //     //  phoneNumber:phone
-      //     // },
-      //   });
-      // }
 
   return (
     <>
@@ -319,7 +282,7 @@ const RequestForm = () => {
                     <p>Select or drop file</p>
                   </>
                 ) : (
-                  <p className="text-black">{imageName}</p>
+                  <p className="text-black">{imageName} uploaded successfully</p>
                 )}
               </div>
               <div
@@ -343,8 +306,9 @@ const RequestForm = () => {
                 onChange={handleCheckboxChange}
                 required
                 className=""
+                id="check"
               />
-              <label className="text-[18px]">
+              <label className="text-[18px]" htmlFor="check">
                 Click Here to accept the terms of our{" "}
                 <span className="underline">Privacy Policy</span>.
               </label>
@@ -491,7 +455,7 @@ const RequestForm = () => {
           </form>
         </div>
 
-        <div className="w-full lg:h-screen lg:overflow-y-hidden lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
+        <div className="w-full lg:h-screen lg:overflow-y-auto lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
           <div className="flex justify-center items-center">
             <Image
               width={300}

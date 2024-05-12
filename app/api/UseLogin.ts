@@ -38,7 +38,7 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
     } else {
       userRegister({ image: user.photoURL, name: user.displayName, email: user.email }, token).then(response => {
         console.log(response.data)
-        Cookies.set("jwtToken", response.data.token)
+        Cookies.set("jwtToken", response.token)
       })
       Cookies.set("user", JSON.stringify(user), { expires: 5 });
     }

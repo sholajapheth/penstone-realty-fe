@@ -5,9 +5,9 @@ import { userApply } from "@/app/api/UseUser";
 import { useAPI } from "@/app/lib/useApi";
 import { useAppToast } from "@/app/lib/useAppToast";
 import Cookies from "js-cookie";
-import useLocalStorage from "@/app/api/dtos/useLocalStorage";
+import useLocalStorage from "@/app/api/useLocalStorage";
 import { useFormik } from "formik";
-import { applyValidation } from "@/app/api/dtos/useYup";
+import { applyValidation } from "@/app/api/useYup";
 
 const ApplicationForm = () => {
   const { useAPIMutation } = useAPI();
@@ -39,25 +39,8 @@ const ApplicationForm = () => {
 
   const { getItem } = useLocalStorage();
 
-  // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [countryCode, setCountryCode] = useState("+234");
-  // const [email, setEmail] = useState("");
-  // const [address, setAddress] = useState("");
 
   const [dateOfBirth, setDateOfBirth] = useState<string | undefined>("");
-  // const [monthlyRentBudget, setMonthlyRentBudget] = useState("");
-  // const [employerName, setEmployerName] = useState("");
-  // const [employerAddress, setEmployerAddress] = useState("");
-  // const [employmentDuration, setEmploymentDuration] = useState("");
-  // const [annualIncome, setAnnualIncome] = useState("");
-  // const [emergencyContactAddress, setEmergencyContactAddress] = useState("");
-  // const [emergencyContactName, setEmergencyContactName] = useState("");
-  // const [numberOfOccupants, setNumberOfOccupants] = useState("");
-
-  // const [propertyId, setPropertyId] = useState<string | null>(" ");
-  // const [intentionOfUse, setIntentionOfUse] = useState("");
   const [moveInDate, setMoveInDate] = useState<string | undefined>("");
 
   const token = Cookies.get("jwtToken");
@@ -68,7 +51,7 @@ const ApplicationForm = () => {
     setIsChecked(e.target.checked);
   };
 
-  const { values, handleBlur, handleChange, handleSubmit, errors } = useFormik({
+  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } = useFormik({
     initialValues: initialValues,
     validationSchema: applyValidation,
     onSubmit: (values) => {
@@ -133,65 +116,12 @@ const ApplicationForm = () => {
         status: "success",
         description: data.message || "Application Successful",
       });
-      // setFirstName('')
-      // setLastName('')
-      // setPhoneNumber('')
-      // setEmail('')
-      // setAddress('')
-      // setDateOfBirth('')
-      // setMonthlyRentBudget('')
-      // setEmployerName('')
-      // setEmployerAddress('')
-      // setEmploymentDuration('')
-      // setAnnualIncome('')
-      // setEmergencyContactAddress('')
-      // setEmergencyContactName('')
-      // setNumberOfOccupants('')
-      // setIntentionOfUse('')
-      // setMoveInDate('')
-      // }
+     resetForm()
     },
   });
   const propertyId = getItem("id");
   const title = getItem("title");
 
-  // function onSubmit(e: { preventDefault: () => void }) {
-  //   if (!user) {
-  //     setAuth(true);
-  //   }
-  //   const individual = JSON.parse(user as string);
-  //   console.log(individual)
-  //   const userEmail = user ? individual?.email : "";
-  //   e.preventDefault();
-  //   setLoading(true);
-  //   update.mutate({
-  //     data: {
-  //     propertyId: JSON.parse(propertyId as string),
-  //       intentionOfUse,
-  //       moveInDate: moveInDate,
-  //       contactInformation: {
-  //         firstName,
-  //         lastName,
-  //         phoneNumber,
-  //         email,
-  //         address,
-  //         countryCode
-  //       },
-  //       personalInformation: {
-  //         dateOfBirth: dateOfBirth,
-  //         monthlyRentBudget,
-  //         employerName,
-  //         employerAddress,
-  //         employmentDuration,
-  //         annualIncome,
-  //         emergencyContactAddress,
-  //         emergencyContactName,
-  //         numberOfOccupants: parseInt(numberOfOccupants),
-  //         userEmail,
-  //       },
-  //     },
-  //   });
-  // }
 
   return (
     <>
