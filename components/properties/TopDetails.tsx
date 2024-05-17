@@ -32,10 +32,10 @@ const TopDetails = ({ property }: PropertyProp) => {
             </button>
 
             <p className="font-semibold text-[32px] md:text-[40px] ">
-              Lakowe Lake Resort
+              {prop && prop.address.streetAddress}
             </p>
             <p className="text-[16px] text-[#000929] md:text-[20px] font-medium w-[80%]">
-              {prop && prop.address.streetAddress} {prop && prop.address.city}{" "}
+              {prop && prop.address.streetAddress}, {prop && prop.address.city}{" "}
               {prop && prop.address.state} State
             </p>
 

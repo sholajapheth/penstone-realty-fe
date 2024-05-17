@@ -1,11 +1,18 @@
+"use client"
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const AgentPageBanner = () => {
+    const router = useRouter();
+
   return (
     <div className="text-secondary">
       <div className="flex justify-center bg-[#F5FCFF] w-full mb-[40px]">
-        <div className="w-[90%] lg:w-[85%] ">
+        <div
+          className="w-[90%] lg:w-[85%] cursor-pointer"
+          onClick={() => router.push(`/contact_us`)}
+        >
           <div className="flex justify-start gap-2 items-center w-full py-[20px] lg:py-[36px] ">
             <Image src="/img/icons/Icon.svg" width={20} height={20} alt="" />
             <p className="font-semibold text-[18px]  text-secondary">

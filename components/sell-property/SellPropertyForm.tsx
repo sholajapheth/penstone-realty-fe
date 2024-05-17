@@ -39,64 +39,87 @@ const Form = () => {
     setIsChecked(e.target.checked);
   };
 
-  const token = Cookies.get("jwtToken");
-  const user = Cookies.get("user");
+  const token = Cookies.get("userJwtToken");
+  const user = Cookies.get("userUser");
 
-  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } = useFormik({
-    initialValues: initialValues,
-    validationSchema: sellFormValidator,
-    onSubmit: (values) => {
-      if (!user) {
-        setAuth(true);
-        return;
-      }
-      if (!isChecked) {
-        alert("User agreement not agreed to.");
-        return;
-      }
-      if (image.length < 1) {
-        alert("Please upload an image.");
-        return;
-      }
-      setLoading(true);
-      update.mutate({
-        data: {
-          propertyType: values.propertyType,
-          intention: values.intention,
-          reasonForSelling: values.reasonForSelling,
-          address: values.address,
-          city: values.city,
-          price: values.price.toString(),
-          images: image,
-          firstName: values.firstName,
-          lastName: values.lastName,
-          email: values.email,
-          phoneNumber: values.phoneNumber,
-        },
-      });
-    },
-  });
+  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: sellFormValidator,
+      onSubmit: (values) => {
+        if (!user && !token) {
+          setAuth(true);
+          return;
+        }
+        if (!isChecked) {
+          alert("User agreement not agreed to.");
+          return;
+        }
+        if (image.length < 1) {
+          alert("Please upload an image.");
+          return;
+        }
+        setLoading(true);
+        update.mutate({
+          data: {
+            propertyType: values.propertyType,
+            intention: values.intention,
+            reasonForSelling: values.reasonForSelling,
+            address: values.address,
+            city: values.city,
+            price: values.price.toString(),
+            images: image,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phoneNumber: values.phoneNumber,
+          },
+        });
+      },
+    });
 
   const photoInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
 
-  const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files.item(0);
-      setImgName(file && (file.name as string));
-      if (file instanceof File) {
-        try {
-          const downloadURL = await upload(file);
-          console.log("File uploaded successfully:", downloadURL);
-          setImage([downloadURL]);
-        } catch (error) {
-          console.error("Error uploading file:", error);
-        }
-        if (!file) return;
-      }
-    }
-  };
+  // const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     const file = e.target.files.item(0);
+  //     setImgName(file && (file.name as string));
+  //     if (file instanceof File) {
+  //       try {
+  //         const downloadURL = await upload(file);
+  //         console.log("File uploaded successfully:", downloadURL);
+  //         setImage([downloadURL]);
+  //       } catch (error) {
+  //         console.error("Error uploading file:", error);
+  //       }
+  //       if (!file) return;
+  //     }
+  //   }
+  // };
 
+    const handleValidChange = async (
+      e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+      if (e.target.files && e.target.files.length > 0) {
+        const files = Array.from(e.target.files);
+
+        try {
+          const uploadPromises = files.map((file) => upload(file));
+          const results = await Promise.allSettled(uploadPromises);
+
+          const successfulUploads = results
+            .filter((result) => result.status === "fulfilled")
+            .map((result) => (result as PromiseFulfilledResult<string>).value);
+
+          console.log("Files uploaded successfully:", successfulUploads);
+          setImage(successfulUploads);
+        } catch (error) {
+          console.error("Error uploading files:", error);
+        }
+      }
+    };
+  
   const update = useAPIMutation({
     mutationFunction: (x: any) => sellForm(x.data, token ? token : "token"),
     onSuccessFn: (data) => {
@@ -106,11 +129,9 @@ const Form = () => {
         status: "success",
         description: data.message || "Application Successful",
       });
-      resetForm()
-
+      resetForm();
     },
   });
-
 
   return (
     <>
@@ -161,43 +182,29 @@ const Form = () => {
                 value={values.propertyType}
                 onChange={handleChange}
               >
+                <option value="" disabled selected>Select the property type</option>
                 <option
                   className=" text-[16px]"
                   value={"FULLY_DETACHED_DUPLEX"}
                 >
                   Fully Detached Duplex
                 </option>
-                <option
-                  className=" text-[16px]"
-                  value="SEMI_DETACHED_HOUSE"
-                >
+                <option className=" text-[16px]" value="SEMI_DETACHED_HOUSE">
                   Semi Detached House
                 </option>
-                <option
-                  className=" text-[16px]"
-                  value="ACCOMMODATION_BLOCK"
-                >
+                <option className=" text-[16px]" value="ACCOMMODATION_BLOCK">
                   Accommodation Block
                 </option>
-                <option
-                  className=" text-[16px]"
-                  value="FLATS_AND_APARTMENT"
-                >
+                <option className=" text-[16px]" value="FLATS_AND_APARTMENT">
                   Flats and Apartment
                 </option>
-                <option
-                  className=" text-[16px]"
-                  value="STUDIO_APARTMENT"
-                >
+                <option className=" text-[16px]" value="STUDIO_APARTMENT">
                   Studio Apartment
                 </option>
                 <option className=" text-[16px]" value="MINI_FLATS">
                   Mini Flats
                 </option>
-                <option
-                  className=" text-[16px]"
-                  value="RENTAL_SPACES"
-                >
+                <option className=" text-[16px]" value="RENTAL_SPACES">
                   Rental Spaces
                 </option>
                 <option
@@ -206,10 +213,7 @@ const Form = () => {
                 >
                   Warehouse and Industrial
                 </option>
-                <option
-                  className=" text-[16px]"
-                  value="OFFICE_COMPLEX"
-                >
+                <option className=" text-[16px]" value="OFFICE_COMPLEX">
                   Office Complex
                 </option>
                 <option className=" text-[16px]" value="SPECIALIZED">
@@ -301,6 +305,7 @@ const Form = () => {
                 type="file"
                 required
                 className="hidden"
+                multiple
                 ref={photoInput}
                 onChange={handleValidChange}
               />
@@ -324,7 +329,7 @@ const Form = () => {
                     <p>Select or drop file</p>
                   </>
                 ) : (
-                  <p className="text-black">{imgName} uploaded successfully!</p>
+                  <p className="text-black">Image(s) uploaded successfully!</p>
                 )}
               </div>
               <div

@@ -17,20 +17,22 @@ const [area, setArea] = useState('')
 const [market, setMarket] = useState('')
 const [property, setProperty] = useState('')
 const [price, setPrice] = useState('')
+const [sortBy, setSortBy] = useState("");
+const [order, setOrder] = useState("");
 
   const { data: lists } = useQuery({
-    queryKey: ["lists", area, market, property, price],
+    queryKey: ["lists", area, market, property, price, sortBy, order],
     queryFn: () =>
       listings(
-        "rank",
-        "asc",
+        sortBy ? sortBy : undefined,
+        order ? order : 'asc',
         {
           filters: {
-            area,
-            marketType: market,
-            propertyType: property,
+            area : area ? area : undefined,
+            marketType: market ? market : undefined,
+            propertyType: property ? property : undefined,
             price: {
-              'min': 2000,
+              'min': price ? Number(price) : undefined,
               'max': 30000,
             },
           },
@@ -44,10 +46,10 @@ const [price, setPrice] = useState('')
             queryKey: ["lists"],
           })
           .then();
-      }, [area, market, property, price, queryClient]);
+      }, [area, market, property, price, queryClient, order, sortBy]);
 
-  let states = []
-   states = NaijaStates.states();
+  // let states = []
+  //  states = NaijaStates.states();
 
   console.log(lists);
 
@@ -62,9 +64,39 @@ const [price, setPrice] = useState('')
             Search Properties
           </p>
 
-          <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-4 w-full lg:w-[22%]">
-            <select className="focus:outline-none flex-1 p-4">
-              <option>Search with filter</option>
+          <div className="flex items-center overflow-hidden pr-4 w-full lg:w-[22%] gap-2">
+            <select
+              className="focus:outline-none p-4 rounded-xl w-[1/2] border-2 border-[#D9E2E6]text-[18px] font-bold"
+              onChange={(e) => setSortBy(e.target.value)}
+              value={sortBy}
+            >
+              <option value="" disabled selected>
+                Sort by
+              </option>
+              <option className="text-[18px] font-bold" value="rank">
+                Rank
+              </option>{" "}
+              <option className="text-[18px] font-bold" value="time">
+                Time
+              </option>{" "}
+              <option className="text-[18px] font-bold" value="price">
+                Price
+              </option>
+            </select>
+            <select
+              className="focus:outline-none p-4 rounded-xl w-[1/2] border-2 border-[#D9E2E6]text-[18px] font-bold"
+              onChange={(e) => setOrder(e.target.value)}
+              value={order}
+            >
+              <option value="" disabled selected>
+                Filter by
+              </option>
+              <option className="text-[18px] font-bold" value="asc">
+                Ascending
+              </option>
+              <option className="text-[18px] font-bold" value="desc">
+                Descending
+              </option>
             </select>
           </div>
 
@@ -84,22 +116,25 @@ const [price, setPrice] = useState('')
           <div className="px-4 pl-4 border-r-2 border-secondary ">
             <p className="font-bold text-gray-300">Select Area</p>
             <div className="flex items-center gap-4 mt-1">
-              <select
-                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
-                onChange={(e) => setArea(e.target.value)}
-                value={area}
-              >
-                <option className=" text-[18px] font-bold" disabled selected>
+              {/* <select className="focus:outline-none flex-1 p-4 text-[18px] font-bold"> */}
+              {/* <option className=" text-[18px] font-bold" disabled selected>
                   Search with filter
-                </option>
-                {states.map((state: string) => {
+                </option> */}
+              {/* {states.map((state: string) => {
                   return (
                     <option key={state} className=" text-[18px] font-bold">
                       {state}
                     </option>
                   );
-                })}
-              </select>
+                })} */}
+              {/* </select> */}
+              <input
+                onChange={(e) => setArea(e.target.value)}
+                value={area}
+                placeholder="Search street location"
+                type="search"
+                className="focus:outline-none p-4 rounded-xl border-2 border-[#D9E2E6]"
+              />
             </div>
           </div>
           <div className="px-4 pl-4 border-r-2 border-secondary ">
@@ -110,7 +145,12 @@ const [price, setPrice] = useState('')
                 onChange={(e) => setMarket(e.target.value)}
                 value={market}
               >
-                <option className=" text-[18px] font-bold" disabled selected>
+                <option
+                  className=" text-[18px] font-medium"
+                  value=""
+                  disabled
+                  selected
+                >
                   Filter market type
                 </option>
                 <option className="text-[18px] font-bold" value={"RESIDENTIAL"}>
@@ -126,21 +166,27 @@ const [price, setPrice] = useState('')
             <p className="font-bold text-gray-300">Property Type</p>
             <div className="flex items-center gap-4 mt-1">
               <select
-                className="focus:outline-none flex-1 p-4 text-[18px] font-bold" value={property}
+                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
+                value={property}
                 onChange={(e) => setProperty(e.target.value)}
               >
-                <option className=" text-[18px] font-bold" disabled selected>
+                <option
+                  className=" text-[18px] font-bold"
+                  value=""
+                  disabled
+                  selected
+                >
                   Filter property type
                 </option>{" "}
                 <option
                   className=" text-[18px] font-bold"
-                  value={"FULLY_DETACHED_COMPLEX"}
+                  value={"FULLY_DETACHED_DUPLEX"}
                 >
                   Fully Detached Duplex
                 </option>
                 <option
                   className=" text-[18px] font-bold"
-                  value={"SEMI_DETACHED_COMPLEX"}
+                  value={"SEMI_DETACHED_HOUSE"}
                 >
                   Semi Detached House
                 </option>
@@ -192,11 +238,11 @@ const [price, setPrice] = useState('')
               </select>
             </div>
           </div>
-          <div className="px-4 pl-4 border-r-2 border-secondary ">
+          <div className="px-4 pl-4  ">
             <p className="font-bold text-gray-300">Price</p>
             <div className="flex items-center gap-4 mt-1">
               {/* <p className=" text-[18px] font-bold ">N250K-N1M</p> */}
-              <select
+              {/* <select
                 className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
                 onChange={(e) => setPrice(e.target.value)}
                 value={price}
@@ -205,21 +251,29 @@ const [price, setPrice] = useState('')
                   Filter Price
                 </option>
                 <option className=" text-[18px] font-bold ">Search</option>
-              </select>
+              </select> */}
+              <input
+                onChange={(e) => setPrice(e.target.value)}
+                value={price}
+                placeholder="Enter minimum price"
+                type="number"
+                className="focus:outline-none p-4 rounded-xl border-2  border-[#D9E2E6]"
+              />
               {/* <div className="p-1 rounded-full bg-gray-300 text-secondary ">
                 <IoChevronDownOutline size={13} />
               </div> */}
             </div>
           </div>
 
-          <button className="bg-primary text-white font-semibold rounded-xl h-full px-[2em] py-[1em] ml-4">
+          {/* <button className="bg-primary text-white font-semibold rounded-xl h-full px-[2em] py-[1em] ml-4">
             Refine
-          </button>
+          </button> */}
         </div>{" "}
         <div className="mt-[4em] w-full flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
-          {lists && lists.properties.map((list: any) => {
-            return <ListingCard key={list.id} lists={list} />;
-          })}
+          {lists &&
+            lists.properties.map((list: any) => {
+              return <ListingCard key={list.id} lists={list} />;
+            })}
           {/* <ListingCard lists={lists} />
           <ListingCard lists={lists} />
           <ListingCard lists={lists} />

@@ -35,45 +35,46 @@ const RequestForm = () => {
   const [imageName, setImageName] = useState<any>("");
   const [isChecked, setIsChecked] = useState(false);
 
-  const token = Cookies.get("jwtToken");
-  const user = Cookies.get("user");
+  const token = Cookies.get("userJwtToken");
+  const user = Cookies.get("userUser");
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
 
-  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } = useFormik({
-    initialValues: initialValues,
-    validationSchema: requestValidation,
-    onSubmit: (values) => {
-      console.log("yoo");
-      if (!user) {
-        setAuth(true);
-        return;
-      }
-      if (!isChecked) {
-        alert("User agreement not agreed to.");
-        return;
-      }
-      if (attachments.length < 1) {
-        alert("Please upload an image.");
-        return;
-      }
-      setLoading(true);
-      update.mutate({
-        data: {
-          topic: values.topic,
-          description: values.description,
-          attachments: attachments,
-          profession: values.profession,
-          firstName: values.firstName,
-          lastName: values.lastName,
-          email: values.email,
-          phoneNumber: values.phoneNumber,
-        },
-      });
-    },
-  });
+  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: requestValidation,
+      onSubmit: (values) => {
+        console.log("yoo");
+        if (!user && !token) {
+          setAuth(true);
+          return;
+        }
+        if (!isChecked) {
+          alert("User agreement not agreed to.");
+          return;
+        }
+        if (attachments.length < 1) {
+          alert("Please upload an image.");
+          return;
+        }
+        setLoading(true);
+        update.mutate({
+          data: {
+            topic: values.topic,
+            description: values.description,
+            attachments: attachments,
+            profession: values.profession,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            phoneNumber: values.phoneNumber,
+          },
+        });
+      },
+    });
 
   const validInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
@@ -104,10 +105,9 @@ const RequestForm = () => {
         status: "success",
         description: data.message || "Request Successful",
       });
-      resetForm()
+      resetForm();
     },
   });
-
 
   return (
     <>
@@ -136,8 +136,45 @@ const RequestForm = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
               >
-                <option value="Select a">Select a </option>
-                <option value="Select a property">Select a property</option>
+                <option value="" selected disabled>
+                  Select a property
+                </option>
+                <option
+                  className=" text-[16px]"
+                  value={"FULLY_DETACHED_DUPLEX"}
+                >
+                  Fully Detached Duplex
+                </option>
+                <option className=" text-[16px]" value={"SEMI_DETACHED_HOUSE"}>
+                  Semi Detached House
+                </option>
+                <option className=" text-[16px]" value={"ACCOMMODATION_BLOCK"}>
+                  Accommodation Block
+                </option>
+                <option className=" text-[16px]" value={"FLATS_AND_APARTMENT"}>
+                  Flats and Apartment
+                </option>
+                <option className=" text-[16px]" value={"STUDIO_APARTMENT"}>
+                  Studio Apartment
+                </option>
+                <option className=" text-[16px]" value={"MINI_FLATS"}>
+                  Mini Flats
+                </option>
+                <option className=" text-[16px]" value={"RENTAL_SPACES"}>
+                  Rental Spaces
+                </option>
+                <option
+                  className=" text-[16px]"
+                  value={"WAREHOUSE_AND_INDUSTRIAL"}
+                >
+                  Warehouse and Industrial
+                </option>
+                <option className=" text-[16px]" value={"OFFICE_COMPLEX"}>
+                  Office Complex
+                </option>
+                <option className=" text-[16px]" value={"SPECIALIZED"}>
+                  Specialized
+                </option>
               </select>
               {errors.topic && (
                 <p className="text-red-500 text-[14px]">{errors.topic}</p>
@@ -154,8 +191,11 @@ const RequestForm = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
               >
-                <option value="Select a property">Select a property</option>
-                <option value="Select a">Select a </option>
+                <option value="" selected disabled>
+                  Select role
+                </option>
+                <option value="Occupant">Occupant</option>
+                <option value="Agent">Agent </option>
               </select>
               {errors.profession && (
                 <p className="text-red-500 text-[14px]">{errors.profession}</p>
@@ -282,7 +322,9 @@ const RequestForm = () => {
                     <p>Select or drop file</p>
                   </>
                 ) : (
-                  <p className="text-black">{imageName} uploaded successfully</p>
+                  <p className="text-black">
+                    {imageName} uploaded successfully
+                  </p>
                 )}
               </div>
               <div

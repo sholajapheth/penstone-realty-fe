@@ -3,13 +3,13 @@ export type Listings = {
 }
 
 export type Filter = {
-    area? : string,
-    marketType? : string,
-    propertyType? : string,
+    area? : string | undefined,
+    marketType? : string | undefined,
+    propertyType? : string | undefined,
     price? : Price
 }
 
 export type Price = {
-    min: number,
-    max: number
+    min: number | undefined,
+    max: number | undefined
 }

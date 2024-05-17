@@ -62,6 +62,7 @@ type DateFormatOptions = {
 const PropertyDetails = ({property} : PropertyProp) => {
   const showcaseRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [duration, setDuration] = useState('1')
 
     console.log(property);
 const prop = property && property.property
@@ -85,18 +86,23 @@ const prop = property && property.property
       }
     };
 
-   
+    
     const showcaseElement = showcaseRef.current;
     if (showcaseElement) {
       showcaseElement.addEventListener("scroll", handleScroll);
     }
-
+    
     return () => {
       if (showcaseElement) {
         showcaseElement.removeEventListener("scroll", handleScroll);
       }
     };
   }, [dum_pic, currentIndex]); // Add dum_pic to dependencies since its length might change
+  
+  function capitalizeFirstLetter(word: string) {
+    if (!word) return word;
+    return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
+  }
 
   const router = useRouter();
 
@@ -104,30 +110,17 @@ const prop = property && property.property
      dateString: string,
      options?: DateFormatOptions
    ): string {
-     const date = new Date(dateString); // Parse the date string into a Date object
+     const date = new Date(dateString); 
 
-     // Handle potential errors during parsing (optional)
      if (isNaN(date.getTime())) {
        console.error("Invalid date string:", dateString);
-       return "Invalid Date"; // Or return a default value
+       return "Invalid Date"; 
      }
 
-     const dayOfMonth = date.getDate(); // Get the day of the month (1-31)
-     const monthIndex = date.getMonth(); // Get the month index (0-11)
-     const year = date.getFullYear(); // Get the full year
+     const dayOfMonth = date.getDate();
+     const monthIndex = date.getMonth();
+     const year = date.getFullYear();
 
-     // Use appropriate ordinal suffix for the day (st, nd, rd, th)
-    //  const suffixes = ["st", "nd", "rd", "th"];
-    //  const ordinalSuffix =
-    //    suffixes[
-    //      dayOfMonth % 10 === 1
-    //        ? 0
-    //        : dayOfMonth % 10 === 2
-    //        ? 1
-    //        : dayOfMonth % 10 < 5
-    //        ? 2
-    //        : 3
-    //    ];
        const suffixes = ["st", "nd", "rd", "th"];
        const lastDigit = dayOfMonth % 10;
        const suffixIndex =
@@ -154,6 +147,10 @@ const prop = property && property.property
      return formattedDate;
    }
 
+   function formatNumberWithCommas(amount: number): string {
+     return new Intl.NumberFormat("en-US").format(amount);
+   };
+
 
   return (
     <div className="bg-white flex  justify-center">
@@ -167,51 +164,72 @@ const prop = property && property.property
                     className=" flex h-full overflow-scroll hide-scroll-indicators"
                     ref={showcaseRef}
                   >
-                    {dum_pic.map((src, index) => (
-                      <Image
-                        key={index}
-                        src={src}
-                        alt="property picture"
-                        width={200}
-                        height={200}
-                        className="w-full h-full mr-4"
-                      />
-                    ))}
+                    {/* {.map((src, index) => ( */}
+                    <Image
+                      // key={index}
+                      src={prop && prop.listingInformation.images[0]}
+                      alt="property picture"
+                      width={400}
+                      height={600}
+                      className="mr-4 object-cover"
+                    />
+                    {/* ))} */}
+                    <Image
+                      // key={index}
+                      src={prop && prop.listingInformation.images[1]}
+                      alt="property picture"
+                      width={200}
+                      height={200}
+                      className="w-full h-full mr-4"
+                    />
+                    {/* ))} */}
+                    <Image
+                      // key={index}
+                      src={prop && prop.listingInformation.images[2]}
+                      alt="property picture"
+                      width={200}
+                      height={200}
+                      className="w-full h-full mr-4"
+                    />
+                    {/* ))} */}
                   </div>
                   <div className="absolute bottom-6 w-full flex gap-2  justify-center ">
-                    {dum_pic.map((_, index) => (
-                      <div
-                        key={index}
-                        className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
-                          currentIndex === index
-                            ? "bg-white"
-                            : "backdrop-blur bg-white/25"
-                        }`}
-                      />
-                    ))}
+                    {/* {dum_pic.map((_, index) => ( */}
+                    <div
+                      // key={index}
+                      className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
+                        // currentIndex === index
+                        // ? "bg-white"
+                        "backdrop-blur bg-white/25"
+                      }`}
+                    />
+                    {/* ))} */}
                   </div>
                 </div>
                 <div className="flex flex-row md:flex-col  gap-2 md:gap-4">
-                  <div className="hover:border h-full  hover:border-secondary hover:p-1 rounded-md duration-300 ease-in-out transition-all ">
-                    <Image
-                      src={"/img/home-landing-bg.png"}
-                      width={200}
-                      height={200}
-                      alt="property picture "
-                      className="w-full h-full  rounded-md"
-                    />
-                  </div>
-                  <div className="hover:border h-full  hover:border-secondary hover:p-1 rounded-md duration-300 ease-in-out transition-all relative ">
-                    <Image
-                      src={"/img/home-landing-bg.png"}
-                      width={200}
-                      height={200}
-                      alt="property picture"
-                      className="w-full h-full rounded-md "
-                    />
-
-                    <div></div>
-                  </div>
+                  {prop && prop.listingInformation.images[1] && (
+                    <div className="hover:border h-full  hover:border-secondary hover:p-1 rounded-md duration-300 ease-in-out transition-all ">
+                      <Image
+                        src={prop && prop.listingInformation.images[1]}
+                        width={200}
+                        height={200}
+                        alt="property picture "
+                        className="w-full h-full object-contain rounded-md"
+                      />
+                    </div>
+                  )}
+                  {prop && prop.listingInformation.images[2] && (
+                    <div className="hover:border h-full object-contain hover:border-secondary hover:p-1 rounded-md duration-300 ease-in-out transition-all relative ">
+                      <Image
+                        src={prop && prop.listingInformation.images[2]}
+                        width={200}
+                        height={200}
+                        alt="property picture"
+                        className="w-full h-full rounded-md "
+                      />
+                      <div></div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -266,14 +284,12 @@ const prop = property && property.property
                     </svg>
                   }
                   feature="Square Area"
-                  tagline={
-                    prop && prop.listingInformation.squareFeet + "m²"
-                  }
+                  tagline={prop && prop.listingInformation.squareFeet + "m²"}
                 />
                 <Feature
                   icon={<FaRegCircleCheck size={22} />}
                   feature="Active"
-                  tagline="4"
+                  tagline={prop && prop._count.applications}
                 />
                 <Feature
                   icon={
@@ -315,29 +331,33 @@ const prop = property && property.property
                     </svg>
                   }
                   feature="Available From"
-                  tagline={formatDate(prop && prop.listingInformation.availableDate) || "12 Feb, 2024"}
+                  tagline={
+                    formatDate(prop && prop.listingInformation.availableDate) ||
+                    "12 Feb, 2024"
+                  }
                 />
               </div>
 
               <div className="mt-8 border-b border-gray-300 pb-8">
                 <p className="text-[24px] font-bold mb-4">About Property</p>
-                <p>
-                 {prop && prop.listingInformation.description}
-                </p>
+                <p>{prop && prop.listingInformation.description}</p>
               </div>
 
               <div className="mt-8 border-b border-gray-300 pb-8">
                 <p className="text-[24px] font-bold mb-4">Property Features </p>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {prop && prop.listingInformation.amenities.map((item: string, index: any) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <FaRegCircleCheck size={22} />
-                      <p>{item}</p>
-                    </div>
-                  ))}
+                  {prop &&
+                    prop.listingInformation.amenities.map(
+                      (item: string, index: any) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <FaRegCircleCheck size={22} />
+                          <p>{item}</p>
+                        </div>
+                      )
+                    )}
                 </div>
               </div>
-              <div className="mt-8 border-b border-gray-300 pb-8">
+              {/* <div className="mt-8 border-b border-gray-300 pb-8">
                 <p className="text-[24px] font-bold mb-4">
                   Property Attributes{" "}
                 </p>
@@ -349,7 +369,7 @@ const prop = property && property.property
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               <div className="mt-8  pb-8">
                 <p className="text-[24px] font-bold mb-4">Map </p>
@@ -364,7 +384,8 @@ const prop = property && property.property
                 </div>
 
                 <p className="text-primary font-semibold flex items-center gap-2 mt-4">
-                  See more listings in Ibeju, Lagos State
+                  See more listings in {prop && prop.address.city},{" "}
+                  {prop && prop.address.state} State
                   <CgChevronRight size={20} />
                 </p>
               </div>
@@ -383,9 +404,12 @@ const prop = property && property.property
                 <div className="mt-4">
                   <p className="text-gray-300 font-medium text-[14px] ">Rent</p>
                   <p className="text-[20px] md:text-[24px] font-bold">
-                    NGN {prop && prop.listingInformation.monthlyRent}
+                    NGN{" "}
+                    {formatNumberWithCommas(
+                      prop && prop.listingInformation.monthlyRent
+                    )}
                     <span className="text-[14px] md:text-[18px] font-medium">
-                      /Month 
+                      /Month
                     </span>
                   </p>
                 </div>
@@ -399,10 +423,14 @@ const prop = property && property.property
                     <select
                       name="duration"
                       className="w-full px-5 py-4 rounded-xl flex-1 focus:outline-none "
+                      value={duration}
+                      onChange={(e) => {
+                        setDuration(e.target.value);
+                      }}
                     >
-                      <option value="Monthly">Monthly</option>
-                      <option value="Monthly">Monthly</option>
-                      <option value="Monthly">Monthly</option>
+                      <option value="1">Monthly</option>
+                      <option value="6">Half a year</option>
+                      <option value="12">Yearly</option>
                     </select>
                     <BiChevronDown className="mr-2" size={30} />
                   </div>
@@ -413,7 +441,7 @@ const prop = property && property.property
                     Service Charge
                   </p>
                   <p className="text-[14px] md:text-[18px] font-medium">
-                    NGN 186,420
+                    NGN 1,500
                   </p>
                 </div>
                 <div className="my-6 flex items-center justify-between">
@@ -421,7 +449,10 @@ const prop = property && property.property
                     Refundable security deposit
                   </p>
                   <p className="text-[14px] md:text-[18px] font-medium">
-                    NGN 186,420
+                    NGN{" "}
+                    {formatNumberWithCommas(
+                      prop && prop.listingInformation.securityDeposit
+                    )}
                   </p>
                 </div>
                 <div className="my-6 flex items-center justify-between">
@@ -429,7 +460,7 @@ const prop = property && property.property
                     One-time booking fee
                   </p>
                   <p className="text-[14px] md:text-[18px] font-medium">
-                    NGN 186,420
+                    NGN 10,000
                   </p>
                 </div>
                 <div className="my-6 flex items-start justify-between border-t border-gray-400 border-b border-b-gray-400 py-4">
@@ -443,13 +474,33 @@ const prop = property && property.property
                     </p>
                   </div>
                   <p className="text-[18px] md:text-[24px] font-bold">
-                    NGN 186,420
+                    NGN{" "}
+                    {formatNumberWithCommas(
+                      prop && duration === "1"
+                        ? prop.listingInformation.securityDeposit +
+                            prop.listingInformation.monthlyRent +
+                            10000 +
+                            1500
+                        : duration === "6"
+                        ? (prop.listingInformation.securityDeposit +
+                            prop.listingInformation.monthlyRent +
+                            1500) *
+                            6 +
+                          10000
+                        : duration === "12"
+                        ? (prop.listingInformation.securityDeposit +
+                            prop.listingInformation.monthlyRent +
+                            1500) *
+                            12 +
+                          10000
+                        : 0
+                    )}
                   </p>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <Image
-                    src={"/img/sample-avatar.png"}
+                    src={prop && prop.agent.image}
                     height={70}
                     width={70}
                     alt="realtor"
@@ -458,10 +509,10 @@ const prop = property && property.property
 
                   <div>
                     <p className="text-[18px] md:text-[24px] font-bold">
-                      Abayomi Temitope
+                      {prop && capitalizeFirstLetter(prop.agent.name)}
                     </p>
                     <p className=" text-[12px] md:text-[16px] ">
-                      Real Estate Broker
+                      {prop && prop.agent.type}
                     </p>
                   </div>
                 </div>
@@ -504,17 +555,8 @@ const prop = property && property.property
             </div>
 
             <div className="flex items-center justify-center flex-wrap flex-col lg:flex-row gap-10">
-              {[1, 2, 3].map((item) => (
-                <ListingCard
-                  key={item}
-                  lists={{
-                    id: "",
-                    imgSrc: "",
-                    title: "",
-                    address: "",
-                    price: "",
-                  }}
-                />
+              {[1, 2, 3].map((item: any, i: any) => (
+                <ListingCard key={i} lists={item} />
               ))}
             </div>
           </div>
