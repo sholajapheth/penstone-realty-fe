@@ -8,6 +8,7 @@ import Cookies from "js-cookie";
 import useLocalStorage from "@/app/api/useLocalStorage";
 import { useFormik } from "formik";
 import { applyValidation } from "@/app/api/useYup";
+import { PropertyDetails } from "../properties";
 
 const ApplicationForm = () => {
   const { useAPIMutation } = useAPI();
@@ -39,72 +40,75 @@ const ApplicationForm = () => {
 
   const { getItem } = useLocalStorage();
 
-
   const [dateOfBirth, setDateOfBirth] = useState<string | undefined>("");
   const [moveInDate, setMoveInDate] = useState<string | undefined>("");
 
-  const token = Cookies.get("jwtToken");
-  const user = Cookies.get("user");
+  const token = Cookies.get("userJwtToken");
+  const user = Cookies.get("userUser");
   const [isChecked, setIsChecked] = useState(false);
+  const propertyId = getItem("id");
+  const title = getItem("title");
+  // console.log(propertyId + ": " + 'title')
+  // const property = JSON.parse(propertyId)
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
 
-  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } = useFormik({
-    initialValues: initialValues,
-    validationSchema: applyValidation,
-    onSubmit: (values) => {
-      if (!user) {
-        setAuth(true);
-        return;
-      }
-      if (!isChecked) {
-        alert("User agreement not agreed to.");
-        return;
-      }
-      if (moveInDate && moveInDate?.length < 1) {
-        alert("Move in date is required");
-        return;
-      }
-      if (dateOfBirth && dateOfBirth?.length < 1) {
-        alert("Date of birth is required");
-        return;
-      }
-      const individual = JSON.parse(user as string);
-      console.log(individual);
-      const userEmail = user ? individual?.email : "";
-      setLoading(true);
-      setLoading(true);
-      update.mutate({
-        data: {
-          propertyId: JSON.parse(propertyId as string),
-          intentionOfUse: values.intentionOfUse,
-          moveInDate,
-          contactInformation: {
-            firstName: values.firstName,
-            lastName: values.lastName,
-            phoneNumber: values.phoneNumber,
-            email: values.email,
-            address: values.address,
-            countryCode: values.countryCode,
+  const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: applyValidation,
+      onSubmit: (values) => {
+        if (!user) {
+          setAuth(true);
+          return;
+        }
+        if (!isChecked) {
+          alert("User agreement not agreed to.");
+          return;
+        }
+        if (moveInDate && moveInDate?.length < 1) {
+          alert("Move in date is required");
+          return;
+        }
+        if (dateOfBirth && dateOfBirth?.length < 1) {
+          alert("Date of birth is required");
+          return;
+        }
+        const individual = JSON.parse(user as string);
+        console.log(individual);
+        const userEmail = user ? individual?.email : "";
+        setLoading(true);
+        update.mutate({
+          data: {
+            propertyId: propertyId,
+            intentionOfUse: values.intentionOfUse,
+            moveInDate,
+            contactInformation: {
+              firstName: values.firstName,
+              lastName: values.lastName,
+              phoneNumber: values.phoneNumber,
+              email: values.email,
+              address: values.address,
+              countryCode: values.countryCode,
+            },
+            personalInformation: {
+              dateOfBirth,
+              monthlyRentBudget: values.monthlyRentBudget.toString(),
+              employerName: values.employerName,
+              employerAddress: values.employerAddress,
+              employmentDuration: values.employmentDuration,
+              annualIncome: values.annualIncome.toString(),
+              emergencyContactAddress: values.emergencyContactAddress,
+              emergencyContactName: values.emergencyContactName,
+              numberOfOccupants: parseInt(values.numberOfOccupants),
+              userEmail,
+            },
           },
-          personalInformation: {
-            dateOfBirth,
-            monthlyRentBudget: values.monthlyRentBudget,
-            employerName: values.employerName,
-            employerAddress: values.employerAddress,
-            employmentDuration: values.employmentDuration,
-            annualIncome: values.annualIncome,
-            emergencyContactAddress: values.emergencyContactAddress,
-            emergencyContactName: values.emergencyContactName,
-            numberOfOccupants: parseInt(values.numberOfOccupants),
-            userEmail,
-          },
-        },
-      });
-    },
-  });
+        });
+      },
+    });
 
   const update = useAPIMutation({
     mutationFunction: (x: any) => userApply(x.data, token ? token : "token"),
@@ -116,12 +120,9 @@ const ApplicationForm = () => {
         status: "success",
         description: data.message || "Application Successful",
       });
-     resetForm()
+      resetForm();
     },
   });
-  const propertyId = getItem("id");
-  const title = getItem("title");
-
 
   return (
     <>

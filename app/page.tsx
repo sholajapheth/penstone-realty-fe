@@ -14,11 +14,11 @@ import Cookies from "js-cookie";
 export default function Home() {
   // const router = useRouter();
 
-//   useEffect(() => {
-// Cookies.remove('user')
-// Cookies.remove('token')
-// Cookies.remove('jwtToken')
-//   }, [])
+  //   useEffect(() => {
+  // Cookies.remove('userUser')
+  // // Cookies.remove('token')
+  // // Cookies.remove('userJwtToken')
+  //   }, [])
 
   return (
     <main>

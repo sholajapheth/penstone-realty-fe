@@ -21,19 +21,36 @@ type ListProp = {
 }
 const ListingCard = ({lists} : ListProp) => {
   const router = useRouter();
- console.log(lists)
+  console.log(lists);
+  console.log(
+    lists && lists.listingInformation && lists.listingInformation.images[0]
+  );
+
+  function formatNumberWithCommas(amount: number): string {
+    return new Intl.NumberFormat("en-US").format(amount);
+  }
+
   return (
     <div
-    key={lists && lists.id}
+      key={lists && lists.id}
       className="items-center justify-center flex cursor-pointer"
       onClick={() => router.push(`/property_details/${lists && lists.id}`)}
     >
       <div className="rounded-2xl relative overflow-hidden w-[354px] bg-white shadow-md hover:shadow-md backdrop-blur  hover:shadow-gray-400 group ease-linear duration-300 transition-all">
         <div
-          className="bg-[url('/img/hl-3.png')] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center  bg-no-repeat  relative   h-[328px]"
-          // style={{
-          //   backgroundImage: `url(${lists.images && lists.images[0]} || '/img/hl-3.png')`,
-          // }}
+          className={`bg-[url(${
+            lists &&
+            lists.listingInformation &&
+            lists.listingInformation.images[0]
+          })] group-hover:scale-105 ease-linear duration-300 transition-all bg-cover bg-center bg-no-repeat relative  h-[328px]`}
+          style={{
+            backgroundImage: `url(${
+              (lists &&
+                lists.listingInformation &&
+                lists.listingInformation.images[0]) ||
+              "/img/hl-3.png"
+            })`,
+          }}
         ></div>
 
         <div className="backdrop-blur bg-white/20 rounded-2xl absolute top-4 left-4 flex items-center p-2 px-3 border-white gap-3">
@@ -50,8 +67,11 @@ const ListingCard = ({lists} : ListProp) => {
             <div>
               <p className="font-bold text-[28px] ">
                 ₦{" "}
-                {lists &&lists.listingInformation &&
-                  lists.listingInformation.monthlyRent}
+                {formatNumberWithCommas(
+                  lists &&
+                    lists.listingInformation &&
+                    lists.listingInformation.monthlyRent
+                )}
               </p>
               <p className="text-[14px]">PER MONTH</p>
             </div>
@@ -74,7 +94,8 @@ const ListingCard = ({lists} : ListProp) => {
                   alt="bed"
                 />
                 <p className="text-[12px]">
-                  {lists && lists.listingInformation &&
+                  {lists &&
+                    lists.listingInformation &&
                     lists.listingInformation.noOfBedrooms}{" "}
                   beds
                 </p>
@@ -87,7 +108,8 @@ const ListingCard = ({lists} : ListProp) => {
                   alt="bed"
                 />
                 <p className="text-[12px]">
-                  {lists && lists.listingInformation &&
+                  {lists &&
+                    lists.listingInformation &&
                     lists.listingInformation.noOfBaths}{" "}
                   baths
                 </p>
@@ -100,7 +122,8 @@ const ListingCard = ({lists} : ListProp) => {
                   alt="bed"
                 />
                 <p className="text-[12px]">
-                  {lists && lists.listingInformation &&
+                  {lists &&
+                    lists.listingInformation &&
                     lists.listingInformation.squareFeet}{" "}
                   sqft
                 </p>

@@ -18,7 +18,7 @@ const GoogleSIgnIn = () => {
 
     setShowModal(false);
   };
-  const user = Cookies.get("user");
+  const user = Cookies.get("userUser");
 
   const [progress, setProgress] = useState(0);
 

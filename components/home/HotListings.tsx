@@ -14,13 +14,17 @@ const HotListings = () => {
     const { data: lists } = useQuery({
       queryKey: ["lists"],
       queryFn: () =>
-        listings(
-          "rank",
-          "asc",
-          {
-            filters: [],
+        listings("rank", "asc", {
+          filters: {
+            area: undefined,
+            marketType: undefined,
+            propertyType: undefined,
+            price: {
+              min: undefined,
+              max: undefined,
+            },
           },
-        ),
+        }),
     });
 
     console.log(lists);

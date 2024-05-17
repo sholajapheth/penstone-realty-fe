@@ -8,13 +8,21 @@ const AgentPortfolio = () => {
    const router = useRouter();
    const { useQuery } = useAPI();
 
-   const { data: lists } = useQuery({
-     queryKey: ["lists"],
-     queryFn: () =>
-       listings("rank", "asc", {
-         filters: [],
-       }),
-   });
+    const { data: lists } = useQuery({
+      queryKey: ["lists"],
+      queryFn: () =>
+        listings("price", "desc", {
+          filters: {
+            area: undefined,
+            marketType: undefined,
+            propertyType: undefined,
+            price: {
+              min: undefined,
+              max: undefined,
+            },
+          },
+        }),
+    });
 
   return (
     <div className="flex justify-center">

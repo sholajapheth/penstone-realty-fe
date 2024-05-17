@@ -15,10 +15,10 @@ export async function sellForm(data: SellProperty, token: string) {
   return response.data;
 }
 
-export async function listings(rank: string, order: string, data?: Listings) {
+export async function listings(rank: string | undefined, order: string | undefined, data?: Listings) {
   const response = await axiosWithoutToken().post(
     `/public/properties/all?sortBy=${rank}&order=${order}`,
-    { data }
+    data 
   );
 
   return response.data;
