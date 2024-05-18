@@ -48,16 +48,17 @@ const RequestForm = () => {
       validationSchema: requestValidation,
       onSubmit: (values) => {
         console.log("yoo");
-        if (!user && !token) {
-          setAuth(true);
-          return;
-        }
         if (!isChecked) {
           alert("User agreement not agreed to.");
           return;
         }
         if (attachments.length < 1) {
           alert("Please upload an image.");
+          return;
+        }
+        if (!token) {
+          setAuth(true);
+          alert("Please sign up before submitting");
           return;
         }
         setLoading(true);
@@ -355,11 +356,11 @@ const RequestForm = () => {
                 <span className="underline">Privacy Policy</span>.
               </label>
             </div>
-            {auth && (
+            {/* {auth && (
               <p className="text-center text-[14px] text-red-500">
                 Please sign up before submitting
               </p>
-            )}
+            )} */}
             <button
               className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
               //@ts-ignore

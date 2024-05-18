@@ -47,16 +47,17 @@ const Form = () => {
       initialValues: initialValues,
       validationSchema: sellFormValidator,
       onSubmit: (values) => {
-        if (!user && !token) {
-          setAuth(true);
-          return;
-        }
         if (!isChecked) {
           alert("User agreement not agreed to.");
           return;
         }
         if (image.length < 1) {
           alert("Please upload an image.");
+          return;
+        }
+        if (!token) {
+          setAuth(true);
+          alert("Please sign up before submitting");
           return;
         }
         setLoading(true);
@@ -98,28 +99,26 @@ const Form = () => {
   //   }
   // };
 
-    const handleValidChange = async (
-      e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-      if (e.target.files && e.target.files.length > 0) {
-        const files = Array.from(e.target.files);
+  const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const files = Array.from(e.target.files);
 
-        try {
-          const uploadPromises = files.map((file) => upload(file));
-          const results = await Promise.allSettled(uploadPromises);
+      try {
+        const uploadPromises = files.map((file) => upload(file));
+        const results = await Promise.allSettled(uploadPromises);
 
-          const successfulUploads = results
-            .filter((result) => result.status === "fulfilled")
-            .map((result) => (result as PromiseFulfilledResult<string>).value);
+        const successfulUploads = results
+          .filter((result) => result.status === "fulfilled")
+          .map((result) => (result as PromiseFulfilledResult<string>).value);
 
-          console.log("Files uploaded successfully:", successfulUploads);
-          setImage(successfulUploads);
-        } catch (error) {
-          console.error("Error uploading files:", error);
-        }
+        console.log("Files uploaded successfully:", successfulUploads);
+        setImage(successfulUploads);
+      } catch (error) {
+        console.error("Error uploading files:", error);
       }
-    };
-  
+    }
+  };
+
   const update = useAPIMutation({
     mutationFunction: (x: any) => sellForm(x.data, token ? token : "token"),
     onSuccessFn: (data) => {
@@ -182,7 +181,9 @@ const Form = () => {
                 value={values.propertyType}
                 onChange={handleChange}
               >
-                <option value="" disabled selected>Select the property type</option>
+                <option value="" disabled selected>
+                  Select the property type
+                </option>
                 <option
                   className=" text-[16px]"
                   value={"FULLY_DETACHED_DUPLEX"}
@@ -429,11 +430,11 @@ const Form = () => {
                 <span className="underline">Privacy Policy</span>.
               </label>
             </div>
-            {auth && (
+            {/* {auth && (
               <p className="text-center text-[14px] text-red-500">
                 Please sign up before submitting
               </p>
-            )}
+            )} */}
             <button
               className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
               //@ts-ignore

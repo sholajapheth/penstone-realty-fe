@@ -3,8 +3,14 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const PackageCard = () => {
-    const router = useRouter();
+type ServiceProp = {
+  imgSrc: string;
+  heading: string;
+  para: string;
+}
+
+const PackageCard = ({ imgSrc, para, heading }: ServiceProp) => {
+  const router = useRouter();
 
   return (
     <>
@@ -12,12 +18,10 @@ const PackageCard = () => {
         <div className="w-[100%] lg:w-[378px] border-[1px] shadow-shad shadow-sm border-[#E5E5E5] rounded-[14px] p-[24px] flex flex-col gap-[18px]">
           <div>
             <h2 className="text-[24px] font-semibold text-[#0A0A0A] pb-[12px]">
-              Tenant Verification
+              {heading}
             </h2>
             <p className="text-[17px] text-[#737373]">
-              Trust our meticulous screening to secure reliable tenants,
-              ensuring long-term occupancy with trustworthy individuals and
-              minimizing risks for your property investment.
+              {para}
             </p>
           </div>
           <div>
@@ -25,7 +29,7 @@ const PackageCard = () => {
               width={300}
               height={200}
               className="w-full h-full"
-              src="/img/tenant.png"
+              src={imgSrc}
               alt=""
             />
           </div>

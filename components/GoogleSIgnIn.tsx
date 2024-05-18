@@ -8,7 +8,9 @@ const GoogleSIgnIn = () => {
 
   useEffect(() => {
     setShowModal(true);
-    const timeoutId = setTimeout(() => setShowModal(false), 8000);
+    const timeoutId = setTimeout(() => 
+      setShowModal(false)
+    , 10000);
 
     return () => clearTimeout(timeoutId);
   }, []);
@@ -18,7 +20,7 @@ const GoogleSIgnIn = () => {
 
     setShowModal(false);
   };
-  const user = Cookies.get("userUser");
+  const user = Cookies.get("userJwtToken");
 
   const [progress, setProgress] = useState(0);
 
@@ -49,12 +51,12 @@ const GoogleSIgnIn = () => {
               Sign In
             </button>
           </div>
-          <div className="flex justify-start w-full">
+          {/* <div className="flex justify-start w-full">
             <div
               className="imitation-progress-bar rounded-full"
               style={{ width: `${progress}%` }}
             ></div>
-          </div>
+          </div> */}
         </div>
       )}
     </>

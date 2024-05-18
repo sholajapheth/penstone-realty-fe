@@ -60,10 +60,6 @@ const ApplicationForm = () => {
       initialValues: initialValues,
       validationSchema: applyValidation,
       onSubmit: (values) => {
-        if (!user) {
-          setAuth(true);
-          return;
-        }
         if (!isChecked) {
           alert("User agreement not agreed to.");
           return;
@@ -74,6 +70,11 @@ const ApplicationForm = () => {
         }
         if (dateOfBirth && dateOfBirth?.length < 1) {
           alert("Date of birth is required");
+          return;
+        }
+        if (!token) {
+          setAuth(true);
+            alert("Please sign up before submitting");
           return;
         }
         const individual = JSON.parse(user as string);
@@ -508,11 +509,11 @@ const ApplicationForm = () => {
                 EVICTION CHECKS
               </p>
             </div>
-            {auth && (
+            {/* {auth && (
               <p className="text-center text-[14px] text-red-500">
                 Please sign up before submitting
               </p>
-            )}
+            )} */}
             <div className="flex justify-center lg:justify-start">
               <button
                 className={` disabled:bg-primary/40 disabled:cursor-not-allowed bg-primary text-white font-semibold flex justify-center items-center gap-2 py-3 rounded-xl px-8 w-full lg:w-[20%]`}
