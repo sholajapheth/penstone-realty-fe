@@ -14,6 +14,25 @@ import {
 } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 
+const articles = [
+  {
+    date: "October 12, 2024 | 10 mins read",
+    title: "The Benefits of Working with a Real Estate Agent",
+    imgSrc: "/img/art1.png",
+  },
+  {
+    date: "October 12, 2024",
+    title:
+      "Running API and BrowserChecks Using Terraform, AWS, and Cloudhub Private Locations",
+    imgSrc: "/img/art4.png",
+  },
+  {
+    date: "October 12, 2024",
+    title: "House Viewing Tips for Buyers and Sellers",
+    imgSrc: "/img/art5.png",
+  },
+];
+
 const Page = () => {
   const router = useRouter();
 
@@ -147,8 +166,13 @@ const Page = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[1, 2, 3].map((item) => (
-              <BlogCard key={item} />
+            {articles.map((item, i) => (
+              <BlogCard
+                key={i}
+                imgSrc={item.imgSrc}
+                date={item.date}
+                title={item.title}
+              />
             ))}
           </div>
         </div>

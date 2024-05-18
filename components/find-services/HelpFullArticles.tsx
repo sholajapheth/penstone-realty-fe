@@ -2,6 +2,26 @@ import React from "react";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { BlogCard } from "../blog";
 
+const articles = [
+  {
+    date: "October 12, 2024 | 10 mins read",
+    title: "The Benefits of Working with a Real Estate Agent",
+    imgSrc: "/img/art1.png",
+  },
+  {
+    date: "October 12, 2024",
+    title:
+      "Running API and BrowserChecks Using Terraform, AWS, and Cloudhub Private Locations",
+    imgSrc: "/img/art4.png",
+  },
+  {
+    date: "October 12, 2024",
+    title: "House Viewing Tips for Buyers and Sellers",
+    imgSrc: "/img/art5.png",
+  },
+];
+
+
 const HelpFullArticles = () => {
   return (
     <div className="bg-white flex  justify-center mb-10">
@@ -19,9 +39,9 @@ const HelpFullArticles = () => {
             </button>
           </div>
         </div>
-        <div className="flex items-center gap-10 justify-center flex-wrap">
-          {[1, 2, 3].map((item) => (
-            <BlogCard key={item} />
+        <div className="flex items-start gap-10 justify-center flex-wrap">
+          {articles.map((item, i) => (
+            <BlogCard key={i} imgSrc={item.imgSrc} date={item.date} title={item.title}  />
           ))}
         </div>
       </div>
