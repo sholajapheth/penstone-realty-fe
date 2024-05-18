@@ -1,19 +1,23 @@
 import Image from "next/image";
 
-const SellCard = () => {
+type SellProp = {
+  icon: string;
+  heading: string;
+  para: string;
+}
+const SellCard = ({icon, heading, para } : SellProp) => {
   return (
     <div>
       <div className="w-[100%] lg:w-[378px] border-[1px] shadow-shad shadow-sm border-[#E5E5E5] rounded-[14px] p-[24px] flex flex-col gap-[18px]">
         <div>
-          <Image src="/img/icons/svgg.svg" width={40} height={40} alt="" />
+          <Image src={icon} width={40} height={40} alt="" />
         </div>
         <div>
           <h2 className="text-[24px] font-bold text-[#0A0A0A] pb-[12px]">
-            Strategic Marketing
+            {heading}
           </h2>
           <p className="text-[18px] text-[#737373]">
-            Our targeted campaigns ensure your property stands out, attracting
-            the right buyers and maximizing exposure for successful sales.
+           {para}
           </p>
         </div>
       </div>

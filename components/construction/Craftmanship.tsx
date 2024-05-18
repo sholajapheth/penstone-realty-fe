@@ -23,10 +23,22 @@ const Packages = () => {
                 </div>
               </div>
 
-              <div className="mt-[3em] flex items-center gap-10 justify-center flex-wrap ">
-                <CraftCard />
-                <CraftCard />
-                <CraftCard />
+              <div className="mt-[3em] flex items-start gap-10 justify-center flex-wrap ">
+                <CraftCard
+                  imgSrc="/img/cons1.png"
+                  heading="Quantity Surveyors"
+                  para="Trust our meticulous screening to secure reliable tenants, ensuring long-term occupancy with trustworthy individuals and minimizing risks for your property investment."
+                />
+                <CraftCard
+                  imgSrc="/img/cons2.png"
+                  heading="Carpenters"
+                  para="Let us handle property hassles, from rent collection to maintenance coordination, ensuring smooth operations and maximizing your investment's potential"
+                />
+                <CraftCard
+                  imgSrc="/img/cons3.png"
+                  heading="Interior Decorators"
+                  para="Count on us to find lucrative property deals, leveraging our expertise and network to maximize returns aligned with your investment goals."
+                />
               </div>
             </div>
           </div>

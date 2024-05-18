@@ -16,8 +16,8 @@ export default function Home() {
 
   //   useEffect(() => {
   // Cookies.remove('userUser')
-  // // Cookies.remove('token')
-  // // Cookies.remove('userJwtToken')
+  // Cookies.remove('token')
+  // Cookies.remove('userJwtToken')
   //   }, [])
 
   return (
