@@ -59,7 +59,7 @@ const GoogleSIgnIn = () => {
         //   </div> */}
         // </div>
 
-        <div className="fixed top-4 right-4 bg-white p-4 rounded-lg shadow-lg max-w-sm w-full">
+        <div className="fixed top-4 right-4 bg-white p-4 rounded-lg shadow-lg max-w-sm w-full  z-[999]">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-bold">Sign in with Google</h2>
             <button
