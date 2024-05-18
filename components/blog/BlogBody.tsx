@@ -1,6 +1,57 @@
 import React from "react";
 import BlogCard from "./BlogCard";
 
+const articles = [
+  {
+    date: "October 12, 2024 | 10 mins read",
+    title: "The Benefits of Working with a Real Estate Agent",
+    imgSrc: "/img/art1.png",
+  },
+  {
+    date: "October 12, 2024",
+    title:
+      "Running API and BrowserChecks Using Terraform, AWS, and Cloudhub Private Locations",
+    imgSrc: "/img/art4.png",
+  },
+  {
+    date: "October 12, 2024",
+    title: "House Viewing Tips for Buyers and Sellers",
+    imgSrc: "/img/art5.png",
+  },
+  {
+    date: "October 12, 2024 | 10 mins read",
+    title: "The Benefits of Working with a Real Estate Agent",
+    imgSrc: "/img/art2.png",
+  },
+  {
+    date: "October 12, 2024",
+    title:
+      "Running API and BrowserChecks Using Terraform, AWS, and Cloudhub Private Locations",
+    imgSrc: "/img/art8.png",
+  },
+  {
+    date: "October 12, 2024",
+    title: "House Viewing Tips for Buyers and Sellers",
+    imgSrc: "/img/art6.png",
+  },
+  {
+    date: "October 12, 2024 | 10 mins read",
+    title: "The Benefits of Working with a Real Estate Agent",
+    imgSrc: "/img/art5.png",
+  },
+  {
+    date: "October 12, 2024",
+    title:
+      "Running API and BrowserChecks Using Terraform, AWS, and Cloudhub Private Locations",
+    imgSrc: "/img/art7.png",
+  },
+  {
+    date: "October 12, 2024",
+    title: "House Viewing Tips for Buyers and Sellers",
+    imgSrc: "/img/art4.png",
+  },
+];
+
 const BlogBody = () => {
   return (
     <div className="bg-white flex  justify-center">
@@ -17,12 +68,14 @@ const BlogBody = () => {
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
-          <BlogCard />
+          {articles.map((item, i) => (
+            <BlogCard
+              key={i}
+              imgSrc={item.imgSrc}
+              date={item.date}
+              title={item.title}
+            />
+          ))}
         </div>
       </div>
     </div>

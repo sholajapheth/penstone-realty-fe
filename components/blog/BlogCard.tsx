@@ -4,33 +4,36 @@ import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const BlogCard = () => {
+type ArtProp = {
+  imgSrc: string;
+  date: string;
+  title: string;
+};
+const BlogCard = ({imgSrc, date, title} : ArtProp) => {
       const router = useRouter();
 
   return (
     <div
-      className="p-3 group hover:shadow-md rounded-xl transition-all ease-in duration-300 cursor-pointer"
+      className="p-3 w-[100%] lg:w-[378px] group hover:shadow-md rounded-xl transition-all ease-in duration-300 cursor-pointer"
       onClick={() => router.push("/blog/1")}
     >
       <div>
         <div className="overflow-hidden rounded-xl ">
           <Image
-            src={"/img/blog-card.png"}
+            src={imgSrc}
             alt="penstone-logo"
-            height={90}
-            width={150}
-            className="w-full  aspect-auto  group-hover:scale-110 transition-all duration-300 ease-out"
+            height={200}
+            width={200}
+            className="w-full h-full aspect-auto  group-hover:scale-110 transition-all duration-300 ease-out"
           />
         </div>
         <div className="text-sm flex items-center justify-between mt-2">
-          <p className="text-gray-300">October 12, 2024</p>
+          <p className="text-gray-300">{date}</p>
 
           <div className="bg-[#F9F9F9] px-2 py-1 rounded-md">E-BOOK</div>
         </div>
 
-        <p className="font-bold mt-2">
-          The Benefits of Working with a Real Estate Agent
-        </p>
+        <p className="font-bold mt-2">{title}</p>
 
         <div className="flex items-center mt-4 gap-4">
           <div className="overflow-hidden rounded-xl w-[3em] h-[3em] ">
