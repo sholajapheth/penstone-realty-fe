@@ -108,6 +108,10 @@ const RequestForm = () => {
       });
       resetForm();
     },
+    onErrorFn: () => {
+      // Custom error handler
+      setLoading(false);
+    },
   });
 
   return (

@@ -130,6 +130,10 @@ const Form = () => {
       });
       resetForm();
     },
+    onErrorFn: () => {
+      // Custom error handler
+      setLoading(false);
+    },
   });
 
   return (

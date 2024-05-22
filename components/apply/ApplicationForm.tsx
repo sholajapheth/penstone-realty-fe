@@ -123,6 +123,10 @@ const ApplicationForm = () => {
       });
       resetForm();
     },
+    onErrorFn: () => {
+      // Custom error handler
+      setLoading(false);
+    },
   });
 
   return (
