@@ -64,7 +64,6 @@ const PropertyDetails = ({property} : PropertyProp) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [duration, setDuration] = useState('1')
 
-    console.log(property);
 const prop = property && property.property
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const dum_pic = [

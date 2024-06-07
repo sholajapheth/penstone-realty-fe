@@ -17,7 +17,6 @@ const TopDetails = ({ property }: PropertyProp) => {
   const router = useRouter();
   // const { id } = router.query;
   const prop = property && property.property;
-  console.log(property && property.property.agentEmail);
   return (
     <div className="w-full flex bg-[#F5FCFF] items-center justify-center">
       <div className="w-[85%] ">

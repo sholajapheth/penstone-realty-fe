@@ -32,7 +32,7 @@ export function useAPI() {
       onSuccess: onSuccessFn,
       onError: (error: AxiosError) => {
         if (error.response) {
-          console.log(error.response);
+          // console.log(error.response);
           const status = error.response.status;
           if (status === 400) {
             toast({

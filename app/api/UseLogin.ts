@@ -36,7 +36,7 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
     if (user.metadata.creationTime !== user.metadata.lastSignInTime) {
       userLogin({ email: user.email }, token)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           Cookies.set("userJwtToken", response.token);
           Cookies.set("userUser", JSON.stringify(user), { expires: 5 });
           alert("Login successful!"); // Alert for successful login
@@ -51,7 +51,7 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
         token
       )
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           Cookies.set("userJwtToken", response.token);
           Cookies.set("userUser", JSON.stringify(user), { expires: 5 });
            alert("Registration successful!");
@@ -61,7 +61,7 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
           alert(`Registration error: ${error.message}`);
         });
     }
-    console.log("User is signed in:", user);
+    // console.log("User is signed in:", user);
   } catch (error: any) {
     const authError = error as AuthError;
     console.error("Sign-in error:", authError.code, authError.message);
@@ -104,7 +104,7 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("User state change: User is signed in", user);
+    // console.log("User state change: User is signed in", user);
     Cookies.set("userUser", JSON.stringify(user), { expires: 5 });
   } else {
     console.log("User state change: User is not signed in");

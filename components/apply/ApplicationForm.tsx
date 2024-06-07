@@ -78,7 +78,6 @@ const ApplicationForm = () => {
           return;
         }
         const individual = JSON.parse(user as string);
-        console.log(individual);
         const userEmail = user ? individual?.email : "";
         setLoading(true);
         update.mutate({

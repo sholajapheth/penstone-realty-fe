@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div className="flex items-center justify-center">
       <div className="py-[3em] lg:py-[6em] md:w-[85%] w-[90%] bg-white">
-        <Image src={"/logo.png"} alt="penstone-logo" height={90} width={150} />
+        <Image src={"/logo.svg"} alt="penstone-logo" height={90} width={150} />
 
         <div className="flex items-start justify-between md:justify-start flex-wrap gap-[32px] md:gap-[100px] text-secondary mt-[2em] md:mt-[4em]">
           <div className="flex flex-col gap-3 md:gap-4 w-[45%] md:w-fit">

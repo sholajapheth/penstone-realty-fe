@@ -10,7 +10,7 @@ const BlogTop = () => {
   return (
     <div className="bg-white flex  justify-center pb-[8em]">
       <div className="w-[90%] lg:w-[85%]">
-        <div className="grid grid-cols-1 md:grid-cols-6 pt-[1em] md:pt-[4em] lg:gap-[80px]">
+        <div className="grid grid-cols-1 md:grid-cols-6 pt-[1em] md:gap-[20px] md:pt-[4em] lg:gap-[80px]">
           <div className="col-span-3 mb-8 flex flex-col items-start justify-between h-full">
             <div>
               <div className="flex items-center gap-2">
@@ -31,13 +31,12 @@ const BlogTop = () => {
               textures...
             </p>
             <button
-              className="p-4 py-3 mt-[40px] border border-primary rounded-xl font-medium text-primary w-full md:w-auto"
+              className="p-4 py-3 my-[40px]  border border-primary rounded-xl font-medium text-primary w-full md:w-auto"
               onClick={() => router.push("/blog/1")}
             >
               Read More
             </button>
           </div>
-          {/* <div className="hidden md:inline-block"></div> */}
 
           <div
             className="col-span-3 cursor-pointer w-full h-full"
