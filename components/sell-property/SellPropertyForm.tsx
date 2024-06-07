@@ -110,8 +110,6 @@ const Form = () => {
         const successfulUploads = results
           .filter((result) => result.status === "fulfilled")
           .map((result) => (result as PromiseFulfilledResult<string>).value);
-
-        console.log("Files uploaded successfully:", successfulUploads);
         setImage(successfulUploads);
       } catch (error) {
         console.error("Error uploading files:", error);

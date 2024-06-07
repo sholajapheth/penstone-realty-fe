@@ -20,7 +20,6 @@ type ListProp = {
 };
 const ListingCard = ({ lists }: ListProp) => {
   const router = useRouter();
-  console.log(lists);
 
   function formatNumberWithCommas(amount: number): string {
     return new Intl.NumberFormat("en-US").format(amount);
@@ -54,7 +53,7 @@ const ListingCard = ({ lists }: ListProp) => {
           <p className="text-[12px] font-semibold">Leisure & Hospitality</p>
         </div>
 
-        <div className="relative bg-white flex-1 text-center ">
+        <div className="text-[#00080B] relative bg-white flex-1 text-center ">
           <div className="w-full flex items-center justify-center absolute -top-8">
             <div className="trapez rounded-md w-[230px] "></div>
           </div>
@@ -73,7 +72,7 @@ const ListingCard = ({ lists }: ListProp) => {
             </div>
           </div>
         </div>
-        <div className=" text-center mt-[3.2em]">
+        <div className="text-[#00080B] text-center mt-[3.2em]">
           <p className="text-[20px]  font-semibold pb-3">
             {lists && lists.address && lists.address.streetAddress},{" "}
             {lists && lists.address && lists.address.city}{" "}

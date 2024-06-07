@@ -51,8 +51,6 @@ const [order, setOrder] = useState("");
   // let states = []
   //  states = NaijaStates.states();
 
-  console.log(lists);
-
   return (
     <div className="text-secondary  flex justify-center">
       <div className=" w-[90%] md:w-[85%]">

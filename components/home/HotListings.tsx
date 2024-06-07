@@ -27,7 +27,6 @@ const HotListings = () => {
         }),
     });
 
-    console.log(lists);
 
   return (
     <div className="bg-white flex  justify-center py-[1em] lg:py-[8em] ">

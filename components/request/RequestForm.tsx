@@ -47,7 +47,6 @@ const RequestForm = () => {
       initialValues: initialValues,
       validationSchema: requestValidation,
       onSubmit: (values) => {
-        console.log("yoo");
         if (!isChecked) {
           alert("User agreement not agreed to.");
           return;
@@ -87,7 +86,6 @@ const RequestForm = () => {
       if (file instanceof File) {
         try {
           const downloadURL = await upload(file);
-          console.log("File uploaded successfully:", downloadURL);
           setAttachments([downloadURL]);
         } catch (error) {
           console.error("Error uploading file:", error);

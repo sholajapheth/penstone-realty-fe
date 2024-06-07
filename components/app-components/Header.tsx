@@ -41,7 +41,7 @@ export default function Example() {
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Pentstone</span>
               <Image
-                src={"/logo.png"}
+                src={"/logo.svg"}
                 alt="penstone-logo"
                 height={90}
                 width={150}

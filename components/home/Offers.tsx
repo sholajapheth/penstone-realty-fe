@@ -82,17 +82,17 @@ const Offers = () => {
         <div className="flex  flex-col lg:flex-row items-center gap-10">
           <div className="flex flex-col gap-3 items-center">
             <p className="font-bold text-[40px]">7.4%</p>
-            <p className="text-white font-medium">Property Return Rate</p>
+            <p className="text-white font-medium lg:px-5">Property Return Rate</p>
           </div>
           <div className="w-[64px] h-[1px] bg-white lg:hidden"></div>
           <div className="flex flex-col gap-3 items-center lg:border-l-2  lg:border-r-2 px-[4em] lg:border-spacing-2 lg:border-white">
             <p className="font-bold text-[40px]">356</p>
-            <p className="text-white font-medium">Property in Sell & Rent</p>
+            <p className="text-white font-medium lg:px-5">Property in Sell & Rent</p>
           </div>
           <div className="w-[64px] h-[1px] bg-white lg:hidden"></div>
           <div className="flex flex-col gap-3 items-center">
             <p className="font-bold text-[40px]">₦125M</p>
-            <p className="text-white font-medium">Median Property price</p>
+            <p className="text-white font-medium lg:px-5">Median Property price</p>
           </div>
         </div>
       </div>

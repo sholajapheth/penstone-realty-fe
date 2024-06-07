@@ -20,7 +20,7 @@ const ShowcardCard = ({ imgSource, title, tagline, route }: Info3Card) => {
 
       <div className="pt-[24px] lg:pt-[32px]">
         <p className="font-semibold text-[24px]">{title}</p>
-        <p className="mt-4 lg:mt-2 leading-[1.5em]">{tagline}</p>
+        <p className="mt-4 lg:mt-2 leading-[1.5em] pr-5 ">{tagline}</p>
       </div>
     </div>
   );
@@ -45,7 +45,7 @@ const Showcase = () => {
               transactions and investments.
             </p>
             <button
-              className="bg-primary text-white pl-4 p-2 rounded-2xl flex  items-center gap-4" 
+              className="bg-primary text-white pl-4 p-2 rounded-2xl flex  items-center gap-4"
               onClick={() => router.push("/find_services")}
             >
               <p>See all services</p>
