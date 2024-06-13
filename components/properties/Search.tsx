@@ -1,15 +1,12 @@
 "use client";
 
 import React, {useState, useEffect} from "react";
-import { CgChevronDown } from "react-icons/cg";
-import { IoChevronDownOutline, IoSearch } from "react-icons/io5";
+import { IoSearch } from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
-import { BsArrowDown } from "react-icons/bs";
 import { PaginationNav } from "../common";
 import { useAPI } from "@/app/lib/useApi";
 import { listings } from "@/app/api/UseUser";
-import NaijaStates from "naija-state-local-government";
-import { list } from "firebase/storage";
+
 
 const Search = () => {
   const { useQuery, queryClient } = useAPI();
@@ -114,18 +111,7 @@ const [order, setOrder] = useState("");
           <div className="px-4 pl-4 border-r-2 border-secondary ">
             <p className="font-bold text-gray-300">Select Area</p>
             <div className="flex items-center gap-4 mt-1">
-              {/* <select className="focus:outline-none flex-1 p-4 text-[18px] font-bold"> */}
-              {/* <option className=" text-[18px] font-bold" disabled selected>
-                  Search with filter
-                </option> */}
-              {/* {states.map((state: string) => {
-                  return (
-                    <option key={state} className=" text-[18px] font-bold">
-                      {state}
-                    </option>
-                  );
-                })} */}
-              {/* </select> */}
+             
               <input
                 onChange={(e) => setArea(e.target.value)}
                 value={area}
@@ -239,17 +225,7 @@ const [order, setOrder] = useState("");
           <div className="px-4 pl-4  ">
             <p className="font-bold text-gray-300">Price</p>
             <div className="flex items-center gap-4 mt-1">
-              {/* <p className=" text-[18px] font-bold ">N250K-N1M</p> */}
-              {/* <select
-                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
-                onChange={(e) => setPrice(e.target.value)}
-                value={price}
-              >
-                <option className=" text-[18px] font-bold" disabled selected>
-                  Filter Price
-                </option>
-                <option className=" text-[18px] font-bold ">Search</option>
-              </select> */}
+            
               <input
                 onChange={(e) => setPrice(e.target.value)}
                 value={price}
@@ -257,30 +233,15 @@ const [order, setOrder] = useState("");
                 type="number"
                 className="focus:outline-none p-4 rounded-xl border-2  border-[#D9E2E6]"
               />
-              {/* <div className="p-1 rounded-full bg-gray-300 text-secondary ">
-                <IoChevronDownOutline size={13} />
-              </div> */}
+
             </div>
           </div>
-
-          {/* <button className="bg-primary text-white font-semibold rounded-xl h-full px-[2em] py-[1em] ml-4">
-            Refine
-          </button> */}
         </div>{" "}
         <div className="mt-[4em] w-full flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
           {lists &&
             lists.properties.map((list: any) => {
               return <ListingCard key={list.id} lists={list} />;
             })}
-          {/* <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} />
-          <ListingCard lists={lists} /> */}
         </div>
         <PaginationNav />
       </div>

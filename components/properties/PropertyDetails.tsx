@@ -8,8 +8,10 @@ import { TbBath } from "react-icons/tb";
 import ListingCard from "../home/ListingCard";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import { listings } from "@/app/api/UseUser";
+import { useAPI } from "@/app/lib/useApi";
 
-function Feature({
+const Feature =({
   icon,
   feature,
   tagline,
@@ -17,7 +19,7 @@ function Feature({
   icon: ReactElement;
   feature: string;
   tagline: string;
-}) {
+}) => {
   return (
     <div className="flex flex-col gap-3">
       <p className="text-gray-400 text[12px] font-medium">{feature}</p>
@@ -28,28 +30,6 @@ function Feature({
     </div>
   );
 }
-
-const propertyFeatures = [
-  "All Rooms Ensuite",
-  "Family Lounge",
-  "Swimming Pool",
-  "Balcony",
-  "Fitted Kitchen",
-  "Walk-in Closet",
-  "Chandeliers",
-  "Security",
-  "Walk-in shower",
-  "Solar inverter",
-  "Spacious Rooms",
-];
-
-const propertyAttributes = [
-  "Governor consent document",
-  "Near MM2 Airport",
-  "15 mins drive from Fela Shrine",
-  "Property within a safe estate",
-  "Middle-class neighbourhood",
-];
 
 type PropertyProp = {
   property: string[] | any;
@@ -63,7 +43,9 @@ const PropertyDetails = ({property} : PropertyProp) => {
   const showcaseRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [duration, setDuration] = useState('1')
+  const { useQuery } = useAPI();
 
+  
 const prop = property && property.property
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const dum_pic = [
@@ -86,6 +68,7 @@ const prop = property && property.property
     };
 
     
+    
     const showcaseElement = showcaseRef.current;
     if (showcaseElement) {
       showcaseElement.addEventListener("scroll", handleScroll);
@@ -96,7 +79,26 @@ const prop = property && property.property
         showcaseElement.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [dum_pic, currentIndex]); // Add dum_pic to dependencies since its length might change
+  }, [dum_pic, currentIndex]);
+
+
+  const { data: lists } = useQuery({
+    queryKey: ["lists"],
+    queryFn: () =>
+      listings("rank", "asc", {
+        filters: {
+          area: undefined,
+          marketType: prop ? prop?.listingInformation?.marketType : undefined,
+          propertyType: prop
+            ? prop?.listingInformation?.propertyType
+            : undefined,
+          price: {
+            min: prop ? (prop?.listingInformation?.monthlyRent - 10000) : undefined,
+            max: prop ? (prop?.listingInformation?.monthlyRent + 10000) : undefined,
+          },
+        },
+      }),
+  });
   
   function capitalizeFirstLetter(word: string) {
     if (!word) return word;
@@ -356,19 +358,6 @@ const prop = property && property.property
                     )}
                 </div>
               </div>
-              {/* <div className="mt-8 border-b border-gray-300 pb-8">
-                <p className="text-[24px] font-bold mb-4">
-                  Property Attributes{" "}
-                </p>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {propertyAttributes.map((item, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <FaRegCircleCheck size={22} />
-                      <p>{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </div> */}
 
               <div className="mt-8  pb-8">
                 <p className="text-[24px] font-bold mb-4">Map </p>
@@ -554,9 +543,10 @@ const prop = property && property.property
             </div>
 
             <div className="flex items-center justify-center flex-wrap flex-col lg:flex-row gap-10">
-              {[1, 2, 3].map((item: any, i: any) => (
-                <ListingCard key={i} lists={item} />
-              ))}
+              {lists &&
+                lists.properties.map((list: any) => {
+                  return <ListingCard key={list.id} lists={list} />;
+                })}
             </div>
           </div>
         </div>
