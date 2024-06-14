@@ -11,6 +11,8 @@ import Link from "next/link";
 const Landing = () => {
   const [activeNav, setActiveNav] = useState("1");
   const router = useRouter();
+  const [type, setType] = useState("");
+  const [role, setRole] = useState('')
 
   return (
     <div className="bg-[url('/img/home-landing-bg.png')] bg-no-repeat bg-cover lg:bg-position-y-[-80px] bg-center lg:bg-position-x-[50px]">
@@ -101,8 +103,8 @@ const Landing = () => {
                   {/* <p className="text-gray-300 text-[18px] ">Residential</p> */}
                   <select
                     className="focus:outline-none flex-1 p-4 text-[18px]"
-                    // value={property}
-                    // onChange={(e) => setProperty(e.target.value)}
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
                   >
                     <option
                       className=" text-[18px] font-bold"
@@ -111,9 +113,7 @@ const Landing = () => {
                       selected
                     >
                       Filter property type
-                      <div className="p-1 rounded-full bg-gray-300 text-secondary">
-                        <IoChevronDownOutline size={13} />
-                      </div>
+                     
                     </option>{" "}
                     <option
                       className=" text-[18px] font-bold"
@@ -187,8 +187,8 @@ const Landing = () => {
                   {/* <p className="text-gray-300 text-[18px] ">Occupant</p> */}
                   <select
                     className="focus:outline-none flex-1 p-4 text-[18px]"
-                    // value={property}
-                    // onChange={(e) => setProperty(e.target.value)}
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
                   >
                     <option
                       className=" text-[18px] font-bold"
@@ -197,9 +197,7 @@ const Landing = () => {
                       selected
                     >
                       Filter role
-                      <div className="p-1 rounded-full bg-gray-300 text-secondary">
-                        <IoChevronDownOutline size={13} />
-                      </div>
+                     
                     </option>{" "}
                     <option
                       className=" text-[18px] font-bold"
