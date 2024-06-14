@@ -1,3 +1,8 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-unused-vars": "off", // Disable the rule for unused variables
+    "no-console": "off" // Disable the rule for console statements
+    // Add other rules you want to disable
+  }
 }
