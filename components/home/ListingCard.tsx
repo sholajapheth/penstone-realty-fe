@@ -55,13 +55,13 @@ const ListingCard = ({lists} : ListProp) => {
         </div>
 
         <div className="text-[#00080B] relative bg-white flex-1 text-center ">
-          <div className="w-full flex items-center justify-center absolute -top-8">
+          <div className="w-full flex items-center justify-center absolute z-40 -top-8">
             <div className="trapez rounded-md w-[230px] "></div>
           </div>
 
-          <div className="absolute -top-6  flex items-center justify-center w-full">
+          <div className="absolute -top-6 z-40 flex items-center justify-center w-full">
             <div>
-              <p className="font-bold text-[28px] ">
+              <p className="font-bold text-[18px] lg:text-[28px] ">
                 ₦{" "}
                 {formatNumberWithCommas(
                   lists &&
