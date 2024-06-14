@@ -57,7 +57,9 @@ const Landing = () => {
               Buy a Home
             </button>
             <button
-              onClick={() => setActiveNav("2")}
+              onClick={() => {setActiveNav("2")
+                router.push("/request_form");
+              }}
               className={`${
                 activeNav === "2"
                   ? "bg-white text-black"
@@ -96,22 +98,140 @@ const Landing = () => {
               <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]  mr-[3em]">
                 <p className="font-bold">Choose Type</p>
                 <div className="flex items-center justify-between mt-2">
-                  <p className="text-gray-300 text-[18px] ">Residential</p>
-                  <div className="p-1 rounded-full bg-gray-300 text-secondary">
+                  {/* <p className="text-gray-300 text-[18px] ">Residential</p> */}
+                  <select
+                    className="focus:outline-none flex-1 p-4 text-[18px]"
+                    // value={property}
+                    // onChange={(e) => setProperty(e.target.value)}
+                  >
+                    <option
+                      className=" text-[18px] font-bold"
+                      value=""
+                      disabled
+                      selected
+                    >
+                      Filter property type
+                      <div className="p-1 rounded-full bg-gray-300 text-secondary">
+                        <IoChevronDownOutline size={13} />
+                      </div>
+                    </option>{" "}
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"FULLY_DETACHED_DUPLEX"}
+                    >
+                      Fully Detached Duplex
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"SEMI_DETACHED_HOUSE"}
+                    >
+                      Semi Detached House
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"ACCOMMODATION_BLOCK"}
+                    >
+                      Accommodation Block
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"FLATS_AND_APARTMENT"}
+                    >
+                      Flats and Apartment
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"STUDIO_APARTMENT"}
+                    >
+                      Studio Apartment
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"MINI_FLATS"}
+                    >
+                      Mini Flats
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"RENTAL_SPACES"}
+                    >
+                      Rental Spaces
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"WAREHOUSE_AND_INDUSTRIAL"}
+                    >
+                      Warehouse and Industrial
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"OFFICE_COMPLEX"}
+                    >
+                      Office Complex
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"SPECIALIZED"}
+                    >
+                      Specialized
+                    </option>
+                  </select>
+                  {/* <div className="p-1 rounded-full bg-gray-300 text-secondary">
                     <IoChevronDownOutline size={13} />
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]">
                 <p className="font-bold">I am a ... </p>
                 <div className="flex items-center justify-between mt-2">
-                  <p className="text-gray-300 text-[18px] ">Occupant</p>
-                  <div className="p-1 rounded-full bg-gray-300 text-secondary">
+                  {/* <p className="text-gray-300 text-[18px] ">Occupant</p> */}
+                  <select
+                    className="focus:outline-none flex-1 p-4 text-[18px]"
+                    // value={property}
+                    // onChange={(e) => setProperty(e.target.value)}
+                  >
+                    <option
+                      className=" text-[18px] font-bold"
+                      value=""
+                      disabled
+                      selected
+                    >
+                      Filter role
+                      <div className="p-1 rounded-full bg-gray-300 text-secondary">
+                        <IoChevronDownOutline size={13} />
+                      </div>
+                    </option>{" "}
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"Occupant"}
+                    >
+                      Occupant
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"Investor"}
+                    >
+                      Investor
+                    </option>
+                    <option
+                      className=" text-[18px] font-bold"
+                      value={"Developer"}
+                    >
+                      Developer
+                    </option>
+                    <option className=" text-[18px] font-bold" value={"Agent"}>
+                      Agent
+                    </option>
+                  </select>
+                  {/* <div className="p-1 rounded-full bg-gray-300 text-secondary">
                     <IoChevronDownOutline size={13} />
-                  </div>
+                  </div> */}
                 </div>
               </div>
-              <button className="p-3  h-full bg-primary rounded-md ml-8 hover:scale-90 ">
+              <button
+                className="p-3  h-full bg-primary rounded-md ml-8 hover:scale-90 "
+                onClick={() => router.push("/search")}
+              >
                 <IoSearch color="white" size={20} />
               </button>
             </div>
@@ -161,12 +281,13 @@ const Landing = () => {
                 placeholder="Search location"
                 className="outline-none "
               />
-              <button
+              <Link
+                href={"/search"}
                 className="p-3  lg:h-full bg-primary rounded-md lg:ml-8 hover:scale-90"
-                onClick={() => router.push("/search")}
+                // onClick={() => router.push("/search")}
               >
                 <IoSearch color="white" size={20} />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
