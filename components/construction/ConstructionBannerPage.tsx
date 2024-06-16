@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import Cookies from "js-cookie";
 const ConstructionBannerPage = () => {
-            const router = useRouter();
+  const router = useRouter();
 
   return (
     <>
@@ -32,7 +32,7 @@ const ConstructionBannerPage = () => {
               <button
                 className="bg-primary px-3 lg:px-8  font-semibold py-3 rounded-xl text-white mt-8"
                 onClick={() => {
-                  localStorage.setItem("request", "CONSTRUCTION_SERVICE");
+                  Cookies.set("request", "CONSTRUCTION_SERVICE");
                   router.push("/request_form");
                 }}
               >

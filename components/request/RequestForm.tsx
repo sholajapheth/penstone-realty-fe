@@ -17,7 +17,7 @@ const RequestForm = () => {
   const { upload } = useStorage();
   const toast = useAppToast();
 
-  const request = localStorage.getItem("request")
+  const request = Cookies.get("request")
 
   const initialValues = {
     topic: request ? request : "",
