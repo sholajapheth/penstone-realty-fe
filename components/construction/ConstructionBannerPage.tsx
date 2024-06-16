@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import Cookies from "js-cookie";
 const ConstructionBannerPage = () => {
-            const router = useRouter();
+  const router = useRouter();
 
   return (
     <>
@@ -31,7 +31,10 @@ const ConstructionBannerPage = () => {
             <div className="flex flex-col lg:flex-row justify-center items-center gap-[15px]">
               <button
                 className="bg-primary px-3 lg:px-8  font-semibold py-3 rounded-xl text-white mt-8"
-                onClick={() => router.push("/request_form")}
+                onClick={() => {
+                  Cookies.set("request", "CONSTRUCTION_SERVICE");
+                  router.push("/request_form");
+                }}
               >
                 Get Started
               </button>
