@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Footer = () => {
@@ -30,47 +31,96 @@ const Footer = () => {
             <p className="text-[16px] md:text-[18px] lg:text-[20px] font-semibold ">
               Services and Solutions
             </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            <Link
+              href={"/construction"}
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               Remodel my Apartment
-            </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            </Link>
+            <Link
+              href={"/sell"}
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               Sell your property
-            </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
-              Manage my Construction project
-            </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            </Link>
+            <Link
+              href={"/contact_us"}
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
+              Live chat with experts{" "}
+            </Link>
+            <Link
+              href={"/find_services"}
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               Invest in Real Estate
-            </p>
+            </Link>
           </div>
           <div className="flex flex-col gap-3 md:gap-4 w-[45%] md:w-fit ">
             <p className="text-[16px] md:text-[18px] lg:text-[20px] font-semibold ">
               Corporate
             </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            <Link
+              href={"/about"}
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               About Pentstone
-            </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            </Link>
+            <Link
+              href={"/contact_us"}
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               Get in touch
-            </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            </Link>
+            <Link
+              href={"/blog"}
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               Insight & Updates
-            </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            </Link>
+            <Link
+              href={"/policies"}
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               Policies
-            </p>
+            </Link>
           </div>
           <div className="flex flex-col gap-3 md:gap-4 w-[45%] md:w-fit">
             <p className="text-[16px] md:text-[18px] lg:text-[20px] font-semibold ">
               Follow us
             </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            <Link
+              href={"https://www.instagram.com/pentstonerealty/"}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               Instagram
-            </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">Youtube</p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            </Link>
+            <Link
+              href={"https://www.linkedin.com/company/pentstonerealty"}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
+              LinkedIn
+            </Link>
+            <Link
+              href={"https://youtube.com/@pentstonerealty?si=6hxBF5i3YPuhPLjf"}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
+              Youtube
+            </Link>
+            <Link
+              href={"https://www.facebook.com/pentstonerealty/"}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[14px] md:text-[16px] lg:text-[18px]"
+            >
               Facebook
-            </p>
+            </Link>
           </div>
         </div>
 

@@ -17,8 +17,10 @@ const RequestForm = () => {
   const { upload } = useStorage();
   const toast = useAppToast();
 
+  const request = localStorage.getItem("request")
+
   const initialValues = {
-    topic: "",
+    topic: request ? request : "",
     description: "",
     attachments: "",
     profession: "",
@@ -32,7 +34,6 @@ const RequestForm = () => {
   const [auth, setAuth] = useState(false);
 
   const [attachments, setAttachments] = useState<string[]>([]);
-  const [imageName, setImageName] = useState<any>("");
   const [isChecked, setIsChecked] = useState(false);
 
   const token = Cookies.get("userJwtToken");
@@ -81,16 +82,17 @@ const RequestForm = () => {
 
   const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
-      const file = e.target.files.item(0);
-      setImageName(file && (file.name as string));
-      if (file instanceof File) {
-        try {
-          const downloadURL = await upload(file);
-          setAttachments([downloadURL]);
-        } catch (error) {
-          console.error("Error uploading file:", error);
-        }
-        if (!file) return;
+      const files = Array.from(e.target.files);
+      try {
+        const uploadPromises = files.map((file) => upload(file));
+        const results = await Promise.allSettled(uploadPromises);
+
+        const successfulUploads = results
+          .filter((result) => result.status === "fulfilled")
+          .map((result) => (result as PromiseFulfilledResult<string>).value);
+        setAttachments(successfulUploads);
+      } catch (error) {
+        console.error("Error uploading files:", error);
       }
     }
   };
@@ -142,41 +144,17 @@ const RequestForm = () => {
                 <option value="" selected disabled>
                   Select a property
                 </option>
-                <option
-                  className=" text-[16px]"
-                  value={"FULLY_DETACHED_DUPLEX"}
-                >
-                  Fully Detached Duplex
+                <option className=" text-[16px]" value={"ARCHITECTURAL_DESIGN"}>
+                  Architectural Design
                 </option>
-                <option className=" text-[16px]" value={"SEMI_DETACHED_HOUSE"}>
-                  Semi Detached House
+                <option className=" text-[16px]" value={"CONSTRUCTION_SERVICE"}>
+                  Construction Services
                 </option>
-                <option className=" text-[16px]" value={"ACCOMMODATION_BLOCK"}>
-                  Accommodation Block
+                <option className=" text-[16px]" value={"MARKETING_SUPPORT"}>
+                  Marketing Support
                 </option>
-                <option className=" text-[16px]" value={"FLATS_AND_APARTMENT"}>
-                  Flats and Apartment
-                </option>
-                <option className=" text-[16px]" value={"STUDIO_APARTMENT"}>
-                  Studio Apartment
-                </option>
-                <option className=" text-[16px]" value={"MINI_FLATS"}>
-                  Mini Flats
-                </option>
-                <option className=" text-[16px]" value={"RENTAL_SPACES"}>
-                  Rental Spaces
-                </option>
-                <option
-                  className=" text-[16px]"
-                  value={"WAREHOUSE_AND_INDUSTRIAL"}
-                >
-                  Warehouse and Industrial
-                </option>
-                <option className=" text-[16px]" value={"OFFICE_COMPLEX"}>
-                  Office Complex
-                </option>
-                <option className=" text-[16px]" value={"SPECIALIZED"}>
-                  Specialized
+                <option className=" text-[16px]" value={"SPECIALIZED_SOLUTION"}>
+                  Specialized Solution
                 </option>
               </select>
               {errors.topic && (
@@ -301,6 +279,7 @@ const RequestForm = () => {
                 name="attachment"
                 type="file"
                 required
+                multiple
                 className="hidden"
                 ref={validInput}
                 onChange={handleValidChange}
@@ -325,9 +304,7 @@ const RequestForm = () => {
                     <p>Select or drop file</p>
                   </>
                 ) : (
-                  <p className="text-black">
-                    {imageName} uploaded successfully
-                  </p>
+                  <p className="text-black">Image(s) uploaded successfully</p>
                 )}
               </div>
               <div

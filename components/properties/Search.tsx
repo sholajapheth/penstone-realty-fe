@@ -59,7 +59,7 @@ const [order, setOrder] = useState("");
             Search Properties
           </p>
 
-          <div className="flex items-center overflow-hidden pr-4 w-full lg:w-[22%] gap-2">
+          <div className="flex items-center overflow-hidden gap-2">
             <select
               className="focus:outline-none p-4 rounded-xl w-[1/2] border-2 border-[#D9E2E6]text-[18px] font-bold"
               onChange={(e) => setSortBy(e.target.value)}
@@ -99,6 +99,8 @@ const [order, setOrder] = useState("");
             <input
               placeholder="Search location"
               type="search"
+              onChange={(e) => setArea(e.target.value)}
+              value={area}
               className="focus:outline-none flex-1 p-4"
             />
 
@@ -108,10 +110,9 @@ const [order, setOrder] = useState("");
           </div>
         </div>
         <div className="p-6 rounded-xl border-[#D9E2E6] border-2 lg:flex items-center justify-between mt-[1em] md:mt-[3em] hidden flex-wrap">
-          <div className="px-4 pl-4 border-r-2 border-secondary ">
-            <p className="font-bold text-gray-300">Select Area</p>
+          <div className="px-4">
+            <p className="font-bold text-gray-300">Search Area</p>
             <div className="flex items-center gap-4 mt-1">
-             
               <input
                 onChange={(e) => setArea(e.target.value)}
                 value={area}
@@ -121,7 +122,8 @@ const [order, setOrder] = useState("");
               />
             </div>
           </div>
-          <div className="px-4 pl-4 border-r-2 border-secondary ">
+          <div className="bg-secondary w-[2px] h-[80px]"></div>
+          <div className="px-4">
             <p className="font-bold text-gray-300">Market Type</p>
             <div className="flex items-center gap-4 mt-1">
               <select
@@ -146,7 +148,9 @@ const [order, setOrder] = useState("");
               </select>
             </div>
           </div>
-          <div className="px-4 pl-4 border-r-2 border-secondary ">
+          <div className="bg-secondary w-[2px] h-[80px]"></div>
+
+          <div className="px-4">
             <p className="font-bold text-gray-300">Property Type</p>
             <div className="flex items-center gap-4 mt-1">
               <select
@@ -222,10 +226,11 @@ const [order, setOrder] = useState("");
               </select>
             </div>
           </div>
+          <div className="bg-secondary w-[2px] h-[80px]"></div>
+
           <div className="px-4 pl-4  ">
             <p className="font-bold text-gray-300">Price</p>
             <div className="flex items-center gap-4 mt-1">
-            
               <input
                 onChange={(e) => setPrice(e.target.value)}
                 value={price}
@@ -233,7 +238,6 @@ const [order, setOrder] = useState("");
                 type="number"
                 className="focus:outline-none p-4 rounded-xl border-2  border-[#D9E2E6]"
               />
-
             </div>
           </div>
         </div>{" "}

@@ -30,7 +30,9 @@ const ArchitecturePageBanner = () => {
               <div className="flex flex-col lg:flex-row justify-center items-center gap-[15px]">
                 <button
                   className="bg-primary px-3 lg:px-8  font-semibold py-3 rounded-xl text-white mt-8"
-                  onClick={() => router.push("/request_form")}
+                  onClick={() => {
+                    localStorage.setItem('request', "ARCHITECTURAL_DESIGN")
+                    router.push("/request_form")}}
                 >
                   Get Started
                 </button>
