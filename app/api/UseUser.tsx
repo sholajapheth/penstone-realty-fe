@@ -28,7 +28,11 @@ export async function singleList(id:string) {
   const response = await axiosWithoutToken().get(
     `/public/properties/${id}`
   );
+  return response.data;
+}
 
+export async function getAreas() {
+  const response = await axiosWithoutToken().get(`/public/areas`);
   return response.data;
 }
 

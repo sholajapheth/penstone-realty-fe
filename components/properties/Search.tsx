@@ -5,7 +5,7 @@ import { IoSearch } from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
 import { PaginationNav } from "../common";
 import { useAPI } from "@/app/lib/useApi";
-import { listings } from "@/app/api/UseUser";
+import { listings, getAreas } from "@/app/api/UseUser";
 
 
 const Search = () => {
@@ -16,6 +16,11 @@ const [property, setProperty] = useState('')
 const [price, setPrice] = useState('')
 const [sortBy, setSortBy] = useState("");
 const [order, setOrder] = useState("");
+
+  const { data: areas } = useQuery({
+    queryKey: ["areas"],
+    queryFn: () => getAreas(),
+  });
 
   const { data: lists } = useQuery({
     queryKey: ["lists", area, market, property, price, sortBy, order],
@@ -113,13 +118,23 @@ const [order, setOrder] = useState("");
           <div className="px-4">
             <p className="font-bold text-gray-300">Search Area</p>
             <div className="flex items-center gap-4 mt-1">
-              <input
-                onChange={(e) => setArea(e.target.value)}
+              <select
+                name=""
+                id=""
+                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
                 value={area}
-                placeholder="Search street location"
-                type="search"
-                className="focus:outline-none p-4 rounded-xl border-2 border-[#D9E2E6]"
-              />
+                onChange={(e) => setArea(e.target.value)}
+              >
+                <option value="" disabled selected>
+                  Select Area
+                </option>
+                {areas &&
+                  areas.data?.map((area: any, i: any) => (
+                    <option key={i} value={area.name}>
+                      {area.name}
+                    </option>
+                  ))}
+              </select>
             </div>
           </div>
           <div className="bg-secondary w-[2px] h-[80px]"></div>
