@@ -175,23 +175,23 @@ const prop = property && property.property
                       className="mr-4 object-cover"
                     />
                     {/* ))} */}
-                    <Image
+                   {prop && prop.listingInformation.images[1] && <Image
                       // key={index}
-                      src={prop && prop.listingInformation.images[1]}
+                      src={prop && prop.listingInformation.images[1] && prop.listingInformation.images[1]}
                       alt="property picture"
                       width={200}
                       height={200}
                       className="w-full h-full mr-4"
-                    />
+                    />}
                     {/* ))} */}
-                    <Image
+                   {prop && prop.listingInformation.images[2] && <Image
                       // key={index}
-                      src={prop && prop.listingInformation.images[2]}
+                      src={prop && prop.listingInformation.images[2] && prop.listingInformation.images[2]}
                       alt="property picture"
                       width={200}
                       height={200}
                       className="w-full h-full mr-4"
-                    />
+                    />}
                     {/* ))} */}
                   </div>
                   <div className="absolute bottom-6 w-full flex gap-2  justify-center ">
