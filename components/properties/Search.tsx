@@ -1,54 +1,51 @@
 "use client";
 
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
 import { PaginationNav } from "../common";
 import { useAPI } from "@/app/lib/useApi";
 import { listings, getAreas } from "@/app/api/UseUser";
 
-
 const Search = () => {
   const { useQuery, queryClient } = useAPI();
-const [area, setArea] = useState('')
-const [market, setMarket] = useState('')
-const [property, setProperty] = useState('')
-const [price, setPrice] = useState('')
-const [sortBy, setSortBy] = useState("");
-const [order, setOrder] = useState("");
+  const [area, setArea] = useState("");
+  const [market, setMarket] = useState("");
+  const [property, setProperty] = useState("");
+  const [price, setPrice] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [order, setOrder] = useState("");
 
   const { data: areas } = useQuery({
     queryKey: ["areas"],
     queryFn: () => getAreas(),
   });
 
+  const uniqueAreas = Array.from(new Set(areas && areas.data));
+
   const { data: lists } = useQuery({
     queryKey: ["lists", area, market, property, price, sortBy, order],
     queryFn: () =>
-      listings(
-        sortBy ? sortBy : undefined,
-        order ? order : 'asc',
-        {
-          filters: {
-            area : area ? area : undefined,
-            marketType: market ? market : undefined,
-            propertyType: property ? property : undefined,
-            price: {
-              'min': price ? Number(price) : undefined,
-              'max': 30000,
-            },
+      listings(sortBy ? sortBy : undefined, order ? order : "asc", {
+        filters: {
+          area: area ? area : undefined,
+          marketType: market ? market : undefined,
+          propertyType: property ? property : undefined,
+          price: {
+            min: price ? Number(price) : undefined,
+            max: 30000,
           },
-        }
-      ),
+        },
+      }),
   });
 
-      useEffect(() => {
-        queryClient
-          .invalidateQueries({
-            queryKey: ["lists"],
-          })
-          .then();
-      }, [area, market, property, price, queryClient, order, sortBy]);
+  useEffect(() => {
+    queryClient
+      .invalidateQueries({
+        queryKey: ["lists"],
+      })
+      .then();
+  }, [area, market, property, price, queryClient, order, sortBy]);
 
   // let states = []
   //  states = NaijaStates.states();
@@ -128,12 +125,11 @@ const [order, setOrder] = useState("");
                 <option value="" disabled selected>
                   Select Area
                 </option>
-                {areas &&
-                  areas.data?.map((area: any, i: any) => (
-                    <option key={i} value={area.name}>
-                      {area.name}
-                    </option>
-                  ))}
+                {uniqueAreas.map((location: any, i: any) => (
+                  <option key={i} value={location} className="text-black">
+                    {location}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
