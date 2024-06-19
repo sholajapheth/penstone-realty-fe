@@ -28,9 +28,12 @@ const Landing = () => {
     queryFn: () => getAreas(),
   });
 
+  const uniqueAreas = Array.from(new Set(areas && areas.data));
+
+
   const update = useAPIMutation({
     mutationFunction: (x: any) =>
-      listings(undefined, "asc", {
+      listings("", "asc", {
         filters: {
           area: area ? area : undefined,
           marketType: undefined,
@@ -60,8 +63,13 @@ const Landing = () => {
   });
 
   const handleSubmit = () => {
+    console.log(area);
     update.mutate({});
   };
+
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      setArea(event.target.value);
+    };
 
   return (
     <>
@@ -143,19 +151,18 @@ const Landing = () => {
                     <select
                       name=""
                       id=""
-                      className="focus:outline-none flex-1 p-4 text-[18px]"
+                      className="focus:outline-none flex-1 p-4 text-[18px] text-black"
                       value={area}
-                      onChange={(e) => setArea(e.target.value)}
+                      onChange={handleChange}
                     >
                       <option value="" disabled selected>
                         Select Area
                       </option>
-                      {areas &&
-                        areas.data?.map((area: any, i: any) => (
-                          <option key={i} value={area.name}>
-                            {area.name}
-                          </option>
-                        ))}
+                      {uniqueAreas.map((location: any, i: any) => (
+                        <option key={i} value={location} className="text-black">
+                          {location}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -340,19 +347,18 @@ const Landing = () => {
                 <select
                   name=""
                   id=""
-                  className="focus:outline-none flex-1 p-4 text-[18px]"
+                  className="focus:outline-none flex-1 p-4 text-[18px] text-black"
                   value={area}
-                  onChange={(e) => setArea(e.target.value)}
+                  onChange={handleChange}
                 >
                   <option value="" disabled selected>
                     Select Area
                   </option>
-                  {areas &&
-                    areas.data?.map((area: any, i: any) => (
-                      <option key={i} value={area.name}>
-                        {area.name}
-                      </option>
-                    ))}
+                  {uniqueAreas.map((location: any, i: any) => (
+                    <option key={i} value={location} className="text-black">
+                      {location}
+                    </option>
+                  ))}
                 </select>
                 <button
                   className="p-3  lg:h-full bg-primary rounded-md lg:ml-8 hover:scale-90"
