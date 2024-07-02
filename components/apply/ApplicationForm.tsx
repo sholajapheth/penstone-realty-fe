@@ -78,20 +78,21 @@ const ApplicationForm = () => {
           return;
         }
         const individual = JSON.parse(user as string);
-        const userEmail = user ? individual?.email : "";
+        // const userEmail = user ? individual?.email : "";
         setLoading(true);
         update.mutate({
           data: {
             propertyId: propertyId,
             intentionOfUse: values.intentionOfUse,
             moveInDate,
+            numberOfOccupants: parseInt(values.numberOfOccupants),
             contactInformation: {
               firstName: values.firstName,
               lastName: values.lastName,
               phoneNumber: values.phoneNumber,
               email: values.email,
               address: values.address,
-              countryCode: values.countryCode,
+              // countryCode: values.countryCode,
             },
             personalInformation: {
               dateOfBirth,
@@ -100,10 +101,9 @@ const ApplicationForm = () => {
               employerAddress: values.employerAddress,
               employmentDuration: values.employmentDuration,
               annualIncome: values.annualIncome.toString(),
-              emergencyContactAddress: values.emergencyContactAddress,
               emergencyContactName: values.emergencyContactName,
-              numberOfOccupants: parseInt(values.numberOfOccupants),
-              userEmail,
+              emergencyContactAddress: values.emergencyContactAddress,
+              // userEmail,
             },
           },
         });

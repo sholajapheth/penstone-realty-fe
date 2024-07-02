@@ -28,13 +28,14 @@ const Search = () => {
     queryFn: () =>
       listings(sortBy ? sortBy : undefined, order ? order : "asc", {
         filters: {
-          area: area ? area : undefined,
           marketType: market ? market : undefined,
           propertyType: property ? property : undefined,
+          area: area ? area : undefined,
           price: {
             min: price ? Number(price) : undefined,
             max: 30000,
           },
+          category: undefined
         },
       }),
   });
