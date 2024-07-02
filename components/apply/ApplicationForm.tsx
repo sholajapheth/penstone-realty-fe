@@ -172,6 +172,7 @@ const ApplicationForm = () => {
                   </option>
                   <option value="RENT">Rent</option>
                   <option value="SELL">Sell</option>
+                  <option value="SHORTLET">Short Let</option>
                 </select>
                 {errors.intentionOfUse && (
                   <p className="text-red-500 text-[14px]">
