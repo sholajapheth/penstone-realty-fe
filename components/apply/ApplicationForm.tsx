@@ -159,21 +159,14 @@ const ApplicationForm = () => {
                   Intended use of property{" "}
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
-                <select
+                <input
                   name="intentionOfUse"
                   required
-                  className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
                   value={values.intentionOfUse}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                >
-                  <option value="" disabled selected>
-                    Select intention
-                  </option>
-                  <option value="RENT">Rent</option>
-                  <option value="SELL">Sell</option>
-                  <option value="SHORTLET">Short Let</option>
-                </select>
+                />
                 {errors.intentionOfUse && (
                   <p className="text-red-500 text-[14px]">
                     {errors.intentionOfUse}

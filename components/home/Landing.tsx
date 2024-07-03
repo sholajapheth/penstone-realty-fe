@@ -42,7 +42,7 @@ const Landing = () => {
             min: undefined,
             max: undefined,
           },
-          category: category.length > 0 ? "SALE" : category,
+          category: category.length < 1 ? "SALE" : category,
         },
       }),
     onSuccessFn: (data) => {
