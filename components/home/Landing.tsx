@@ -22,6 +22,7 @@ const Landing = () => {
   const [role, setRole] = useState("");
   const [area, setArea] = useState("");
   const [lists, setLists] = useState([]);
+  const [category, setCategory] = useState("")
 
   const { data: areas } = useQuery({
     queryKey: ["areas"],
@@ -30,18 +31,18 @@ const Landing = () => {
 
   const uniqueAreas = Array.from(new Set(areas && areas.data));
 
-
   const update = useAPIMutation({
     mutationFunction: (x: any) =>
       listings("", "asc", {
         filters: {
-          area: area ? area : undefined,
           marketType: undefined,
           propertyType: property ? property : undefined,
+          area: area ? area : undefined,
           price: {
             min: undefined,
             max: undefined,
           },
+          category: category.length < 1 ? "SALE" : category,
         },
       }),
     onSuccessFn: (data) => {
@@ -62,14 +63,16 @@ const Landing = () => {
     },
   });
 
+  console.log(category)
+
   const handleSubmit = () => {
     console.log(area);
     update.mutate({});
   };
 
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setArea(event.target.value);
-    };
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setArea(event.target.value);
+  };
 
   return (
     <>
@@ -107,7 +110,10 @@ const Landing = () => {
           <div className="hidden lg:block mt-[5em] w-[70%]">
             <div className="font-bold">
               <button
-                onClick={() => setActiveNav("1")}
+                onClick={() => {
+                  setActiveNav("1");
+                  setCategory("SALE");
+                }}
                 className={`${
                   activeNav === "1"
                     ? "bg-white text-black"
@@ -119,7 +125,7 @@ const Landing = () => {
               <button
                 onClick={() => {
                   setActiveNav("2");
-                  router.push("/request_form");
+                  setCategory("RENT");
                 }}
                 className={`${
                   activeNav === "2"
@@ -143,172 +149,348 @@ const Landing = () => {
                 Sell Property
               </button>
             </div>
-            <div className="w-full rounded-bl-md rounded-br-md rounded-tr-md bg-white p-4 px-10 py-8">
-              <div className="flex items-end w-full">
-                <div className=" flex-[0.3] pl-[3em]  mr-[3em]">
-                  <p className="font-bold">Select Area</p>
-                  <div className="flex items-center justify-between mt-2">
-                    <select
-                      name=""
-                      id=""
-                      className="focus:outline-none flex-1 p-4 text-[18px] text-black"
-                      value={area}
-                      onChange={handleChange}
-                    >
-                      <option value="" disabled selected>
-                        Select Area
-                      </option>
-                      {uniqueAreas.map((location: any, i: any) => (
-                        <option key={i} value={location} className="text-black">
-                          {location}
+            {activeNav === "1" && (
+              <div className="w-full rounded-bl-md rounded-br-md rounded-tr-md bg-white p-4 px-10 py-8">
+                <div className="flex items-end w-full">
+                  <div className=" flex-[0.3] pl-[3em]  mr-[3em]">
+                    <p className="font-bold">Select Area</p>
+                    <div className="flex items-center justify-between mt-2">
+                      <select
+                        name=""
+                        id=""
+                        className="focus:outline-none flex-1 p-4 text-[18px] text-black"
+                        value={area}
+                        onChange={handleChange}
+                      >
+                        <option value="" disabled selected>
+                          Select Area
                         </option>
-                      ))}
-                    </select>
+                        {uniqueAreas.map((location: any, i: any) => (
+                          <option
+                            key={i}
+                            value={location}
+                            className="text-black"
+                          >
+                            {location}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
-                <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]  mr-[3em]">
-                  <p className="font-bold">Choose Type</p>
-                  <div className="flex items-center justify-between mt-2">
-                    {/* <p className="text-gray-300 text-[18px] ">Residential</p> */}
-                    <select
-                      className="focus:outline-none flex-1 p-4 text-[18px]"
-                      value={property}
-                      onChange={(e) => setProperty(e.target.value)}
-                    >
-                      <option
-                        className=" text-[18px] font-bold"
-                        value=""
-                        disabled
-                        selected
+                  <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]  mr-[3em]">
+                    <p className="font-bold">Choose Type</p>
+                    <div className="flex items-center justify-between mt-2">
+                      {/* <p className="text-gray-300 text-[18px] ">Residential</p> */}
+                      <select
+                        className="focus:outline-none flex-1 p-4 text-[18px]"
+                        value={property}
+                        onChange={(e) => setProperty(e.target.value)}
                       >
-                        Filter property type
-                      </option>{" "}
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"FULLY_DETACHED_DUPLEX"}
-                      >
-                        Fully Detached Duplex
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"SEMI_DETACHED_HOUSE"}
-                      >
-                        Semi Detached House
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"ACCOMMODATION_BLOCK"}
-                      >
-                        Accommodation Block
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"FLATS_AND_APARTMENT"}
-                      >
-                        Flats and Apartment
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"STUDIO_APARTMENT"}
-                      >
-                        Studio Apartment
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"MINI_FLATS"}
-                      >
-                        Mini Flats
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"RENTAL_SPACES"}
-                      >
-                        Rental Spaces
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"WAREHOUSE_AND_INDUSTRIAL"}
-                      >
-                        Warehouse and Industrial
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"OFFICE_COMPLEX"}
-                      >
-                        Office Complex
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"SPECIALIZED"}
-                      >
-                        Specialized
-                      </option>
-                    </select>
-                    {/* <div className="p-1 rounded-full bg-gray-300 text-secondary">
+                        <option
+                          className=" text-[18px] font-bold"
+                          value=""
+                          disabled
+                          selected
+                        >
+                          Filter property type
+                        </option>{" "}
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"FULLY_DETACHED_DUPLEX"}
+                        >
+                          Fully Detached Duplex
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"SEMI_DETACHED_HOUSE"}
+                        >
+                          Semi Detached House
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"ACCOMMODATION_BLOCK"}
+                        >
+                          Accommodation Block
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"FLATS_AND_APARTMENT"}
+                        >
+                          Flats and Apartment
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"STUDIO_APARTMENT"}
+                        >
+                          Studio Apartment
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"MINI_FLATS"}
+                        >
+                          Mini Flats
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"RENTAL_SPACES"}
+                        >
+                          Rental Spaces
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"WAREHOUSE_AND_INDUSTRIAL"}
+                        >
+                          Warehouse and Industrial
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"OFFICE_COMPLEX"}
+                        >
+                          Office Complex
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"SPECIALIZED"}
+                        >
+                          Specialized
+                        </option>
+                      </select>
+                      {/* <div className="p-1 rounded-full bg-gray-300 text-secondary">
                     <IoChevronDownOutline size={13} />
                   </div> */}
+                    </div>
                   </div>
-                </div>
-                <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]">
-                  <p className="font-bold">I am a ... </p>
-                  <div className="flex items-center justify-between mt-2">
-                    {/* <p className="text-gray-300 text-[18px] ">Occupant</p> */}
-                    <select
-                      className="focus:outline-none flex-1 p-4 text-[18px]"
-                      value={role}
-                      onChange={(e) => setRole(e.target.value)}
-                    >
-                      <option
-                        className=" text-[18px] font-bold"
-                        value=""
-                        disabled
-                        selected
+                  <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]">
+                    <p className="font-bold">I am a ... </p>
+                    <div className="flex items-center justify-between mt-2">
+                      {/* <p className="text-gray-300 text-[18px] ">Occupant</p> */}
+                      <select
+                        className="focus:outline-none flex-1 p-4 text-[18px]"
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
                       >
-                        Filter role
-                      </option>{" "}
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"Occupant"}
-                      >
-                        Occupant
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"Investor"}
-                      >
-                        Investor
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"Developer"}
-                      >
-                        Developer
-                      </option>
-                      <option
-                        className=" text-[18px] font-bold"
-                        value={"Agent"}
-                      >
-                        Agent
-                      </option>
-                    </select>
-                    {/* <div className="p-1 rounded-full bg-gray-300 text-secondary">
+                        <option
+                          className=" text-[18px] font-bold"
+                          value=""
+                          disabled
+                          selected
+                        >
+                          Filter role
+                        </option>{" "}
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"Occupant"}
+                        >
+                          Occupant
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"Investor"}
+                        >
+                          Investor
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"Developer"}
+                        >
+                          Developer
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"Agent"}
+                        >
+                          Agent
+                        </option>
+                      </select>
+                      {/* <div className="p-1 rounded-full bg-gray-300 text-secondary">
                     <IoChevronDownOutline size={13} />
                   </div> */}
+                    </div>
                   </div>
+                  <button
+                    className="p-3  h-full bg-primary rounded-md ml-8 hover:scale-90 "
+                    onClick={handleSubmit}
+                  >
+                    <IoSearch color="white" size={20} />
+                  </button>
                 </div>
-                <button
-                  className="p-3  h-full bg-primary rounded-md ml-8 hover:scale-90 "
-                  onClick={handleSubmit}
-                >
-                  <IoSearch color="white" size={20} />
-                </button>
               </div>
-            </div>
+            )}
+            {activeNav === "2" && (
+              <div className="w-full rounded-bl-md rounded-br-md rounded-tr-md bg-white p-4 px-10 py-8">
+                <div className="flex items-end w-full">
+                  <div className=" flex-[0.3] pl-[3em]  mr-[3em]">
+                    <p className="font-bold">Select Area</p>
+                    <div className="flex items-center justify-between mt-2">
+                      <select
+                        name=""
+                        id=""
+                        className="focus:outline-none flex-1 p-4 text-[18px] text-black"
+                        value={area}
+                        onChange={handleChange}
+                      >
+                        <option value="" disabled selected>
+                          Select Area
+                        </option>
+                        {uniqueAreas.map((location: any, i: any) => (
+                          <option
+                            key={i}
+                            value={location}
+                            className="text-black"
+                          >
+                            {location}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]  mr-[3em]">
+                    <p className="font-bold">Choose Type</p>
+                    <div className="flex items-center justify-between mt-2">
+                      {/* <p className="text-gray-300 text-[18px] ">Residential</p> */}
+                      <select
+                        className="focus:outline-none flex-1 p-4 text-[18px]"
+                        value={property}
+                        onChange={(e) => setProperty(e.target.value)}
+                      >
+                        <option
+                          className=" text-[18px] font-bold"
+                          value=""
+                          disabled
+                          selected
+                        >
+                          Filter property type
+                        </option>{" "}
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"FULLY_DETACHED_DUPLEX"}
+                        >
+                          Fully Detached Duplex
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"SEMI_DETACHED_HOUSE"}
+                        >
+                          Semi Detached House
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"ACCOMMODATION_BLOCK"}
+                        >
+                          Accommodation Block
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"FLATS_AND_APARTMENT"}
+                        >
+                          Flats and Apartment
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"STUDIO_APARTMENT"}
+                        >
+                          Studio Apartment
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"MINI_FLATS"}
+                        >
+                          Mini Flats
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"RENTAL_SPACES"}
+                        >
+                          Rental Spaces
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"WAREHOUSE_AND_INDUSTRIAL"}
+                        >
+                          Warehouse and Industrial
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"OFFICE_COMPLEX"}
+                        >
+                          Office Complex
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"SPECIALIZED"}
+                        >
+                          Specialized
+                        </option>
+                      </select>
+                      {/* <div className="p-1 rounded-full bg-gray-300 text-secondary">
+                    <IoChevronDownOutline size={13} />
+                  </div> */}
+                    </div>
+                  </div>
+                  <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]">
+                    <p className="font-bold">I am a ... </p>
+                    <div className="flex items-center justify-between mt-2">
+                      {/* <p className="text-gray-300 text-[18px] ">Occupant</p> */}
+                      <select
+                        className="focus:outline-none flex-1 p-4 text-[18px]"
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                      >
+                        <option
+                          className=" text-[18px] font-bold"
+                          value=""
+                          disabled
+                          selected
+                        >
+                          Filter role
+                        </option>{" "}
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"Occupant"}
+                        >
+                          Occupant
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"Investor"}
+                        >
+                          Investor
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"Developer"}
+                        >
+                          Developer
+                        </option>
+                        <option
+                          className=" text-[18px] font-bold"
+                          value={"Agent"}
+                        >
+                          Agent
+                        </option>
+                      </select>
+                      {/* <div className="p-1 rounded-full bg-gray-300 text-secondary">
+                    <IoChevronDownOutline size={13} />
+                  </div> */}
+                    </div>
+                  </div>
+                  <button
+                    className="p-3  h-full bg-primary rounded-md ml-8 hover:scale-90 "
+                    onClick={handleSubmit}
+                  >
+                    <IoSearch color="white" size={20} />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
           <div className="lg:hidden mt-[30px] bg-white rounded-[10px] w-[100%] flex justify-between flex-col px-[14px]">
             <div className="font-bold text-[#414141] flex justify-between items-center gap-[14px]  pt-[14px]">
               <button
-                onClick={() => setActiveNav("1")}
+                onClick={() => {
+                  setActiveNav("1");
+                  setCategory("SALE");
+                }}
                 className={`${
                   activeNav === "1"
                     ? "border-b-[3px] border-primary font-semibold text-[16px] text-secondary"
@@ -318,7 +500,10 @@ const Landing = () => {
                 Buy a Home
               </button>
               <button
-                onClick={() => setActiveNav("2")}
+                onClick={() => {
+                  setActiveNav("2");
+                  setCategory("RENT");
+                }}
                 className={`${
                   activeNav === "2"
                     ? "border-b-[3px] border-primary font-semibold text-[16px] text-secondary"

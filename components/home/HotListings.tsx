@@ -16,13 +16,14 @@ const HotListings = () => {
       queryFn: () =>
         listings("rank", "asc", {
           filters: {
-            area: undefined,
             marketType: undefined,
             propertyType: undefined,
+            area: undefined,
             price: {
               min: undefined,
               max: undefined,
             },
+            category: undefined
           },
         }),
     });

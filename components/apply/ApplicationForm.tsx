@@ -78,20 +78,21 @@ const ApplicationForm = () => {
           return;
         }
         const individual = JSON.parse(user as string);
-        const userEmail = user ? individual?.email : "";
+        // const userEmail = user ? individual?.email : "";
         setLoading(true);
         update.mutate({
           data: {
             propertyId: propertyId,
             intentionOfUse: values.intentionOfUse,
             moveInDate,
+            numberOfOccupants: parseInt(values.numberOfOccupants),
             contactInformation: {
               firstName: values.firstName,
               lastName: values.lastName,
               phoneNumber: values.phoneNumber,
               email: values.email,
               address: values.address,
-              countryCode: values.countryCode,
+              // countryCode: values.countryCode,
             },
             personalInformation: {
               dateOfBirth,
@@ -100,10 +101,9 @@ const ApplicationForm = () => {
               employerAddress: values.employerAddress,
               employmentDuration: values.employmentDuration,
               annualIncome: values.annualIncome.toString(),
-              emergencyContactAddress: values.emergencyContactAddress,
               emergencyContactName: values.emergencyContactName,
-              numberOfOccupants: parseInt(values.numberOfOccupants),
-              userEmail,
+              emergencyContactAddress: values.emergencyContactAddress,
+              // userEmail,
             },
           },
         });
@@ -159,20 +159,14 @@ const ApplicationForm = () => {
                   Intended use of property{" "}
                   <span className="text-[14px]">(Required)</span>{" "}
                 </label>
-                <select
+                <input
                   name="intentionOfUse"
                   required
-                  className="border-[2px] outline-none rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
+                  className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
                   value={values.intentionOfUse}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                >
-                  <option value="" disabled selected>
-                    Select intention
-                  </option>
-                  <option value="RENT">Rent</option>
-                  <option value="SELL">Sell</option>
-                </select>
+                />
                 {errors.intentionOfUse && (
                   <p className="text-red-500 text-[14px]">
                     {errors.intentionOfUse}
