@@ -33,7 +33,7 @@ const Search = () => {
           area: area ? area : undefined,
           price: {
             min: price ? Number(price) : undefined,
-            max: 30000,
+            max: 10000000,
           },
           category: undefined
         },

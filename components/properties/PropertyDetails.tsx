@@ -390,19 +390,19 @@ const prop = property && property.property
                 </div>
 
                 <div className="mt-4">
-                  <p className="text-gray-300 font-medium text-[14px] ">Rent</p>
+                  <p className="text-gray-300 font-medium text-[14px] ">{prop && prop.category === "SALE" ? "Sale" : 'Rent'}</p>
                   <p className="text-[20px] md:text-[24px] font-bold">
                     NGN{" "}
                     {formatNumberWithCommas(
                       prop && prop.listingInformation.monthlyRent
                     )}
-                    <span className="text-[14px] md:text-[18px] font-medium">
+                   {prop && prop.category !== 'SALE' && <span className="text-[14px] md:text-[18px] font-medium">
                       /Month
-                    </span>
+                    </span>}
                   </p>
                 </div>
 
-                <div className="text-secondary mt-6">
+                {prop && prop.category !== 'SALE' && <div className="text-secondary mt-6">
                   <p className="text-[12px] md:text-[16px] font-semibold">
                     DURATION
                   </p>
@@ -422,7 +422,7 @@ const prop = property && property.property
                     </select>
                     <BiChevronDown className="mr-2" size={30} />
                   </div>
-                </div>
+                </div>}
 
                 <div className="my-6 flex items-center justify-between">
                   <p className="text-gray-400 text-[12px] md:text-[16px] font-medium">
