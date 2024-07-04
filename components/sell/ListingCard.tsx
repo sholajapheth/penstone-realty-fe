@@ -8,7 +8,7 @@ type List = {
   // imgSrc: string,
   // title: string,
   streetAddress: string;
-  // price: string,
+  category: string,
   unitNumber: string;
   city: string;
   state: string;
@@ -68,7 +68,11 @@ const ListingCard = ({ lists }: ListProp) => {
                     lists.listingInformation.monthlyRent
                 )}
               </p>
-              <p className="text-[14px]">PER MONTH</p>
+              <p className="text-[14px]">
+                {lists && lists.category === "SALE"
+                  ? "PER PROPERTY"
+                  : "PER MONTH"}
+              </p>
             </div>
           </div>
         </div>
