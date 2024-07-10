@@ -1,8 +1,4 @@
-import {
-  signInWithPopup,
-  onAuthStateChanged,
-  User,
-} from "firebase/auth";
+import { signInWithPopup, onAuthStateChanged, User } from "firebase/auth";
 import { auth, provider } from "../lib/firebase/config";
 import Cookies from "js-cookie";
 import { axiosForAuth } from "../lib/axios";
@@ -32,7 +28,6 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
     const token = await user.getIdToken(true);
 
     Cookies.set("token", token, { expires: 1 });
-
     if (user.metadata.creationTime !== user.metadata.lastSignInTime) {
       userLogin({ email: user.email }, token)
         .then((response) => {
@@ -52,9 +47,9 @@ export async function handleSignInAndStoreData(): Promise<void | Error> {
       )
         .then((response) => {
           // console.log(response.data);
-          Cookies.set("userJwtToken", response.token);
+          Cookies.set("userJwtToken", response.token, { expires: 1 });
           Cookies.set("userUser", JSON.stringify(user), { expires: 5 });
-           alert("Registration successful!");
+          alert("Registration successful!");
         })
         .catch((error) => {
           console.error("Registration error:", error);

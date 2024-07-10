@@ -30,7 +30,7 @@ const AppWrapper = ({ children }: { children: ReactNode }) => {
         <div className="relative">
           <>
             <Header />
-            <GoogleSIgnIn />
+            {/* <GoogleSIgnIn /> */}
             {children}
             <Footer />
           </>
