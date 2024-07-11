@@ -6,6 +6,7 @@ import ListingCard from "../home/ListingCard";
 import { PaginationNav } from "../common";
 import { useAPI } from "@/app/lib/useApi";
 import { listings, getAreas } from "@/app/api/UseUser";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const Search = () => {
   const { useQuery, queryClient } = useAPI();
@@ -15,6 +16,9 @@ const Search = () => {
   const [price, setPrice] = useState("");
   const [sortBy, setSortBy] = useState("");
   const [order, setOrder] = useState("");
+
+   const [currentPage, setCurrentPage] = useState(1);
+   const itemsPerPage = 9;
 
   const { data: areas } = useQuery({
     queryKey: ["areas"],
@@ -39,6 +43,16 @@ const Search = () => {
         },
       }),
   });
+
+  const totalItems = lists?.properties?.length || 0;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentItems = lists?.properties?.slice(startIndex, startIndex + itemsPerPage);
+
+    const handlePageClick = (page: number) => {
+      setCurrentPage(page);
+    };
 
   useEffect(() => {
     queryClient
@@ -255,11 +269,42 @@ const Search = () => {
         </div>{" "}
         <div className="mt-[4em] w-full flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
           {lists &&
-            lists.properties.map((list: any) => {
+            currentItems.map((list: any) => {
               return <ListingCard key={list.id} lists={list} />;
             })}
         </div>
-        <PaginationNav />
+        {/* <PaginationNav /> */}
+        <div className="flex items-center justify-center mt-[1em] md:mt-[4em]">
+          <div className="font-bold flex items-center gap-4 ">
+            <BiChevronLeft
+              size={28}
+              className="cursor-pointer"
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            />
+
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index + 1}
+                  className={`p-4 py-[0.55rem] rounded-full text-white shadow-sm ${
+                    currentPage === index + 1 ? "bg-primary" : "bg-gray-300"
+                  }`}
+                  onClick={() => handlePageClick(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+
+            <BiChevronRight
+              size={28}
+              className="cursor-pointer"
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

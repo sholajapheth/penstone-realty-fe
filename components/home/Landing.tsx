@@ -23,6 +23,7 @@ const Landing = () => {
   const [area, setArea] = useState("");
   const [lists, setLists] = useState([]);
   const [category, setCategory] = useState("")
+const [showLists, setShowLists] = useState(false);
 
   const { data: areas } = useQuery({
     queryKey: ["areas"],
@@ -52,6 +53,7 @@ const Landing = () => {
         status: "success",
         description: data.message || "Request Successful",
       });
+      setShowLists(true)
       setLists(data.properties);
     },
     onErrorFn: (data) => {
@@ -63,7 +65,7 @@ const Landing = () => {
     },
   });
 
-  console.log(category)
+  console.log(showLists)
 
   const handleSubmit = () => {
     console.log(area);
@@ -574,7 +576,7 @@ const Landing = () => {
         </div>
       </div>
 
-      {lists.length > 0 && (
+      {showLists && lists.length > 0 && (
         <div className="bg-white flex  justify-center py-[1em] ">
           <div className="my-5 w-[90%] lg:w-[85%]">
             <div className="mt-[3em] lg:mt-[4em] flex-wrap flex items-center gap-10 justify-center ">
@@ -593,6 +595,11 @@ const Landing = () => {
             </div>{" "}
           </div>
         </div>
+      )}
+      {lists.length < 1 && showLists && (
+        <p className="font-semibold text-center py-10 text-red-500 text-[20px]">
+          No available listing
+        </p>
       )}
     </>
   );

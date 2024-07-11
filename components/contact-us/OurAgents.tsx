@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { PaginationNav } from "../common";
 import { useRouter } from "next/navigation";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
 const AgentCard = ({
   imgSrc,
@@ -104,6 +105,22 @@ const agents = [
 ];
 
 const OurAgents = () => {
+     const [currentPage, setCurrentPage] = useState(1);
+     const itemsPerPage = 10;
+
+      const totalItems = agents.length || 0;
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const currentItems = agents.slice(
+        startIndex,
+        startIndex + itemsPerPage
+      );
+
+      const handlePageClick = (page: number) => {
+        setCurrentPage(page);
+      };
+
   return (
     <div className="bg-white flex  justify-center">
       <div className="w-[90%] lg:w-[85%] py-[1em] md:py-[5em]">
@@ -120,7 +137,7 @@ const OurAgents = () => {
         </div>
 
         <div className="flex flex-wrap mt-8 justify-center items-center gap-10">
-          {agents.map((item, i) => (
+          {currentItems.map((item, i) => (
             // eslint-disable-next-line react/jsx-key
             <AgentCard
               imgSrc={item.imgSrc}
@@ -132,7 +149,38 @@ const OurAgents = () => {
           ))}
         </div>
 
-        <PaginationNav />
+        {/* <PaginationNav /> */}
+        <div className="flex items-center justify-center mt-[1em] md:mt-[4em]">
+          <div className="font-bold flex items-center gap-4 ">
+            <BiChevronLeft
+              size={28}
+              className="cursor-pointer"
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            />
+
+            <div className="flex gap-2">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index + 1}
+                  className={`p-4 py-[0.55rem] rounded-full text-white shadow-sm ${
+                    currentPage === index + 1 ? "bg-primary" : "bg-gray-300"
+                  }`}
+                  onClick={() => handlePageClick(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+
+            <BiChevronRight
+              size={28}
+              className="cursor-pointer"
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
