@@ -25,7 +25,7 @@ const articles = [
 const HelpFullArticles = () => {
   return (
     <div className="bg-white flex  justify-center mb-10">
-      <div className="w-[90%] lg:w-[85%]">
+      <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
         <div className="flex items-center justify-between mb-8 ">
           <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
             Helpful Articles
@@ -39,9 +39,14 @@ const HelpFullArticles = () => {
             </button>
           </div>
         </div>
-        <div className="flex items-start gap-10 justify-center flex-wrap">
+        <div className="flex items-start gap-5 justify-between flex-wrap">
           {articles.map((item, i) => (
-            <BlogCard key={i} imgSrc={item.imgSrc} date={item.date} title={item.title}  />
+            <BlogCard
+              key={i}
+              imgSrc={item.imgSrc}
+              date={item.date}
+              title={item.title}
+            />
           ))}
         </div>
       </div>

@@ -67,7 +67,7 @@ const Search = () => {
 
   return (
     <div className="text-secondary  flex justify-center">
-      <div className=" w-[90%] md:w-[85%]">
+      <div className=" w-[90%] md:w-[85%] max-w-[1150px]">
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between mt-[1em] md:mt-[4em] w-full ">
           <p className="font-semibold text-[20px] md:text-[40px] hidden lg:block">
             Explore our properties in Nigeria
@@ -267,7 +267,7 @@ const Search = () => {
             </div>
           </div>
         </div>{" "}
-        <div className="mt-[4em] w-full flex items-center gap-[32px] justify-center lg:justify-between flex-wrap">
+        <div className="mt-[4em] w-full flex items-center gap-x-[48px] gap-y-[48px] justify-center lg:justify-between flex-wrap">
           {lists &&
             currentItems.map((list: any) => {
               return <ListingCard key={list.id} lists={list} />;

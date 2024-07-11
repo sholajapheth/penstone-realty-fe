@@ -5,7 +5,7 @@ const SpecializedServices = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="w-[90%] lg:w-[85%]">
+        <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
           <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
             <div className="w-full">
               <div className="flex items-start justify-between  ">
@@ -14,7 +14,7 @@ const SpecializedServices = () => {
                 </p>
               </div>
 
-              <div className="my-[3em] flex items-start gap-10 justify-center flex-wrap ">
+              <div className="my-[3em] flex items-start gap-5 justify-between flex-wrap ">
                 <ServiceCard
                   imgSrc="/img/service1.png"
                   heading="Tenant Verification"

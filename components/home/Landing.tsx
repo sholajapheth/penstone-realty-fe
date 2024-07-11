@@ -109,7 +109,7 @@ const [showLists, setShowLists] = useState(false);
               <br className="hidden lg:block" /> investment yield.
             </p>
           </div>
-          <div className="hidden lg:block mt-[5em] w-[70%]">
+          <div className="hidden lg:block mt-[5em] w-[70%]  max-w-[1000px]">
             <div className="font-bold">
               <button
                 onClick={() => {
@@ -152,15 +152,15 @@ const [showLists, setShowLists] = useState(false);
               </button>
             </div>
             {activeNav === "1" && (
-              <div className="w-full rounded-bl-md rounded-br-md rounded-tr-md bg-white p-4 px-10 py-8">
-                <div className="flex items-end w-full">
+              <div className="w-full rounded-bl-md rounded-br-md rounded-tr-md bg-white p-4 px-0 py-4">
+                <div className="flex items-center w-full">
                   <div className=" flex-[0.3] pl-[3em]  mr-[3em]">
-                    <p className="font-bold">Select Area</p>
-                    <div className="flex items-center justify-between mt-2">
+                    <p className="font-bold text-[14px]">Select Area</p>
+                    <div className="flex items-center justify-between mt-0">
                       <select
                         name=""
                         id=""
-                        className="focus:outline-none flex-1 p-4 text-[18px] text-black"
+                        className="focus:outline-none flex-1 p-4 text-[18px] text-[#9A9A9A]"
                         value={area}
                         onChange={handleChange}
                       >
@@ -180,11 +180,11 @@ const [showLists, setShowLists] = useState(false);
                     </div>
                   </div>
                   <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]  mr-[3em]">
-                    <p className="font-bold">Choose Type</p>
-                    <div className="flex items-center justify-between mt-2">
+                    <p className="font-bold text-[14px]">Choose Type</p>
+                    <div className="flex items-center justify-between mt-0">
                       {/* <p className="text-gray-300 text-[18px] ">Residential</p> */}
                       <select
-                        className="focus:outline-none flex-1 p-4 text-[18px]"
+                        className="focus:outline-none flex-1 p-4 text-[18px] text-[#9A9A9A]"
                         value={property}
                         onChange={(e) => setProperty(e.target.value)}
                       >
@@ -263,11 +263,11 @@ const [showLists, setShowLists] = useState(false);
                     </div>
                   </div>
                   <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]">
-                    <p className="font-bold">I am a ... </p>
-                    <div className="flex items-center justify-between mt-2">
+                    <p className="font-bold text-[14px]">I am a ... </p>
+                    <div className="flex items-center justify-between mt-0">
                       {/* <p className="text-gray-300 text-[18px] ">Occupant</p> */}
                       <select
-                        className="focus:outline-none flex-1 p-4 text-[18px]"
+                        className="focus:outline-none flex-1 p-4 text-[18px] text-[#9A9A9A]"
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                       >
@@ -319,15 +319,15 @@ const [showLists, setShowLists] = useState(false);
               </div>
             )}
             {activeNav === "2" && (
-              <div className="w-full rounded-bl-md rounded-br-md rounded-tr-md bg-white p-4 px-10 py-8">
-                <div className="flex items-end w-full">
+              <div className="w-full rounded-bl-md rounded-br-md rounded-tr-md bg-white p-4 px-0 py-4">
+                <div className="flex items-center w-full">
                   <div className=" flex-[0.3] pl-[3em]  mr-[3em]">
-                    <p className="font-bold">Select Area</p>
-                    <div className="flex items-center justify-between mt-2">
+                    <p className="font-bold text-[14px]">Select Area</p>
+                    <div className="flex items-center justify-between mt-0">
                       <select
                         name=""
                         id=""
-                        className="focus:outline-none flex-1 p-4 text-[18px] text-black"
+                        className="focus:outline-none flex-1 p-4 text-[18px] text-[#9A9A9A]"
                         value={area}
                         onChange={handleChange}
                       >
@@ -347,11 +347,11 @@ const [showLists, setShowLists] = useState(false);
                     </div>
                   </div>
                   <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]  mr-[3em]">
-                    <p className="font-bold">Choose Type</p>
-                    <div className="flex items-center justify-between mt-2">
+                    <p className="font-bold text-[14px]">Choose Type</p>
+                    <div className="flex items-center justify-between mt-0">
                       {/* <p className="text-gray-300 text-[18px] ">Residential</p> */}
                       <select
-                        className="focus:outline-none flex-1 p-4 text-[18px]"
+                        className="focus:outline-none flex-1 p-4 text-[18px] text-[#9A9A9A]"
                         value={property}
                         onChange={(e) => setProperty(e.target.value)}
                       >
@@ -430,11 +430,11 @@ const [showLists, setShowLists] = useState(false);
                     </div>
                   </div>
                   <div className=" flex-[0.3] border-l-2 border-l-gray-300  pl-[3em]">
-                    <p className="font-bold">I am a ... </p>
-                    <div className="flex items-center justify-between mt-2">
+                    <p className="font-bold text-[14px]">I am a ... </p>
+                    <div className="flex items-center justify-between mt-0">
                       {/* <p className="text-gray-300 text-[18px] ">Occupant</p> */}
                       <select
-                        className="focus:outline-none flex-1 p-4 text-[18px]"
+                        className="focus:outline-none flex-1 p-4 text-[18px] text-[#9A9A9A]"
                         value={role}
                         onChange={(e) => setRole(e.target.value)}
                       >
@@ -556,7 +556,7 @@ const [showLists, setShowLists] = useState(false);
               </div>
             </div>
           </div>
-          <div className="mt-14 hidden lg:flex items-center justify-between w-[90%]">
+          <div className="mt-14 hidden lg:flex items-center justify-between w-[90%]  max-w-[1200px]">
             <div />
             <div className="flex gap-4">
               <button className="rounded-md bg-primary p-2  ">

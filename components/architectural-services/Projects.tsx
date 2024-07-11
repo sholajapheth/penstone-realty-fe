@@ -8,7 +8,7 @@ const AgentPortfolio = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-[90%] lg:w-[85%]">
+      <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
         <div className="bg-white flex  justify-center pt-[3em] lg:pt-[4em] pb-[2em] ">
           <div className="w-full">
             <div className="flex items-start justify-between">
@@ -17,7 +17,7 @@ const AgentPortfolio = () => {
               </p>
             </div>
 
-            <div className="mt-[4em] flex items-center gap-10 justify-center flex-wrap ">
+            <div className="mt-[4em] flex items-center gap-5 justify-between flex-wrap ">
               <ProjectCard
                 imgSrc="/img/archh1.png"
                 heading="Quick Turnaround Time"

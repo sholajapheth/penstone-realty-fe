@@ -45,7 +45,12 @@ const ListingCard = ({ lists }: ListProp) => {
 
         <div className="backdrop-blur bg-white/20 rounded-2xl absolute top-4 left-4 flex items-center p-2 px-3 border-white gap-3">
           <div className="h-2 w-2 rounded-full bg-[#FFBF00] " />
-          <p className="text-[12px] font-semibold">Leisure & Hospitality</p>
+          <p className="text-[12px] font-semibold">
+            {" "}
+            {lists &&
+              lists.listingInformation &&
+              lists.listingInformation.marketType}
+          </p>
         </div>
 
         <div className="text-[#00080B] relative bg-white flex-1 text-center ">
