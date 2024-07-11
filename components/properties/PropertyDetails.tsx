@@ -93,9 +93,14 @@ const prop = property && property.property
             ? prop?.listingInformation?.propertyType
             : undefined,
           price: {
-            min: prop ? (prop?.listingInformation?.monthlyRent - 10000) : undefined,
-            max: prop ? (prop?.listingInformation?.monthlyRent + 10000) : undefined,
+            min: prop
+              ? prop?.listingInformation?.monthlyRent - 10000
+              : undefined,
+            max: prop
+              ? prop?.listingInformation?.monthlyRent + 10000
+              : undefined,
           },
+          category: prop ? prop?.category : undefined,
         },
       }),
   });
