@@ -34,7 +34,7 @@ const Showcase = () => {
       className="lg:px-[140px] py-[25px] lg:py-[8em] bg-secondary flex flex-col lg:flex-row items-center justify-center"
       id="offering"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-3 text-secondary w-[80%] lg:w-full gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 text-secondary w-[80%] lg:w-full gap-8  max-w-[1100px]">
         <div className="bg-[#ffffff] relative rounded-[3em] p-8 lg:col-span-2 z-10">
           <div className="bg-[url('/img/showcase-card-bg.png')] bg-no-repeat  lg:bg-position-r-[50px] right-0 absolute w-full inset-0 z-40" />
 

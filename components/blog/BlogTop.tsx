@@ -9,7 +9,7 @@ const BlogTop = () => {
 
   return (
     <div className="bg-white flex  justify-center pb-[8em]">
-      <div className="w-[90%] lg:w-[85%]">
+      <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
         <div className="grid grid-cols-1 md:grid-cols-6 pt-[1em] md:gap-[20px] md:pt-[4em] lg:gap-[80px]">
           <div className="col-span-3 mb-8 flex flex-col items-start justify-between h-full">
             <div>
@@ -19,16 +19,13 @@ const BlogTop = () => {
                 </div>
                 <p className="text-[#737373] text-sm">January 29, 2023</p>
               </div>
-              <p className="text-[25px] lg:leading-[120%] md:text-[50px] font-semibold mt-2 ">
+              <p className="text-[25px] lg:leading-[120%] md:text-[46px] font-semibold mt-2 ">
                 Closing Deals: A Customer-Centric Guide to Real Estate Success
               </p>
             </div>
-            <p className="text-[#737373] mt-[16px] text-[18px] lg:text-[20px] leading-[150%] w-[90%]">
+            <p className="text-[#737373] mt-[16px] text-[18px] lg:text-[20px] leading-[150%] w-[100%]">
               Explore three essential steps to help you navigate the real estate
               market with confidence and achieve your selling objectives.
-              Unleash your kitchen&apos;s potential with captivating decoration that
-              will elevate your space, from sparkling gold accents to cozy
-              textures...
             </p>
             <button
               className="p-4 py-3 my-[40px]  border border-primary rounded-xl font-medium text-primary w-full md:w-auto"

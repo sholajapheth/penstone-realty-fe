@@ -10,7 +10,7 @@ const TakeFirstStep = () => {
 
   return (
     <div className="bg-[#F5FCFF] flex  justify-center">
-      <div className="w-[90%] lg:w-[85%]">
+      <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
         <div className="pt-[6em] pb-[6em]">
           <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
             Take the first step
@@ -19,7 +19,7 @@ const TakeFirstStep = () => {
           <div className="mt-[2em] lg:mt-[3em] text-secondary grid grid-cols-1 md:grid-cols-6 gap-[5em]">
             <div className="col-span-4 flex flex-col justify-between">
               <div
-                className="grid grid-cols-2 border-b py-[2em] gap-[30px] cursor-pointer"
+                className="grid grid-cols-2 border-b py-[2em] gap-[0px] cursor-pointer"
                 onClick={() => router.push("/architecture")}
               >
                 <div>
@@ -42,7 +42,7 @@ const TakeFirstStep = () => {
                 </div>
               </div>
               <div
-                className="grid grid-cols-2 border-b py-[2em]  gap-[30px] cursor-pointer"
+                className="grid grid-cols-2 border-b py-[2em] gap-[0px] cursor-pointer"
                 onClick={() => router.push("/construction")}
               >
                 <div>
@@ -67,7 +67,7 @@ const TakeFirstStep = () => {
               </div>
 
               <div
-                className="grid grid-cols-2 border-b py-[2em]  gap-[30px] cursor-pointer"
+                className="grid grid-cols-2 border-b py-[2em] gap-[0px] cursor-pointer"
                 onClick={() => router.push("/sell_property_form")}
               >
                 <div>

@@ -29,7 +29,7 @@ const ConcludedListings = () => {
     
   return (
     <div className="flex justify-center">
-      <div className="w-[90%] lg:w-[85%]">
+      <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
         <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
           {" "}
           <div className="w-full">
@@ -57,12 +57,7 @@ const ConcludedListings = () => {
               {lists &&
                 lists.properties &&
                 lists.properties.slice(0, 3).map((list: any, i: any) => {
-                  return (
-                    <ListingCard
-                      lists={list}
-                      key={i}
-                    />
-                  );
+                  return <ListingCard lists={list} key={i} />;
                 })}
             </div>
             <div className="flex items-center justify-center mt-12">

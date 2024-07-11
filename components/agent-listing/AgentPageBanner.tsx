@@ -10,7 +10,7 @@ const AgentPageBanner = () => {
     <div className="text-secondary">
       <div className="flex justify-center bg-[#F5FCFF] w-full mb-[40px]">
         <div
-          className="w-[90%] lg:w-[85%] cursor-pointer"
+          className="w-[90%] lg:w-[85%] max-w-[1200px] cursor-pointer"
           onClick={() => router.push(`/contact_us`)}
         >
           <div className="flex justify-start gap-2 items-center w-full py-[20px] lg:py-[36px] ">
@@ -23,7 +23,7 @@ const AgentPageBanner = () => {
       </div>
 
       <div className="flex justify-center">
-        <div className="w-[90%] lg:w-[85%]">
+        <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
           <div className="flex justify-between flex-col lg:flex-row items-start gap-[25px] pb-[20px]">
             <div className="flex flex-col gap-[40px] lg:w-[50%] py-[24px]">
               <div className="flex justify-between w-full lg:justify-start items-center gap-[24px]">

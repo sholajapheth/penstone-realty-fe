@@ -55,68 +55,67 @@ const FreqAskedQues = () => {
   const [activeQue, setActiveQue] = useState<null | number>(null);
 
   return (
-        <div className="bg-white flex pt-[3em] justify-center">
-
-    <div className="w-[90%] lg:w-[85%]">
-      <div className="flex items-center justify-between">
-        <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
-          Frequently Asked Questions
-        </p>
-      </div>
-
-      <div className="mt-[1em] md:mt-[4em] flex flex-col md:grid grid-cols-3 gap-[4em] lg:gap-[8em]">
-        <div className="flex flex-col items-start text-start">
-          {freqQuesNav.map((item, index) => (
-            <button
-              key={index}
-              className={`p-4 w-full text-start ${
-                activeNav === item.name ? "font-semibold border" : ""
-              }`}
-              onClick={() => setActiveNav(item.name)}
-            >
-              {item.name}
-            </button>
-          ))}
+    <div className="bg-white flex pt-[3em] justify-center">
+      <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
+        <div className="flex items-center justify-between">
+          <p className="font-semibold text-[25px] md:text-[40px] text-secondary">
+            Frequently Asked Questions
+          </p>
         </div>
 
-        <div className="col-span-2">
-          {freqAskedQues.map((item) => {
-            const isActive = activeQue === item.id;
-            const handleClick = () => {
-              setActiveQue(isActive ? null : item.id);
-            };
-
-            return (
-              <div
-                key={item.id}
-                className="border p-4 text-secondary cursor-pointe my-2"
+        <div className="mt-[1em] md:mt-[4em] flex flex-col md:grid grid-cols-3 gap-[4em] lg:gap-[8em]">
+          <div className="flex flex-col items-start text-start">
+            {freqQuesNav.map((item, index) => (
+              <button
+                key={index}
+                className={`p-4 w-full text-start ${
+                  activeNav === item.name ? "font-semibold border" : ""
+                }`}
+                onClick={() => setActiveNav(item.name)}
               >
+                {item.name}
+              </button>
+            ))}
+          </div>
+
+          <div className="col-span-2">
+            {freqAskedQues.map((item) => {
+              const isActive = activeQue === item.id;
+              const handleClick = () => {
+                setActiveQue(isActive ? null : item.id);
+              };
+
+              return (
                 <div
-                  onClick={handleClick}
-                  className="flex items-center justify-between"
+                  key={item.id}
+                  className="border p-4 text-secondary cursor-pointe my-2"
                 >
-                  <p className="font-semibold text-[18px]">{item.ques}</p>
-                  {isActive ? (
-                    <BiChevronUp size={25} />
-                  ) : (
-                    <BiChevronDown size={25} />
-                  )}
+                  <div
+                    onClick={handleClick}
+                    className="flex items-center justify-between"
+                  >
+                    <p className="font-semibold text-[18px]">{item.ques}</p>
+                    {isActive ? (
+                      <BiChevronUp size={25} />
+                    ) : (
+                      <BiChevronDown size={25} />
+                    )}
+                  </div>
+                  <p
+                    className={`  ${
+                      isActive
+                        ? "max-h-[500px] opacity-100 mt-4"
+                        : "max-h-0 opacity-0"
+                    } transition-all duration-500 overflow-hidden ease-in-out`}
+                  >
+                    {item.answer}
+                  </p>
                 </div>
-                <p
-                  className={`  ${
-                    isActive
-                      ? "max-h-[500px] opacity-100 mt-4"
-                      : "max-h-0 opacity-0"
-                  } transition-all duration-500 overflow-hidden ease-in-out`}
-                >
-                  {item.answer}
-                </p>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

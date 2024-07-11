@@ -34,7 +34,7 @@ const ListingCard = ({lists} : ListProp) => {
       className="items-center justify-center flex cursor-pointer"
       onClick={() => router.push(`/property_details/${lists && lists.id}`)}
     >
-      <div className="rounded-2xl relative overflow-hidden w-[354px] bg-white shadow-md hover:shadow-md backdrop-blur  hover:shadow-gray-400 group ease-linear duration-300 transition-all">
+      <div className="rounded-2xl relative overflow-hidden w-[350px] bg-white shadow-md hover:shadow-md backdrop-blur  hover:shadow-gray-400 group ease-linear duration-300 transition-all">
         <div
           className={`bg-[url(${
             lists &&

@@ -54,7 +54,6 @@ const ListingCard = ({ lists }: ListProp) => {
             {lists &&
               lists.listingInformation &&
               lists.listingInformation.marketType}
-            y
           </p>
         </div>
 

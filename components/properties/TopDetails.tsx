@@ -19,7 +19,7 @@ const TopDetails = ({ property }: PropertyProp) => {
   const prop = property && property.property;
   return (
     <div className="w-full flex bg-[#F5FCFF] items-center justify-center">
-      <div className="w-[85%] ">
+      <div className="w-[85%] max-w-[1200px] ">
         <div className="gap-2 py-[2em] flex items-start w-full lg:items-center flex-col lg:flex-row">
           <div className=" flex-1 flex flex-col gp-y-3 lg:gap-y-4">
             <button

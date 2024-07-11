@@ -3,7 +3,7 @@ import SellCard from "./SellCard";
 const SellOffers = () => {
   return (
     <div className="flex justify-center">
-      <div className="w-[90%] lg:w-[85%]">
+      <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
         {" "}
         <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
           {" "}
@@ -12,7 +12,7 @@ const SellOffers = () => {
               What we offer
             </p>
 
-            <div className="mt-[3em] w-full flex items-center gap-10 justify-center flex-wrap">
+            <div className="mt-[3em] w-full flex items-center gap-5 justify-between flex-wrap">
               <SellCard
                 icon="/img/Frame1.png"
                 heading={"Strategic Marketing"}

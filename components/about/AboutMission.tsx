@@ -4,7 +4,7 @@ const ABoutMission = () => {
     return (
       <>
         <div className="flex justify-center bg-[#FAFAFA]  -mb-[30px]">
-          <div className="w-[90%] lg:w-[85%]">
+          <div className="w-[90%] max-w-[1200px]">
             <div className="py-[4em] lg:pt-[8em] lg:pb-[8em]">
               <div className="pb-[70px]">
                 <p className="text-[18px] text-[#737373] pb-[16px]">
@@ -84,7 +84,7 @@ const ABoutMission = () => {
         </div>
 
         <div className="flex justify-center bg-white">
-          <div className="w-[85%]">
+          <div className="w-[85%] max-w-[1200px]">
             <div className="pb-[5em]">
               <div className="bg-primary py-[15px] px-[15px] relative rounded-[40px] flex flex-col lg:flex-row justify-between items-center gap-[20px] lg:gap-0">
                 <div className="lg:w-[55%] text-center lg:px-[58px]">

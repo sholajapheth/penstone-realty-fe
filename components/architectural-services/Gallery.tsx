@@ -4,7 +4,7 @@ const Gallery = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="w-[90%] lg:w-[85%]">
+        <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
           <div className="bg-white flex  justify-center pt-[3em] lg:pt-[5em] pb-[2em] ">
             <div className="w-full">
               <div className="flex flex-col lg:flex-row items-start justify-start pga-[30px] lg:gap-[65px] ">

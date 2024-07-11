@@ -132,7 +132,7 @@ const ApplicationForm = () => {
     <>
       {auth && <GoogleSIgnIn />}
       <div className="bg-white flex  justify-center">
-        <div className="w-[90%] lg:w-[85%]">
+        <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
           <div className="bg-white flex justify-start flex-col py-[2em] lg:py-[4em] text-secondary w-full">
             <div className="flex flex-col items-start gap-[24px] w-full">
               <h1 className="text-[36px] font-semibold">Residential</h1>

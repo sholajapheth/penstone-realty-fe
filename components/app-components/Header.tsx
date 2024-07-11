@@ -34,7 +34,7 @@ export default function Example() {
     <header className="bg-white">
       <div className="flex justify-center">
         <nav
-          className="flex items-center justify-between py-6 lg:py-8 md:w-[85%] w-[90%]"
+          className="flex items-center justify-between py-6 lg:py-8 md:w-[85%] max-w-[1200px] w-[90%]"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
@@ -94,7 +94,9 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </Link>
-                          <p className="mt-1 text-gray-600">{item.description}</p>
+                          <p className="mt-1 text-gray-600">
+                            {item.description}
+                          </p>
                         </div>
                       </div>
                     ))}
@@ -137,7 +139,9 @@ export default function Example() {
                             {item.name}
                             <span className="absolute inset-0" />
                           </Link>
-                          <p className="mt-1 text-gray-600">{item.description}</p>
+                          <p className="mt-1 text-gray-600">
+                            {item.description}
+                          </p>
                         </div>
                       </div>
                     ))}

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import Image from "next/image";
 import React, { ReactElement, useEffect, useRef, useState } from "react";
@@ -10,8 +11,10 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import { useRouter } from "next/navigation";
 import { listings } from "@/app/api/UseUser";
 import { useAPI } from "@/app/lib/useApi";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import Modal from "../app-components/CustomModal";
 
-const Feature =({
+const Feature = ({
   icon,
   feature,
   tagline,
@@ -29,7 +32,7 @@ const Feature =({
       </div>
     </div>
   );
-}
+};
 
 type PropertyProp = {
   property: string[] | any;
@@ -39,21 +42,16 @@ type DateFormatOptions = {
   monthNames?: string[]; // Optional array of month names to use
 };
 
-const PropertyDetails = ({property} : PropertyProp) => {
+const PropertyDetails = ({ property }: PropertyProp) => {
   const showcaseRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [duration, setDuration] = useState('1')
+  const [duration, setDuration] = useState("1");
   const { useQuery } = useAPI();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState<string | StaticImport>("");
 
-  
-const prop = property && property.property
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const dum_pic = [
-    "/img/property-detail-img.png",
-    "/img/home-landing-bg.png",
-    "/img/property-detail-img.png",
-    "/img/home-landing-bg.png",
-  ];
+  const prop = property && property.property;
+
   useEffect(() => {
     const handleScroll = () => {
       const { current } = showcaseRef;
@@ -61,26 +59,50 @@ const prop = property && property.property
         const scrollOffset = current.scrollLeft;
         const totalWidth = current.scrollWidth - current.clientWidth;
         const newIndex = Math.round(
-          (scrollOffset / totalWidth) * (dum_pic.length - 1)
-        ); // Calculate the index based on scroll position
+          (scrollOffset / totalWidth) *
+            (prop &&
+              prop?.listingInformation &&
+              prop?.listingInformation.image &&
+              prop?.listingInformation.image.length - 1)
+        );
         setCurrentIndex(newIndex);
       }
     };
 
-    
-    
     const showcaseElement = showcaseRef.current;
     if (showcaseElement) {
       showcaseElement.addEventListener("scroll", handleScroll);
     }
-    
+
     return () => {
       if (showcaseElement) {
         showcaseElement.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [dum_pic, currentIndex]);
+  }, [
+    prop && prop?.listingInformation && prop?.listingInformation.image,
+    currentIndex,
+  ]);
 
+  const images = prop?.listingInformation?.image || [];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [images]);
+
+  useEffect(() => {
+    const { current } = showcaseRef;
+    if (current) {
+      const totalWidth = current.scrollWidth - current.clientWidth;
+      const newScrollPosition =
+        (totalWidth / (images.length - 1)) * currentIndex;
+      current.scrollLeft = newScrollPosition;
+    }
+  }, [currentIndex, images.length]);
 
   const { data: lists } = useQuery({
     queryKey: ["lists"],
@@ -104,7 +126,7 @@ const prop = property && property.property
         },
       }),
   });
-  
+
   function capitalizeFirstLetter(word: string) {
     if (!word) return word;
     return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
@@ -112,106 +134,166 @@ const prop = property && property.property
 
   const router = useRouter();
 
-   function formatDate(
-     dateString: string,
-     options?: DateFormatOptions
-   ): string {
-     const date = new Date(dateString); 
+  function formatDate(dateString: string, options?: DateFormatOptions): string {
+    const date = new Date(dateString);
 
-     if (isNaN(date.getTime())) {
-       console.error("Invalid date string:", dateString);
-       return "Invalid Date"; 
-     }
+    if (isNaN(date.getTime())) {
+      console.error("Invalid date string:", dateString);
+      return "Invalid Date";
+    }
 
-     const dayOfMonth = date.getDate();
-     const monthIndex = date.getMonth();
-     const year = date.getFullYear();
+    const dayOfMonth = date.getDate();
+    const monthIndex = date.getMonth();
+    const year = date.getFullYear();
 
-       const suffixes = ["st", "nd", "rd", "th"];
-       const lastDigit = dayOfMonth % 10;
-       const suffixIndex =
-         lastDigit === 1 ? 0 : lastDigit === 2 ? 1 : lastDigit === 3 ? 2 : 3;
+    const suffixes = ["st", "nd", "rd", "th"];
+    const lastDigit = dayOfMonth % 10;
+    const suffixIndex =
+      lastDigit === 1 ? 0 : lastDigit === 2 ? 1 : lastDigit === 3 ? 2 : 3;
 
-     // Create the formatted date string (adjust month names as needed)
-     const monthNames = options?.monthNames || [
-       "Jan",
-       "Feb",
-       "Mar",
-       "Apr",
-       "May",
-       "Jun",
-       "Jul",
-       "Aug",
-       "Sep",
-       "Oct",
-       "Nov",
-       "Dec",
-     ];
+    // Create the formatted date string (adjust month names as needed)
+    const monthNames = options?.monthNames || [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
 
-     const formattedDate = `${dayOfMonth}${suffixes[suffixIndex]} ${monthNames[monthIndex]}, ${year}`;
+    const formattedDate = `${dayOfMonth}${suffixes[suffixIndex]} ${monthNames[monthIndex]}, ${year}`;
 
-     return formattedDate;
-   }
+    return formattedDate;
+  }
 
-   function formatNumberWithCommas(amount: number): string {
-     return new Intl.NumberFormat("en-US").format(amount);
-   };
+  function formatNumberWithCommas(amount: number): string {
+    return new Intl.NumberFormat("en-US").format(amount);
+  }
 
+  const handleImageClick = (src: string | StaticImport) => {
+    setModalImage(src);
+    setIsModalOpen(true);
+  };
+
+  console.log(modalImage);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    if (showcaseRef.current) {
+      showcaseRef.current.scrollLeft =
+        (showcaseRef.current.scrollWidth / prop &&
+          prop?.listingInformation &&
+          prop?.listingInformation.image.length) * currentIndex;
+    }
+  }, [currentIndex]);
 
   return (
     <div className="bg-white flex  justify-center">
-      <div className="w-[90%] lg:w-[85%]">
+      <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
         <div className="py-[2em]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-8">
             <div className="col-span-2">
               <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4  ">
-                <div className="relative h-full">
+                {/* <div className="relative h-full">
                   <div
                     className=" flex h-full overflow-scroll hide-scroll-indicators"
                     ref={showcaseRef}
                   >
-                    {/* {.map((src, index) => ( */}
-                    <Image
-                      // key={index}
-                      src={prop && prop.listingInformation.images[0]}
-                      alt="property picture"
-                      width={400}
-                      height={600}
-                      className="mr-4 object-cover"
-                    />
-                    {/* ))} */}
-                   {prop && prop.listingInformation.images[1] && <Image
-                      // key={index}
-                      src={prop && prop.listingInformation.images[1] && prop.listingInformation.images[1]}
-                      alt="property picture"
-                      width={200}
-                      height={200}
-                      className="w-full h-full mr-4"
-                    />}
-                    {/* ))} */}
-                   {prop && prop.listingInformation.images[2] && <Image
-                      // key={index}
-                      src={prop && prop.listingInformation.images[2] && prop.listingInformation.images[2]}
-                      alt="property picture"
-                      width={200}
-                      height={200}
-                      className="w-full h-full mr-4"
-                    />}
-                    {/* ))} */}
+                    {prop &&
+                      prop.listingInformation.images.map(
+                        (
+                          src: string | StaticImport,
+                          index: React.Key | null | undefined
+                        ) => (
+                          <Image
+                            key={index}
+                            src={src}
+                            alt="property picture"
+                            width={200}
+                            height={200}
+                            className="w-full h-full mr-4"
+                          />
+                        )
+                      )}
                   </div>
                   <div className="absolute bottom-6 w-full flex gap-2  justify-center ">
-                    {/* {dum_pic.map((_, index) => ( */}
-                    <div
-                      // key={index}
-                      className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
-                        // currentIndex === index
-                        // ? "bg-white"
-                        "backdrop-blur bg-white/25"
-                      }`}
-                    />
-                    {/* ))} */}
+                    {prop &&
+                      prop.listingInformation.images.map(
+                        (_: any, index: React.Key | null | undefined) => (
+                          <div
+                            key={index}
+                            className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
+                              currentIndex === index
+                                ? "bg-white"
+                                : "backdrop-blur bg-white/25"
+                            }`}
+                          />
+                        )
+                      )}
                   </div>
+                </div> */}
+                <div className="relative h-full">
+                  <div
+                    className="flex h-full overflow-scroll hide-scroll-indicators"
+                    ref={showcaseRef}
+                  >
+                    {prop &&
+                      prop.listingInformation.images.map(
+                        (
+                          src: string | StaticImport,
+                          index: React.Key | null | undefined
+                        ) => (
+                          <Image
+                            key={index}
+                            src={src}
+                            alt="property picture"
+                            width={200}
+                            height={200}
+                            className="w-full h-full mr-4 cursor-pointer"
+                            onClick={() => handleImageClick(src)}
+                          />
+                        )
+                      )}
+                  </div>
+                  <div className="absolute bottom-6 w-full flex gap-2 justify-center">
+                    {prop &&
+                      prop.listingInformation.images.map(
+                        (_: any, index: React.Key | null | undefined) => (
+                          <div
+                            key={index}
+                            className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
+                              currentIndex === index
+                                ? "bg-white"
+                                : "backdrop-blur bg-white/25"
+                            }`}
+                          />
+                        )
+                      )}
+                  </div>
+                  <Modal isOpen={isModalOpen} onClose={closeModal}>
+                    <div className="relative">
+                      <Image
+                        src={modalImage}
+                        alt="full-screen image"
+                        width={400}
+                        height={400}
+                        // layout="fill"
+                        // objectFit="contain"
+                        className="w-full h-full"
+                      />
+                    </div>
+                  </Modal>
                 </div>
+
                 <div className="flex flex-row md:flex-col  gap-2 md:gap-4">
                   {prop && prop.listingInformation.images[1] && (
                     <div className="hover:border h-full  hover:border-secondary hover:p-1 rounded-md duration-300 ease-in-out transition-all ">
@@ -395,39 +477,45 @@ const prop = property && property.property
                 </div>
 
                 <div className="mt-4">
-                  <p className="text-gray-300 font-medium text-[14px] ">{prop && prop.category === "SALE" ? "Sale" : 'Rent'}</p>
+                  <p className="text-gray-300 font-medium text-[14px] ">
+                    {prop && prop.category === "SALE" ? "Sale" : "Rent"}
+                  </p>
                   <p className="text-[20px] md:text-[24px] font-bold">
                     NGN{" "}
                     {formatNumberWithCommas(
                       prop && prop.listingInformation.monthlyRent
                     )}
-                   {prop && prop.category !== 'SALE' && <span className="text-[14px] md:text-[18px] font-medium">
-                      /Month
-                    </span>}
+                    {prop && prop.category !== "SALE" && (
+                      <span className="text-[14px] md:text-[18px] font-medium">
+                        /Month
+                      </span>
+                    )}
                   </p>
                 </div>
 
-                {prop && prop.category !== 'SALE' && <div className="text-secondary mt-6">
-                  <p className="text-[12px] md:text-[16px] font-semibold">
-                    DURATION
-                  </p>
+                {prop && prop.category !== "SALE" && (
+                  <div className="text-secondary mt-6">
+                    <p className="text-[12px] md:text-[16px] font-semibold">
+                      DURATION
+                    </p>
 
-                  <div className="border-secondary border text-secondary rounded-xl  flex items-center mt-2 ">
-                    <select
-                      name="duration"
-                      className="w-full px-5 py-4 rounded-xl flex-1 focus:outline-none "
-                      value={duration}
-                      onChange={(e) => {
-                        setDuration(e.target.value);
-                      }}
-                    >
-                      <option value="1">Monthly</option>
-                      <option value="6">Half a year</option>
-                      <option value="12">Yearly</option>
-                    </select>
-                    <BiChevronDown className="mr-2" size={30} />
+                    <div className="border-secondary border text-secondary rounded-xl  flex items-center mt-2 ">
+                      <select
+                        name="duration"
+                        className="w-full px-5 py-4 rounded-xl flex-1 focus:outline-none "
+                        value={duration}
+                        onChange={(e) => {
+                          setDuration(e.target.value);
+                        }}
+                      >
+                        <option value="1">Monthly</option>
+                        <option value="6">Half a year</option>
+                        <option value="12">Yearly</option>
+                      </select>
+                      <BiChevronDown className="mr-2" size={30} />
+                    </div>
                   </div>
-                </div>}
+                )}
 
                 <div className="my-6 flex items-center justify-between">
                   <p className="text-gray-400 text-[12px] md:text-[16px] font-medium">

@@ -11,9 +11,9 @@ const Partners = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="w-[90%] lg:w-[85%]">
+        <div className="w-[90%] lg:w-[85%] max-w-[1200px]">
           {" "}
-          <div className="bg-white flex  justify-center py-[4em] ">
+          <div className="bg-white flex justify-center py-[4em] ">
             <div className="w-full">
               <p className="text-[#212226] font-semibold text-[36px] lg:text-[48px] text-center w-full">
                 Your trusted real estate go-to partner
