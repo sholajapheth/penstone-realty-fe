@@ -94,15 +94,17 @@ const PropertyDetails = ({ property }: PropertyProp) => {
     return () => clearInterval(interval);
   }, [images]);
 
-  useEffect(() => {
-    const { current } = showcaseRef;
-    if (current) {
-      const totalWidth = current.scrollWidth - current.clientWidth;
-      const newScrollPosition =
-        (totalWidth / (images.length - 1)) * currentIndex;
-      current.scrollLeft = newScrollPosition;
-    }
-  }, [currentIndex, images.length]);
+  // useEffect(() => {
+  //   const { current } = showcaseRef;
+  //   if (current) {
+  //     const totalWidth = current.scrollWidth - current.clientWidth;
+  //     const newScrollPosition =
+  //       (totalWidth / (images.length - 1)) * currentIndex;
+  //     current.scrollLeft = newScrollPosition;
+  //   }
+  // }, [currentIndex, images.length]);
+
+  console.log(currentIndex)
 
   const { data: lists } = useQuery({
     queryKey: ["lists"],
@@ -187,14 +189,14 @@ const PropertyDetails = ({ property }: PropertyProp) => {
     setIsModalOpen(false);
   };
 
-  useEffect(() => {
-    if (showcaseRef.current) {
-      showcaseRef.current.scrollLeft =
-        (showcaseRef.current.scrollWidth / prop &&
-          prop?.listingInformation &&
-          prop?.listingInformation.image.length) * currentIndex;
-    }
-  }, [currentIndex]);
+  // useEffect(() => {
+  //   if (showcaseRef.current) {
+  //     showcaseRef.current.scrollLeft =
+  //       (showcaseRef.current.scrollWidth / prop &&
+  //         prop?.listingInformation &&
+  //         prop?.listingInformation.image.length) * currentIndex;
+  //   }
+  // }, [currentIndex]);
 
   return (
     <div className="bg-white flex  justify-center">
@@ -302,7 +304,12 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         width={200}
                         height={200}
                         alt="property picture "
-                        className="w-full h-full object-contain rounded-md"
+                        className="w-full h-full object-contain rounded-md cursor-pointer"
+                        onClick={() =>
+                          handleImageClick(
+                            prop && prop.listingInformation.images[1]
+                          )
+                        }
                       />
                     </div>
                   )}
@@ -313,7 +320,12 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         width={200}
                         height={200}
                         alt="property picture"
-                        className="w-full h-full rounded-md "
+                        className="w-full h-full rounded-md cursor-pointer"
+                        onClick={() =>
+                          handleImageClick(
+                            prop && prop.listingInformation.images[2]
+                          )
+                        }
                       />
                       <div></div>
                     </div>
