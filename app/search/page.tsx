@@ -5,11 +5,11 @@ import React from "react";
 const Page = () => {
   return (
     <div>
-      <div className="lg:hidden">
+      {/* <div className="lg:hidden">
         <HeroSection />
-      </div>
+      </div> */}
       <Search />
-      <div className="hidden lg:block">
+      <div className="">
         <HeroSection />
       </div>
       <NewsLetter />

@@ -11,6 +11,7 @@ import { useAPI } from "@/app/lib/useApi";
 import { getAreas, listings } from "@/app/api/UseUser";
 import { useAppToast } from "@/app/lib/useAppToast";
 import ListingCard from "./ListingCard";
+import Cookies from "js-cookie";
 
 const Landing = () => {
   const { useQuery, useAPIMutation } = useAPI();
@@ -69,6 +70,8 @@ const [showLists, setShowLists] = useState(false);
 
   const handleSubmit = () => {
     console.log(area);
+    Cookies.set("propertyType", property);
+    Cookies.set('area', area)
     update.mutate({});
   };
 

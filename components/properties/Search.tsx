@@ -7,6 +7,10 @@ import { PaginationNav } from "../common";
 import { useAPI } from "@/app/lib/useApi";
 import { listings, getAreas } from "@/app/api/UseUser";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
+import Cookies from "js-cookie";
+
+const PROPERTY_COOKIE_NAME = "propertyType";
+const AREA_COOKIE_NAME = "area";
 
 const Search = () => {
   const { useQuery, queryClient } = useAPI();
@@ -20,10 +24,28 @@ const Search = () => {
    const [currentPage, setCurrentPage] = useState(1);
    const itemsPerPage = 9;
 
+   useEffect(() => {
+     const prop = Cookies.get(PROPERTY_COOKIE_NAME);
+     const selectedArea = Cookies.get(AREA_COOKIE_NAME);
+
+     if (prop) {
+       setProperty(prop);
+       Cookies.remove(PROPERTY_COOKIE_NAME);
+     }
+
+     if (selectedArea) {
+       setArea(selectedArea);
+       Cookies.remove(AREA_COOKIE_NAME);
+     }
+   }, []);
+
   const { data: areas } = useQuery({
     queryKey: ["areas"],
     queryFn: () => getAreas(),
   });
+
+  console.log(property)
+  console.log(area)
 
   const uniqueAreas = Array.from(new Set(areas && areas.data));
 
@@ -128,7 +150,7 @@ const Search = () => {
         </div>
         <div className="p-6 rounded-xl border-[#D9E2E6] border-2 lg:flex items-center justify-between mt-[1em] md:mt-[3em] hidden flex-wrap">
           <div className="px-4">
-            <p className="font-bold text-gray-300">Search Area</p>
+            <p className="font-[400] text-[#414141]">Search Area</p>
             <div className="flex items-center gap-4 mt-1">
               <select
                 name=""
@@ -150,11 +172,11 @@ const Search = () => {
           </div>
           <div className="bg-secondary w-[2px] h-[80px]"></div>
           <div className="px-4">
-            <p className="font-bold text-gray-300">Market Type</p>
+            <p className="font-[400] text-[#414141]">Market Type</p>
             <div className="flex items-center gap-4 mt-1">
               <select
                 className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
-                onChange={(e) => setMarket(e.target.value)}
+                onChange={(e) => setArea(e.target.value)}
                 value={market}
               >
                 <option
@@ -177,7 +199,7 @@ const Search = () => {
           <div className="bg-secondary w-[2px] h-[80px]"></div>
 
           <div className="px-4">
-            <p className="font-bold text-gray-300">Property Type</p>
+            <p className="font-[400] text-[#414141]">Property Type</p>
             <div className="flex items-center gap-4 mt-1">
               <select
                 className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
@@ -188,7 +210,7 @@ const Search = () => {
                   className=" text-[18px] font-bold"
                   value=""
                   disabled
-                  selected
+                  // selected
                 >
                   Filter property type
                 </option>{" "}
@@ -255,7 +277,7 @@ const Search = () => {
           <div className="bg-secondary w-[2px] h-[80px]"></div>
 
           <div className="px-4 pl-4  ">
-            <p className="font-bold text-gray-300">Price</p>
+            <p className="font-[400] text-[#414141]">Price</p>
             <div className="flex items-center gap-4 mt-1">
               <input
                 onChange={(e) => setPrice(e.target.value)}
@@ -272,6 +294,11 @@ const Search = () => {
             currentItems.map((list: any) => {
               return <ListingCard key={list.id} lists={list} />;
             })}
+          {currentItems && currentItems.length < 1 && (
+            <p className="font-semibold text-center flex justify-center items-center w-full py-10 text-red-500 text-[20px]">
+              No available listing
+            </p>
+          )}
         </div>
         {/* <PaginationNav /> */}
         <div className="flex items-center justify-center mt-[1em] md:mt-[4em]">
