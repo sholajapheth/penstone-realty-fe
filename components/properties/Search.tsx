@@ -147,6 +147,117 @@ const Search = () => {
               <IoSearch color="white" size={20} />
             </button>
           </div>
+
+          <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-2 lg:hidden w-full">
+            <div className="flex items-center gap-4 mt-1">
+              <select
+                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
+                onChange={(e) => setMarket(e.target.value)}
+                value={market}
+              >
+                <option
+                  className=" text-[18px] font-medium"
+                  value=""
+                  disabled
+                  selected
+                >
+                  Filter market type
+                </option>
+                <option className="text-[18px] font-bold" value={"RESIDENTIAL"}>
+                  Residential
+                </option>
+                <option className=" text-[18px] font-bold" value={"COMMERCIAL"}>
+                  Commercial
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-2 lg:hidden w-full">
+            <div className="flex items-center gap-4 mt-1">
+              <select
+                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
+                value={property}
+                onChange={(e) => setProperty(e.target.value)}
+              >
+                <option
+                  className=" text-[18px] font-bold"
+                  value=""
+                  disabled
+                  // selected
+                >
+                  Filter property type
+                </option>{" "}
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"FULLY_DETACHED_DUPLEX"}
+                >
+                  Fully Detached Duplex
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"SEMI_DETACHED_HOUSE"}
+                >
+                  Semi Detached House
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"ACCOMMODATION_BLOCK"}
+                >
+                  Accommodation Block
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"FLATS_AND_APARTMENT"}
+                >
+                  Flats and Apartment
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"STUDIO_APARTMENT"}
+                >
+                  Studio Apartment
+                </option>
+                <option className=" text-[18px] font-bold" value={"MINI_FLATS"}>
+                  Mini Flats
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"RENTAL_SPACES"}
+                >
+                  Rental Spaces
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"WAREHOUSE_AND_INDUSTRIAL"}
+                >
+                  Warehouse and Industrial
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"OFFICE_COMPLEX"}
+                >
+                  Office Complex
+                </option>
+                <option
+                  className=" text-[18px] font-bold"
+                  value={"SPECIALIZED"}
+                >
+                  Specialized
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-2 lg:hidden w-full">
+            <input
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
+              placeholder="Enter minimum price"
+              type="number"
+              className="focus:outline-none p-4 rounded-xl"
+            />
+          </div>
         </div>
         <div className="p-6 rounded-xl border-[#D9E2E6] border-2 lg:flex items-center justify-between mt-[1em] md:mt-[3em] hidden flex-wrap">
           <div className="px-4">
@@ -176,7 +287,7 @@ const Search = () => {
             <div className="flex items-center gap-4 mt-1">
               <select
                 className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
-                onChange={(e) => setArea(e.target.value)}
+                onChange={(e) => setMarket(e.target.value)}
                 value={market}
               >
                 <option
