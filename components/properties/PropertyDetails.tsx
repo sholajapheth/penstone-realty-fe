@@ -104,7 +104,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
   //   }
   // }, [currentIndex, images.length]);
 
-  console.log(currentIndex)
+  console.log(currentIndex);
 
   const { data: lists } = useQuery({
     queryKey: ["lists"],
@@ -174,6 +174,8 @@ const PropertyDetails = ({ property }: PropertyProp) => {
     return formattedDate;
   }
 
+  const [modalImageIndex, setModalImageIndex] = useState<number | null>(null);
+
   function formatNumberWithCommas(amount: number): string {
     return new Intl.NumberFormat("en-US").format(amount);
   }
@@ -183,20 +185,35 @@ const PropertyDetails = ({ property }: PropertyProp) => {
     setIsModalOpen(true);
   };
 
-  console.log(modalImage);
+  const handlePrevImage = () => {
+    if (modalImageIndex !== null) {
+      setModalImageIndex((prevIndex: any) =>
+        prevIndex === 0
+          ? prop.listingInformation.images.length - 1
+          : prevIndex - 1
+      );
+    }
+  };
+
+  const handleNextImage = () => {
+    if (modalImageIndex !== null) {
+      setModalImageIndex((prevIndex: any) =>
+        prevIndex === prop.listingInformation.images.length - 1
+          ? 0
+          : prevIndex + 1
+      );
+    }
+  };
+
+  const openModal = (index: number) => {
+    setModalImageIndex(index);
+    setIsModalOpen(true);
+  };
 
   const closeModal = () => {
     setIsModalOpen(false);
+    setModalImageIndex(null);
   };
-
-  // useEffect(() => {
-  //   if (showcaseRef.current) {
-  //     showcaseRef.current.scrollLeft =
-  //       (showcaseRef.current.scrollWidth / prop &&
-  //         prop?.listingInformation &&
-  //         prop?.listingInformation.image.length) * currentIndex;
-  //   }
-  // }, [currentIndex]);
 
   return (
     <div className="bg-white flex  justify-center">
@@ -205,44 +222,6 @@ const PropertyDetails = ({ property }: PropertyProp) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-8">
             <div className="col-span-2">
               <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4  ">
-                {/* <div className="relative h-full">
-                  <div
-                    className=" flex h-full overflow-scroll hide-scroll-indicators"
-                    ref={showcaseRef}
-                  >
-                    {prop &&
-                      prop.listingInformation.images.map(
-                        (
-                          src: string | StaticImport,
-                          index: React.Key | null | undefined
-                        ) => (
-                          <Image
-                            key={index}
-                            src={src}
-                            alt="property picture"
-                            width={200}
-                            height={200}
-                            className="w-full h-full mr-4"
-                          />
-                        )
-                      )}
-                  </div>
-                  <div className="absolute bottom-6 w-full flex gap-2  justify-center ">
-                    {prop &&
-                      prop.listingInformation.images.map(
-                        (_: any, index: React.Key | null | undefined) => (
-                          <div
-                            key={index}
-                            className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
-                              currentIndex === index
-                                ? "bg-white"
-                                : "backdrop-blur bg-white/25"
-                            }`}
-                          />
-                        )
-                      )}
-                  </div>
-                </div> */}
                 <div className="relative h-full">
                   <div
                     className="flex h-full overflow-scroll hide-scroll-indicators"
@@ -261,7 +240,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                             width={200}
                             height={200}
                             className="w-full h-full mr-4 cursor-pointer"
-                            onClick={() => handleImageClick(src)}
+                            onClick={() => openModal(index as number)}
                           />
                         )
                       )}
@@ -273,7 +252,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                           <div
                             key={index}
                             className={`h-1 w-6 rounded-md transition-all duration-700 ease-in ${
-                              currentIndex === index
+                              modalImageIndex === index
                                 ? "bg-white"
                                 : "backdrop-blur bg-white/25"
                             }`}
@@ -283,15 +262,27 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                   </div>
                   <Modal isOpen={isModalOpen} onClose={closeModal}>
                     <div className="relative">
-                      <Image
-                        src={modalImage}
-                        alt="full-screen image"
-                        width={400}
-                        height={400}
-                        // layout="fill"
-                        // objectFit="contain"
-                        className="w-full h-full"
-                      />
+                      {modalImageIndex !== null && (
+                        <Image
+                          src={prop.listingInformation.images[modalImageIndex]}
+                          alt="full-screen image"
+                          width={400}
+                          height={400}
+                          className="w-full h-full"
+                        />
+                      )}
+                      <button
+                        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-secondary rounded-full h-10 flex justify-center items-center w-10 text-white p-2"
+                        onClick={handlePrevImage}
+                      >
+                        &lt;
+                      </button>
+                      <button
+                        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-secondary rounded-full h-10 flex justify-center items-center w-10 text-white p-2"
+                        onClick={handleNextImage}
+                      >
+                        &gt;
+                      </button>
                     </div>
                   </Modal>
                 </div>
@@ -305,11 +296,6 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         height={200}
                         alt="property picture "
                         className="w-full h-full object-contain rounded-md cursor-pointer"
-                        onClick={() =>
-                          handleImageClick(
-                            prop && prop.listingInformation.images[1]
-                          )
-                        }
                       />
                     </div>
                   )}
@@ -321,11 +307,6 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         height={200}
                         alt="property picture"
                         className="w-full h-full rounded-md cursor-pointer"
-                        onClick={() =>
-                          handleImageClick(
-                            prop && prop.listingInformation.images[2]
-                          )
-                        }
                       />
                       <div></div>
                     </div>
