@@ -296,6 +296,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         height={200}
                         alt="property picture "
                         className="w-full h-full object-contain rounded-md cursor-pointer"
+                       
                       />
                     </div>
                   )}
@@ -307,6 +308,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         height={200}
                         alt="property picture"
                         className="w-full h-full rounded-md cursor-pointer"
+                       
                       />
                       <div></div>
                     </div>
