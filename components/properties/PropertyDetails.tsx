@@ -296,7 +296,6 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         height={200}
                         alt="property picture "
                         className="w-full h-full object-contain rounded-md cursor-pointer"
-                       
                       />
                     </div>
                   )}
@@ -308,7 +307,6 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         height={200}
                         alt="property picture"
                         className="w-full h-full rounded-md cursor-pointer"
-                       
                       />
                       <div></div>
                     </div>
@@ -371,8 +369,8 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                 />
                 <Feature
                   icon={<FaRegCircleCheck size={22} />}
-                  feature="Active"
-                  tagline={prop && prop._count.applications}
+                  feature="Status"
+                  tagline={prop && prop.status === "FREE" ? "Active" : "Inactive"}
                 />
                 <Feature
                   icon={
@@ -607,12 +605,17 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                   </div>
                 </div>
 
-                <button className="w-full rounded-xl bg-primary py-4 flex justify-center text-white mt-6">
+                <a
+                  href={`https://wa.me/+2347038251085`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full rounded-xl bg-primary py-4 flex justify-center text-white mt-6"
+                >
                   <div className="flex items-center gap-4">
                     <FaWhatsapp size={25} />
                     <p>Start a Conversation</p>
                   </div>
-                </button>
+                </a>
               </div>
             </div>
           </div>

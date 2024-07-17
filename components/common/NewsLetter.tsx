@@ -1,6 +1,8 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 
 const NewsLetter = () => {
+  const [email, setEmail] = useState("");
   return (
     <div className="py-[4em] lg:py-[5em] px-[1em] flex items-center justify-center bg-[#F5FCFF]">
       <div className="text-center text-secondary">
@@ -27,14 +29,22 @@ const NewsLetter = () => {
             type="email"
             placeholder="Enter your email address"
             className="flex-1 h-6 lg:h-full p-4 w-full focus:outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <button className="hidden lg:block bg-primary px-8  font-bold py-3 rounded-xl text-white">
+          <a
+            href={`mailto:pentstonerealty@gmail.com?subject="Newsletter subscription"&body=${email}`}
+            className="hidden lg:block bg-primary px-8  font-bold py-3 rounded-xl text-white"
+          >
             Submit
-          </button>
+          </a>
         </div>
-        <button className="bg-primary w-full my-3 px-8 lg:hidden font-bold py-3 rounded-xl text-white">
+        <a
+          href={`mailto:pentstonerealty@gmail.com?subject=Newsletter&body=${email}`}
+          className="bg-primary w-full my-3 px-8 lg:hidden font-bold py-3 rounded-xl text-white"
+        >
           Submit
-        </button>
+        </a>
       </div>
     </div>
   );
