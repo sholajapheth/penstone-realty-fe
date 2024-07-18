@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -76,13 +77,22 @@ const Search = () => {
       setCurrentPage(page);
     };
 
+const handleClick = (e: { preventDefault: () => void; }) => {
+  e.preventDefault()
+   queryClient
+     .invalidateQueries({
+       queryKey: ["lists"],
+     })
+     .then();
+}
+
   useEffect(() => {
     queryClient
       .invalidateQueries({
         queryKey: ["lists"],
       })
       .then();
-  }, [area, market, property, price, queryClient, order, sortBy]);
+  }, [area, market, property, price, queryClient, order, sortBy, handleClick]);
 
   // let states = []
   //  states = NaijaStates.states();
@@ -91,14 +101,11 @@ const Search = () => {
     <div className="text-secondary  flex justify-center">
       <div className=" w-[90%] md:w-[85%] max-w-[1150px]">
         <div className="flex flex-col md:flex-row gap-4 items-center justify-between mt-[1em] md:mt-[4em] w-full ">
-          <p className="font-semibold text-[20px] md:text-[40px] hidden lg:block">
-            Explore our properties in Nigeria
-          </p>
-          <p className="font-semibold text-[32px] md:text-[40px] lg:hidden">
-            Search Properties
+          <p className="font-semibold text-center lg:text-left text-[32px] md:text-[40px]">
+            Explore our <br className="lg:hidden" /> properties in Nigeria
           </p>
 
-          <div className="flex items-center overflow-hidden gap-2">
+          <div className="lg:flex items-center overflow-hidden gap-2 hidden">
             <select
               className="focus:outline-none p-4 rounded-xl w-[1/2] border-2 border-[#D9E2E6]text-[18px] font-bold"
               onChange={(e) => setSortBy(e.target.value)}
@@ -135,23 +142,28 @@ const Search = () => {
           </div>
 
           <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-2 lg:hidden w-full">
-            <input
-              placeholder="Search location"
-              type="search"
-              onChange={(e) => setArea(e.target.value)}
-              value={area}
-              className="focus:outline-none flex-1 p-4"
-            />
-
-            <button className="p-3 lg:h-full bg-primary rounded-md lg:ml-8 hover:scale-90">
-              <IoSearch color="white" size={20} />
-            </button>
+            <div className="flex items-center gap-4 mt-1 w-full">
+              <select
+                className="focus:outline-none flex-1 p-3 lg:p-4 w-full text-[12px] lg:text-[18px] font-[500] text-[#000929]"
+                value={area}
+                onChange={(e) => setArea(e.target.value)}
+              >
+                <option value="" disabled selected>
+                  Select Area
+                </option>
+                {uniqueAreas.map((location: any, i: any) => (
+                  <option key={i} value={location} className="text-black">
+                    {location}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-2 lg:hidden w-full">
-            <div className="flex items-center gap-4 mt-1">
+            <div className="flex items-center gap-4 mt-1 w-full">
               <select
-                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
+                className="focus:outline-none flex-1 p-3 lg:p-4 w-full text-[12px] lg:text-[18px] font-[500] text-[#000929]"
                 onChange={(e) => setMarket(e.target.value)}
                 value={market}
               >
@@ -161,7 +173,7 @@ const Search = () => {
                   disabled
                   selected
                 >
-                  Filter market type
+                  Market type
                 </option>
                 <option className="text-[18px] font-bold" value={"RESIDENTIAL"}>
                   Residential
@@ -174,9 +186,9 @@ const Search = () => {
           </div>
 
           <div className="rounded-xl flex items-center border-2 overflow-hidden border-[#D9E2E6] pr-2 lg:hidden w-full">
-            <div className="flex items-center gap-4 mt-1">
+            <div className="flex items-center gap-4 mt-1 w-full">
               <select
-                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
+                className="focus:outline-none flex-1 p-3 lg:p-4 w-full text-[12px] lg:text-[18px] font-[500] text-[#000929]"
                 value={property}
                 onChange={(e) => setProperty(e.target.value)}
               >
@@ -186,7 +198,7 @@ const Search = () => {
                   disabled
                   // selected
                 >
-                  Filter property type
+                  Property type
                 </option>{" "}
                 <option
                   className=" text-[18px] font-bold"
@@ -255,9 +267,15 @@ const Search = () => {
               value={price}
               placeholder="Enter minimum price"
               type="number"
-              className="focus:outline-none p-4 rounded-xl"
+              className="focus:outline-none w-full text-[12px] lg:text-[18px] font-[500] text-[#000929] p-3 lg:p-4 rounded-xl"
             />
           </div>
+          <button
+            className="bg-primary w-full h-[50px] rounded-[14px] text-[16px] font-[600] text-white lg:hidden"
+            onClick={(e) => handleClick(e)}
+          >
+            Refine
+          </button>
         </div>
         <div className="p-6 rounded-xl border-[#D9E2E6] border-2 lg:flex items-center justify-between mt-[1em] md:mt-[3em] hidden flex-wrap">
           <div className="px-4">
@@ -266,7 +284,7 @@ const Search = () => {
               <select
                 name=""
                 id=""
-                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
+                className="focus:outline-none flex-1 py-4 text-[18px] text-[#000929]  font-semibold"
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
               >
@@ -286,7 +304,7 @@ const Search = () => {
             <p className="font-[400] text-[#414141]">Market Type</p>
             <div className="flex items-center gap-4 mt-1">
               <select
-                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
+                className="focus:outline-none flex-1 py-4 text-[18px] text-[#000929]  font-semibold"
                 onChange={(e) => setMarket(e.target.value)}
                 value={market}
               >
@@ -313,7 +331,7 @@ const Search = () => {
             <p className="font-[400] text-[#414141]">Property Type</p>
             <div className="flex items-center gap-4 mt-1">
               <select
-                className="focus:outline-none flex-1 p-4 text-[18px] font-bold"
+                className="focus:outline-none flex-1 py-4 text-[18px] text-[#000929]  font-semibold"
                 value={property}
                 onChange={(e) => setProperty(e.target.value)}
               >
