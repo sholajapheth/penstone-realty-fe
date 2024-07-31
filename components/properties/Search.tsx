@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { IoSearch } from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
 import { PaginationNav } from "../common";
@@ -474,4 +474,12 @@ const Search = () => {
   );
 };
 
-export default Search;
+const SearchPage = () => {
+  return (
+    <Suspense fallback={<div>Loading search results...</div>}>
+      <Search />
+    </Suspense>
+  );
+};
+
+export default SearchPage;

@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { Suspense } from "react";
 import { useRouter } from "next/navigation";
 
 const Footer = () => {
@@ -206,4 +206,10 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+const FooterWrapper = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Footer />
+  </Suspense>
+);
+
+export default FooterWrapper;
