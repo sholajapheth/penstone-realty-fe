@@ -22,6 +22,8 @@ const Gallery = () => {
                 <div className="flex justify-between gap-[10px] lg:gap-[20px] h-full w-[100%]">
                   <div className="w-[70%] h-[250px] lg:h-[500px]">
                     <Image
+                      quality={100}
+                      unoptimized={true}
                       width={200}
                       height={200}
                       src="/img/img1.png"
@@ -32,6 +34,8 @@ const Gallery = () => {
                   <div className="flex justify-between flex-col gap-[10px] lg:gap-[20px] h-[250px] lg:h-[500px] w-[30%]">
                     <div className="h-[50%] w-full">
                       <Image
+                        quality={100}
+                        unoptimized={true}
                         width={200}
                         height={200}
                         src="/img/img2.png"
@@ -41,6 +45,8 @@ const Gallery = () => {
                     </div>
                     <div className="h-[50%] w-full">
                       <Image
+                        quality={100}
+                        unoptimized={true}
                         width={200}
                         height={200}
                         src="/img/img3.png"
@@ -54,6 +60,8 @@ const Gallery = () => {
                 <div className="flex justify-between gap-[10px] lg:gap-[20px] h-[140px] lg:h-[220px] w-full ">
                   <div className="h-[100%] w-[40%]">
                     <Image
+                      quality={100}
+                      unoptimized={true}
                       width={200}
                       height={200}
                       src="/img/img4.png"
@@ -63,6 +71,8 @@ const Gallery = () => {
                   </div>
                   <div className="h-[100%] w-[60%]">
                     <Image
+                      quality={100}
+                      unoptimized={true}
                       width={200}
                       height={200}
                       src="/img/img5.png"

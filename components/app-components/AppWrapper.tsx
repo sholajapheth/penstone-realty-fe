@@ -6,8 +6,8 @@ import Footer from "./Footer";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Cookies from "js-cookie";
 import GoogleSIgnIn from "../GoogleSIgnIn";
-import { Providers } from "@/app/providers";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const AppWrapper = ({ children }: { children: ReactNode }) => {
 
   // useEffect(() => {
@@ -26,16 +26,15 @@ const AppWrapper = ({ children }: { children: ReactNode }) => {
         })
       }
     >
-      {/* <Providers> */}
-        <div className="relative">
-          <>
-            <Header />
-            {/* <GoogleSIgnIn /> */}
-            {children}
-            <Footer />
-          </>
-        </div>
-      {/* </Providers> */}
+      <div className="relative">
+        <>
+          <ToastContainer />
+          <Header />
+          {/* <GoogleSIgnIn /> */}
+          {children}
+          <Footer />
+        </>
+      </div>
     </QueryClientProvider>
   );
 };

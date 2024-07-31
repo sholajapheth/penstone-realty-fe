@@ -40,6 +40,8 @@ const BlogTop = () => {
             onClick={() => router.push("/blog/1")}
           >
             <Image
+              quality={100}
+              unoptimized={true}
               src={"/img/blog-top.png"}
               objectFit="cover"
               width={150}

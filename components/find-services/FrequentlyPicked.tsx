@@ -30,6 +30,8 @@ const FrequentlyPickedCard = ({
       onClick={() => router.push(`${route}`)}
     >
       <Image
+        quality={100}
+        unoptimized={true}
         src={imgSrc}
         alt={title}
         height={200}

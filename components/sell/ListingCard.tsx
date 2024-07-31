@@ -8,7 +8,7 @@ type List = {
   // imgSrc: string,
   // title: string,
   streetAddress: string;
-  category: string,
+  category: string;
   unitNumber: string;
   city: string;
   state: string;
@@ -91,6 +91,8 @@ const ListingCard = ({ lists }: ListProp) => {
               {" "}
               <div className="flex items-end gap-1">
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   src={"/img/icons/bed.png"}
                   height={20}
                   width={20}
@@ -105,6 +107,8 @@ const ListingCard = ({ lists }: ListProp) => {
               </div>
               <div className="flex items-end gap-1">
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   src={"/img/icons/bath.png"}
                   height={20}
                   width={20}
@@ -119,6 +123,8 @@ const ListingCard = ({ lists }: ListProp) => {
               </div>
               <div className="flex items-end gap-1">
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   src={"/img/icons/vector.png"}
                   height={20}
                   width={20}

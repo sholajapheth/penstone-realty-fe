@@ -1,13 +1,12 @@
-
 import Image from "next/image";
 
 type ArchProp = {
   imgSrc: string;
   heading: string;
   para: string;
-}
+};
 
-const PackageCard = ({imgSrc, heading, para} : ArchProp) => {
+const PackageCard = ({ imgSrc, heading, para }: ArchProp) => {
   return (
     <>
       <div>
@@ -16,12 +15,12 @@ const PackageCard = ({imgSrc, heading, para} : ArchProp) => {
             <h2 className="text-[24px] font-semibold text-[#0A0A0A] pb-[12px]">
               {heading}
             </h2>
-            <p className="text-[17px] text-[#737373]">
-              {para}
-            </p>
+            <p className="text-[17px] text-[#737373]">{para}</p>
           </div>
           <div>
             <Image
+              quality={100}
+              unoptimized={true}
               width={200}
               height={200}
               className="h-full w-full "

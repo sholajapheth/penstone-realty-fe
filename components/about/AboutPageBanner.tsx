@@ -28,6 +28,7 @@ const AboutPageBanner = () => {
               </p>
               <div className="flex  px-[1em] lg:px-[5em] justify-center items-center pt-[30px] lg:pt-[60px] relative">
                 <Image
+                  quality={100}
                   width={300}
                   height={300}
                   className="w-full h-full"
@@ -36,6 +37,7 @@ const AboutPageBanner = () => {
                 />
                 <div className="absolute left-[45%]">
                   <Image
+                    unoptimized={true}
                     src="/img/play.png"
                     alt=""
                     width={100}

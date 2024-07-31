@@ -1,7 +1,6 @@
 "use client";
 import { useRef } from "react";
 import Image from "next/image";
-import { Avatar, AvatarGroup } from "@chakra-ui/react";
 import { useState } from "react";
 import GoogleSIgnIn from "../GoogleSIgnIn";
 import { useAPI } from "@/app/lib/useApi";
@@ -17,7 +16,7 @@ const RequestForm = () => {
   const { upload } = useStorage();
   const toast = useAppToast();
 
-  const request = Cookies.get("request")
+  const request = Cookies.get("request");
 
   const initialValues = {
     topic: request ? request : "",
@@ -141,7 +140,7 @@ const RequestForm = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
               >
-                <option value="" selected disabled>
+                <option value="" disabled>
                   Select a property
                 </option>
                 <option className=" text-[16px]" value={"ARCHITECTURAL_DESIGN"}>
@@ -172,7 +171,7 @@ const RequestForm = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
               >
-                <option value="" selected disabled>
+                <option value=""  disabled>
                   Select role
                 </option>
                 <option value="Occupant">Occupant</option>
@@ -296,6 +295,8 @@ const RequestForm = () => {
                 {attachments.length < 1 ? (
                   <>
                     <Image
+                      quality={100}
+                      unoptimized={true}
                       width={30}
                       height={30}
                       src="/img/upload.png"
@@ -316,7 +317,14 @@ const RequestForm = () => {
                   }
                 }}
               >
-                <Image width={15} height={15} src="/img/clip.png" alt="" />
+                <Image
+                  quality={100}
+                  unoptimized={true}
+                  width={15}
+                  height={15}
+                  src="/img/clip.png"
+                  alt=""
+                />
                 <p className="text-[#000929]">Select files</p>
               </div>
             </div>
@@ -480,6 +488,8 @@ const RequestForm = () => {
         <div className="w-full lg:h-screen lg:overflow-y-auto lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
           <div className="flex justify-center items-center">
             <Image
+              quality={100}
+              unoptimized={true}
               width={300}
               height={600}
               // className="w-full h-full"
@@ -498,32 +508,57 @@ const RequestForm = () => {
             </div>
 
             <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-[16px]">
-              <AvatarGroup size="md" max={4}>
-                <Avatar
-                  name="Ryan Florence"
-                  src="https://bit.ly/ryan-florence"
-                />
-                <Avatar
-                  name="Segun Adebayo"
-                  src="https://bit.ly/sage-adebayo"
-                />
-                <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
-                <Avatar
-                  name="Prosper Otemuyiwa"
-                  src="https://bit.ly/prosper-baba"
-                />
-                <Avatar
-                  name="Christian Nwamba"
-                  src="https://bit.ly/code-beast"
-                />
-              </AvatarGroup>
+              <Image
+                quality={100}
+                unoptimized={true}
+                src={"/avatarGroup.svg"}
+                width={150}
+                height={40}
+                className="w-unset h-full"
+                alt=""
+              />
               <div className="flex flex-col items-center lg:items-start">
                 <div className="flex justify-start items-center gap-[4px]">
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
                   <p className="text-[18px] font-medium">5.0</p>
                 </div>
                 <p className="text-[18px] text-center lg:text-left font-medium">

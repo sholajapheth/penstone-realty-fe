@@ -39,6 +39,8 @@ const Gallery = () => {
                       src="/img/const1.png"
                       className="h-[100%] w-[100%] object-cover rounded-[10px]"
                       alt=""
+                      quality={100}
+                      unoptimized={true}
                     />
                   </div>
                   <div className="flex justify-between flex-col gap-[10px] lg:gap-[20px] h-[250px] lg:h-[500px] w-[30%]">
@@ -49,6 +51,8 @@ const Gallery = () => {
                         src="/img/img2.png"
                         className="h-[100%] w-[100%] object-cover rounded-[10px]"
                         alt=""
+                        quality={100}
+                        unoptimized={true}
                       />
                     </div>
                     <div className="h-[50%] w-full">
@@ -58,6 +62,8 @@ const Gallery = () => {
                         src="/img/const3.png"
                         className="rounded-[10px] h-[100%] w-[100%] object-cover"
                         alt=""
+                        quality={100}
+                        unoptimized={true}
                       />
                     </div>
                   </div>

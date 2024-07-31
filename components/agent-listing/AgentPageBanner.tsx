@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const AgentPageBanner = () => {
-    const router = useRouter();
+  const router = useRouter();
 
   return (
     <div className="text-secondary">
@@ -14,7 +14,14 @@ const AgentPageBanner = () => {
           onClick={() => router.push(`/contact_us`)}
         >
           <div className="flex justify-start gap-2 items-center w-full py-[20px] lg:py-[36px] ">
-            <Image src="/img/icons/Icon.svg" width={20} height={20} alt="" />
+            <Image
+              quality={100}
+              unoptimized={true}
+              src="/img/icons/Icon.svg"
+              width={20}
+              height={20}
+              alt=""
+            />
             <p className="font-semibold text-[18px]  text-secondary">
               Back to Agent
             </p>
@@ -29,6 +36,8 @@ const AgentPageBanner = () => {
               <div className="flex justify-between w-full lg:justify-start items-center gap-[24px]">
                 <div className="relative">
                   <Image
+                    quality={100}
+                    unoptimized={true}
                     src="/img/agent_1.png"
                     alt="agent-img"
                     height={170}
@@ -36,6 +45,8 @@ const AgentPageBanner = () => {
                     className="group-hover:scale-110 pri-anim"
                   />
                   <Image
+                    quality={100}
+                    unoptimized={true}
                     src="/img/icons/Auto Layout Horizontal.svg"
                     alt="agent-img"
                     height={30}
@@ -74,12 +85,21 @@ const AgentPageBanner = () => {
                   Retail leasing, Apartment brokerage
                 </p>
               </div>
-              <Image src="/img/linkedInn.svg" width={20} height={20} alt="" />
+              <Image
+                quality={100}
+                unoptimized={true}
+                src="/img/linkedInn.svg"
+                width={20}
+                height={20}
+                alt=""
+              />
             </div>
 
             <div className="border-[1px] border-[#D9E2E6] rounded-[14px] lg:w-[40%] py-[24px] px-[20px]">
               <div className="flex justify-center items-center pb-[40px]">
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   src="/img/icons/quote.svg"
                   width={25}
                   height={25}
@@ -120,6 +140,8 @@ const AgentPageBanner = () => {
 
                   <button className="bg-primary py-[16px] rounded-[15px] text-center flex justify-center items-center gap-2 mt-[6px]">
                     <Image
+                      quality={100}
+                      unoptimized={true}
                       src="/img/icons/whatsapp.svg"
                       width={25}
                       height={25}

@@ -12,13 +12,36 @@ import {
 import { CgChevronDown } from "react-icons/cg";
 import Image from "next/image";
 import Link from "next/link";
+// import { classNames as hydrateClassNames } from "classnames";
 
 const products = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
+    name: "Explore our listings",
+    description: "Extra information here",
     href: "#",
-    // icon: ,
+    icon: "/home-location.png",
+    bg: "bg-[#FFD55B]",
+  },
+  {
+    name: "Rent out property",
+    description: "Extra information here",
+    href: "#",
+    icon: "/home-upload.png",
+    bg: "bg-[#5BFFFF]",
+  },
+  {
+    name: "Manage your space",
+    description: "Extra information here",
+    href: "#",
+    icon: "/grid-circle.png",
+    bg: "bg-[#5EFF5B]",
+  },
+  {
+    name: "Improve your property",
+    description: "Extra information here",
+    href: "#",
+    icon: "/grid.png",
+    bg: "bg-[#FF5BA9]",
   },
 ];
 
@@ -76,15 +99,25 @@ export default function Example() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                  <div className="p-4">
+                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-lg overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="p-4 flex justify-between flex-wrap">
                     {products.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                        className="group w-[50%] relative flex items-center gap-x-2 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                       >
-                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <TbVaccine />
+                        <div
+                          className={classNames(
+                            "flex h-11 w-11 flex-none items-center justify-center rounded-lg",
+                            item.bg
+                          )}
+                        >
+                          <Image
+                            src={item.icon}
+                            width={20}
+                            height={20}
+                            alt=""
+                          />
                         </div>
                         <div className="flex-auto">
                           <Link
@@ -121,15 +154,25 @@ export default function Example() {
                 leaveFrom="opacity-100 translate-y-0"
                 leaveTo="opacity-0 translate-y-1"
               >
-                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                  <div className="p-4">
+                <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-lg overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                  <div className="p-4 flex justify-between flex-wrap">
                     {products.map((item) => (
                       <div
                         key={item.name}
-                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+                        className="group w-[50%] relative flex items-center gap-x-2 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                       >
-                        <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                          <TbVaccine />
+                        <div
+                          className={classNames(
+                            "flex h-11 w-11 flex-none items-center justify-center rounded-lg",
+                            item.bg
+                          )}
+                        >
+                          <Image
+                            src={item.icon}
+                            width={20}
+                            height={20}
+                            alt=""
+                          />
                         </div>
                         <div className="flex-auto">
                           <Link

@@ -26,6 +26,8 @@ const AgentCard = ({
     >
       <div className="text-center flex flex-col gap-1 items-center justify-center cursor-pointer">
         <Image
+          quality={100}
+          unoptimized={true}
           src={imgSrc}
           alt={name}
           height={250}

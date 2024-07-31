@@ -48,8 +48,6 @@ const [showLists, setShowLists] = useState(false);
         },
       }),
     onSuccessFn: (data) => {
-      // if (data?.statusCode === 200 || data?.statusCode === 201) {
-      console.log(data);
       toast({
         status: "success",
         description: data.message || "Request Successful",
@@ -66,7 +64,6 @@ const [showLists, setShowLists] = useState(false);
     },
   });
 
-  console.log(showLists)
 
   const handleSubmit = () => {
     Cookies.set("propertyType", property);
@@ -167,7 +164,7 @@ const [showLists, setShowLists] = useState(false);
                         value={area}
                         onChange={handleChange}
                       >
-                        <option value="" disabled selected>
+                        <option value="" disabled>
                           Select Area
                         </option>
                         {uniqueAreas.map((location: any, i: any) => (
@@ -195,7 +192,7 @@ const [showLists, setShowLists] = useState(false);
                           className=" text-[18px] font-bold"
                           value=""
                           disabled
-                          selected
+                          
                         >
                           Filter property type
                         </option>{" "}
@@ -278,7 +275,7 @@ const [showLists, setShowLists] = useState(false);
                           className=" text-[18px] font-bold"
                           value=""
                           disabled
-                          selected
+                          
                         >
                           Filter role
                         </option>{" "}
@@ -334,7 +331,7 @@ const [showLists, setShowLists] = useState(false);
                         value={area}
                         onChange={handleChange}
                       >
-                        <option value="" disabled selected>
+                        <option value="" disabled >
                           Select Area
                         </option>
                         {uniqueAreas.map((location: any, i: any) => (
@@ -362,7 +359,7 @@ const [showLists, setShowLists] = useState(false);
                           className=" text-[18px] font-bold"
                           value=""
                           disabled
-                          selected
+                          
                         >
                           Filter property type
                         </option>{" "}
@@ -445,7 +442,7 @@ const [showLists, setShowLists] = useState(false);
                           className=" text-[18px] font-bold"
                           value=""
                           disabled
-                          selected
+                          
                         >
                           Filter role
                         </option>{" "}
@@ -541,7 +538,7 @@ const [showLists, setShowLists] = useState(false);
                   value={area}
                   onChange={handleChange}
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled >
                     Select Area
                   </option>
                   {uniqueAreas.map((location: any, i: any) => (

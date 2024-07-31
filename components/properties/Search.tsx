@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { IoSearch } from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
 import { PaginationNav } from "../common";
@@ -9,12 +9,14 @@ import { useAPI } from "@/app/lib/useApi";
 import { listings, getAreas } from "@/app/api/UseUser";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import Cookies from "js-cookie";
+import { useSearchParams } from "next/navigation";
 
 const PROPERTY_COOKIE_NAME = "propertyType";
 const AREA_COOKIE_NAME = "area";
 
 const Search = () => {
   const { useQuery, queryClient } = useAPI();
+  const searchParams = useSearchParams();
   const [area, setArea] = useState("");
   const [market, setMarket] = useState("");
   const [property, setProperty] = useState("");
@@ -22,31 +24,34 @@ const Search = () => {
   const [sortBy, setSortBy] = useState("");
   const [order, setOrder] = useState("");
 
-   const [currentPage, setCurrentPage] = useState(1);
-   const itemsPerPage = 9;
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
 
-   useEffect(() => {
-     const prop = Cookies.get(PROPERTY_COOKIE_NAME);
-     const selectedArea = Cookies.get(AREA_COOKIE_NAME);
+  useEffect(() => {
+    const prop = Cookies.get(PROPERTY_COOKIE_NAME);
+    const item = searchParams.get("filter");
+    const selectedArea = Cookies.get(AREA_COOKIE_NAME);
 
-     if (prop) {
-       setProperty(prop);
-       Cookies.remove(PROPERTY_COOKIE_NAME);
-     }
+    if (prop) {
+      setProperty(prop);
+      Cookies.remove(PROPERTY_COOKIE_NAME);
+    }
 
-     if (selectedArea) {
-       setArea(selectedArea);
-       Cookies.remove(AREA_COOKIE_NAME);
-     }
-   }, []);
+    if (item) {
+      setMarket(item);
+    }
+
+    if (selectedArea) {
+      setArea(selectedArea);
+      Cookies.remove(AREA_COOKIE_NAME);
+    }
+  }, [searchParams]);
 
   const { data: areas } = useQuery({
     queryKey: ["areas"],
     queryFn: () => getAreas(),
   });
 
-  console.log(property)
-  console.log(area)
 
   const uniqueAreas = Array.from(new Set(areas && areas.data));
 
@@ -62,7 +67,7 @@ const Search = () => {
             min: price ? Number(price) : undefined,
             max: 10000000,
           },
-          category: undefined
+          category: undefined,
         },
       }),
   });
@@ -71,20 +76,23 @@ const Search = () => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = lists?.properties?.slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = lists?.properties?.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
-    const handlePageClick = (page: number) => {
-      setCurrentPage(page);
-    };
+  const handlePageClick = (page: number) => {
+    setCurrentPage(page);
+  };
 
-const handleClick = (e: { preventDefault: () => void; }) => {
-  e.preventDefault()
-   queryClient
-     .invalidateQueries({
-       queryKey: ["lists"],
-     })
-     .then();
-}
+  const handleClick = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    queryClient
+      .invalidateQueries({
+        queryKey: ["lists"],
+      })
+      .then();
+  };
 
   useEffect(() => {
     queryClient
@@ -111,7 +119,7 @@ const handleClick = (e: { preventDefault: () => void; }) => {
               onChange={(e) => setSortBy(e.target.value)}
               value={sortBy}
             >
-              <option value="" disabled selected>
+              <option value="" disabled >
                 Sort by
               </option>
               <option className="text-[18px] font-bold" value="rank">
@@ -129,7 +137,7 @@ const handleClick = (e: { preventDefault: () => void; }) => {
               onChange={(e) => setOrder(e.target.value)}
               value={order}
             >
-              <option value="" disabled selected>
+              <option value="" disabled >
                 Filter by
               </option>
               <option className="text-[18px] font-bold" value="asc">
@@ -148,7 +156,7 @@ const handleClick = (e: { preventDefault: () => void; }) => {
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled >
                   Select Area
                 </option>
                 {uniqueAreas.map((location: any, i: any) => (
@@ -171,7 +179,7 @@ const handleClick = (e: { preventDefault: () => void; }) => {
                   className=" text-[18px] font-medium"
                   value=""
                   disabled
-                  selected
+                  
                 >
                   Market type
                 </option>
@@ -196,7 +204,7 @@ const handleClick = (e: { preventDefault: () => void; }) => {
                   className=" text-[18px] font-bold"
                   value=""
                   disabled
-                  // selected
+                  // 
                 >
                   Property type
                 </option>{" "}
@@ -288,7 +296,7 @@ const handleClick = (e: { preventDefault: () => void; }) => {
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
               >
-                <option value="" disabled selected>
+                <option value="" disabled >
                   Select Area
                 </option>
                 {uniqueAreas.map((location: any, i: any) => (
@@ -312,7 +320,7 @@ const handleClick = (e: { preventDefault: () => void; }) => {
                   className=" text-[18px] font-medium"
                   value=""
                   disabled
-                  selected
+                  
                 >
                   Filter market type
                 </option>
@@ -339,7 +347,7 @@ const handleClick = (e: { preventDefault: () => void; }) => {
                   className=" text-[18px] font-bold"
                   value=""
                   disabled
-                  // selected
+                  // 
                 >
                   Filter property type
                 </option>{" "}
@@ -466,4 +474,12 @@ const handleClick = (e: { preventDefault: () => void; }) => {
   );
 };
 
-export default Search;
+const SearchPage = () => {
+  return (
+    <Suspense fallback={<div>Loading search results...</div>}>
+      <Search />
+    </Suspense>
+  );
+};
+
+export default SearchPage;

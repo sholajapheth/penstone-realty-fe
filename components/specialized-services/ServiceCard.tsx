@@ -20,12 +20,12 @@ const PackageCard = ({ imgSrc, para, heading }: ServiceProp) => {
             <h2 className="text-[24px] font-semibold text-[#0A0A0A] pb-[12px]">
               {heading}
             </h2>
-            <p className="text-[17px] text-[#737373]">
-              {para}
-            </p>
+            <p className="text-[17px] text-[#737373]">{para}</p>
           </div>
           <div>
             <Image
+              quality={100}
+              unoptimized={true}
               width={300}
               height={200}
               className="w-full h-full"
@@ -41,7 +41,14 @@ const PackageCard = ({ imgSrc, para, heading }: ServiceProp) => {
             >
               Start a request
             </button>
-            <Image width={20} height={20} src="/img/arrow-right.png" alt="" />
+            <Image
+              quality={100}
+              unoptimized={true}
+              width={20}
+              height={20}
+              src="/img/arrow-right.png"
+              alt=""
+            />
           </div>
         </div>
       </div>

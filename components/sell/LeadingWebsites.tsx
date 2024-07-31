@@ -20,6 +20,8 @@ const LeadingWebsites = () => {
 
               <div className="mt-[2em] lg:mt-[4em] flex items-center gap-[20px] justify-center lg:justify-between flex-wrap px-[4em]">
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   height={100}
                   width={250}
                   src="/img/leading1.png"
@@ -27,6 +29,8 @@ const LeadingWebsites = () => {
                   alt=""
                 />
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   width={250}
                   height={100}
                   src="/img/leading2.png"
@@ -34,6 +38,8 @@ const LeadingWebsites = () => {
                   alt=""
                 />
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   width={250}
                   height={100}
                   src="/img/leading3.png"
@@ -41,6 +47,8 @@ const LeadingWebsites = () => {
                   alt=""
                 />
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   width={250}
                   height={100}
                   src="/img/leading4.png"

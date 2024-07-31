@@ -13,6 +13,7 @@ import { listings } from "@/app/api/UseUser";
 import { useAPI } from "@/app/lib/useApi";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Modal from "../app-components/CustomModal";
+import { GrFormPrevious, GrFormNext } from "react-icons/gr";
 
 const Feature = ({
   icon,
@@ -94,17 +95,6 @@ const PropertyDetails = ({ property }: PropertyProp) => {
     return () => clearInterval(interval);
   }, [images]);
 
-  // useEffect(() => {
-  //   const { current } = showcaseRef;
-  //   if (current) {
-  //     const totalWidth = current.scrollWidth - current.clientWidth;
-  //     const newScrollPosition =
-  //       (totalWidth / (images.length - 1)) * currentIndex;
-  //     current.scrollLeft = newScrollPosition;
-  //   }
-  // }, [currentIndex, images.length]);
-
-  console.log(currentIndex);
 
   const { data: lists } = useQuery({
     queryKey: ["lists"],
@@ -234,6 +224,8 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                           index: React.Key | null | undefined
                         ) => (
                           <Image
+                            quality={100}
+                            unoptimized={true}
                             key={index}
                             src={src}
                             alt="property picture"
@@ -264,6 +256,8 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                     <div className="relative">
                       {modalImageIndex !== null && (
                         <Image
+                          quality={100}
+                          unoptimized={true}
                           src={prop.listingInformation.images[modalImageIndex]}
                           alt="full-screen image"
                           width={400}
@@ -272,16 +266,16 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                         />
                       )}
                       <button
-                        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-secondary rounded-full h-10 flex justify-center items-center w-10 text-white p-2"
+                        className="absolute top-1/2 -left-14 transform -translate-y-1/2 bg-secondary rounded-full h-10 flex justify-center items-center w-10 text-white p-2"
                         onClick={handlePrevImage}
                       >
-                        &lt;
+                        <GrFormPrevious className="w-[30px]" />
                       </button>
                       <button
-                        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-secondary rounded-full h-10 flex justify-center items-center w-10 text-white p-2"
+                        className="absolute top-1/2 -right-14 transform -translate-y-1/2 bg-secondary rounded-full h-10 flex justify-center items-center w-10 text-white p-2"
                         onClick={handleNextImage}
                       >
-                        &gt;
+                        <GrFormNext className="w-[30px]" />
                       </button>
                     </div>
                   </Modal>
@@ -291,6 +285,8 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                   {prop && prop.listingInformation.images[1] && (
                     <div className="hover:border h-full  hover:border-secondary hover:p-1 rounded-md duration-300 ease-in-out transition-all ">
                       <Image
+                        quality={100}
+                        unoptimized={true}
                         src={prop && prop.listingInformation.images[1]}
                         width={200}
                         height={200}
@@ -302,6 +298,8 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                   {prop && prop.listingInformation.images[2] && (
                     <div className="hover:border h-full object-contain hover:border-secondary hover:p-1 rounded-md duration-300 ease-in-out transition-all relative ">
                       <Image
+                        quality={100}
+                        unoptimized={true}
                         src={prop && prop.listingInformation.images[2]}
                         width={200}
                         height={200}
@@ -370,7 +368,9 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                 <Feature
                   icon={<FaRegCircleCheck size={22} />}
                   feature="Status"
-                  tagline={prop && prop.status === "FREE" ? "Active" : "Inactive"}
+                  tagline={
+                    prop && prop.status === "FREE" ? "Active" : "Inactive"
+                  }
                 />
                 <Feature
                   icon={
@@ -443,6 +443,8 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                 <p className="text-[24px] font-bold mb-4">Map </p>
                 <div>
                   <Image
+                    quality={100}
+                    unoptimized={true}
                     src={"/img/map.png"}
                     width={200}
                     height={200}
@@ -574,6 +576,8 @@ const PropertyDetails = ({ property }: PropertyProp) => {
 
                 <div className="flex items-center gap-4">
                   <Image
+                    quality={100}
+                    unoptimized={true}
                     src={prop && prop.agent.image}
                     height={70}
                     width={70}

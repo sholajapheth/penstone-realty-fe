@@ -18,6 +18,8 @@ const PackageCard = ({imgSrc, heading, para} : ConsProp) => {
           </div>
           <div>
             <Image
+              quality={100}
+              unoptimized={true}
               width={200}
               height={200}
               className="h-full w-full"

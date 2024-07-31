@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const SellBannerPage = () => {
-            const router = useRouter();
+  const router = useRouter();
 
   return (
     <>
@@ -38,7 +38,14 @@ const SellBannerPage = () => {
               </button>
               <button className="border border-white px-3 lg:px-8  font-semibold py-3 rounded-xl text-white lg:mt-8 flex justify-center items-center gap-[8px]">
                 Find a Service
-                <Image width={20} height={20} src="/img/arw.png" alt="" />
+                <Image
+                  quality={100}
+                  unoptimized={true}
+                  width={20}
+                  height={20}
+                  src="/img/arw.png"
+                  alt=""
+                />
               </button>
             </div>
           </div>

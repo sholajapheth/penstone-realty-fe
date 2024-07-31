@@ -11,6 +11,7 @@ const GetIntouch = () => {
           height={400}
           width={400}
           quality={100}
+          unoptimized={true}
           className="w-[80%] hidden md:inline-block"
         />
 

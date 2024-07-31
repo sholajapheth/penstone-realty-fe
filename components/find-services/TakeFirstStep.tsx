@@ -94,6 +94,8 @@ const TakeFirstStep = () => {
 
             <div className="hidden md:inline-block col-span-2 h-full w-full">
               <Image
+                quality={100}
+                unoptimized={true}
                 src={"/img/firststep.png"}
                 height={200}
                 width={100}
