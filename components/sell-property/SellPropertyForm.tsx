@@ -1,7 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
 import Image from "next/image";
-import { Avatar, AvatarGroup } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import GoogleSIgnIn from "../GoogleSIgnIn";
 import { useAPI } from "@/app/lib/useApi";
@@ -82,22 +81,6 @@ const Form = () => {
   const photoInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
 
-  // const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files.length > 0) {
-  //     const file = e.target.files.item(0);
-  //     setImgName(file && (file.name as string));
-  //     if (file instanceof File) {
-  //       try {
-  //         const downloadURL = await upload(file);
-  //         console.log("File uploaded successfully:", downloadURL);
-  //         setImage([downloadURL]);
-  //       } catch (error) {
-  //         console.error("Error uploading file:", error);
-  //       }
-  //       if (!file) return;
-  //     }
-  //   }
-  // };
 
   const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -161,7 +144,7 @@ const Form = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               >
-                <option value="" disabled selected>
+                <option value="" disabled >
                   Select intention
                 </option>
                 <option value="RENT">Rent</option>
@@ -183,7 +166,7 @@ const Form = () => {
                 value={values.propertyType}
                 onChange={handleChange}
               >
-                <option value="" disabled selected>
+                <option value="" disabled >
                   Select the property type
                 </option>
                 <option
@@ -324,6 +307,8 @@ const Form = () => {
                 {image.length < 1 ? (
                   <>
                     <Image
+                      quality={100}
+                      unoptimized={true}
                       width={30}
                       height={30}
                       src="/img/upload.png"
@@ -344,7 +329,14 @@ const Form = () => {
                   }
                 }}
               >
-                <Image width={15} height={15} src="/img/clip.png" alt="" />{" "}
+                <Image
+                  quality={100}
+                  unoptimized={true}
+                  width={15}
+                  height={15}
+                  src="/img/clip.png"
+                  alt=""
+                />{" "}
                 <p className="text-[#000929]">Select file</p>
               </div>
               {/* {errors.images && (
@@ -577,6 +569,8 @@ const Form = () => {
         <div className="w-full lg:h-screen lg:overflow-y-auto lg:w-1/2 bg-primary text-white px-[20px] lg:pb-[100px] pb-[50px] ">
           <div className="flex justify-center items-center">
             <Image
+              quality={100}
+              unoptimized={true}
               width={550}
               height={600}
               // className="w-full h-full"
@@ -596,32 +590,57 @@ const Form = () => {
               </p>
             </div>
             <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center gap-[16px]">
-              <AvatarGroup size="md" max={4}>
-                <Avatar
-                  name="Ryan Florence"
-                  src="https://bit.ly/ryan-florence"
-                />
-                <Avatar
-                  name="Segun Adebayo"
-                  src="https://bit.ly/sage-adebayo"
-                />
-                <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
-                <Avatar
-                  name="Prosper Otemuyiwa"
-                  src="https://bit.ly/prosper-baba"
-                />
-                <Avatar
-                  name="Christian Nwamba"
-                  src="https://bit.ly/code-beast"
-                />
-              </AvatarGroup>
+              <Image
+                quality={100}
+                unoptimized={true}
+                src={"/avatarGroup.svg"}
+                width={150}
+                height={40}
+                className="w-unset h-full"
+                alt=""
+              />
               <div className="flex flex-col items-center lg:items-start">
                 <div className="flex justify-start items-center gap-[4px]">
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
-                  <Image width={15} height={15} src="/img/star.png" alt="" />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
+                  <Image
+                    quality={100}
+                    unoptimized={true}
+                    width={15}
+                    height={15}
+                    src="/img/star.png"
+                    alt=""
+                  />
                   <p className="text-[18px] font-medium">5.0</p>
                 </div>
                 <p className="text-[18px] text-center lg:text-left font-medium">

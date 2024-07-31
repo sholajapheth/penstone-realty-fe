@@ -1,28 +1,55 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  const router = useRouter();
+
+    const handleNavigation = (filter: string) => {
+      const query = new URLSearchParams({ filter }).toString();
+      router.push(`/search?${query}`);
+    };
   return (
     <div className="flex items-center justify-center">
       <div className="py-[3em] lg:py-[6em] md:w-[85%] w-[90%] max-w-[1200px] bg-white">
-        <Image src={"/logo.svg"} alt="penstone-logo" height={90} width={150} />
+        <Image
+          quality={100}
+          unoptimized={true}
+          src={"/logo.svg"}
+          alt="penstone-logo"
+          height={90}
+          width={150}
+        />
 
         <div className="flex items-start justify-between md:justify-start flex-wrap gap-[32px] md:gap-[100px] text-secondary mt-[2em] md:mt-[4em]">
           <div className="flex flex-col gap-3 md:gap-4 w-[45%] md:w-fit">
             <p className="text-[16px] md:text-[18px] lg:text-[20px] font-semibold ">
               Market Types
             </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            <p
+              className="text-[14px] md:text-[16px] lg:text-[18px] cursor-pointer"
+              onClick={() => handleNavigation("RESIDENTIAL")}
+            >
               Residential
             </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            <p
+              className="text-[14px] md:text-[16px] lg:text-[18px] cursor-pointer"
+              onClick={() => handleNavigation("COMMERCIAL")}
+            >
               Commercial
             </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            <p
+              className="text-[14px] md:text-[16px] lg:text-[18px] cursor-pointer"
+              onClick={() => handleNavigation("HOSPITALITY")}
+            >
               Hospitality
             </p>
-            <p className="text-[14px] md:text-[16px] lg:text-[18px]">
+            <p
+              className="text-[14px] md:text-[16px] lg:text-[18px] cursor-pointer"
+              onClick={() => handleNavigation("DEVELOPMENT_LAND")}
+            >
               Development Land
             </p>
           </div>
@@ -131,14 +158,49 @@ const Footer = () => {
         </p>
 
         <div className="flex lg:hidden justify-center items-center gap-[40px] pt-[20px]">
-          <Image src={"/img/facebook-f 1.png"} alt="" height={24} width={24} />
-          <Image src={"/img/instagram 1.png"} alt="" height={24} width={24} />
-          <Image src={"/img/twitter 1.png"} alt="" height={24} width={24} />
-          <Image src={"/img/linkedin 1.png"} alt="" height={24} width={24} />
+          <Image
+            quality={100}
+            unoptimized={true}
+            src={"/img/facebook-f 1.png"}
+            alt=""
+            height={24}
+            width={24}
+          />
+          <Image
+            quality={100}
+            unoptimized={true}
+            src={"/img/instagram 1.png"}
+            alt=""
+            height={24}
+            width={24}
+          />
+          <Image
+            quality={100}
+            unoptimized={true}
+            src={"/img/twitter 1.png"}
+            alt=""
+            height={24}
+            width={24}
+          />
+          <Image
+            quality={100}
+            unoptimized={true}
+            src={"/img/linkedin 1.png"}
+            alt=""
+            height={24}
+            width={24}
+          />
         </div>
       </div>
       <div className="absolute bottom-0 right-0 lg:hidden">
-        <Image src={"/img/footIcon.png"} alt="" height={24} width={24} />
+        <Image
+          quality={100}
+          unoptimized={true}
+          src={"/img/footIcon.png"}
+          alt=""
+          height={24}
+          width={24}
+        />
       </div>
     </div>
   );

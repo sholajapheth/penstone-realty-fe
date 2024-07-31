@@ -20,6 +20,8 @@ const BlogCard = ({imgSrc, date, title} : ArtProp) => {
       <div>
         <div className="overflow-hidden rounded-xl ">
           <Image
+            quality={100}
+            unoptimized={true}
             src={imgSrc}
             alt="penstone-logo"
             height={200}
@@ -38,6 +40,8 @@ const BlogCard = ({imgSrc, date, title} : ArtProp) => {
         <div className="flex items-center mt-4 gap-4">
           <div className="overflow-hidden rounded-xl w-[3em] h-[3em] ">
             <Image
+              quality={100}
+              unoptimized={true}
               src={"/img/blog-author.png"}
               alt="penstone-logo"
               height={90}

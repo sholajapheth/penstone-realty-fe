@@ -5,9 +5,6 @@ import React from "react";
 const Page = () => {
   return (
     <div>
-      {/* <div className="lg:hidden">
-        <HeroSection />
-      </div> */}
       <Search />
       <div className="">
         <HeroSection />

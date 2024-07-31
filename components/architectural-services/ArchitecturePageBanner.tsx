@@ -40,7 +40,14 @@ const ArchitecturePageBanner = () => {
               </button>
               <button className="border border-white px-3 lg:px-8  font-semibold py-3 rounded-xl text-white lg:mt-8 flex justify-center items-center gap-[8px]">
                 Download Service Guide
-                <Image width={20} height={20} src="/img/arw.png" alt="" />
+                <Image
+                  quality={100}
+                  unoptimized={true}
+                  width={20}
+                  height={20}
+                  src="/img/arw.png"
+                  alt=""
+                />
               </button>
             </div>
           </div>

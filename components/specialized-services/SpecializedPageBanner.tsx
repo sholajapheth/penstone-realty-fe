@@ -39,6 +39,8 @@ const SpecializedPageBanner = () => {
               >
                 Frequently Asked Questions
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   width={20}
                   height={20}
                   src="/img/arw.png"

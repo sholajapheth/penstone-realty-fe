@@ -49,6 +49,8 @@ const Page = () => {
             <div className="flex items-end justify-between ">
               <div className="flex items-center gap-4">
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   src={"/img/sample-avatar.png"}
                   height={55}
                   width={55}
@@ -64,6 +66,8 @@ const Page = () => {
             </div>
             <div className="mt-[2em]">
               <Image
+                quality={100}
+                unoptimized={true}
                 src={"/img/blog-img.png"}
                 height={200}
                 width={200}
@@ -73,10 +77,11 @@ const Page = () => {
               <div className="pt-[40px] lg:pt-[80px]">
                 <p className="text-[18px] lg:text-[24px] text-[#1D1E25]">
                   In the dynamic world of real estate, success hinges on the
-                  ability to understand and cater to the needs of buyers. Whether
-                  you&apos;re a seasoned agent or a homeowner looking to sell,
-                  adopting a customer-centric approach is key to attracting buyers
-                  and closing deals effectively. In this guide, we&apos;ll{" "}
+                  ability to understand and cater to the needs of buyers.
+                  Whether you&apos;re a seasoned agent or a homeowner looking to
+                  sell, adopting a customer-centric approach is key to
+                  attracting buyers and closing deals effectively. In this
+                  guide, we&apos;ll{" "}
                   <span className="font-bold">
                     explore three essential steps to help you navigate the real
                     estate market with confidence and achieve your selling
@@ -86,6 +91,8 @@ const Page = () => {
               </div>
               <div className="mt-10 md:flex justify-start items-start gap-[48px] ">
                 <Image
+                  quality={100}
+                  unoptimized={true}
                   src={"/img/sample-avatar.png"}
                   width={300}
                   height={300}

@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import Image from "next/image";
 import React from "react";
 import { useRouter } from "next/navigation";
 
 const Offers = () => {
-      const router = useRouter();
+  const router = useRouter();
 
   return (
     <div className=" bg-secondary  text-white text-center py-12 lg:py-16">
@@ -24,6 +24,8 @@ const Offers = () => {
           <div className="flex flex-col lg:flex-row items-center gap-6 mt-10 ">
             <div className="rounded-md  bg-white/50 p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
+                quality={100}
+                unoptimized={true}
                 src={"/img/icons/lines-outline-bag.png"}
                 height={50}
                 width={50}
@@ -41,6 +43,8 @@ const Offers = () => {
             </div>
             <div className="rounded-md  bg-white p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
+                quality={100}
+                unoptimized={true}
                 src={"/img/icons/team-light.png"}
                 height={50}
                 width={50}
@@ -58,6 +62,8 @@ const Offers = () => {
             </div>
             <div className="rounded-md  bg-[#0D90C4] p-6 lg:p-6 flex items-start text-start gap-4 flex-col lg:flex-row">
               <Image
+                quality={100}
+                unoptimized={true}
                 src={"/img/icons/lines-outline-bag.png"}
                 height={50}
                 width={50}

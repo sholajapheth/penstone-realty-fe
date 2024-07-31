@@ -14,7 +14,14 @@ const ShowcardCard = ({ imgSource, title, tagline, route }: Info3Card) => {
     >
       <div className="flex ">
         <div className="py-2 lg:py-4">
-          <Image src={imgSource} height={80} width={80} alt="home-check-icon" />
+          <Image
+            quality={100}
+            unoptimized={true}
+            src={imgSource}
+            height={80}
+            width={80}
+            alt="home-check-icon"
+          />
         </div>
       </div>
 

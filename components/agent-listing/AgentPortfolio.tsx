@@ -41,12 +41,6 @@ const AgentPortfolio = () => {
                 lists.properties.slice(0, 3).map((list: any, i: any) => {
                   return (
                     <ListingCard
-                      // propertyId={list.propertyId}
-                      // streetAddress={list.streetAddress}
-                      // unitNumber={list.unitNumber}
-                      // city={list.city}
-                      // state={list.state}
-                      // zipcode={list.zipcode}
                       lists={list}
                       key={i}
                     />

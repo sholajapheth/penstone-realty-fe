@@ -53,6 +53,8 @@ export const PartnerCard = ({imgSrc, heading, para}: PartnerProp) => {
         <div className="w-[100%] lg:w-[370px] border-[1px] shadow-shad shadow-sm border-[#E5E5E5] rounded-[14px] p-[20px] flex flex-col gap-[18px]">
           <div>
             <Image
+              quality={100}
+              unoptimized={true}
               width={300}
               height={200}
               className="w-full h-full"
@@ -64,9 +66,7 @@ export const PartnerCard = ({imgSrc, heading, para}: PartnerProp) => {
             <h2 className="text-[24px] font-semibold text-[#0A0A0A] pb-[12px] text-center whitespace-nowrap">
               {heading}
             </h2>
-            <p className="text-[17px] text-[#737373] text-center">
-             {para}
-            </p>
+            <p className="text-[17px] text-[#737373] text-center">{para}</p>
           </div>
         </div>
       </div>

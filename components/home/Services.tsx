@@ -7,6 +7,8 @@ const ServiceCard = ({ imgSource, title, tagline }: Info3Card) => (
   <div className="text-secondary lg:w-[70%] mt-8 px-[1em]">
     <div className="flex flex-col lg:flex-row justify-center lg:justify-start items-center lg:items-start gap-6">
       <Image
+        quality={100}
+        unoptimized={true}
         src={imgSource}
         height={60}
         width={60}
@@ -23,7 +25,7 @@ const ServiceCard = ({ imgSource, title, tagline }: Info3Card) => (
 
 const Services = () => {
   const [activeNav, setActiveNav] = useState("1");
-        const router = useRouter();
+  const router = useRouter();
 
   return (
     <div className=" pb-[5em] lg:pb-[8em] mt-[4em] lg:mt-0 flex justify-center text-secondary">
@@ -34,6 +36,8 @@ const Services = () => {
               <div className="rounded-2xl shadow-md  px-3 lg:px-6 p-4  bg-white ">
                 <div className="relative">
                   <Image
+                    quality={100}
+                    unoptimized={true}
                     src={"/img/icons/home-checked-circle-filled.png"}
                     height={50}
                     width={50}
@@ -55,6 +59,8 @@ const Services = () => {
 
           <div className="rounded-2xl shadow-md px-3 lg:px-6 p-4 flex gap-4 items-start absolute -left-2 lg:left-4  top-9 bg-white">
             <Image
+              quality={100}
+              unoptimized={true}
               src={"/img/icons/bg-circle.png"}
               height={50}
               width={50}
