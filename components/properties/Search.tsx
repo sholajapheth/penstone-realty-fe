@@ -65,7 +65,7 @@ const Search = () => {
           area: area ? area : undefined,
           price: {
             min: price ? Number(price) : undefined,
-            max: 10000000,
+            max: undefined
           },
           category: undefined,
         },
@@ -118,9 +118,10 @@ const Search = () => {
               className="focus:outline-none p-4 rounded-xl w-[1/2] border-2 border-[#D9E2E6]text-[18px] font-bold"
               onChange={(e) => setSortBy(e.target.value)}
               value={sortBy}
+              aria-placeholder={"Sort By"}
             >
               <option value="" disabled >
-                Sort by
+                Sort By
               </option>
               <option className="text-[18px] font-bold" value="rank">
                 Rank
@@ -156,7 +157,7 @@ const Search = () => {
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
               >
-                <option value="" disabled >
+                <option value="">
                   Select Area
                 </option>
                 {uniqueAreas.map((location: any, i: any) => (
@@ -178,8 +179,6 @@ const Search = () => {
                 <option
                   className=" text-[18px] font-medium"
                   value=""
-                  disabled
-                  
                 >
                   Market type
                 </option>
@@ -203,8 +202,6 @@ const Search = () => {
                 <option
                   className=" text-[18px] font-bold"
                   value=""
-                  disabled
-                  // 
                 >
                   Property type
                 </option>{" "}
@@ -296,7 +293,7 @@ const Search = () => {
                 value={area}
                 onChange={(e) => setArea(e.target.value)}
               >
-                <option value="" disabled >
+                <option value="" >
                   Select Area
                 </option>
                 {uniqueAreas.map((location: any, i: any) => (
@@ -319,10 +316,8 @@ const Search = () => {
                 <option
                   className=" text-[18px] font-medium"
                   value=""
-                  disabled
-                  
-                >
-                  Filter market type
+               >
+                  Market type
                 </option>
                 <option className="text-[18px] font-bold" value={"RESIDENTIAL"}>
                   Residential
@@ -346,10 +341,8 @@ const Search = () => {
                 <option
                   className=" text-[18px] font-bold"
                   value=""
-                  disabled
-                  // 
                 >
-                  Filter property type
+                  Property type
                 </option>{" "}
                 <option
                   className=" text-[18px] font-bold"
@@ -442,7 +435,7 @@ const Search = () => {
           <div className="font-bold flex items-center gap-4 ">
             <BiChevronLeft
               size={28}
-              className="cursor-pointer"
+              className={`cursor-pointer ${currentPage <= 1 ? "text-gray-300" : ""}`}
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             />
 
@@ -462,7 +455,7 @@ const Search = () => {
 
             <BiChevronRight
               size={28}
-              className="cursor-pointer"
+              className={`cursor-pointer ${currentPage >= totalPages ? "text-gray-300" : ""}`}
               onClick={() =>
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }

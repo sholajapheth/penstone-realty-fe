@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
 import GoogleSIgnIn from "../GoogleSIgnIn";
-import { userApply } from "@/app/api/UseUser";
+import {singleList, userApply} from "@/app/api/UseUser";
 import { useAPI } from "@/app/lib/useApi";
 import { useAppToast } from "@/app/lib/useAppToast";
 import Cookies from "js-cookie";
 import useLocalStorage from "@/app/api/useLocalStorage";
 import { useFormik } from "formik";
 import { applyValidation } from "@/app/api/useYup";
-import { PropertyDetails } from "../properties";
+import ListingCard from "@/components/home/ListingCard";
 
 const ApplicationForm = () => {
   const { useAPIMutation } = useAPI();
@@ -50,6 +50,13 @@ const ApplicationForm = () => {
   const title = getItem("title");
   // console.log(propertyId + ": " + 'title')
   // const property = JSON.parse(propertyId)
+
+  const { useQuery } = useAPI();
+  const { data: property } = useQuery({
+    queryKey: ["property"],
+    queryFn: () =>
+        singleList(propertyId),
+  });
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
@@ -143,15 +150,9 @@ const ApplicationForm = () => {
             <form className="text-[16px] py-[58px] flex flex-col gap-[20px]">
               <div className="flex flex-col items-start gap-2">
                 <label className="font-medium">
-                  Select a Property{" "}
-                  <span className="text-[14px]">(Required)</span>{" "}
+                  Selected Property{" "}
                 </label>
-                <input
-                  type="text"
-                  required
-                  className="border-[2px] rounded-[10px] h-[45px] lg:h-[64px] px-[16px] w-full"
-                  value={title ? (title as string) : "Name"}
-                />
+                <ListingCard lists={property?.property} />
               </div>
 
               <div className="flex flex-col items-start gap-2">

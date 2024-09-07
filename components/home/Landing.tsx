@@ -68,7 +68,7 @@ const [showLists, setShowLists] = useState(false);
   const handleSubmit = () => {
     Cookies.set("propertyType", property);
     Cookies.set('area', area)
-    update.mutate({});
+    // update.mutate({});
     router.push('/search')
   };
 
@@ -192,7 +192,7 @@ const [showLists, setShowLists] = useState(false);
                           className=" text-[18px] font-bold"
                           value=""
                           disabled
-                          
+
                         >
                           Filter property type
                         </option>{" "}
@@ -275,7 +275,7 @@ const [showLists, setShowLists] = useState(false);
                           className=" text-[18px] font-bold"
                           value=""
                           disabled
-                          
+
                         >
                           Filter role
                         </option>{" "}
@@ -359,7 +359,7 @@ const [showLists, setShowLists] = useState(false);
                           className=" text-[18px] font-bold"
                           value=""
                           disabled
-                          
+
                         >
                           Filter property type
                         </option>{" "}
@@ -442,7 +442,7 @@ const [showLists, setShowLists] = useState(false);
                           className=" text-[18px] font-bold"
                           value=""
                           disabled
-                          
+
                         >
                           Filter role
                         </option>{" "}

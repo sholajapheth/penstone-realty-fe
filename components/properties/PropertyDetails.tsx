@@ -14,6 +14,7 @@ import { useAPI } from "@/app/lib/useApi";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Modal from "../app-components/CustomModal";
 import { GrFormPrevious, GrFormNext } from "react-icons/gr";
+import {GoogleMap, LoadScript, Marker} from "@react-google-maps/api";
 
 const Feature = ({
   icon,
@@ -52,6 +53,11 @@ const PropertyDetails = ({ property }: PropertyProp) => {
   const [modalImage, setModalImage] = useState<string | StaticImport>("");
 
   const prop = property && property.property;
+
+  const center = {
+    lat: 37.437041393899676,
+    lng: -4.191635586788259
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -101,22 +107,15 @@ const PropertyDetails = ({ property }: PropertyProp) => {
     queryFn: () =>
       listings("rank", "asc", {
         filters: {
-          area: undefined,
+          area: prop?.address?.city,
           marketType: prop ? prop?.listingInformation?.marketType : undefined,
           propertyType: prop
             ? prop?.listingInformation?.propertyType
             : undefined,
-          price: {
-            min: prop
-              ? prop?.listingInformation?.monthlyRent - 10000
-              : undefined,
-            max: prop
-              ? prop?.listingInformation?.monthlyRent + 10000
-              : undefined,
-          },
           category: prop ? prop?.category : undefined,
         },
       }),
+    enabled:!!prop
   });
 
   function capitalizeFirstLetter(word: string) {
@@ -442,22 +441,34 @@ const PropertyDetails = ({ property }: PropertyProp) => {
               <div className="mt-8  pb-8">
                 <p className="text-[24px] font-bold mb-4">Map </p>
                 <div>
-                  <Image
-                    quality={100}
-                    unoptimized={true}
-                    src={"/img/map.png"}
-                    width={200}
-                    height={200}
-                    alt="map"
-                    className="w-full h-full rounded-md "
-                  />
+                  {
+                    prop?.address?.lng && prop?.address?.lat ? (
+                        <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAP_API_KEY}>
+                          <GoogleMap
+                              mapContainerStyle={{
+                                width: "100%",
+                                height: "400px",
+                                borderRadius: "15px"
+                              }}
+                              center={center}
+                              zoom={15}
+                          >
+                            <Marker position={center} />
+                          </GoogleMap>
+                        </LoadScript>
+                    ) : (
+                        <p className="text-primary flex items-center gap-2 mt-4">
+                          Map location unavailable for this property
+                        </p>
+                    )
+                  }
                 </div>
 
-                <p className="text-primary font-semibold flex items-center gap-2 mt-4">
-                  See more listings in {prop && prop.address.city},{" "}
-                  {prop && prop.address.state} State
-                  <CgChevronRight size={20} />
-                </p>
+                {/*<p className="text-primary font-semibold flex items-center gap-2 mt-4">*/}
+                {/*  See more listings in {prop && prop.address.city},{" "}*/}
+                {/*  {prop && prop.address.state} State*/}
+                {/*  <CgChevronRight size={20} />*/}
+                {/*</p>*/}
               </div>
             </div>
             {/* Right side (Price Summary) */}
@@ -578,7 +589,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                   <Image
                     quality={100}
                     unoptimized={true}
-                    src={prop && prop.agent.image}
+                    src={prop && prop?.agent?.image}
                     height={70}
                     width={70}
                     alt="realtor"
@@ -587,39 +598,29 @@ const PropertyDetails = ({ property }: PropertyProp) => {
 
                   <div>
                     <p className="text-[18px] md:text-[24px] font-bold">
-                      {prop && capitalizeFirstLetter(prop.agent.name)}
+                      {prop && capitalizeFirstLetter(prop?.agent?.name)}
                     </p>
                     <p className=" text-[12px] md:text-[16px] ">
-                      {prop && prop.agent.type}
+                      {prop && prop?.agent?.type}
                     </p>
                   </div>
                 </div>
 
-                <div className="text-secondary mt-6">
-                  <p className="text-[12px] md:text-[16px] font-semibold">
-                    Your Whatsapp number
-                  </p>
-
-                  <div className="border-secondary border text-secondary rounded-xl pl-4 flex items-center mt-2 ">
-                    <p>+234 </p>
-                    <input
-                      placeholder="xx xx xx"
-                      className="w-full px-3 py-4 rounded-xl flex-1 focus:outline-none "
-                    />
-                  </div>
-                </div>
-
-                <a
-                  href={`https://wa.me/+2347038251085`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full rounded-xl bg-primary py-4 flex justify-center text-white mt-6"
-                >
-                  <div className="flex items-center gap-4">
-                    <FaWhatsapp size={25} />
-                    <p>Start a Conversation</p>
-                  </div>
-                </a>
+                {
+                  prop?.agent && (
+                        <a
+                            href={`https://wa.me/${prop?.agent?.whatsappNumber || prop?.agent?.phoneNumber}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full rounded-xl bg-primary py-4 flex justify-center text-white mt-6"
+                        >
+                          <div className="flex items-center gap-4">
+                            <FaWhatsapp size={25} />
+                            <p>Start a Conversation</p>
+                          </div>
+                        </a>
+                    )
+                }
               </div>
             </div>
           </div>
@@ -639,7 +640,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
 
             <div className="flex items-center justify-center flex-wrap flex-col lg:flex-row gap-10">
               {lists &&
-                lists.properties.map((list: any) => {
+                lists.properties.filter(_prop => _prop.id !== prop.id).map((list: any) => {
                   return <ListingCard key={list.id} lists={list} />;
                 })}
             </div>
