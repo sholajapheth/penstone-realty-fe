@@ -443,7 +443,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
                 <div>
                   {
                     prop?.address?.lng && prop?.address?.lat ? (
-                        <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAP_API_KEY}>
+                        <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_MAP_API_KEY || ""}>
                           <GoogleMap
                               mapContainerStyle={{
                                 width: "100%",
@@ -640,7 +640,7 @@ const PropertyDetails = ({ property }: PropertyProp) => {
 
             <div className="flex items-center justify-center flex-wrap flex-col lg:flex-row gap-10">
               {lists &&
-                lists.properties.filter(_prop => _prop.id !== prop.id).map((list: any) => {
+                lists.properties.filter((_prop: any) => _prop.id !== prop.id).map((list: any) => {
                   return <ListingCard key={list.id} lists={list} />;
                 })}
             </div>
