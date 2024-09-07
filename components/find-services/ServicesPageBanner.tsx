@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { IoChevronForward } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 
 const ServicesPageBanner = () => {

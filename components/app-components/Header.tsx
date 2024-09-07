@@ -1,18 +1,13 @@
 "use client";
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
-import { useRouter } from "next/navigation";
-import { TbVaccine } from "react-icons/tb";
 import { FaGripLines } from "react-icons/fa6";
 import {
-  IoChevronDownCircleOutline,
   IoChevronDownOutline,
   IoCloseCircle,
 } from "react-icons/io5";
-import { CgChevronDown } from "react-icons/cg";
 import Image from "next/image";
 import Link from "next/link";
-// import { classNames as hydrateClassNames } from "classnames";
 
 const products = [
   {
@@ -51,7 +46,6 @@ function classNames(...classes: any) {
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const router = useRouter();
 
   return (
     <header className="bg-white">

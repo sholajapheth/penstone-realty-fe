@@ -4,29 +4,24 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 type List = {
-  propertyId: string,
-  // imgSrc: string,
-  // title: string,
-  streetAddress: string,
-  category: string,
+  propertyId: string;
+  streetAddress: string;
+  category: string;
   unitNumber: string;
   city: string;
   state: string;
-  zipcode:string;
-}
- 
-type ListProp = {
-  lists: List | any,
+  zipcode: string;
+};
 
-}
-const ListingCard = ({lists} : ListProp) => {
+type ListProp = {
+  lists: List | any;
+};
+const ListingCard = ({ lists }: ListProp) => {
   const router = useRouter();
 
   function formatNumberWithCommas(amount: number): string {
     return new Intl.NumberFormat("en-US").format(amount);
   }
-
-
 
   return (
     <div

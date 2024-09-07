@@ -3,8 +3,6 @@
 import React from "react";
 import { BiChevronLeft } from "react-icons/bi";
 import { BsCheck, BsSave } from "react-icons/bs";
-import { FcDocument } from "react-icons/fc";
-import { GrDocumentPdf } from "react-icons/gr";
 import { useRouter } from "next/navigation";
 import useLocalStorage from "@/app/api/useLocalStorage";
 
@@ -15,7 +13,6 @@ const TopDetails = ({ property }: PropertyProp) => {
   const { getItem, setItem } = useLocalStorage();
 
   const router = useRouter();
-  // const { id } = router.query;
   const prop = property && property.property;
   return (
     <div className="w-full flex bg-[#F5FCFF] items-center justify-center">

@@ -1,11 +1,9 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useAPI } from "@/app/lib/useApi";
 import { listings } from "@/app/api/UseUser";
 import ListingCard from "./ListingCard";
 
 const AgentPortfolio = () => {
-   const router = useRouter();
    const { useQuery } = useAPI();
 
     const { data: lists } = useQuery({

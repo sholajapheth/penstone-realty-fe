@@ -63,19 +63,11 @@ const HotListings = () => {
             lists.properties.slice(0, 3).map((list: any, i: any) => {
               return (
                 <ListingCard
-                  // propertyId={list.propertyId}
-                  // streetAddress={list.streetAddress}
-                  // unitNumber={list.unitNumber}
-                  // city={list.city}
-                  // state={list.state}
-                  // zipcode={list.zipcode}
                   lists={list}
                   key={i}
                 />
               );
             })}
-          {/* <ListingCard lists={lists} /> */}
-          {/* <ListingCard lists={lists} /> */}
         </div>
         <div className="flex items-center justify-center mt-12">
           <button

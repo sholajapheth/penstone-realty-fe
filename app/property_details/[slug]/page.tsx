@@ -7,7 +7,6 @@ import { useAPI } from "@/app/lib/useApi";
 import { singleList } from "@/app/api/UseUser";
 
 const Page = ({ params }: { params: { slug: string } }) => {
-  // console.log(params.slug)
   const { useQuery } = useAPI();
   const { data: property } = useQuery({
     queryKey: ["property"],
@@ -15,7 +14,6 @@ const Page = ({ params }: { params: { slug: string } }) => {
       singleList(params.slug),
   });
 
-  // console.log(property)
 
   return (
     <div>

@@ -2,9 +2,7 @@
 "use client";
 
 import React, { useState, useEffect, Suspense } from "react";
-import { IoSearch } from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
-import { PaginationNav } from "../common";
 import { useAPI } from "@/app/lib/useApi";
 import { listings, getAreas } from "@/app/api/UseUser";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
@@ -101,9 +99,6 @@ const Search = () => {
       })
       .then();
   }, [area, market, property, price, queryClient, order, sortBy, handleClick]);
-
-  // let states = []
-  //  states = NaijaStates.states();
 
   return (
     <div className="text-secondary  flex justify-center">

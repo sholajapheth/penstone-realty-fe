@@ -36,7 +36,6 @@ const RequestForm = () => {
   const [isChecked, setIsChecked] = useState(false);
 
   const token = Cookies.get("userJwtToken");
-  const user = Cookies.get("userUser");
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
@@ -100,7 +99,6 @@ const RequestForm = () => {
     mutationFunction: (x: any) => sendRequest(x.data, token ? token : "token"),
     onSuccessFn: (data) => {
       setLoading(false);
-      // if (data?.statusCode === 200 || data?.statusCode === 201) {
       toast({
         status: "success",
         description: data.message || "Request Successful",
@@ -108,7 +106,6 @@ const RequestForm = () => {
       resetForm();
     },
     onErrorFn: () => {
-      // Custom error handler
       setLoading(false);
     },
   });
@@ -171,7 +168,7 @@ const RequestForm = () => {
                 onBlur={handleBlur}
                 onChange={handleChange}
               >
-                <option value=""  disabled>
+                <option value="" disabled>
                   Select role
                 </option>
                 <option value="Occupant">Occupant</option>
@@ -343,11 +340,7 @@ const RequestForm = () => {
                 <span className="underline">Privacy Policy</span>.
               </label>
             </div>
-            {/* {auth && (
-              <p className="text-center text-[14px] text-red-500">
-                Please sign up before submitting
-              </p>
-            )} */}
+
             <button
               className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
               //@ts-ignore
@@ -492,7 +485,6 @@ const RequestForm = () => {
               unoptimized={true}
               width={300}
               height={600}
-              // className="w-full h-full"
               src="/img/telephone.png"
               alt=""
             />

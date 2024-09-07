@@ -2,7 +2,7 @@ import { toast, ToastOptions, TypeOptions } from "react-toastify";
 
 interface AppToastOptions extends ToastOptions {
   description: string;
-  status: Exclude<TypeOptions, "default">; // Exclude 'default'
+  status: Exclude<TypeOptions, "default">; 
 }
 
 export function useAppToast() {

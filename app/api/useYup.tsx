@@ -8,7 +8,6 @@ export const applyValidation = Yup.object({
     .required("Email is required"),
   phoneNumber: Yup.string().required("Phone Number is required"),
   address: Yup.string().required("address is required"),
-//   dateOfBirth: Yup.string().required("date of birth is required"),
   monthlyRentBudget: Yup.string().required("monthly rent budget is required"),
   employerName: Yup.string().required("employer name is required"),
   employerAddress: Yup.string().required("employer address is required"),
@@ -17,21 +16,22 @@ export const applyValidation = Yup.object({
   emergencyContactAddress: Yup.string().required(
     "emergency contact address is required"
   ),
-  emergencyContactName: Yup.string().required("emergency contact name is required"),
+  emergencyContactName: Yup.string().required(
+    "emergency contact name is required"
+  ),
   numberOfOccupants: Yup.number().required("number of occupants is required"),
   intentionOfUse: Yup.string().required("intention of use is required"),
-//   moveInDate: Yup.string().required("move in date is required"),
 });
-
 
 export const requestValidation = Yup.object({
   topic: Yup.string().required("topic is required"),
   description: Yup.string().required("description is required"),
-//   attachments: Yup.array().required("attachments is required"),
   profession: Yup.string().required("profession is required"),
   firstName: Yup.string().required("first name is required"),
   lastName: Yup.string().required("last name is required"),
-  email: Yup.string().email("Please enter a valid email").required("email is required"),
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("email is required"),
   phoneNumber: Yup.string().required("phone is required"),
 });
 
@@ -42,7 +42,6 @@ export const sellFormValidator = Yup.object({
   address: Yup.string().required("address is required"),
   city: Yup.string().required("city is required"),
   price: Yup.number().required("price is required"),
-  //   images: Yup.array().required("image is required"),
   firstName: Yup.string().required("first name is required"),
   lastName: Yup.string().required("last name is required"),
   email: Yup.string()

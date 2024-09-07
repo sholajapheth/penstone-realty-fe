@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import GoogleSIgnIn from "../GoogleSIgnIn";
 import { userApply } from "@/app/api/UseUser";
 import { useAPI } from "@/app/lib/useApi";
@@ -8,7 +8,6 @@ import Cookies from "js-cookie";
 import useLocalStorage from "@/app/api/useLocalStorage";
 import { useFormik } from "formik";
 import { applyValidation } from "@/app/api/useYup";
-import { PropertyDetails } from "../properties";
 
 const ApplicationForm = () => {
   const { useAPIMutation } = useAPI();
@@ -48,8 +47,6 @@ const ApplicationForm = () => {
   const [isChecked, setIsChecked] = useState(false);
   const propertyId = getItem("id");
   const title = getItem("title");
-  // console.log(propertyId + ": " + 'title')
-  // const property = JSON.parse(propertyId)
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
@@ -77,8 +74,6 @@ const ApplicationForm = () => {
             alert("Please sign up before submitting");
           return;
         }
-        const individual = JSON.parse(user as string);
-        // const userEmail = user ? individual?.email : "";
         setLoading(true);
         update.mutate({
           data: {
@@ -92,7 +87,6 @@ const ApplicationForm = () => {
               phoneNumber: values.phoneNumber,
               email: values.email,
               address: values.address,
-              // countryCode: values.countryCode,
             },
             personalInformation: {
               dateOfBirth,
@@ -103,7 +97,6 @@ const ApplicationForm = () => {
               annualIncome: values.annualIncome.toString(),
               emergencyContactName: values.emergencyContactName,
               emergencyContactAddress: values.emergencyContactAddress,
-              // userEmail,
             },
           },
         });
@@ -114,8 +107,6 @@ const ApplicationForm = () => {
     mutationFunction: (x: any) => userApply(x.data, token ? token : "token"),
     onSuccessFn: (data) => {
       setLoading(false);
-      // console.log(data)
-      // if (data?.statusCode === 200 || data?.statusCode === 201) {
       toast({
         status: "success",
         description: data.message || "Application Successful",
@@ -123,7 +114,6 @@ const ApplicationForm = () => {
       resetForm();
     },
     onErrorFn: () => {
-      // Custom error handler
       setLoading(false);
     },
   });
@@ -506,11 +496,7 @@ const ApplicationForm = () => {
                 EVICTION CHECKS
               </p>
             </div>
-            {/* {auth && (
-              <p className="text-center text-[14px] text-red-500">
-                Please sign up before submitting
-              </p>
-            )} */}
+           
             <div className="flex justify-center lg:justify-start">
               <button
                 className={` disabled:bg-primary/40 disabled:cursor-not-allowed bg-primary text-white font-semibold flex justify-center items-center gap-2 py-3 rounded-xl px-8 w-full lg:w-[20%]`}

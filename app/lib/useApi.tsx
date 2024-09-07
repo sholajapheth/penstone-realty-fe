@@ -11,7 +11,7 @@ import { useAppToast } from "./useAppToast";
 interface ApiMutationOptions<TData, TVariables> {
   mutationFunction?: (variables: TVariables) => Promise<TData>;
   onSuccessFn?: (data: TData) => void;
-  onErrorFn?: (error: AxiosError) => void; // Added
+  onErrorFn?: (error: AxiosError) => void; 
 }
 
 export function useAPI() {
@@ -21,7 +21,7 @@ export function useAPI() {
   function useAPIMutation<TData, TVariables>({
     mutationFunction,
     onSuccessFn,
-    onErrorFn, // Added
+    onErrorFn, 
   }: ApiMutationOptions<TData, TVariables>): UseMutationResult<
     TData,
     AxiosError,
@@ -32,7 +32,6 @@ export function useAPI() {
       onSuccess: onSuccessFn,
       onError: (error: AxiosError) => {
         if (error.response) {
-          // console.log(error.response);
           const status = error.response.status;
           if (status === 400) {
             toast({
@@ -60,7 +59,7 @@ export function useAPI() {
         }
 
         if (onErrorFn) {
-          onErrorFn(error); // Call the custom error handler
+          onErrorFn(error); 
         }
       },
     });

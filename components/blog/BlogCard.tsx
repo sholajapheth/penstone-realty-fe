@@ -9,8 +9,8 @@ type ArtProp = {
   date: string;
   title: string;
 };
-const BlogCard = ({imgSrc, date, title} : ArtProp) => {
-      const router = useRouter();
+const BlogCard = ({ imgSrc, date, title }: ArtProp) => {
+  const router = useRouter();
 
   return (
     <div

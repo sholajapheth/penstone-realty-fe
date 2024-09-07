@@ -39,7 +39,6 @@ const Form = () => {
   };
 
   const token = Cookies.get("userJwtToken");
-  const user = Cookies.get("userUser");
 
   const { values, handleBlur, handleChange, handleSubmit, errors, resetForm } =
     useFormik({
@@ -81,7 +80,6 @@ const Form = () => {
   const photoInput: React.MutableRefObject<HTMLInputElement | null> =
     useRef(null);
 
-
   const handleValidChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       const files = Array.from(e.target.files);
@@ -104,7 +102,6 @@ const Form = () => {
     mutationFunction: (x: any) => sellForm(x.data, token ? token : "token"),
     onSuccessFn: (data) => {
       setLoading(false);
-      // if (data?.statusCode === 200 || data?.statusCode === 201) {
       toast({
         status: "success",
         description: data.message || "Application Successful",
@@ -112,7 +109,6 @@ const Form = () => {
       resetForm();
     },
     onErrorFn: () => {
-      // Custom error handler
       setLoading(false);
     },
   });
@@ -144,7 +140,7 @@ const Form = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               >
-                <option value="" disabled >
+                <option value="" disabled>
                   Select intention
                 </option>
                 <option value="RENT">Rent</option>
@@ -166,7 +162,7 @@ const Form = () => {
                 value={values.propertyType}
                 onChange={handleChange}
               >
-                <option value="" disabled >
+                <option value="" disabled>
                   Select the property type
                 </option>
                 <option
@@ -424,11 +420,7 @@ const Form = () => {
                 <span className="underline">Privacy Policy</span>.
               </label>
             </div>
-            {/* {auth && (
-              <p className="text-center text-[14px] text-red-500">
-                Please sign up before submitting
-              </p>
-            )} */}
+
             <button
               className="disabled:bg-primary/40 disabled:cursor-not-allowed  bg-primary text-white font-semibold py-3 rounded-xl flex justify-center items-center gap-2"
               //@ts-ignore
@@ -573,7 +565,6 @@ const Form = () => {
               unoptimized={true}
               width={550}
               height={600}
-              // className="w-full h-full"
               src="/img/house.png"
               alt=""
             />

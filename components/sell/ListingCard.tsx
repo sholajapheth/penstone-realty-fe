@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 
 type List = {
   propertyId: string;
-  // imgSrc: string,
-  // title: string,
   streetAddress: string;
   category: string;
   unitNumber: string;

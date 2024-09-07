@@ -5,7 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 const BlogTop = () => {
-      const router = useRouter();
+  const router = useRouter();
 
   return (
     <div className="bg-white flex  justify-center pb-[8em]">
