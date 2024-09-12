@@ -70,8 +70,8 @@ const Search = () => {
                     propertyType: property ? property : undefined,
                     area: area ? area : undefined,
                     price: {
-                        min: min && min > 0 ? Number(min) : undefined,
-                        max: max && max > 0 ? Number(max) : undefined,
+                        min: min ? Number(min) : undefined,
+                        max: max ? Number(max) : undefined,
                     },
                     category: category ? category : undefined,
                 },
@@ -276,7 +276,7 @@ const Search = () => {
                     </div>
                 </div>
                 {" "}
-                <div ref={scrollRef} className={"flex mt-[4em] w-full overflow-x-auto gap-x-[48px] items-center px-[48px] md:pl-0 "}>
+                <div ref={scrollRef as any} className={"flex mt-[4em] w-full overflow-x-auto gap-x-[48px] items-center px-[48px] md:pl-0 "}>
                     {lists &&
                         currentItems.map((list: any) => {
                             return <ListingCard key={list.id} lists={list}/>;

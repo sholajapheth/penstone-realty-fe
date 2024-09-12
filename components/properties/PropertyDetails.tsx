@@ -15,6 +15,7 @@ import {StaticImport} from "next/dist/shared/lib/get-img-props";
 import Modal from "../app-components/CustomModal";
 import {GrFormPrevious, GrFormNext} from "react-icons/gr";
 import {GoogleMap, LoadScript, Marker} from "@react-google-maps/api";
+import {useHorizontalScroll} from "@/hooks/useHorizontalScroll";
 
 const Feature = ({
                      icon,
@@ -51,6 +52,8 @@ const PropertyDetails = ({property}: PropertyProp) => {
     const {useQuery} = useAPI();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalImage, setModalImage] = useState<string | StaticImport>("");
+
+    const scrollRef = useHorizontalScroll();
 
     const prop = property?.property;
 
@@ -646,7 +649,7 @@ const PropertyDetails = ({property}: PropertyProp) => {
                             </button>
                         </div>
 
-                        <div className="pb-6 flex mt-[4em] w-full overflow-scroll gap-x-[48px] items-center px-[48px] md:pl-0">
+                        <div ref={scrollRef as any} className="pb-6 flex mt-[4em] w-full overflow-scroll gap-x-[48px] items-center px-[48px] md:pl-0">
                             {lists &&
                                 lists.properties.filter((_prop: any) => _prop.id !== prop.id).map((list: any) => {
                                     return <ListingCard key={list.id} lists={list}/>;
