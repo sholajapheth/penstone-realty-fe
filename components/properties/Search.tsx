@@ -419,11 +419,13 @@ const Search = () => {
             </div>
           </div>
         </div>{" "}
-        <div className="mt-[4em] w-full flex items-center gap-x-[48px] gap-y-[48px] justify-center lg:justify-between flex-wrap">
-          {lists &&
-            currentItems.map((list: any) => {
-              return <ListingCard key={list.id} lists={list} />;
-            })}
+        <div className="mt-[4em] w-full flex overflow-scroll">
+          <div className={"flex w-full gap-x-[48px] justify-start items-center"} >
+            {lists &&
+                currentItems.map((list: any) => {
+                  return <ListingCard key={list.id} lists={list} />;
+                })}
+          </div>
           {currentItems && currentItems.length < 1 && (
             <p className="font-semibold text-center flex justify-center items-center w-full py-10 text-red-500 text-[20px]">
               No available listing
