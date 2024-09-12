@@ -646,7 +646,7 @@ const PropertyDetails = ({property}: PropertyProp) => {
                             </button>
                         </div>
 
-                        <div className="flex items-center justify-center flex-wrap flex-col lg:flex-row gap-10">
+                        <div className="pb-6 flex mt-[4em] w-full overflow-scroll gap-x-[48px] items-center px-[48px] md:pl-0">
                             {lists &&
                                 lists.properties.filter((_prop: any) => _prop.id !== prop.id).map((list: any) => {
                                     return <ListingCard key={list.id} lists={list}/>;
