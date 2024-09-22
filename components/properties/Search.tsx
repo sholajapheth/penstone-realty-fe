@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import React, {useState, useEffect, Suspense} from "react";
+import React, {useState, useEffect, Suspense, useMemo} from "react";
 import {IoSearch} from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
 import {PaginationNav} from "../common";
@@ -11,6 +11,7 @@ import {BiChevronLeft, BiChevronRight} from "react-icons/bi";
 import Cookies from "js-cookie";
 import {useSearchParams} from "next/navigation";
 import {useHorizontalScroll} from "@/hooks/useHorizontalScroll";
+import {useDeviceType} from "@/hooks/useDeviceType";
 
 const PROPERTY_COOKIE_NAME = "propertyType";
 const AREA_COOKIE_NAME = "area";
@@ -18,20 +19,30 @@ const AREA_COOKIE_NAME = "area";
 const Search = () => {
     const {useQuery, queryClient} = useAPI();
     const searchParams = useSearchParams();
+    const deviceType = useDeviceType();
     const [area, setArea] = useState("");
     const [market, setMarket] = useState("");
     const [category, setCategory] = useState("");
     const [property, setProperty] = useState("");
-    const [price, setPrice] = useState("");
     const [min, setMax] = useState("");
     const [max, setMin] = useState("");
     const [sortBy, setSortBy] = useState("");
     const [order, setOrder] = useState("");
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 9;
 
     const scrollRef = useHorizontalScroll();
+
+    const itemsPerPage = useMemo(() => {
+        switch (deviceType) {
+            case "desktop":
+                return 3;
+            case "tablet":
+                return 2;
+            default:
+                return 1;
+        }
+    }, [deviceType])
 
     useEffect(() => {
         const prop = Cookies.get(PROPERTY_COOKIE_NAME);
@@ -62,9 +73,9 @@ const Search = () => {
     const uniqueAreas = Array.from(new Set(areas && areas.data));
 
     const {data: lists} = useQuery({
-        queryKey: ["lists", area, market, property, price, sortBy, order, category, min, max],
+        queryKey: ["lists", area, market, property, sortBy, order, category, min, max],
         queryFn: () =>
-            listings( undefined, undefined, {
+            listings(undefined, undefined, {
                 filters: {
                     marketType: market ? market : undefined,
                     propertyType: property ? property : undefined,
@@ -90,6 +101,15 @@ const Search = () => {
     const handlePageClick = (page: number) => {
         setCurrentPage(page);
     };
+
+    function clearFilters() {
+        setArea("");
+        setMarket("");
+        setCategory("");
+        setProperty("");
+        setMin("");
+        setMax("");
+    }
 
     useEffect(() => {
         queryClient
@@ -274,9 +294,11 @@ const Search = () => {
                             />
                         </div>
                     </div>
+
+                    <button className={"px-6 py-3 rounded-md bg-slate-200 self-end mt-4 ml-4 lg:ml-0 lg:mt-0 lg:mb-1"} onClick={clearFilters}>Clear filters</button>
                 </div>
                 {" "}
-                <div ref={scrollRef as any} className={"flex mt-[4em] w-full overflow-x-auto gap-x-[48px] items-center px-[48px] md:pl-0 "}>
+                <div className={"flex mt-[4em] w-full gap-x-[48px] items-center justify-center px-[48px] md:pl-0 "}>
                     {lists &&
                         currentItems.map((list: any) => {
                             return <ListingCard key={list.id} lists={list}/>;
@@ -288,7 +310,7 @@ const Search = () => {
                     )}
                 </div>
                 {/* <PaginationNav /> */}
-                <div className="flex items-center justify-center mt-[1em] md:mt-[4em]">
+                <div className="flex items-center justify-center my-[4em]">
                     <div className="font-bold flex items-center gap-4 ">
                         <BiChevronLeft
                             size={28}
@@ -296,8 +318,8 @@ const Search = () => {
                             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                         />
 
-                        <div className="flex gap-2">
-                            {Array.from({length: totalPages}, (_, index) => (
+                        <div className="flex gap-2 items-center">
+                            {Array.from({length: Math.min(totalPages, 5)}, (_, index) => (
                                 <button
                                     key={index + 1}
                                     className={`p-4 py-[0.55rem] rounded-full text-white shadow-sm ${
@@ -308,6 +330,24 @@ const Search = () => {
                                     {index + 1}
                                 </button>
                             ))}
+                            {
+                                totalPages > 5 && (
+                                    <>
+                                        <p>•</p>
+                                        <p>•</p>
+                                        <p>•</p>
+                                        <button
+                                            key={totalPages}
+                                            className={`p-4 py-[0.55rem] rounded-full text-white shadow-sm ${
+                                                currentPage === totalPages ? "bg-primary" : "bg-gray-300"
+                                            }`}
+                                            onClick={() => handlePageClick(totalPages)}
+                                        >
+                                            {totalPages}
+                                        </button>
+                                    </>
+                                )
+                            }
                         </div>
 
                         <BiChevronRight
