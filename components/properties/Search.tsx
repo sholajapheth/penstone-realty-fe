@@ -2,73 +2,49 @@
 "use client";
 
 import React, {useState, useEffect, Suspense, useMemo} from "react";
-import {IoSearch} from "react-icons/io5";
 import ListingCard from "../home/ListingCard";
-import {PaginationNav} from "../common";
 import {useAPI} from "@/app/lib/useApi";
 import {listings, getAreas} from "@/app/api/UseUser";
 import {BiChevronLeft, BiChevronRight} from "react-icons/bi";
-import Cookies from "js-cookie";
-import {useSearchParams} from "next/navigation";
-import {useHorizontalScroll} from "@/hooks/useHorizontalScroll";
 import {useDeviceType} from "@/hooks/useDeviceType";
-
-const PROPERTY_COOKIE_NAME = "propertyType";
-const AREA_COOKIE_NAME = "area";
+import {useSearchParams} from "next/navigation";
 
 const Search = () => {
     const {useQuery, queryClient} = useAPI();
-    const searchParams = useSearchParams();
+    const params = useSearchParams();
     const deviceType = useDeviceType();
-    const [area, setArea] = useState("");
-    const [market, setMarket] = useState("");
-    const [category, setCategory] = useState("");
-    const [property, setProperty] = useState("");
-    const [min, setMax] = useState("");
-    const [max, setMin] = useState("");
+
+    const [area, setArea] = useState<string>(params.get("area") || "");
+    const [market, setMarket] = useState<string>(params.get("market") || "");
+    const [category, setCategory] = useState<string>(params.get("category") || "");
+    const [property, setProperty] = useState<string>(params.get("property") || "");
+    const [min, setMax] = useState<string>(params.get("min") || "");
+    const [max, setMin] = useState<string>(params.get("max") || "");
     const [sortBy, setSortBy] = useState("");
     const [order, setOrder] = useState("");
 
     const [currentPage, setCurrentPage] = useState(1);
 
-    const scrollRef = useHorizontalScroll();
+    function scrollTo(element_id: string) {
+        const element = document.getElementById(element_id)
+        element?.scrollIntoView({ behavior: "smooth", block: "start", inline: "start" });
+    }
 
     const itemsPerPage = useMemo(() => {
         switch (deviceType) {
             case "desktop":
-                return 3;
+                return 9;
             case "tablet":
-                return 2;
+                return 6;
             default:
-                return 1;
+                return 3;
         }
     }, [deviceType])
 
-    useEffect(() => {
-        const prop = Cookies.get(PROPERTY_COOKIE_NAME);
-        const item = searchParams.get("filter");
-        const selectedArea = Cookies.get(AREA_COOKIE_NAME);
-
-        if (prop) {
-            setProperty(prop);
-            Cookies.remove(PROPERTY_COOKIE_NAME);
-        }
-
-        if (item) {
-            setMarket(item);
-        }
-
-        if (selectedArea) {
-            setArea(selectedArea);
-            Cookies.remove(AREA_COOKIE_NAME);
-        }
-    }, [searchParams]);
-
     const {data: areas} = useQuery({
         queryKey: ["areas"],
-        queryFn: () => getAreas(),
+        queryFn: () => getAreas()
     });
-
 
     const uniqueAreas = Array.from(new Set(areas && areas.data));
 
@@ -110,6 +86,8 @@ const Search = () => {
         setMin("");
         setMax("");
     }
+
+    useEffect(() => scrollTo("listing-box"), [currentPage]);
 
     useEffect(() => {
         queryClient
@@ -298,16 +276,18 @@ const Search = () => {
                     <button className={"px-6 py-3 rounded-md bg-slate-200 self-end mt-4 ml-4 lg:ml-0 lg:mt-0 lg:mb-1"} onClick={clearFilters}>Clear filters</button>
                 </div>
                 {" "}
-                <div className={"flex mt-[4em] w-full gap-x-[48px] items-center justify-center px-[48px] md:pl-0 "}>
-                    {lists &&
-                        currentItems.map((list: any) => {
-                            return <ListingCard key={list.id} lists={list}/>;
-                        })}
-                    {currentItems && currentItems.length < 1 && (
-                        <p className="font-semibold text-center flex justify-center items-center w-full py-10 text-red-500 text-[20px]">
+                <div className={"flex pt-[4em] w-full items-center justify-center"} id={"listing-box"} >
+                    {!currentItems || currentItems.length < 1 && (
+                        <div className="font-semibold text-start w-full py-10 text-red-500 text-[20px]">
                             No available listing
-                        </p>
+                        </div>
                     )}
+                    <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full"} >
+                        {lists &&
+                            currentItems.map((list: any) => {
+                                return <ListingCard key={list.id} lists={list}/>;
+                            })}
+                    </div>
                 </div>
                 {/* <PaginationNav /> */}
                 <div className="flex items-center justify-center my-[4em]">
@@ -333,9 +313,15 @@ const Search = () => {
                             {
                                 totalPages > 5 && (
                                     <>
-                                        <p>•</p>
-                                        <p>•</p>
-                                        <p>•</p>
+                                        {
+                                            ((totalPages - 5) > 1) && (
+                                                <>
+                                                    <p>•</p>
+                                                    <p>•</p>
+                                                    <p>•</p>
+                                                </>
+                                            )
+                                        }
                                         <button
                                             key={totalPages}
                                             className={`p-4 py-[0.55rem] rounded-full text-white shadow-sm ${

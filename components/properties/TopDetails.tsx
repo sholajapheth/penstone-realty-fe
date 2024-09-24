@@ -19,12 +19,12 @@ const TopDetails = ({ property }: PropertyProp) => {
   const prop = property && property.property;
   return (
     <div className="w-full flex bg-[#F5FCFF] items-center justify-center">
-      <div className="w-[85%] max-w-[1200px] ">
-        <div className="gap-2 py-[2em] flex items-start w-full lg:items-center flex-col lg:flex-row">
+      <div className="w-[85%] max-w-[1200px]">
+        <div className="gap-2 py-[2em] flex gap-8 items-start w-full lg:items-center flex-col lg:flex-row">
           <div className=" flex-1 flex flex-col gp-y-3 lg:gap-y-4">
             <button
               className="text-secondary font-semibold flex items-center "
-              onClick={() => router.push("/search")}
+              onClick={() => router.back()}
             >
               <BiChevronLeft size={30} />
               <p>Back to Search</p>
@@ -38,17 +38,18 @@ const TopDetails = ({ property }: PropertyProp) => {
               {prop && prop.address.state} State
             </p>
 
-            <div className="hidden lg:flex">
-              <div className="rounded-2xl bg-[#13718A] px-4 py-1 gap-2 text-white flex items-center ">
-                <p className="text-sm">
-                  Managed by{" "}
-                  {prop && prop.listingInformation.managedBy === "THIRD_PARTY"
-                    ? "Third Party"
-                    : "Pentstone"}
-                </p>
-                <BsCheck color="white" size={25} />
-              </div>
-            </div>
+            {
+              prop?.managedBy === "PENTSTONE" && (
+                    <div className="flex">
+                      <div className="rounded-2xl bg-[#13718A] px-4 py-1 gap-2 mt-3 text-white flex items-center ">
+                        <p className="text-sm">
+                          Managed by Pentstone
+                        </p>
+                        <BsCheck color="white" size={25} />
+                      </div>
+                    </div>
+                )
+            }
           </div>
 
           <button

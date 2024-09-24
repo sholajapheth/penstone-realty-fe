@@ -141,7 +141,7 @@ const RequestForm = () => {
                 onChange={handleChange}
               >
                 <option value="" disabled>
-                  Select a property
+                  Select a service
                 </option>
                 <option className=" text-[16px]" value={"ARCHITECTURAL_DESIGN"}>
                   Architectural Design

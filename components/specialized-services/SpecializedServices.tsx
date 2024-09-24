@@ -61,7 +61,7 @@ const SpecializedServices = () => {
                   para="Ensure legal compliance with clear, comprehensive contract documentation, safeguarding your interests and minimizing risks in property transactions."
                 />
               </div>
-              <PaginationNav />
+              {/*<PaginationNav />*/}
             </div>
           </div>
         </div>

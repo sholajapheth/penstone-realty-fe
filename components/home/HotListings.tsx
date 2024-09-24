@@ -48,10 +48,12 @@ const HotListings = () => {
             </p>
           </div>
           <div className="lg:flex w-full lg:w-fit justify-center items-center gap-4 hidden">
-            <button className="rounded-md bg-primary p-2  ">
-              <BiChevronLeft color="white" size={30} />
+            {/*<button className="rounded-md bg-primary p-2  ">*/}
+            <button className="rounded-md bg-gray-300 p-2 text-primary" disabled={true} >
+              <BiChevronLeft size={30} />
+              {/*<BiChevronLeft color="white" size={30} />*/}
             </button>
-            <button className="rounded-md bg-gray-300 p-2 text-primary  ">
+            <button className="rounded-md bg-gray-300 p-2 text-primary" disabled={true} >
               <BiChevronRight size={30} />
             </button>
           </div>

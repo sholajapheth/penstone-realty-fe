@@ -42,7 +42,7 @@ const FindPage = () => {
                 heading="Expert guidance"
                 para="Let our experienced experts lead the way, providing you with personalized assistance tailored to your specific requirements, helping you effortlessly achieve your property goals."
                 service="Agent"
-                link="/contact"
+                link="/contact_us"
               />
             </div>
           </div>

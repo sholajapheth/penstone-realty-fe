@@ -3,7 +3,7 @@ import {
     UseQueryResult,
     useMutation,
     useQuery,
-    useQueryClient,
+    useQueryClient, UseMutationOptions,
 } from "@tanstack/react-query";
 import {AxiosError} from "axios";
 import {useAppToast} from "./useAppToast";
@@ -61,7 +61,7 @@ export function useAPI() {
                     onErrorFn(error); // Call the custom error handler
                 }
             },
-        });
+        } as UseMutationOptions<TData, AxiosError, TVariables, unknown>);
     }
 
     function useAPIQuery<TData, TError>({

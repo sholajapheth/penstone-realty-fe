@@ -57,11 +57,6 @@ const PropertyDetails = ({property}: PropertyProp) => {
 
     const prop = property?.property;
 
-    // const center = {
-    //     lat: 37.437041393899676,
-    //     lng: -4.191635586788259
-    // };
-
     useEffect(() => {
         const handleScroll = () => {
             const {current} = showcaseRef;
@@ -643,13 +638,24 @@ const PropertyDetails = ({property}: PropertyProp) => {
                             </p>
                             <button
                                 className="bg-primary px-8 py-3 text-white font-medium  rounded-md"
-                                onClick={() => router.push("/search")}
+                                onClick={() => {
+                                    const query = new URLSearchParams({
+                                        area: prop?.address?.city,
+                                        marketType: prop ? prop?.listingInformation?.marketType : undefined,
+                                        propertyType: prop
+                                            ? prop?.listingInformation?.propertyType
+                                            : undefined,
+                                        category: prop ? prop?.category : undefined,
+                                    }).toString();
+
+                                    router.push("/search?" + query);
+                                }}
                             >
                                 View all listings
                             </button>
                         </div>
 
-                        <div ref={scrollRef as any} className="pb-6 flex mt-[4em] w-full overflow-scroll gap-x-[48px] items-center px-[48px] md:pl-0 .hide-scroll-indicators">
+                        <div ref={scrollRef as any} className="pb-6 flex mt-[4em] w-full overflow-scroll gap-x-[48px] items-center px-[48px] md:pl-0 hide-scroll-indicators">
                             {lists &&
                                 lists.properties.filter((_prop: any) => _prop.id !== prop.id).map((list: any) => {
                                     return <ListingCard key={list.id} lists={list}/>;
