@@ -91,6 +91,8 @@ const PropertyDetails = ({property}: PropertyProp) => {
 
     const images = prop?.listingInformation?.image || [];
 
+    console.log(prop);
+
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -127,7 +129,6 @@ const PropertyDetails = ({property}: PropertyProp) => {
         const date = new Date(dateString);
 
         if (isNaN(date.getTime())) {
-            console.error("Invalid date string:", dateString);
             return "Invalid Date";
         }
 
@@ -217,10 +218,10 @@ const PropertyDetails = ({property}: PropertyProp) => {
                                         {prop &&
                                             prop.listingInformation.images.map(
                                                 (
-                                                    src: string | StaticImport,
+                                                    src: string,
                                                     index: number
                                                 ) => (
-                                                    <Image
+                                                    src ? <Image
                                                         quality={100}
                                                         unoptimized={true}
                                                         key={index}
@@ -230,13 +231,13 @@ const PropertyDetails = ({property}: PropertyProp) => {
                                                         height={200}
                                                         className="w-full h-full mr-4 cursor-pointer"
                                                         onClick={() => openModal(index)}
-                                                    />
+                                                    /> : <></>
                                                 )
                                             )}
                                     </div>
                                     <Modal isOpen={isModalOpen} onClose={closeModal}>
                                         <div className="relative">
-                                            {modalImageIndex !== null && (
+                                            {modalImageIndex !== null && prop.listingInformation.images[modalImageIndex] && (
                                                 <Image
                                                     quality={100}
                                                     unoptimized={true}
@@ -412,8 +413,7 @@ const PropertyDetails = ({property}: PropertyProp) => {
                                     }
                                     feature="Available From"
                                     tagline={
-                                        formatDate(prop && prop.listingInformation.availableDate) ||
-                                        "12 Feb, 2024"
+                                        prop?.listingInformation?.availableDate ? formatDate(prop?.listingInformation?.availableDate) : "Now"
                                     }
                                 />
                             </div>
@@ -498,9 +498,7 @@ const PropertyDetails = ({property}: PropertyProp) => {
                                             prop && prop.listingInformation.monthlyRent
                                         )}
                                         {prop && prop.category !== "SALE" && (
-                                            <span className="text-[14px] md:text-[18px] font-medium">
-                        /Month
-                      </span>
+                                            <span className="text-[14px] md:text-[18px] font-medium"> /Month</span>
                                         )}
                                     </p>
                                 </div>
@@ -553,7 +551,10 @@ const PropertyDetails = ({property}: PropertyProp) => {
                                         One-time booking fee
                                     </p>
                                     <p className="text-[14px] md:text-[18px] font-medium">
-                                        NGN 10,000
+                                        NGN{" "}
+                                        {formatNumberWithCommas(
+                                            prop && prop.listingInformation.oneTimeBookingFee
+                                        )}
                                     </p>
                                 </div>
                                 <div className="my-6 flex items-start justify-between border-t border-gray-400 border-b border-b-gray-400 py-4">
@@ -569,24 +570,10 @@ const PropertyDetails = ({property}: PropertyProp) => {
                                     <p className="text-[18px] md:text-[24px] font-bold">
                                         NGN{" "}
                                         {formatNumberWithCommas(
-                                            prop && duration === "1"
-                                                ? prop.listingInformation.securityDeposit +
+                                            (prop.listingInformation.securityDeposit +
                                                 prop.listingInformation.monthlyRent +
-                                                10000 +
-                                                1500
-                                                : duration === "6"
-                                                    ? (prop.listingInformation.securityDeposit +
-                                                        prop.listingInformation.monthlyRent +
-                                                        1500) *
-                                                    6 +
-                                                    10000
-                                                    : duration === "12"
-                                                        ? (prop.listingInformation.securityDeposit +
-                                                            prop.listingInformation.monthlyRent +
-                                                            1500) *
-                                                        12 +
-                                                        10000
-                                                        : 0
+                                                prop.listingInformation.oneTimeBookingFee +
+                                                prop.listingInformation.oneTimeBookingFee) * Number.parseInt(duration)
                                         )}
                                     </p>
                                 </div>
@@ -595,7 +582,7 @@ const PropertyDetails = ({property}: PropertyProp) => {
                                     <Image
                                         quality={100}
                                         unoptimized={true}
-                                        src={prop && prop?.agent?.image}
+                                        src={prop?.agent?.image || "/img/user-avatar.png"}
                                         height={70}
                                         width={70}
                                         alt="realtor"
